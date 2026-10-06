@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from '../button/Button';
+import { Panel } from '../panel/Panel';
 import {
   Dialog,
   DialogClose,
@@ -71,8 +72,8 @@ export const OverDenseContent: Story = {
   tags: ['!autodocs'],
   render: (args) => (
     <>
-      <div className="hx:glass hx:overflow-hidden hx:rounded-2xl">
-        <table className="hx:w-full hx:text-left hx:text-sm hx:tabular-nums">
+      <Panel>
+        <table className="hx:w-full hx:border-collapse hx:text-left hx:text-sm hx:tabular-nums">
           <thead className="hx:text-fg-muted">
             <tr>
               {['N°', 'Client', 'Date', 'Montant', 'Statut'].map((h) => (
@@ -94,7 +95,7 @@ export const OverDenseContent: Story = {
             ))}
           </tbody>
         </table>
-      </div>
+      </Panel>
       <Dialog defaultOpen {...args}>
         <DialogContent>
           <DialogHeader>
