@@ -16,7 +16,7 @@ export function DialogContent({ className, portalProps, ...props }: DialogConten
     <BaseDialog.Portal {...portalProps}>
       <BaseDialog.Backdrop
         className={cn(
-          'hx:fixed hx:inset-0 hx:z-50 hx:min-h-dvh hx:bg-glass-overlay hx:backdrop-blur-[2px]',
+          'hx:fixed hx:inset-0 hx:z-50 hx:min-h-dvh hx:bg-glass-overlay hx:backdrop-blur-[4px]',
           'hx:transition-opacity hx:duration-200 hx:data-starting-style:opacity-0 hx:data-ending-style:opacity-0',
           'hx:supports-[-webkit-touch-callout:none]:absolute',
         )}
@@ -24,7 +24,7 @@ export function DialogContent({ className, portalProps, ...props }: DialogConten
       <BaseDialog.Popup
         className={mergeClassName(
           [
-            'hx:glass-strong hx:fixed hx:top-1/2 hx:left-1/2 hx:z-50 hx:-translate-x-1/2 hx:-translate-y-1/2',
+            'hx:glass-dialog hx:fixed hx:top-1/2 hx:left-1/2 hx:z-50 hx:-translate-x-1/2 hx:-translate-y-1/2',
             'hx:flex hx:w-lg hx:max-w-[calc(100vw-2rem)] hx:flex-col hx:gap-5 hx:rounded-2xl hx:p-6 hx:text-fg',
             'hx:outline-none hx:transition-[scale,opacity] hx:duration-200 hx:ease-out',
             'hx:data-starting-style:scale-95 hx:data-starting-style:opacity-0',

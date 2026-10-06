@@ -15,16 +15,10 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: [
-          'hx:bg-primary hx:text-primary-fg hx:hover:bg-primary-hover',
-          'hx:shadow-[inset_0_1px_0_0_oklch(1_0_0/0.2),0_1px_2px_0_oklch(0_0_0/0.12)]',
-        ],
+        primary: 'hx:lit hx:bg-primary hx:text-primary-fg hx:hover:bg-primary-hover hx:[--hx-lit-glow:var(--hx-primary-glow)]',
         secondary: 'hx:glass hx:text-fg hx:hover:bg-glass-hover hx:active:bg-glass-active',
         ghost: 'hx:text-fg hx:hover:bg-glass-hover hx:active:bg-glass-active',
-        danger: [
-          'hx:bg-danger hx:text-danger-fg hx:hover:bg-danger-hover',
-          'hx:shadow-[inset_0_1px_0_0_oklch(1_0_0/0.2),0_1px_2px_0_oklch(0_0_0/0.12)]',
-        ],
+        danger: 'hx:lit hx:bg-danger hx:text-danger-fg hx:hover:bg-danger-hover hx:[--hx-lit-glow:var(--hx-danger-glow)]',
       },
       size: {
         sm: 'hx:h-8 hx:px-3 hx:text-sm',

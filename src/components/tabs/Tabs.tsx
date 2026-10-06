@@ -10,7 +10,7 @@ export function TabsList({ className, children, ...props }: ComponentProps<typeo
   return (
     <BaseTabs.List
       className={mergeClassName(
-        'hx:glass-field hx:relative hx:z-0 hx:inline-flex hx:w-fit hx:items-center hx:gap-1 hx:rounded-xl hx:p-1',
+        'hx:glass-thin hx:relative hx:z-0 hx:inline-flex hx:w-fit hx:items-center hx:gap-1 hx:rounded-xl hx:p-1',
         className,
       )}
       {...props}
