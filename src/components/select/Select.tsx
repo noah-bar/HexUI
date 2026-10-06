@@ -15,6 +15,8 @@ export function SelectTrigger({ className, children, ...props }: ComponentProps<
           'hx:transition-[border-color,box-shadow] hx:duration-150 hx:hover:border-fg-subtle/40',
           'hx:outline-none hx:focus-visible:border-accent hx:focus-visible:ring-3 hx:focus-visible:ring-ring',
           'hx:data-popup-open:border-accent',
+          'hx:error:border-danger hx:error:ring-3 hx:error:ring-danger/15',
+          'hx:error:focus-visible:border-danger hx:error:focus-visible:ring-danger/30',
           'hx:data-disabled:cursor-not-allowed hx:data-disabled:opacity-50',
         ].join(' '),
         className,
