@@ -17,6 +17,7 @@ export {
   type DialogContentProps,
 } from './components/dialog/Dialog';
 export { Input, type InputProps } from './components/input/Input';
+export { Panel, panelVariants, type PanelProps } from './components/panel/Panel';
 export {
   Select,
   SelectContent,
