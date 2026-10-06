@@ -49,6 +49,15 @@ export {
 export { Panel, panelVariants, type PanelProps } from './components/panel/Panel';
 export { Radio, RadioGroup, type RadioProps } from './components/radio/Radio';
 export {
+  Popover,
+  PopoverClose,
+  PopoverContent,
+  PopoverDescription,
+  PopoverTitle,
+  PopoverTrigger,
+  type PopoverContentProps,
+} from './components/popover/Popover';
+export {
   Select,
   SelectContent,
   SelectGroup,
@@ -62,4 +71,11 @@ export {
 export { Switch, type SwitchProps } from './components/switch/Switch';
 export { Textarea, type TextareaProps } from './components/textarea/Textarea';
 export { Tabs, TabsList, TabsPanel, TabsTab } from './components/tabs/Tabs';
+export {
+  ToastProvider,
+  createToastManager,
+  useToast,
+  type ToastProviderProps,
+  type ToastType,
+} from './components/toast/Toast';
 export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, type TooltipContentProps } from './components/tooltip/Tooltip';
