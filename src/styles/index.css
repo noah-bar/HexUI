@@ -49,6 +49,16 @@
   --hx-danger-solid: #b91c1c;
   /* Error messages: readable red text (≥ 5:1 on glass). */
   --hx-danger-text: #b91c1c;
+
+  /* Status colors (badges): base hue for tints, darker shade for text (≥ 5:1 on its tint). */
+  --hx-success: #16a34a;
+  --hx-success-text: #166534;
+  --hx-warning: #d97706;
+  --hx-warning-text: #92400e;
+  --hx-info: #4f46e5;
+  --hx-info-text: #4338ca;
+  --hx-neutral: #64748b;
+  --hx-neutral-text: #475569;
   --hx-danger-solid-hover: #991b1b;
 
   --hx-ring: color-mix(in oklch, var(--hx-accent) 55%, transparent);
@@ -128,6 +138,15 @@
   --hx-danger-solid: #b91c1c;
   /* Error messages: readable red text (≥ 5:1 on glass). */
   --hx-danger-text: #f87171;
+
+  --hx-success: #22c55e;
+  --hx-success-text: #4ade80;
+  --hx-warning: #f59e0b;
+  --hx-warning-text: #fbbf24;
+  --hx-info: #6366f1;
+  --hx-info-text: #a5b4fc;
+  --hx-neutral: #94a3b8;
+  --hx-neutral-text: #cbd5e1;
   --hx-danger-solid-hover: #991b1b;
 
   --hx-ring: color-mix(in oklch, var(--hx-accent) 60%, transparent);
@@ -186,6 +205,14 @@
   --color-danger-hover: var(--hx-danger-hover);
   --color-danger-fg: var(--hx-danger-fg);
   --color-danger-text: var(--hx-danger-text);
+  --color-success: var(--hx-success);
+  --color-success-text: var(--hx-success-text);
+  --color-warning: var(--hx-warning);
+  --color-warning-text: var(--hx-warning-text);
+  --color-info: var(--hx-info);
+  --color-info-text: var(--hx-info-text);
+  --color-neutral: var(--hx-neutral);
+  --color-neutral-text: var(--hx-neutral-text);
   --color-ring: var(--hx-ring);
   --color-glass-thin: var(--hx-glass-thin);
   --color-glass: var(--hx-glass);
