@@ -8,7 +8,7 @@ const meta = {
   title: 'Components/Toast',
   component: ToastProvider,
   tags: ['autodocs'],
-  decorators: [(Story) => <ToastProvider>{Story()}</ToastProvider>],
+  decorators: [(Story) => <ToastProvider><Story /></ToastProvider>],
   parameters: { docs: { story: { inline: false, iframeHeight: 420 } } },
 } satisfies Meta<typeof ToastProvider>;
 

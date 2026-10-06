@@ -16,7 +16,7 @@ const meta = {
   decorators: [
     (Story) => (
       <Panel padding="md" className="hx:max-w-xs">
-        {Story()}
+        <Story />
       </Panel>
     ),
   ],

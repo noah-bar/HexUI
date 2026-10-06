@@ -12,7 +12,7 @@ const meta = {
   component: Popover,
   tags: ['autodocs'],
   argTypes: { defaultOpen: { control: 'boolean' } },
-  decorators: [(Story) => <div className="hx:min-h-96">{Story()}</div>],
+  decorators: [(Story) => <div className="hx:min-h-96"><Story /></div>],
 } satisfies Meta<typeof Popover>;
 
 export default meta;
