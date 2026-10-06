@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Panel } from '../panel/Panel';
 import { Switch } from './Switch';
 
 const meta = {
@@ -6,6 +7,14 @@ const meta = {
   component: Switch,
   tags: ['autodocs'],
   args: { 'aria-label': 'Activer' },
+  // Switches live inside glass surfaces in real screens, so they are shown in a Panel.
+  decorators: [
+    (Story) => (
+      <Panel padding="md" className="hx:w-fit hx:min-w-20 hx:text-sm hx:text-fg">
+        {Story()}
+      </Panel>
+    ),
+  ],
 } satisfies Meta<typeof Switch>;
 
 export default meta;
@@ -19,7 +28,7 @@ export const Checked: Story = {
 
 export const WithLabel: Story = {
   render: () => (
-    <div className="hx:glass hx:flex hx:max-w-sm hx:flex-col hx:gap-4 hx:rounded-xl hx:p-5 hx:text-sm hx:text-fg">
+    <div className="hx:flex hx:w-80 hx:flex-col hx:gap-4">
       {['Notifications par e-mail', 'Rapport hebdomadaire', 'Authentification à deux facteurs'].map((label, i) => (
         <label key={label} className="hx:flex hx:items-center hx:justify-between hx:gap-4">
           {label}
