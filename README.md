@@ -104,14 +104,18 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | --- | --- |
 | Backdrop | `Backdrop` — variantes `mesh`, `aurora`, `plain` ; textures `grain`, `grid` |
 | Button | `Button`, `buttonVariants` — variantes `primary`, `secondary`, `outline`, `ghost`, `danger` ; tailles `sm`, `md`, `lg`, `icon` |
+| Field | `Field`, `FieldLabel`, `FieldDescription`, `FieldError`, `FieldItem` — relie automatiquement libellé, aide et erreur au champ ; `<Field invalid>` ou la validation native (`required`, `validationMode`) passent le champ en rouge |
 | Input | `Input` — état d'erreur avec `aria-invalid` (ou automatiquement dans un `Field` Base UI invalide) ; même comportement sur `SelectTrigger` |
 | Card | `Card` (un `Panel` avec mise en page verticale ; accepte `variant`, `padding` et `render`), `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
+| Checkbox | `Checkbox` — états coché, `indeterminate`, invalide (`aria-invalid` ou dans un `Field` invalide) |
 | Dialog | `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose` |
 | Tooltip | `TooltipProvider`, `Tooltip`, `TooltipTrigger`, `TooltipContent` |
 | Panel | `Panel`, `panelVariants` — surface en verre sans mise en page ; variantes `thin`, `default`, `strong` ; marge interne `none`, `sm`, `md`, `lg` ; prop `render` pour changer l'élément (`<aside />`, `<section />`…) |
+| Radio | `RadioGroup`, `Radio` |
 | Select | `Select`, `SelectTrigger`, `SelectValue`, `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator` |
 | Switch | `Switch` |
 | Tabs | `Tabs`, `TabsList`, `TabsTab`, `TabsPanel` |
+| Textarea | `Textarea` — mêmes états que `Input`, redimensionnable verticalement |
 
 Pour rendre un trigger avec le style d'un bouton, utilisez la prop `render` de Base UI :
 
