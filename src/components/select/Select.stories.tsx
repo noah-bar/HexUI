@@ -59,6 +59,23 @@ export const Grouped: Story = {
   ),
 };
 
+export const Invalid: Story = {
+  render: () => (
+    <Select items={roles}>
+      <SelectTrigger aria-label="Rôle" aria-invalid>
+        <SelectValue placeholder="Choisir un rôle" />
+      </SelectTrigger>
+      <SelectContent>
+        {roles.map((role) => (
+          <SelectItem key={role.value} value={role.value}>
+            {role.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  ),
+};
+
 export const Disabled: Story = {
   render: () => (
     <Select disabled>
