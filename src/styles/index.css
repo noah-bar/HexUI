@@ -28,9 +28,10 @@
  * ------------------------------------------------------------------------- */
 :root,
 [data-theme='light'] {
-  --hx-fg: #333333;
-  --hx-fg-muted: #585f6c; /* stays ≥ 5:1 on glass over tinted glows */
-  --hx-fg-subtle: #7b8290; /* placeholders: ≥ 3.5:1 on fields over tinted glows */
+  /* Text is darker than usual: light glass lets colored glows through, so text needs extra margin. */
+  --hx-fg: #1f2329;
+  --hx-fg-muted: #4b5262; /* stays ≥ 6:1 on glass over tinted glows */
+  --hx-fg-subtle: #6e7583; /* placeholders: ≥ 3.5:1 on fields over tinted glows */
 
   /* Decorative brand color: glows, illustrations. */
   --hx-brand: #6366f1;
@@ -51,8 +52,8 @@
   --hx-ring: color-mix(in oklch, var(--hx-accent) 55%, transparent);
 
   /* Glass surfaces: opaque enough to stay readable on any background. */
-  --hx-glass-thin: rgb(255 255 255 / 0.55);
-  --hx-glass: rgb(255 255 255 / 0.66);
+  --hx-glass-thin: rgb(255 255 255 / 0.4);
+  --hx-glass: rgb(255 255 255 / 0.5);
   --hx-glass-strong: rgb(255 255 255 / 0.88);
   /* Raised: a selected segment sitting on a glass surface (tabs indicator). */
   --hx-glass-raised: rgb(255 255 255 / 0.92);
@@ -63,11 +64,12 @@
   /* Tints: light veils for hover/selection inside a glass surface (rows, list items, ghost buttons). */
   --hx-tint-hover: rgb(15 23 42 / 0.04);
   --hx-tint-active: rgb(15 23 42 / 0.07);
-  --hx-glass-field: rgb(255 255 255 / 0.62);
+  --hx-glass-field: rgb(255 255 255 / 0.5);
   --hx-glass-border: rgb(0 0 0 / 0.09);
   --hx-glass-highlight: rgb(255 255 255 / 0.75);
   --hx-glass-overlay: rgb(12 12 12 / 0.14);
-  --hx-glass-blur: 16px;
+  /* Light glass is more transparent, so it blurs harder: more color, never readable shapes. */
+  --hx-glass-blur: 20px;
   /* In light mode depth comes from shadows, not light: keep them a little crisper. */
   --hx-glass-shadow: 0 1px 2px rgb(15 23 42 / 0.06), 0 10px 30px -8px rgb(15 23 42 / 0.16);
   --hx-glass-shadow-lg: 0 2px 6px rgb(15 23 42 / 0.06), 0 28px 56px -14px rgb(15 23 42 / 0.28);
@@ -80,7 +82,7 @@
     rgb(15 23 42 / 0.05) 75%,
     rgb(15 23 42 / 0.12)
   );
-  --hx-glass-sheen: linear-gradient(180deg, rgb(255 255 255 / 0.4), rgb(255 255 255 / 0) 40%);
+  --hx-glass-sheen: linear-gradient(180deg, rgb(255 255 255 / 0.2), rgb(255 255 255 / 0) 40%);
   --hx-glass-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
 
   /* Backdrop: page base + three glows (indigo, cyan, soft violet). */
@@ -120,6 +122,7 @@
   --hx-ring: color-mix(in oklch, var(--hx-accent) 60%, transparent);
 
   --hx-glass-thin: rgb(30 30 34 / 0.42);
+  --hx-glass-blur: 16px;
   --hx-glass: rgb(26 26 30 / 0.58);
   --hx-glass-strong: rgb(22 22 26 / 0.84);
   --hx-glass-raised: rgb(64 64 72 / 0.6);
