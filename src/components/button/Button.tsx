@@ -18,6 +18,10 @@ export const buttonVariants = cva(
         primary: 'hx:lit hx:bg-primary hx:text-primary-fg hx:hover:bg-primary-hover hx:[--hx-lit-glow:var(--hx-primary-glow)]',
         secondary: 'hx:glass hx:text-fg hx:hover:bg-glass-hover hx:active:bg-glass-active',
         ghost: 'hx:text-fg hx:hover:bg-tint-hover hx:active:bg-tint-active',
+        outline: [
+          'hx:border hx:border-accent/50 hx:text-accent',
+          'hx:hover:border-accent hx:hover:bg-accent/8 hx:active:bg-accent/12',
+        ],
         danger: 'hx:lit hx:bg-danger hx:text-danger-fg hx:hover:bg-danger-hover hx:[--hx-lit-glow:var(--hx-danger-glow)]',
       },
       size: {
