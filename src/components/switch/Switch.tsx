@@ -11,7 +11,7 @@ export function Switch({ className, ...props }: SwitchProps) {
         [
           'hx:glass-field hx:relative hx:inline-flex hx:h-5 hx:w-9 hx:shrink-0 hx:items-center hx:rounded-full hx:p-0.5 hx:cursor-pointer',
           'hx:transition-[background-color,border-color] hx:duration-200 hx:ease-out hx:focus-ring',
-          'hx:data-checked:border-transparent hx:data-checked:bg-primary hx:data-checked:lit hx:[--hx-lit-glow:var(--hx-primary-glow)]',
+          'hx:data-checked:glass-tint',
           'hx:data-disabled:cursor-not-allowed hx:data-disabled:opacity-50',
         ].join(' '),
         className,
