@@ -2,6 +2,7 @@ import './styles/index.css';
 
 export { cn } from './lib/cn';
 
+export { Backdrop, type BackdropProps } from './components/backdrop/Backdrop';
 export { Button, buttonVariants, type ButtonProps } from './components/button/Button';
 export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './components/card/Card';
 export {
