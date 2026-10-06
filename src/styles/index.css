@@ -70,7 +70,7 @@
   /* Raised: a selected segment sitting on a glass surface (tabs indicator). */
   --hx-glass-raised: rgb(255 255 255 / 0.92);
   /* Dialogs sit on a dimmed overlay and blur hard, so they can be more transparent. */
-  --hx-glass-dialog: rgb(255 255 255 / 0.75);
+  --hx-glass-dialog: rgb(255 255 255 / 0.62);
   --hx-glass-hover: rgb(255 255 255 / 0.88);
   --hx-glass-active: rgb(243 244 246 / 0.92);
   /* Tints: light veils for hover/selection inside a glass surface (rows, list items, ghost buttons). */
@@ -156,7 +156,7 @@
   --hx-glass: rgb(26 26 30 / 0.58);
   --hx-glass-strong: rgb(22 22 26 / 0.84);
   --hx-glass-raised: rgb(64 64 72 / 0.6);
-  --hx-glass-dialog: rgb(22 22 26 / 0.68);
+  --hx-glass-dialog: rgb(22 22 26 / 0.56);
   --hx-glass-hover: rgb(38 38 38 / 0.78);
   --hx-glass-active: rgb(46 46 46 / 0.82);
   --hx-tint-hover: rgb(255 255 255 / 0.05);
@@ -445,6 +445,115 @@
   @media (forced-colors: active), print {
     .hx-backdrop {
       display: none;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Toasts — stacked at the bottom-right, fanned out on hover, swipe to dismiss.
+ * Driven by the CSS variables Base UI sets on each toast (--toast-index, --toast-height…).
+ * ------------------------------------------------------------------------- */
+@layer components {
+  .hx-toast-viewport {
+    position: fixed;
+    z-index: 60;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    margin-inline: auto;
+  }
+
+  @media (width >= 40rem) {
+    .hx-toast-viewport {
+      right: 2rem;
+      bottom: 2rem;
+      left: auto;
+      width: 22.5rem;
+    }
+  }
+
+  .hx-toast {
+    --gap: 0.75rem;
+    --peek: 0.75rem;
+    --scale: calc(max(0, 1 - (var(--toast-index) * 0.1)));
+    --shrink: calc(1 - var(--scale));
+    --height: var(--toast-frontmost-height, var(--toast-height));
+    --offset-y: calc(var(--toast-offset-y) * -1 + (var(--toast-index) * var(--gap) * -1) + var(--toast-swipe-movement-y));
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: calc(1000 - var(--toast-index));
+    width: 100%;
+    height: var(--height);
+    transform-origin: bottom center;
+    transform: translateX(var(--toast-swipe-movement-x))
+      translateY(calc(var(--toast-swipe-movement-y) - (var(--toast-index) * var(--peek)) - (var(--shrink) * var(--height))))
+      scale(var(--scale));
+    user-select: none;
+    transition:
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.5s,
+      height 0.15s;
+  }
+
+  /* Bridges the gap between expanded toasts so hovering between them keeps the stack open. */
+  .hx-toast::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: calc(var(--gap) + 1px);
+  }
+
+  .hx-toast[data-expanded] {
+    height: var(--toast-height);
+    transform: translateX(var(--toast-swipe-movement-x)) translateY(var(--offset-y));
+  }
+
+  .hx-toast[data-starting-style],
+  .hx-toast[data-ending-style]:not([data-limited]):not([data-swipe-direction]) {
+    transform: translateY(150%);
+  }
+
+  .hx-toast[data-ending-style],
+  .hx-toast[data-limited] {
+    opacity: 0;
+  }
+
+  .hx-toast[data-ending-style][data-swipe-direction='down'] {
+    transform: translateY(calc(var(--toast-swipe-movement-y) + 150%));
+  }
+
+  .hx-toast[data-ending-style][data-swipe-direction='up'] {
+    transform: translateY(calc(var(--toast-swipe-movement-y) - 150%));
+  }
+
+  .hx-toast[data-ending-style][data-swipe-direction='left'] {
+    transform: translateX(calc(var(--toast-swipe-movement-x) - 150%)) translateY(var(--offset-y));
+  }
+
+  .hx-toast[data-ending-style][data-swipe-direction='right'] {
+    transform: translateX(calc(var(--toast-swipe-movement-x) + 150%)) translateY(var(--offset-y));
+  }
+
+  /* Toasts behind the front one only show their edge until the stack is expanded. */
+  .hx-toast-content {
+    transition: opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hx-toast-content[data-behind] {
+    opacity: 0;
+  }
+
+  .hx-toast-content[data-expanded] {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hx-toast {
+      transition: opacity 0.2s;
     }
   }
 }
