@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Panel } from '../panel/Panel';
 import { Input } from './Input';
 
 const meta = {
@@ -6,7 +7,14 @@ const meta = {
   component: Input,
   tags: ['autodocs'],
   args: { placeholder: 'nom@entreprise.com' },
-  decorators: [(Story) => <div className="hx:max-w-sm">{Story()}</div>],
+  // Inputs live inside glass surfaces in real screens, so they are shown in a Panel.
+  decorators: [
+    (Story) => (
+      <Panel padding="md" className="hx:max-w-sm">
+        {Story()}
+      </Panel>
+    ),
+  ],
 } satisfies Meta<typeof Input>;
 
 export default meta;

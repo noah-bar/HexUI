@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Panel } from '../panel/Panel';
 import { Select, SelectContent, SelectGroup, SelectGroupLabel, SelectItem, SelectSeparator, SelectTrigger, SelectValue } from './Select';
 
 const roles = [
@@ -11,7 +12,14 @@ const meta = {
   title: 'Components/Select',
   component: Select,
   tags: ['autodocs'],
-  decorators: [(Story) => <div className="hx:max-w-xs">{Story()}</div>],
+  // Selects live inside glass surfaces in real screens, so they are shown in a Panel.
+  decorators: [
+    (Story) => (
+      <Panel padding="md" className="hx:max-w-xs">
+        {Story()}
+      </Panel>
+    ),
+  ],
 } satisfies Meta<typeof Select>;
 
 export default meta;
