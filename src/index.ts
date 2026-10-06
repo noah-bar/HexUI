@@ -72,6 +72,20 @@ export {
 } from './components/popover/Popover';
 export { Skeleton } from './components/skeleton/Skeleton';
 export {
+  Sheet,
+  SheetBody,
+  SheetClose,
+  SheetCloseButton,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  sheetContentVariants,
+  type SheetContentProps,
+} from './components/sheet/Sheet';
+export {
   Select,
   SelectContent,
   SelectGroup,

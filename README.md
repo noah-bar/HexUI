@@ -132,6 +132,7 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | Radio | `RadioGroup`, `Radio` |
 | Skeleton | `Skeleton` — forme de chargement animée |
 | Select | `Select`, `SelectTrigger`, `SelectValue`, `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator` |
+| Sheet | `Sheet`, `SheetTrigger`, `SheetContent` (`side`, `size`), `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetCloseButton`, `SheetBody`, `SheetFooter`, `SheetClose` |
 | Switch | `Switch` |
 | Table | `Table` (`density`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow` (`selected`), `TableHead` (`align`, `sortDirection`, `onSort`), `TableCell` (`align`), `TableCaption`, `TableEmpty` — à placer dans un `Panel` ; défilement horizontal intégré pour les tableaux larges |
 | Tabs | `Tabs`, `TabsList`, `TabsTab`, `TabsPanel` |
@@ -207,6 +208,30 @@ toast.promise(save(), {
 `type` : `success`, `error`, `warning`, `info`, `loading` (choisit l'icône). Les toasts disparaissent après 5 s
 (`timeout`, `0` pour les garder). Pour en créer hors de React (client API, store), utilisez `createToastManager()`
 et passez-le à `<ToastProvider toastManager={manager}>`.
+
+### Panneau latéral (Sheet)
+
+`Sheet` affiche un panneau modal depuis un bord de l'écran. `side` accepte `top`, `right`, `bottom` ou `left`,
+et `size` accepte `sm`, `md`, `lg` ou `full`. Placez le contenu susceptible de défiler dans `SheetBody` : la surface
+en verre reste fixe et son bord éclairé n'est jamais rogné par un `overflow-auto`.
+
+```tsx
+<Sheet>
+  <SheetTrigger render={<Button variant="secondary" />}>Voir le client</SheetTrigger>
+  <SheetContent side="right" size="md">
+    <SheetHeader>
+      <SheetTitle>Léman Immobilier SA</SheetTitle>
+      <SheetDescription>Coordonnées et activité récente.</SheetDescription>
+      <SheetCloseButton aria-label="Fermer le panneau" />
+    </SheetHeader>
+    <SheetBody>…</SheetBody>
+    <SheetFooter>
+      <SheetClose render={<Button variant="ghost" />}>Fermer</SheetClose>
+      <Button>Modifier</Button>
+    </SheetFooter>
+  </SheetContent>
+</Sheet>
+```
 
 Pour rendre un trigger avec le style d'un bouton, utilisez la prop `render` de Base UI :
 
