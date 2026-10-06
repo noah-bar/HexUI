@@ -10,10 +10,19 @@ et **Tailwind CSS v4** (style), avec une signature visuelle : le **glassmorphism
 ## Principes du verre
 
 - **Lisibilité d'abord** : les surfaces restent opaques à 70–85 %, le flou sert la profondeur, pas la décoration.
-- **Trois niveaux** : `glass` (cartes, panneaux), `glass-strong` (dialogues, menus, tooltips), `glass-field` (champs de formulaire).
+- **Cinq niveaux** : `glass-thin` (navigation, barres d'outils, onglets : peu de texte), `glass` (cartes, panneaux),
+  `glass-strong` (menus, tooltips), `glass-dialog` (dialogues : plus transparent mais très flouté, posé sur un voile),
+  `glass-field` (champs de formulaire).
+- **Un vrai matériau** : bord éclairé en haut à gauche, léger reflet en haut, grain très fin de verre dépoli.
+  Les boutons pleins sont « éclairés » : reflet sur le bord supérieur et halo teinté de leur couleur.
 - **Fonds pleins pour les actions** : les boutons primaires et destructifs ne sont jamais transparents.
 - **Replis accessibles** : surfaces opaques automatiquement si le navigateur ne gère pas `backdrop-filter`,
   si l'utilisateur active « Réduire la transparence », ou en mode contraste élevé.
+
+## Fond
+
+Le composant `Backdrop` fournit le fond sur lequel le verre prend tout son sens. Changez-le depuis l'outil
+**Fond** de la barre d'outils pour vérifier qu'un composant reste lisible sur chaque variante, y compris sans fond.
 
 ## Thèmes
 
@@ -21,11 +30,13 @@ Ajoutez la classe `dark` (ou `data-theme="dark"`) sur `<html>`. Utilisez la barr
 
 ## Personnalisation
 
+La palette est un indigo (`#4f46e5`) sur des gris neutres. Les halos du fond combinent indigo, cyan et violet clair.
+
 Toutes les couleurs sont des variables CSS `--hx-*` surchargeables :
 
 ```css
 :root {
-  --hx-primary: oklch(0.55 0.18 150);
+  --hx-accent: #a5b4fc;
   --hx-glass-blur: 12px;
 }
 ```
