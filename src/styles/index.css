@@ -41,6 +41,9 @@
   --hx-danger: #dc2626;
   --hx-danger-hover: #b91c1c;
   --hx-danger-fg: #ffffff;
+  /* Deeper red for tinted-glass fills: keeps white text ≥ 5:1. */
+  --hx-danger-solid: #b91c1c;
+  --hx-danger-solid-hover: #991b1b;
 
   --hx-ring: color-mix(in oklch, var(--hx-accent) 55%, transparent);
 
@@ -75,7 +78,6 @@
   --hx-glass-sheen: linear-gradient(180deg, rgb(255 255 255 / 0.4), rgb(255 255 255 / 0) 40%);
   --hx-glass-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
   --hx-primary-glow: color-mix(in oklch, var(--hx-primary) 40%, transparent);
-  --hx-danger-glow: color-mix(in oklch, var(--hx-danger) 35%, transparent);
 
   /* Backdrop: page base + three glows (indigo, cyan, soft violet). */
   /* Slightly darker than the glass so white surfaces stand out by contrast. */
@@ -107,6 +109,9 @@
   --hx-danger: #dc2626;
   --hx-danger-hover: #b91c1c;
   --hx-danger-fg: #ffffff;
+  /* Deeper red for tinted-glass fills: keeps white text ≥ 5:1. */
+  --hx-danger-solid: #b91c1c;
+  --hx-danger-solid-hover: #991b1b;
 
   --hx-ring: color-mix(in oklch, var(--hx-accent) 60%, transparent);
 
@@ -133,7 +138,6 @@
   );
   --hx-glass-sheen: linear-gradient(180deg, rgb(255 255 255 / 0.06), rgb(255 255 255 / 0) 45%);
   --hx-primary-glow: color-mix(in oklch, var(--hx-primary) 55%, transparent);
-  --hx-danger-glow: color-mix(in oklch, var(--hx-danger) 45%, transparent);
 
   --hx-backdrop-base: #0c0c0c;
   --hx-backdrop-accent-1: color-mix(in oklch, var(--hx-brand) 28%, transparent);
@@ -245,7 +249,25 @@
   backdrop-filter: blur(calc(var(--hx-glass-blur) * 2.5)) saturate(180%);
 }
 
-/* Filled action (primary / danger buttons): top light + colored glow. */
+/* Tinted glass: colored glass for filled actions (primary by default).
+   Set --hx-tint-fill / --hx-tint-fill-hover to change the color (see the danger button).
+   Do not go below 85% fill: white text must stay ≥ 4.5:1 on any backdrop. */
+@utility glass-tint {
+  background-color: color-mix(in oklch, var(--hx-tint-fill, var(--hx-primary)) 85%, transparent);
+  background-image:
+    var(--hx-glass-grain),
+    linear-gradient(180deg, rgb(255 255 255 / 0.2), rgb(255 255 255 / 0) 55%);
+  background-size: 160px 160px, 100% 100%;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.25), var(--hx-glass-shadow);
+  backdrop-filter: blur(var(--hx-glass-blur)) saturate(170%);
+
+  &:hover {
+    background-color: color-mix(in oklch, var(--hx-tint-fill-hover, var(--hx-primary-hover)) 88%, transparent);
+  }
+}
+
+/* Filled control (checked switch): top light + colored glow. */
 @utility lit {
   background-image: linear-gradient(180deg, rgb(255 255 255 / 0.16), rgb(255 255 255 / 0) 55%);
   box-shadow:
@@ -278,11 +300,11 @@
  * Form fields (glass-field) are excluded: inputs cannot have pseudo-elements.
  * ------------------------------------------------------------------------- */
 @layer components {
-  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog) {
+  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog, .hx\:glass-tint) {
     position: relative;
   }
 
-  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog)::before {
+  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog, .hx\:glass-tint)::before {
     content: '';
     position: absolute;
     inset: -1px;
@@ -424,7 +446,7 @@
     backdrop-filter: none;
   }
 
-  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog)::before {
+  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog, .hx\:glass-tint)::before {
     display: none;
   }
 }
