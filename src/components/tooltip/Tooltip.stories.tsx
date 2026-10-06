@@ -27,7 +27,7 @@ export const Default: Story = {
 export const Toolbar: Story = {
   render: () => (
     <div className="hx:pt-12">
-      <div className="hx:glass hx:inline-flex hx:gap-1 hx:rounded-xl hx:p-1">
+      <div className="hx:glass hx:inline-flex hx:gap-1 hx:rounded-lg hx:p-1">
         {[
           { label: 'Gras', icon: Bold },
           { label: 'Italique', icon: Italic },

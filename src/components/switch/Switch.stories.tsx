@@ -19,7 +19,7 @@ export const Checked: Story = {
 
 export const WithLabel: Story = {
   render: () => (
-    <div className="hx:glass hx:flex hx:max-w-sm hx:flex-col hx:gap-4 hx:rounded-2xl hx:p-5 hx:text-sm hx:text-fg">
+    <div className="hx:glass hx:flex hx:max-w-sm hx:flex-col hx:gap-4 hx:rounded-xl hx:p-5 hx:text-sm hx:text-fg">
       {['Notifications par e-mail', 'Rapport hebdomadaire', 'Authentification à deux facteurs'].map((label, i) => (
         <label key={label} className="hx:flex hx:items-center hx:justify-between hx:gap-4">
           {label}

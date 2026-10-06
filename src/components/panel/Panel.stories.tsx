@@ -88,7 +88,7 @@ export const AsAside: Story = {
             key={item}
             href="#"
             aria-current={i === 0 ? 'page' : undefined}
-            className="hx:rounded-lg hx:px-3 hx:py-2 hx:text-fg-muted hx:no-underline hx:hover:bg-tint-hover hx:hover:text-fg hx:aria-[current=page]:bg-tint-active hx:aria-[current=page]:font-medium hx:aria-[current=page]:text-fg"
+            className="hx:rounded-md hx:px-3 hx:py-2 hx:text-fg-muted hx:no-underline hx:hover:bg-tint-hover hx:hover:text-fg hx:aria-[current=page]:bg-tint-active hx:aria-[current=page]:font-medium hx:aria-[current=page]:text-fg"
           >
             {item}
           </a>

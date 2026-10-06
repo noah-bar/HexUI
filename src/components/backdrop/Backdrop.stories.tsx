@@ -17,7 +17,7 @@ const meta = {
     position: { control: 'inline-radio', options: ['fixed', 'absolute'] },
   },
   render: (args) => (
-    <div className="hx:relative hx:isolate hx:flex hx:min-h-96 hx:overflow-hidden hx:rounded-3xl hx:border hx:border-glass-border hx:items-center hx:justify-center hx:p-10">
+    <div className="hx:relative hx:isolate hx:flex hx:min-h-96 hx:overflow-hidden hx:rounded-2xl hx:border hx:border-glass-border hx:items-center hx:justify-center hx:p-10">
       <Backdrop {...args} />
       <Card className="hx:w-full hx:max-w-sm">
         <CardHeader>
