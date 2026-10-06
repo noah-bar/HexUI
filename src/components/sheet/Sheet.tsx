@@ -3,9 +3,17 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import type { ComponentProps } from 'react';
 import { cn, mergeClassName } from '../../lib/cn';
 
-export const Sheet = BaseDialog.Root;
-export const SheetTrigger = BaseDialog.Trigger;
-export const SheetClose = BaseDialog.Close;
+export function Sheet(props: ComponentProps<typeof BaseDialog.Root>) {
+  return <BaseDialog.Root {...props} />;
+}
+
+export function SheetTrigger(props: ComponentProps<typeof BaseDialog.Trigger>) {
+  return <BaseDialog.Trigger {...props} />;
+}
+
+export function SheetClose(props: ComponentProps<typeof BaseDialog.Close>) {
+  return <BaseDialog.Close {...props} />;
+}
 
 export const sheetContentVariants = cva(
   [
