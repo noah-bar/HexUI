@@ -10,12 +10,19 @@ et **Tailwind CSS v4** (style), avec une signature visuelle : le **glassmorphism
 ## Principes du verre
 
 - **Lisibilité d'abord** : les surfaces restent opaques à 70–85 %, le flou sert la profondeur, pas la décoration.
-- **Cinq niveaux** : `glass-thin` (navigation, barres d'outils, onglets : peu de texte), `glass` (cartes, panneaux),
-  `glass-strong` (menus, tooltips), `glass-dialog` (dialogues : plus transparent mais très flouté, posé sur un voile),
-  `glass-field` (champs de formulaire).
+- **Six niveaux** :
+  - `glass-thin` : navigation, barres d'outils, onglets (peu de texte) ;
+  - `glass` : cartes, panneaux ;
+  - `glass-strong` : menus, tooltips ;
+  - `glass-dialog` : dialogues, plus transparents mais très floutés et posés sur un voile ;
+  - `glass-field` : champs de formulaire ;
+  - `glass-tint` : verre teinté pour les actions (boutons primary et danger, switch activé), rempli à 85 % minimum
+    pour que le texte blanc reste lisible.
 - **Un vrai matériau** : bord éclairé en haut à gauche, léger reflet en haut, grain très fin de verre dépoli.
-  Les boutons pleins sont « éclairés » : reflet sur le bord supérieur et halo teinté de leur couleur.
-- **Fonds pleins pour les actions** : les boutons primaires et destructifs ne sont jamais transparents.
+  Aucun élément n'est un aplat opaque, et il n'y a pas de halo lumineux.
+- **Survol et sélection** : *à l'intérieur* d'une surface en verre (lignes, éléments de liste, bouton ghost), on utilise
+  un voile léger `tint-hover` / `tint-active`. *Sur* un élément en verre (bouton secondary), on utilise `glass-hover`.
+  Un élément sélectionné posé sur du verre (indicateur d'onglet) est toujours plus clair que son conteneur.
 - **Replis accessibles** : surfaces opaques automatiquement si le navigateur ne gère pas `backdrop-filter`,
   si l'utilisateur active « Réduire la transparence », ou en mode contraste élevé.
 

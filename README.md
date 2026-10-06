@@ -81,9 +81,22 @@ Les détails du matériau sont réglables, et chacun se désactive avec `none` :
 }
 ```
 
+### Survol et sélection
+
+- **À l'intérieur d'une surface en verre** (lignes de tableau, éléments de liste, bouton ghost) : voile léger
+  `hx:bg-tint-hover` / `hx:bg-tint-active`. Ne jamais y poser un gris opaque, qui efface l'effet de verre.
+- **Sur un élément qui est lui-même en verre** (bouton secondary) : `hx:bg-glass-hover` / `hx:bg-glass-active`.
+
+### Verre teinté
+
+`glass-tint` colore le verre pour les actions principales. Il utilise `--hx-primary` par défaut. On change la couleur
+avec `--hx-tint-fill` et `--hx-tint-fill-hover`, comme le fait le bouton danger avec `--hx-danger-solid`.
+Le remplissage reste à 85 % minimum et la couleur doit garder au moins 4,5:1 avec le texte blanc.
+
 Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`, `--hx-primary(-hover|-fg)`, `--hx-accent`,
-`--hx-danger(-hover|-fg)`, `--hx-ring`, `--hx-glass`, `--hx-glass-strong`, `--hx-glass-field`, `--hx-glass-border`,
-`--hx-glass-blur`, `--hx-backdrop-*`… (voir `src/styles/index.css`).
+`--hx-danger(-hover|-fg)`, `--hx-danger-solid(-hover)`, `--hx-ring`, `--hx-glass-thin`, `--hx-glass`, `--hx-glass-strong`,
+`--hx-glass-raised`, `--hx-glass-dialog`, `--hx-glass-field`, `--hx-glass-border`, `--hx-glass-blur`, `--hx-tint-hover`,
+`--hx-tint-active`, `--hx-backdrop-*`… (voir `src/styles/index.css`).
 
 ## Composants
 
@@ -92,7 +105,7 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | Backdrop | `Backdrop` — variantes `mesh`, `aurora`, `plain` ; textures `grain`, `grid` |
 | Button | `Button`, `buttonVariants` — variantes `primary`, `secondary`, `outline`, `ghost`, `danger` ; tailles `sm`, `md`, `lg`, `icon` |
 | Input | `Input` |
-| Card | `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
+| Card | `Card` (un `Panel` avec mise en page verticale ; accepte `variant`, `padding` et `render`), `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
 | Dialog | `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose` |
 | Tooltip | `TooltipProvider`, `Tooltip`, `TooltipTrigger`, `TooltipContent` |
 | Panel | `Panel`, `panelVariants` — surface en verre sans mise en page ; variantes `thin`, `default`, `strong` ; marge interne `none`, `sm`, `md`, `lg` ; prop `render` pour changer l'élément (`<aside />`, `<section />`…) |
