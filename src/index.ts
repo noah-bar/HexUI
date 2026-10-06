@@ -3,6 +3,7 @@ import './styles/index.css';
 export { cn } from './lib/cn';
 
 export { Backdrop, type BackdropProps } from './components/backdrop/Backdrop';
+export { Badge, badgeVariants, type BadgeProps } from './components/badge/Badge';
 export { Button, buttonVariants, type ButtonProps } from './components/button/Button';
 export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './components/card/Card';
 export { Checkbox, type CheckboxProps } from './components/checkbox/Checkbox';
@@ -27,6 +28,24 @@ export {
   type FieldRowProps,
 } from './components/field/Field';
 export { Input, type InputProps } from './components/input/Input';
+export {
+  Menu,
+  MenuCheckboxItem,
+  MenuContent,
+  MenuGroup,
+  MenuGroupLabel,
+  MenuItem,
+  MenuRadioGroup,
+  MenuRadioItem,
+  MenuSeparator,
+  MenuShortcut,
+  MenuSub,
+  MenuSubContent,
+  MenuSubTrigger,
+  MenuTrigger,
+  type MenuContentProps,
+  type MenuItemProps,
+} from './components/menu/Menu';
 export { Panel, panelVariants, type PanelProps } from './components/panel/Panel';
 export { Radio, RadioGroup, type RadioProps } from './components/radio/Radio';
 export {
