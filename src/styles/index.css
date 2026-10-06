@@ -1,0 +1,207 @@
+/*
+ * HexUI — design tokens & glass utilities.
+ *
+ * Every Tailwind utility is prefixed with `hx:` and every theme variable with `--hx-`,
+ * so the compiled stylesheet can live next to a consumer's own Tailwind setup without
+ * collisions. Preflight is intentionally not shipped: the library never resets the
+ * host application's global styles (see the scoped reset in @layer base below).
+ */
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme) prefix(hx);
+@import 'tailwindcss/utilities.css' layer(utilities) prefix(hx) source(none);
+
+@source '../components';
+@source not '../**/*.stories.tsx';
+
+@custom-variant dark (&:where(.dark, .dark *, [data-theme='dark'], [data-theme='dark'] *));
+
+/* ---------------------------------------------------------------------------
+ * Semantic tokens — light
+ * ------------------------------------------------------------------------- */
+:root,
+[data-theme='light'] {
+  --hx-fg: oklch(0.21 0.02 265);
+  --hx-fg-muted: oklch(0.45 0.02 265);
+  --hx-fg-subtle: oklch(0.6 0.015 265);
+
+  --hx-primary: oklch(0.52 0.2 268);
+  --hx-primary-hover: oklch(0.47 0.2 268);
+  --hx-primary-fg: oklch(0.99 0 0);
+
+  --hx-danger: oklch(0.55 0.21 25);
+  --hx-danger-hover: oklch(0.5 0.21 25);
+  --hx-danger-fg: oklch(0.99 0 0);
+
+  --hx-ring: oklch(0.6 0.19 268 / 0.55);
+
+  /* Glass surfaces: opaque enough to stay readable on any background. */
+  --hx-glass: oklch(1 0 0 / 0.72);
+  --hx-glass-strong: oklch(1 0 0 / 0.86);
+  --hx-glass-hover: oklch(1 0 0 / 0.86);
+  --hx-glass-active: oklch(0.96 0.005 265 / 0.9);
+  --hx-glass-field: oklch(1 0 0 / 0.6);
+  --hx-glass-border: oklch(0.21 0.02 265 / 0.1);
+  --hx-glass-highlight: oklch(1 0 0 / 0.75);
+  --hx-glass-overlay: oklch(0.21 0.02 265 / 0.22);
+  --hx-glass-blur: 16px;
+  --hx-glass-shadow: 0 1px 2px oklch(0.21 0.02 265 / 0.05), 0 8px 24px -6px oklch(0.21 0.02 265 / 0.12);
+  --hx-glass-shadow-lg: 0 2px 4px oklch(0.21 0.02 265 / 0.06), 0 24px 48px -12px oklch(0.21 0.02 265 / 0.22);
+
+  color-scheme: light;
+}
+
+/* ---------------------------------------------------------------------------
+ * Semantic tokens — dark
+ * ------------------------------------------------------------------------- */
+.dark,
+[data-theme='dark'] {
+  --hx-fg: oklch(0.96 0.005 265);
+  --hx-fg-muted: oklch(0.76 0.015 265);
+  --hx-fg-subtle: oklch(0.62 0.015 265);
+
+  --hx-primary: oklch(0.68 0.16 268);
+  --hx-primary-hover: oklch(0.74 0.14 268);
+  --hx-primary-fg: oklch(0.18 0.03 268);
+
+  --hx-danger: oklch(0.66 0.19 25);
+  --hx-danger-hover: oklch(0.71 0.17 25);
+  --hx-danger-fg: oklch(0.18 0.03 25);
+
+  --hx-ring: oklch(0.72 0.15 268 / 0.6);
+
+  --hx-glass: oklch(0.22 0.02 265 / 0.66);
+  --hx-glass-strong: oklch(0.2 0.02 265 / 0.84);
+  --hx-glass-hover: oklch(0.28 0.02 265 / 0.72);
+  --hx-glass-active: oklch(0.32 0.02 265 / 0.78);
+  --hx-glass-field: oklch(0.16 0.02 265 / 0.55);
+  --hx-glass-border: oklch(1 0 0 / 0.1);
+  --hx-glass-highlight: oklch(1 0 0 / 0.08);
+  --hx-glass-overlay: oklch(0.1 0.02 265 / 0.5);
+  --hx-glass-shadow: 0 1px 2px oklch(0 0 0 / 0.3), 0 8px 24px -6px oklch(0 0 0 / 0.4);
+  --hx-glass-shadow-lg: 0 2px 4px oklch(0 0 0 / 0.3), 0 24px 48px -12px oklch(0 0 0 / 0.6);
+
+  color-scheme: dark;
+}
+
+/* Expose the semantic tokens as Tailwind colors: hx:bg-primary, hx:text-fg-muted… */
+@theme inline {
+  --color-fg: var(--hx-fg);
+  --color-fg-muted: var(--hx-fg-muted);
+  --color-fg-subtle: var(--hx-fg-subtle);
+  --color-primary: var(--hx-primary);
+  --color-primary-hover: var(--hx-primary-hover);
+  --color-primary-fg: var(--hx-primary-fg);
+  --color-danger: var(--hx-danger);
+  --color-danger-hover: var(--hx-danger-hover);
+  --color-danger-fg: var(--hx-danger-fg);
+  --color-ring: var(--hx-ring);
+  --color-glass: var(--hx-glass);
+  --color-glass-strong: var(--hx-glass-strong);
+  --color-glass-hover: var(--hx-glass-hover);
+  --color-glass-active: var(--hx-glass-active);
+  --color-glass-field: var(--hx-glass-field);
+  --color-glass-border: var(--hx-glass-border);
+  --color-glass-overlay: var(--hx-glass-overlay);
+}
+
+/* ---------------------------------------------------------------------------
+ * Scoped reset — only touches elements rendered by HexUI (they all carry hx: classes).
+ * :where() keeps specificity at zero so every utility still wins.
+ * ------------------------------------------------------------------------- */
+@layer base {
+  :where([class*='hx:']),
+  :where([class*='hx:'])::before,
+  :where([class*='hx:'])::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+  }
+
+  :where(button, input, select, textarea)[class*='hx:'] {
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    letter-spacing: inherit;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Glass utilities
+ * ------------------------------------------------------------------------- */
+
+/* Standard surface: cards, panels, secondary buttons. */
+@utility glass {
+  background-color: var(--hx-glass);
+  border: 1px solid var(--hx-glass-border);
+  box-shadow: inset 0 1px 0 0 var(--hx-glass-highlight), var(--hx-glass-shadow);
+  backdrop-filter: blur(var(--hx-glass-blur)) saturate(160%);
+}
+
+/* Elevated surface: dialogs, popovers, menus — more opaque for long-form reading. */
+@utility glass-strong {
+  background-color: var(--hx-glass-strong);
+  border: 1px solid var(--hx-glass-border);
+  box-shadow: inset 0 1px 0 0 var(--hx-glass-highlight), var(--hx-glass-shadow-lg);
+  backdrop-filter: blur(calc(var(--hx-glass-blur) * 1.5)) saturate(180%);
+}
+
+/* Form fields: lighter fill, no drop shadow. */
+@utility glass-field {
+  background-color: var(--hx-glass-field);
+  border: 1px solid var(--hx-glass-border);
+  box-shadow: inset 0 1px 2px 0 oklch(0 0 0 / 0.04);
+  backdrop-filter: blur(calc(var(--hx-glass-blur) * 0.5));
+}
+
+@utility focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+
+  &:focus-visible {
+    outline-color: var(--hx-ring);
+  }
+}
+
+/*
+ * Accessibility fallbacks: no blur support, user asked for less transparency,
+ * or Windows high-contrast mode → fall back to fully opaque surfaces.
+ */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root,
+  [data-theme='light'] {
+    --hx-glass: oklch(0.99 0.002 265);
+    --hx-glass-strong: oklch(1 0 0);
+    --hx-glass-field: oklch(1 0 0);
+  }
+  .dark,
+  [data-theme='dark'] {
+    --hx-glass: oklch(0.23 0.02 265);
+    --hx-glass-strong: oklch(0.21 0.02 265);
+    --hx-glass-field: oklch(0.18 0.02 265);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root,
+  [data-theme='light'] {
+    --hx-glass: oklch(0.99 0.002 265);
+    --hx-glass-strong: oklch(1 0 0);
+    --hx-glass-field: oklch(1 0 0);
+    --hx-glass-blur: 0px;
+  }
+  .dark,
+  [data-theme='dark'] {
+    --hx-glass: oklch(0.23 0.02 265);
+    --hx-glass-strong: oklch(0.21 0.02 265);
+    --hx-glass-field: oklch(0.18 0.02 265);
+    --hx-glass-blur: 0px;
+  }
+}
+
+@media (forced-colors: active) {
+  :where([class*='hx:glass']) {
+    border-color: CanvasText;
+    backdrop-filter: none;
+  }
+}
