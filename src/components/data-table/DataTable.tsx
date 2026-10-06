@@ -1,6 +1,6 @@
 import { createContext, use, type ComponentProps, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
-import { Button } from '../button/Button';
+import { Pagination } from '../pagination/Pagination';
 import { Skeleton } from '../skeleton/Skeleton';
 import {
   TableCell,
@@ -152,85 +152,17 @@ export function DataTableBody({
   );
 }
 
-export type DataTablePaginationProps = DataTablePage & {
-  onSkipChange: (skip: number) => void;
-  /** Maximum number of page buttons, ellipses included. */
-  maxVisible?: number;
-  previousLabel?: string;
-  nextLabel?: string;
-  /** Accessible label of a page button. */
-  pageLabel?: (page: number) => string;
-};
+type DataTablePaginationProps = DataTablePage & { onSkipChange: (skip: number) => void };
 
-/** Page numbers with ellipses: `1 … 4 5 6 … 12`. Pages from `maxVisible` slots. */
-export function getVisiblePages(current: number, totalPages: number, maxVisible = 5): (number | 'ellipsis')[] {
-  if (totalPages <= maxVisible) return Array.from({ length: totalPages }, (_, i) => i + 1);
-  const side = Math.floor((maxVisible - 3) / 2);
-  let start = Math.max(2, current - side);
-  let end = Math.min(totalPages - 1, current + side);
-  if (current <= side + 1) end = Math.min(totalPages - 1, maxVisible - 1);
-  else if (current >= totalPages - side) start = Math.max(2, totalPages - maxVisible + 2);
-  const pages: (number | 'ellipsis')[] = [1];
-  if (start > 2) pages.push('ellipsis');
-  for (let i = start; i <= end; i++) pages.push(i);
-  if (end < totalPages - 1) pages.push('ellipsis');
-  pages.push(totalPages);
-  return pages;
-}
-
-export function DataTablePagination({
-  total,
-  skip,
-  limit,
-  onSkipChange,
-  maxVisible = 5,
-  previousLabel = 'Page précédente',
-  nextLabel = 'Page suivante',
-  pageLabel = (page) => `Page ${page}`,
-}: DataTablePaginationProps) {
+/** Adapts the API's `skip` / `limit` / `total` to page numbers, inside the table's bottom bar. */
+function DataTablePagination({ total, skip, limit, onSkipChange }: DataTablePaginationProps) {
   if (total === 0 || limit <= 0) return null;
-  const totalPages = Math.ceil(total / limit);
-  const current = Math.floor(skip / limit) + 1;
-  const goTo = (page: number) => onSkipChange((page - 1) * limit);
-
   return (
-    <nav
-      aria-label="Pagination"
-      className="hx:flex hx:items-center hx:justify-center hx:gap-1 hx:border-t hx:border-glass-border hx:px-2 hx:py-1.5"
-    >
-      <Button variant="ghost" size="icon" className="hx:size-8" aria-label={previousLabel} disabled={current === 1} onClick={() => goTo(current - 1)}>
-        <Chevron direction="left" />
-      </Button>
-      {getVisiblePages(current, totalPages, maxVisible).map((page, i) =>
-        page === 'ellipsis' ? (
-          <span key={`ellipsis-${i}`} aria-hidden="true" className="hx:px-1.5 hx:text-sm hx:text-fg-muted">
-            …
-          </span>
-        ) : (
-          <Button
-            key={page}
-            variant={page === current ? 'secondary' : 'ghost'}
-            size="sm"
-            className="hx:min-w-8 hx:px-2 hx:tabular-nums"
-            aria-label={pageLabel(page)}
-            aria-current={page === current ? 'page' : undefined}
-            onClick={() => goTo(page)}
-          >
-            {page}
-          </Button>
-        ),
-      )}
-      <Button variant="ghost" size="icon" className="hx:size-8" aria-label={nextLabel} disabled={current === totalPages} onClick={() => goTo(current + 1)}>
-        <Chevron direction="right" />
-      </Button>
-    </nav>
-  );
-}
-
-function Chevron({ direction }: { direction: 'left' | 'right' }) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d={direction === 'left' ? 'm10 4-4 4 4 4' : 'm6 4 4 4-4 4'} />
-    </svg>
+    <Pagination
+      page={Math.floor(skip / limit) + 1}
+      totalPages={Math.ceil(total / limit)}
+      onPageChange={(page) => onSkipChange((page - 1) * limit)}
+      className="hx:border-t hx:border-glass-border hx:px-2 hx:py-1.5"
+    />
   );
 }

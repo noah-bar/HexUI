@@ -12,13 +12,10 @@ export {
   DataTable,
   DataTableBody,
   DataTableHeader,
-  DataTablePagination,
   DataTableSortableHead,
-  getVisiblePages,
   nextOrdering,
   type DataTableBodyProps,
   type DataTablePage,
-  type DataTablePaginationProps,
   type DataTableProps,
   type DataTableSortableHeadProps,
 } from './components/data-table/DataTable';
@@ -61,6 +58,7 @@ export {
   type MenuContentProps,
   type MenuItemProps,
 } from './components/menu/Menu';
+export { Pagination, getVisiblePages, type PaginationProps } from './components/pagination/Pagination';
 export { Panel, panelVariants, type PanelProps } from './components/panel/Panel';
 export { Radio, RadioGroup, type RadioProps } from './components/radio/Radio';
 export {
