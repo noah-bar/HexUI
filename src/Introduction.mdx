@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction" />
+
+# HexUI
+
+Librairie de composants React de Hex-Tech, construite sur **Base UI** (comportement & accessibilité)
+et **Tailwind CSS v4** (style), avec une signature visuelle : le **glassmorphisme professionnel**.
+
+## Principes du verre
+
+- **Lisibilité d'abord** : les surfaces restent opaques à 70–85 %, le flou sert la profondeur, pas la décoration.
+- **Trois niveaux** : `glass` (cartes, panneaux), `glass-strong` (dialogues, menus, tooltips), `glass-field` (champs de formulaire).
+- **Fonds pleins pour les actions** : les boutons primaires et destructifs ne sont jamais transparents.
+- **Replis accessibles** : surfaces opaques automatiquement si le navigateur ne gère pas `backdrop-filter`,
+  si l'utilisateur active « Réduire la transparence », ou en mode contraste élevé.
+
+## Thèmes
+
+Ajoutez la classe `dark` (ou `data-theme="dark"`) sur `<html>`. Utilisez la barre d'outils Storybook pour basculer.
+
+## Personnalisation
+
+Toutes les couleurs sont des variables CSS `--hx-*` surchargeables :
+
+```css
+:root {
+  --hx-primary: oklch(0.55 0.18 150);
+  --hx-glass-blur: 12px;
+}
+```

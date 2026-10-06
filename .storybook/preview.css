@@ -1,0 +1,43 @@
+@import '../src/styles/index.css';
+
+/* Stories use hx: utilities for their own layout. */
+@source '../src/**/*.stories.tsx';
+
+body {
+  margin: 0;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * Showcase backdrop: glass only reads as glass when there is something behind it.
+ * This mimics a typical app background (soft brand-tinted gradients).
+ */
+.hx-canvas {
+  min-height: 100dvh;
+  padding: 2.5rem;
+  box-sizing: border-box;
+  color: var(--hx-fg);
+  background:
+    radial-gradient(40rem 28rem at 12% 8%, oklch(0.82 0.1 268 / 0.7), transparent 70%),
+    radial-gradient(32rem 24rem at 88% 22%, oklch(0.86 0.09 200 / 0.6), transparent 70%),
+    radial-gradient(36rem 26rem at 60% 100%, oklch(0.88 0.08 330 / 0.55), transparent 70%),
+    oklch(0.97 0.006 265);
+}
+
+.dark .hx-canvas {
+  background:
+    radial-gradient(40rem 28rem at 12% 8%, oklch(0.42 0.14 268 / 0.55), transparent 70%),
+    radial-gradient(32rem 24rem at 88% 22%, oklch(0.42 0.1 200 / 0.45), transparent 70%),
+    radial-gradient(36rem 26rem at 60% 100%, oklch(0.4 0.12 330 / 0.4), transparent 70%),
+    oklch(0.16 0.02 265);
+}
+
+.sb-show-main.sb-main-padded {
+  padding: 0;
+}
