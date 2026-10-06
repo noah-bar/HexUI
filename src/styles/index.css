@@ -47,6 +47,8 @@
   --hx-danger-fg: #ffffff;
   /* Deeper red for tinted-glass fills: keeps white text ≥ 5:1. */
   --hx-danger-solid: #b91c1c;
+  /* Error messages: readable red text (≥ 5:1 on glass). */
+  --hx-danger-text: #b91c1c;
   --hx-danger-solid-hover: #991b1b;
 
   --hx-ring: color-mix(in oklch, var(--hx-accent) 55%, transparent);
@@ -124,6 +126,8 @@
   --hx-danger-fg: #ffffff;
   /* Deeper red for tinted-glass fills: keeps white text ≥ 5:1. */
   --hx-danger-solid: #b91c1c;
+  /* Error messages: readable red text (≥ 5:1 on glass). */
+  --hx-danger-text: #f87171;
   --hx-danger-solid-hover: #991b1b;
 
   --hx-ring: color-mix(in oklch, var(--hx-accent) 60%, transparent);
@@ -181,6 +185,7 @@
   --color-danger: var(--hx-danger);
   --color-danger-hover: var(--hx-danger-hover);
   --color-danger-fg: var(--hx-danger-fg);
+  --color-danger-text: var(--hx-danger-text);
   --color-ring: var(--hx-ring);
   --color-glass-thin: var(--hx-glass-thin);
   --color-glass: var(--hx-glass);
