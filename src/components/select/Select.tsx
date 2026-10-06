@@ -104,7 +104,7 @@ export function SelectItem({ className, children, ...props }: ComponentProps<typ
 export function SelectGroupLabel({ className, ...props }: ComponentProps<typeof BaseSelect.GroupLabel>) {
   return (
     <BaseSelect.GroupLabel
-      className={mergeClassName('hx:px-2.5 hx:pt-2 hx:pb-1 hx:text-xs hx:font-medium hx:text-fg-subtle', className)}
+      className={mergeClassName('hx:px-2.5 hx:pt-2 hx:pb-1 hx:text-xs hx:font-medium hx:text-fg-muted', className)}
       {...props}
     />
   );
