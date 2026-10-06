@@ -67,7 +67,11 @@
   /* Switch rail when off: a visible gray veil so the white thumb stands out. */
   --hx-switch-track: rgb(15 23 42 / 0.12);
   --hx-switch-track-hover: rgb(15 23 42 / 0.18);
-  --hx-glass-field: rgb(255 255 255 / 0.5);
+  /* Fields: whiter than the panel, with a firmer border and a faint inner shadow. */
+  --hx-glass-field: rgb(255 255 255 / 0.6);
+  --hx-field-border: rgb(15 23 42 / 0.24);
+  --hx-field-border-hover: rgb(15 23 42 / 0.38);
+  --hx-field-inset: rgb(15 23 42 / 0.05);
   --hx-glass-border: rgb(0 0 0 / 0.09);
   --hx-glass-highlight: rgb(255 255 255 / 0.75);
   --hx-glass-overlay: rgb(12 12 12 / 0.14);
@@ -136,7 +140,10 @@
   --hx-tint-active: rgb(255 255 255 / 0.09);
   --hx-switch-track: rgb(255 255 255 / 0.14);
   --hx-switch-track-hover: rgb(255 255 255 / 0.2);
-  --hx-glass-field: rgb(12 12 12 / 0.6);
+  --hx-glass-field: rgb(0 0 0 / 0.28);
+  --hx-field-border: rgb(255 255 255 / 0.2);
+  --hx-field-border-hover: rgb(255 255 255 / 0.3);
+  --hx-field-inset: rgb(0 0 0 / 0.35);
   --hx-glass-border: rgb(255 255 255 / 0.07);
   --hx-glass-highlight: rgb(255 255 255 / 0.08);
   --hx-glass-overlay: rgb(0 0 0 / 0.6);
@@ -182,6 +189,8 @@
   --color-glass-hover: var(--hx-glass-hover);
   --color-glass-active: var(--hx-glass-active);
   --color-glass-field: var(--hx-glass-field);
+  --color-field-border: var(--hx-field-border);
+  --color-field-border-hover: var(--hx-field-border-hover);
   --color-glass-border: var(--hx-glass-border);
   --color-glass-overlay: var(--hx-glass-overlay);
   --color-tint-hover: var(--hx-tint-hover);
@@ -281,11 +290,11 @@
   }
 }
 
-/* Form fields: lighter fill, no drop shadow. */
+/* Form fields: recessed into the glass — darker fill, firm border, inner top shadow. */
 @utility glass-field {
   background-color: var(--hx-glass-field);
-  border: 1px solid var(--hx-glass-border);
-  box-shadow: inset 0 1px 2px 0 oklch(0 0 0 / 0.04);
+  border: 1px solid var(--hx-field-border);
+  box-shadow: inset 0 1px 2px 0 var(--hx-field-inset);
   backdrop-filter: blur(calc(var(--hx-glass-blur) * 0.5));
 }
 
