@@ -5,7 +5,7 @@ const twMerge = extendTailwindMerge<'glass'>({
   prefix: 'hx',
   extend: {
     classGroups: {
-      glass: ['glass', 'glass-strong', 'glass-field'],
+      glass: ['glass-thin', 'glass', 'glass-strong', 'glass-dialog', 'glass-field'],
     },
   },
 });

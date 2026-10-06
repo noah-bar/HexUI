@@ -16,36 +16,72 @@
 @custom-variant dark (&:where(.dark, .dark *, [data-theme='dark'], [data-theme='dark'] *));
 
 /* ---------------------------------------------------------------------------
+ * Brand palette — indigo on neutral grays.
+ * Cool hues stay luminous once blurred, which suits glass surfaces.
+ * ------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
  * Semantic tokens — light
  * ------------------------------------------------------------------------- */
 :root,
 [data-theme='light'] {
-  --hx-fg: oklch(0.21 0.02 265);
-  --hx-fg-muted: oklch(0.45 0.02 265);
-  --hx-fg-subtle: oklch(0.6 0.015 265);
+  --hx-fg: #333333;
+  --hx-fg-muted: #585f6c; /* stays ≥ 5:1 on glass over tinted glows */
+  --hx-fg-subtle: #9ca3af;
 
-  --hx-primary: oklch(0.52 0.2 268);
-  --hx-primary-hover: oklch(0.47 0.2 268);
-  --hx-primary-fg: oklch(0.99 0 0);
+  /* Decorative brand color: glows, illustrations. */
+  --hx-brand: #6366f1;
+  /* Filled surfaces with white text: buttons, switches (6.3:1). */
+  --hx-primary: #4f46e5;
+  --hx-primary-hover: #4338ca;
+  --hx-primary-fg: #ffffff;
+  /* Brand color as foreground on surfaces: icons, focus borders, check marks. */
+  --hx-accent: #4f46e5;
 
-  --hx-danger: oklch(0.55 0.21 25);
-  --hx-danger-hover: oklch(0.5 0.21 25);
-  --hx-danger-fg: oklch(0.99 0 0);
+  --hx-danger: #dc2626;
+  --hx-danger-hover: #b91c1c;
+  --hx-danger-fg: #ffffff;
 
-  --hx-ring: oklch(0.6 0.19 268 / 0.55);
+  --hx-ring: color-mix(in oklch, var(--hx-accent) 55%, transparent);
 
   /* Glass surfaces: opaque enough to stay readable on any background. */
-  --hx-glass: oklch(1 0 0 / 0.72);
-  --hx-glass-strong: oklch(1 0 0 / 0.86);
-  --hx-glass-hover: oklch(1 0 0 / 0.86);
-  --hx-glass-active: oklch(0.96 0.005 265 / 0.9);
-  --hx-glass-field: oklch(1 0 0 / 0.6);
-  --hx-glass-border: oklch(0.21 0.02 265 / 0.1);
-  --hx-glass-highlight: oklch(1 0 0 / 0.75);
-  --hx-glass-overlay: oklch(0.21 0.02 265 / 0.22);
+  --hx-glass-thin: rgb(255 255 255 / 0.55);
+  --hx-glass: rgb(255 255 255 / 0.66);
+  --hx-glass-strong: rgb(255 255 255 / 0.88);
+  /* Dialogs sit on a dimmed overlay and blur hard, so they can be more transparent. */
+  --hx-glass-dialog: rgb(255 255 255 / 0.75);
+  --hx-glass-hover: rgb(255 255 255 / 0.88);
+  --hx-glass-active: rgb(243 244 246 / 0.92);
+  --hx-glass-field: rgb(255 255 255 / 0.62);
+  --hx-glass-border: rgb(0 0 0 / 0.09);
+  --hx-glass-highlight: rgb(255 255 255 / 0.75);
+  --hx-glass-overlay: rgb(12 12 12 / 0.14);
   --hx-glass-blur: 16px;
-  --hx-glass-shadow: 0 1px 2px oklch(0.21 0.02 265 / 0.05), 0 8px 24px -6px oklch(0.21 0.02 265 / 0.12);
-  --hx-glass-shadow-lg: 0 2px 4px oklch(0.21 0.02 265 / 0.06), 0 24px 48px -12px oklch(0.21 0.02 265 / 0.22);
+  /* In light mode depth comes from shadows, not light: keep them a little crisper. */
+  --hx-glass-shadow: 0 1px 2px rgb(15 23 42 / 0.06), 0 10px 30px -8px rgb(15 23 42 / 0.16);
+  --hx-glass-shadow-lg: 0 2px 6px rgb(15 23 42 / 0.06), 0 28px 56px -14px rgb(15 23 42 / 0.28);
+  /* Material details — set any of them to `none` to turn the effect off. */
+  --hx-glass-edge: linear-gradient(
+    160deg,
+    rgb(255 255 255 / 1),
+    rgb(255 255 255 / 0.45) 25%,
+    rgb(255 255 255 / 0) 50%,
+    rgb(15 23 42 / 0.05) 75%,
+    rgb(15 23 42 / 0.12)
+  );
+  --hx-glass-sheen: linear-gradient(180deg, rgb(255 255 255 / 0.4), rgb(255 255 255 / 0) 40%);
+  --hx-glass-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  --hx-primary-glow: color-mix(in oklch, var(--hx-primary) 40%, transparent);
+  --hx-danger-glow: color-mix(in oklch, var(--hx-danger) 35%, transparent);
+
+  /* Backdrop: page base + three glows (indigo, cyan, soft violet). */
+  /* Slightly darker than the glass so white surfaces stand out by contrast. */
+  --hx-backdrop-base: #eef0f5;
+  --hx-backdrop-accent-1: color-mix(in oklch, var(--hx-brand) 40%, transparent);
+  --hx-backdrop-accent-2: rgb(34 211 238 / 0.3);
+  --hx-backdrop-accent-3: rgb(167 139 250 / 0.45);
+  --hx-backdrop-subtle-opacity: 0.8;
+  --hx-backdrop-line: rgb(0 0 0 / 0.05);
 
   color-scheme: light;
 }
@@ -55,30 +91,51 @@
  * ------------------------------------------------------------------------- */
 .dark,
 [data-theme='dark'] {
-  --hx-fg: oklch(0.96 0.005 265);
-  --hx-fg-muted: oklch(0.76 0.015 265);
-  --hx-fg-subtle: oklch(0.62 0.015 265);
+  --hx-fg: #e5e7eb;
+  --hx-fg-muted: #9ca3af;
+  --hx-fg-subtle: #6b7280;
 
-  --hx-primary: oklch(0.68 0.16 268);
-  --hx-primary-hover: oklch(0.74 0.14 268);
-  --hx-primary-fg: oklch(0.18 0.03 268);
+  --hx-brand: #6366f1;
+  --hx-primary: #4f46e5;
+  --hx-primary-hover: #5850ec;
+  --hx-primary-fg: #ffffff;
+  --hx-accent: #818cf8;
 
-  --hx-danger: oklch(0.66 0.19 25);
-  --hx-danger-hover: oklch(0.71 0.17 25);
-  --hx-danger-fg: oklch(0.18 0.03 25);
+  --hx-danger: #dc2626;
+  --hx-danger-hover: #b91c1c;
+  --hx-danger-fg: #ffffff;
 
-  --hx-ring: oklch(0.72 0.15 268 / 0.6);
+  --hx-ring: color-mix(in oklch, var(--hx-accent) 60%, transparent);
 
-  --hx-glass: oklch(0.22 0.02 265 / 0.66);
-  --hx-glass-strong: oklch(0.2 0.02 265 / 0.84);
-  --hx-glass-hover: oklch(0.28 0.02 265 / 0.72);
-  --hx-glass-active: oklch(0.32 0.02 265 / 0.78);
-  --hx-glass-field: oklch(0.16 0.02 265 / 0.55);
-  --hx-glass-border: oklch(1 0 0 / 0.1);
-  --hx-glass-highlight: oklch(1 0 0 / 0.08);
-  --hx-glass-overlay: oklch(0.1 0.02 265 / 0.5);
-  --hx-glass-shadow: 0 1px 2px oklch(0 0 0 / 0.3), 0 8px 24px -6px oklch(0 0 0 / 0.4);
-  --hx-glass-shadow-lg: 0 2px 4px oklch(0 0 0 / 0.3), 0 24px 48px -12px oklch(0 0 0 / 0.6);
+  --hx-glass-thin: rgb(30 30 34 / 0.42);
+  --hx-glass: rgb(26 26 30 / 0.58);
+  --hx-glass-strong: rgb(22 22 26 / 0.84);
+  --hx-glass-dialog: rgb(22 22 26 / 0.68);
+  --hx-glass-hover: rgb(38 38 38 / 0.78);
+  --hx-glass-active: rgb(46 46 46 / 0.82);
+  --hx-glass-field: rgb(12 12 12 / 0.6);
+  --hx-glass-border: rgb(255 255 255 / 0.07);
+  --hx-glass-highlight: rgb(255 255 255 / 0.08);
+  --hx-glass-overlay: rgb(0 0 0 / 0.6);
+  --hx-glass-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -6px rgb(0 0 0 / 0.5);
+  --hx-glass-shadow-lg: 0 2px 4px rgb(0 0 0 / 0.4), 0 24px 48px -12px rgb(0 0 0 / 0.7);
+  --hx-glass-edge: linear-gradient(
+    150deg,
+    rgb(255 255 255 / 0.28),
+    rgb(255 255 255 / 0.08) 30%,
+    rgb(255 255 255 / 0) 55%,
+    rgb(255 255 255 / 0.1)
+  );
+  --hx-glass-sheen: linear-gradient(180deg, rgb(255 255 255 / 0.06), rgb(255 255 255 / 0) 45%);
+  --hx-primary-glow: color-mix(in oklch, var(--hx-primary) 55%, transparent);
+  --hx-danger-glow: color-mix(in oklch, var(--hx-danger) 45%, transparent);
+
+  --hx-backdrop-base: #0c0c0c;
+  --hx-backdrop-accent-1: color-mix(in oklch, var(--hx-brand) 28%, transparent);
+  --hx-backdrop-accent-2: rgb(8 145 178 / 0.28);
+  --hx-backdrop-accent-3: rgb(124 58 237 / 0.26);
+  --hx-backdrop-line: rgb(255 255 255 / 0.04);
+  --hx-backdrop-subtle-opacity: 0.6;
 
   color-scheme: dark;
 }
@@ -88,15 +145,19 @@
   --color-fg: var(--hx-fg);
   --color-fg-muted: var(--hx-fg-muted);
   --color-fg-subtle: var(--hx-fg-subtle);
+  --color-brand: var(--hx-brand);
   --color-primary: var(--hx-primary);
   --color-primary-hover: var(--hx-primary-hover);
   --color-primary-fg: var(--hx-primary-fg);
+  --color-accent: var(--hx-accent);
   --color-danger: var(--hx-danger);
   --color-danger-hover: var(--hx-danger-hover);
   --color-danger-fg: var(--hx-danger-fg);
   --color-ring: var(--hx-ring);
+  --color-glass-thin: var(--hx-glass-thin);
   --color-glass: var(--hx-glass);
   --color-glass-strong: var(--hx-glass-strong);
+  --color-glass-dialog: var(--hx-glass-dialog);
   --color-glass-hover: var(--hx-glass-hover);
   --color-glass-active: var(--hx-glass-active);
   --color-glass-field: var(--hx-glass-field);
@@ -130,20 +191,61 @@
  * Glass utilities
  * ------------------------------------------------------------------------- */
 
+/*
+ * Glass surfaces share the same material: translucent fill + top sheen + fine grain,
+ * a lit edge (::before, masked to a 1px ring) and a soft shadow.
+ * Elements need a positioning context for the edge; see the components layer below.
+ */
+
+/* Thin surface: chrome with little text (nav bars, sidebars, toolbars, tab lists). */
+@utility glass-thin {
+  background-color: var(--hx-glass-thin);
+  background-image: var(--hx-glass-grain), var(--hx-glass-sheen);
+  background-size: 160px 160px, 100% 100%;
+  border: 1px solid var(--hx-glass-border);
+  box-shadow: inset 0 1px 0 0 var(--hx-glass-highlight), var(--hx-glass-shadow);
+  backdrop-filter: blur(calc(var(--hx-glass-blur) * 1.25)) saturate(180%);
+}
+
 /* Standard surface: cards, panels, secondary buttons. */
 @utility glass {
   background-color: var(--hx-glass);
+  background-image: var(--hx-glass-grain), var(--hx-glass-sheen);
+  background-size: 160px 160px, 100% 100%;
   border: 1px solid var(--hx-glass-border);
   box-shadow: inset 0 1px 0 0 var(--hx-glass-highlight), var(--hx-glass-shadow);
-  backdrop-filter: blur(var(--hx-glass-blur)) saturate(160%);
+  backdrop-filter: blur(var(--hx-glass-blur)) saturate(170%);
 }
 
 /* Elevated surface: dialogs, popovers, menus — more opaque for long-form reading. */
 @utility glass-strong {
   background-color: var(--hx-glass-strong);
+  background-image: var(--hx-glass-grain), var(--hx-glass-sheen);
+  background-size: 160px 160px, 100% 100%;
   border: 1px solid var(--hx-glass-border);
   box-shadow: inset 0 1px 0 0 var(--hx-glass-highlight), var(--hx-glass-shadow-lg);
   backdrop-filter: blur(calc(var(--hx-glass-blur) * 1.5)) saturate(180%);
+}
+
+/* Dialog surface: lighter than glass-strong, compensated by a much stronger blur
+   so content behind turns into color, never into readable shapes. */
+@utility glass-dialog {
+  background-color: var(--hx-glass-dialog);
+  background-image: var(--hx-glass-grain), var(--hx-glass-sheen);
+  background-size: 160px 160px, 100% 100%;
+  border: 1px solid var(--hx-glass-border);
+  box-shadow: inset 0 1px 0 0 var(--hx-glass-highlight), var(--hx-glass-shadow-lg);
+  backdrop-filter: blur(calc(var(--hx-glass-blur) * 2.5)) saturate(180%);
+}
+
+/* Filled action (primary / danger buttons): top light + colored glow. */
+@utility lit {
+  background-image: linear-gradient(180deg, rgb(255 255 255 / 0.16), rgb(255 255 255 / 0) 55%);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.25),
+    inset 0 -1px 0 0 rgb(0 0 0 / 0.12),
+    0 1px 2px 0 rgb(0 0 0 / 0.15),
+    0 4px 14px -4px var(--hx-lit-glow, transparent);
 }
 
 /* Form fields: lighter fill, no drop shadow. */
@@ -163,6 +265,106 @@
   }
 }
 
+/* ---------------------------------------------------------------------------
+ * Lit edge — a 1px gradient ring drawn over the border, brighter where light hits.
+ * Lives in the components layer so position utilities (hx:fixed, hx:absolute) win.
+ * Form fields (glass-field) are excluded: inputs cannot have pseudo-elements.
+ * ------------------------------------------------------------------------- */
+@layer components {
+  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog) {
+    position: relative;
+  }
+
+  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog)::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: inherit;
+    background: var(--hx-glass-edge);
+    mask:
+      linear-gradient(#000 0 0) content-box exclude,
+      linear-gradient(#000 0 0);
+    pointer-events: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Backdrop — decorative page background that gives glass surfaces something to blur.
+ * Pure CSS gradients, no images, no animation (keeps backdrop-filter cheap).
+ * ------------------------------------------------------------------------- */
+@layer components {
+  .hx-backdrop {
+    pointer-events: none;
+    inset: 0;
+    z-index: -10;
+    overflow: hidden;
+    background-color: var(--hx-backdrop-base);
+  }
+
+  .hx-backdrop[data-position='fixed'] {
+    position: fixed;
+  }
+
+  .hx-backdrop[data-position='absolute'] {
+    position: absolute;
+  }
+
+  .hx-backdrop-glow,
+  .hx-backdrop-texture {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hx-backdrop[data-intensity='subtle'] .hx-backdrop-glow {
+    opacity: var(--hx-backdrop-subtle-opacity);
+  }
+
+  .hx-backdrop[data-variant='plain'] .hx-backdrop-glow {
+    background: radial-gradient(ellipse 80% 45% at 50% 0%, var(--hx-backdrop-accent-1), transparent 70%);
+  }
+
+  .hx-backdrop[data-variant='mesh'] .hx-backdrop-glow {
+    background:
+      radial-gradient(ellipse 55% 55% at 12% 8%, var(--hx-backdrop-accent-1), transparent 70%),
+      radial-gradient(ellipse 45% 45% at 88% 22%, var(--hx-backdrop-accent-2), transparent 70%),
+      radial-gradient(ellipse 50% 50% at 60% 100%, var(--hx-backdrop-accent-3), transparent 70%);
+  }
+
+  .hx-backdrop[data-variant='aurora'] .hx-backdrop-glow {
+    background:
+      radial-gradient(ellipse 70% 50% at 20% 0%, var(--hx-backdrop-accent-1), transparent 70%),
+      radial-gradient(ellipse 35% 60% at 50% 10%, var(--hx-backdrop-accent-1), transparent 70%),
+      radial-gradient(ellipse 50% 45% at 85% 15%, var(--hx-backdrop-accent-2), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 75% 95%, var(--hx-backdrop-accent-3), transparent 70%),
+      radial-gradient(ellipse 45% 40% at 5% 85%, var(--hx-backdrop-accent-2), transparent 70%);
+  }
+
+  .hx-backdrop-texture[data-texture='grain'] {
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .dark .hx-backdrop-texture[data-texture='grain'] {
+    opacity: 0.1;
+  }
+
+  .hx-backdrop-texture[data-texture='grid'] {
+    background-image:
+      linear-gradient(to right, var(--hx-backdrop-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--hx-backdrop-line) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black, transparent);
+  }
+
+  @media (forced-colors: active), print {
+    .hx-backdrop {
+      display: none;
+    }
+  }
+}
+
 /*
  * Accessibility fallbacks: no blur support, user asked for less transparency,
  * or Windows high-contrast mode → fall back to fully opaque surfaces.
@@ -170,32 +372,42 @@
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   :root,
   [data-theme='light'] {
-    --hx-glass: oklch(0.99 0.002 265);
-    --hx-glass-strong: oklch(1 0 0);
-    --hx-glass-field: oklch(1 0 0);
+    --hx-glass-thin: #ffffff;
+    --hx-glass: #ffffff;
+    --hx-glass-strong: #ffffff;
+    --hx-glass-dialog: #ffffff;
+    --hx-glass-field: #ffffff;
   }
   .dark,
   [data-theme='dark'] {
-    --hx-glass: oklch(0.23 0.02 265);
-    --hx-glass-strong: oklch(0.21 0.02 265);
-    --hx-glass-field: oklch(0.18 0.02 265);
+    --hx-glass-thin: #1a1a1a;
+    --hx-glass: #141414;
+    --hx-glass-strong: #171717;
+    --hx-glass-dialog: #171717;
+    --hx-glass-field: #0f0f0f;
   }
 }
 
 @media (prefers-reduced-transparency: reduce) {
   :root,
   [data-theme='light'] {
-    --hx-glass: oklch(0.99 0.002 265);
-    --hx-glass-strong: oklch(1 0 0);
-    --hx-glass-field: oklch(1 0 0);
+    --hx-glass: #ffffff;
+    --hx-glass-strong: #ffffff;
+    --hx-glass-dialog: #ffffff;
+    --hx-glass-thin: #ffffff;
+    --hx-glass-field: #ffffff;
     --hx-glass-blur: 0px;
+    --hx-glass-grain: none;
   }
   .dark,
   [data-theme='dark'] {
-    --hx-glass: oklch(0.23 0.02 265);
-    --hx-glass-strong: oklch(0.21 0.02 265);
-    --hx-glass-field: oklch(0.18 0.02 265);
+    --hx-glass: #141414;
+    --hx-glass-strong: #171717;
+    --hx-glass-dialog: #171717;
+    --hx-glass-thin: #1a1a1a;
+    --hx-glass-field: #0f0f0f;
     --hx-glass-blur: 0px;
+    --hx-glass-grain: none;
   }
 }
 
@@ -203,5 +415,9 @@
   :where([class*='hx:glass']) {
     border-color: CanvasText;
     backdrop-filter: none;
+  }
+
+  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog)::before {
+    display: none;
   }
 }
