@@ -17,7 +17,15 @@ export {
   DialogTrigger,
   type DialogContentProps,
 } from './components/dialog/Dialog';
-export { Field, FieldDescription, FieldError, FieldItem, FieldLabel } from './components/field/Field';
+export {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldItem,
+  FieldLabel,
+  FieldRow,
+  type FieldRowProps,
+} from './components/field/Field';
 export { Input, type InputProps } from './components/input/Input';
 export { Panel, panelVariants, type PanelProps } from './components/panel/Panel';
 export { Radio, RadioGroup, type RadioProps } from './components/radio/Radio';
