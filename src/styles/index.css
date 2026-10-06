@@ -64,6 +64,9 @@
   /* Tints: light veils for hover/selection inside a glass surface (rows, list items, ghost buttons). */
   --hx-tint-hover: rgb(15 23 42 / 0.04);
   --hx-tint-active: rgb(15 23 42 / 0.07);
+  /* Switch rail when off: a visible gray veil so the white thumb stands out. */
+  --hx-switch-track: rgb(15 23 42 / 0.12);
+  --hx-switch-track-hover: rgb(15 23 42 / 0.18);
   --hx-glass-field: rgb(255 255 255 / 0.5);
   --hx-glass-border: rgb(0 0 0 / 0.09);
   --hx-glass-highlight: rgb(255 255 255 / 0.75);
@@ -131,6 +134,8 @@
   --hx-glass-active: rgb(46 46 46 / 0.82);
   --hx-tint-hover: rgb(255 255 255 / 0.05);
   --hx-tint-active: rgb(255 255 255 / 0.09);
+  --hx-switch-track: rgb(255 255 255 / 0.14);
+  --hx-switch-track-hover: rgb(255 255 255 / 0.2);
   --hx-glass-field: rgb(12 12 12 / 0.6);
   --hx-glass-border: rgb(255 255 255 / 0.07);
   --hx-glass-highlight: rgb(255 255 255 / 0.08);
@@ -181,6 +186,8 @@
   --color-glass-overlay: var(--hx-glass-overlay);
   --color-tint-hover: var(--hx-tint-hover);
   --color-tint-active: var(--hx-tint-active);
+  --color-switch-track: var(--hx-switch-track);
+  --color-switch-track-hover: var(--hx-switch-track-hover);
 }
 
 /* ---------------------------------------------------------------------------
@@ -280,6 +287,16 @@
   border: 1px solid var(--hx-glass-border);
   box-shadow: inset 0 1px 2px 0 oklch(0 0 0 / 0.04);
   backdrop-filter: blur(calc(var(--hx-glass-blur) * 0.5));
+}
+
+/* Glass bead: the switch thumb — white pebble with a top highlight and a soft drop shadow. */
+@utility glass-bead {
+  background: linear-gradient(180deg, #ffffff, #eef0f4);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.9),
+    inset 0 -1px 1px 0 rgb(0 0 0 / 0.06),
+    0 1px 3px 0 rgb(0 0 0 / 0.22),
+    0 0 0 0.5px rgb(0 0 0 / 0.08);
 }
 
 @utility focus-ring {
