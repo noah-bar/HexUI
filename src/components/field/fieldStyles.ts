@@ -17,7 +17,7 @@ export const fieldControlClassName = [
  * tinted glass when on, red border when invalid.
  */
 export const checkControlClassName = [
-  'hx:group hx:inline-flex hx:size-4.5 hx:shrink-0 hx:items-center hx:justify-center hx:cursor-pointer',
+  'hx:group hx:inline-flex hx:size-4.5 hx:shrink-0 hx:items-center hx:justify-center hx:align-middle hx:cursor-pointer',
   'hx:glass-field hx:hover:border-field-border-hover hx:text-primary-fg',
   'hx:transition-[background-color,border-color] hx:duration-150 hx:focus-ring',
   'hx:error:border-danger',
