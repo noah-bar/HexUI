@@ -33,8 +33,8 @@ export function TabsTab({ className, ...props }: ComponentProps<typeof BaseTabs.
       className={mergeClassName(
         [
           'hx:inline-flex hx:h-8 hx:items-center hx:justify-center hx:gap-2 hx:rounded-md hx:px-3 hx:cursor-pointer',
-          'hx:text-sm hx:font-medium hx:whitespace-nowrap hx:text-fg-muted hx:select-none',
-          'hx:transition-colors hx:duration-150 hx:hover:text-fg hx:data-active:text-fg hx:focus-ring',
+          'hx:text-sm hx:font-medium hx:whitespace-nowrap hx:text-fg hx:select-none',
+          'hx:transition-colors hx:duration-150 hx:not-data-active:hover:bg-tint-hover hx:focus-ring',
           'hx:data-disabled:pointer-events-none hx:data-disabled:opacity-50',
         ].join(' '),
         className,
