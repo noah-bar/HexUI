@@ -90,7 +90,7 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | Composant | Exports |
 | --- | --- |
 | Backdrop | `Backdrop` — variantes `mesh`, `aurora`, `plain` ; textures `grain`, `grid` |
-| Button | `Button`, `buttonVariants` — variantes `primary`, `secondary`, `ghost`, `danger` ; tailles `sm`, `md`, `lg`, `icon` |
+| Button | `Button`, `buttonVariants` — variantes `primary`, `secondary`, `outline`, `ghost`, `danger` ; tailles `sm`, `md`, `lg`, `icon` |
 | Input | `Input` |
 | Card | `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
 | Dialog | `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose` |
