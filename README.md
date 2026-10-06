@@ -121,6 +121,7 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | Input | `Input` — état d'erreur avec `aria-invalid` (ou automatiquement dans un `Field` Base UI invalide) ; même comportement sur `SelectTrigger` |
 | Card | `Card` (un `Panel` avec mise en page verticale ; accepte `variant`, `padding` et `render`), `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
 | Checkbox | `Checkbox` — états coché, `indeterminate`, invalide (`aria-invalid` ou dans un `Field` invalide) |
+| DataTable | `DataTable`, `DataTableHeader`, `DataTableSortableHead`, `DataTableBody`, `DataTablePagination`, `nextOrdering`, `getVisiblePages` — voir ci-dessous |
 | Dialog | `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose` |
 | Toast | `ToastProvider`, `useToast`, `createToastManager` — voir ci-dessous |
 | Tooltip | `TooltipProvider`, `Tooltip`, `TooltipTrigger`, `TooltipContent` |
@@ -128,10 +129,60 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | Panel | `Panel`, `panelVariants` — surface en verre sans mise en page ; variantes `thin`, `default`, `strong` ; marge interne `none`, `sm`, `md`, `lg` ; prop `render` pour changer l'élément (`<aside />`, `<section />`…) |
 | Popover | `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverTitle`, `PopoverDescription`, `PopoverClose` — panneau flottant libre (filtres, détails, mini-formulaires) |
 | Radio | `RadioGroup`, `Radio` |
+| Skeleton | `Skeleton` — forme de chargement animée |
 | Select | `Select`, `SelectTrigger`, `SelectValue`, `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator` |
 | Switch | `Switch` |
+| Table | `Table` (`density`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow` (`selected`), `TableHead` (`align`, `sortDirection`, `onSort`), `TableCell` (`align`), `TableCaption`, `TableEmpty` — à placer dans un `Panel` ; défilement horizontal intégré pour les tableaux larges |
 | Tabs | `Tabs`, `TabsList`, `TabsTab`, `TabsPanel` |
 | Textarea | `Textarea` — mêmes états que `Input`, redimensionnable verticalement |
+
+### Tableau de données (DataTable)
+
+`DataTable` gère les listes alimentées par une API paginée : tri, pagination, chargement, état vide, en-tête fixe.
+Il remplit la hauteur de son parent et défile à l'intérieur : donnez une hauteur au `Panel` qui le contient.
+Il est **contrôlé** et ne dépend d'aucun routeur.
+
+```tsx
+<Panel className="h-[600px]">
+  <DataTable ordering={ordering} onOrderingChange={setOrdering} pagination={data} onSkipChange={setSkip}>
+    <DataTableHeader>
+      <TableRow>
+        <DataTableSortableHead field="full_name">Nom</DataTableSortableHead>
+        <DataTableSortableHead field="total" align="right">Total</DataTableSortableHead>
+      </TableRow>
+    </DataTableHeader>
+    <DataTableBody colSpan={2} isPending={isPending} isEmpty={rows.length === 0} emptyText="Aucun client.">
+      {rows.map((row) => (
+        <TableRow key={row.id} onClick={() => open(row)}>…</TableRow>
+      ))}
+    </DataTableBody>
+  </DataTable>
+</Panel>
+```
+
+- `ordering` au format Django : `"field"` croissant, `"-field"` décroissant, `""` aucun. Un clic fait
+  croissant → décroissant → aucun (`nextOrdering`).
+- `pagination` reçoit directement la réponse de l'API (`{ total, skip, limit }`) ; `onSkipChange` le nouveau `skip`.
+- Pensez à remettre `skip` à 0 quand la recherche ou le tri changent.
+- `useDebouncedValue(search, 300)` évite une requête à chaque frappe.
+
+**Garder l'état dans l'URL (react-router)** — partage de lien et retour arrière conservent la page et le tri :
+
+```tsx
+const [params, setParams] = useSearchParams();
+const ordering = params.get('ordering') ?? '';
+const skip = Number(params.get('skip') ?? 0);
+
+const update = (key: string, value: string | number) =>
+  setParams((p) => {
+    value ? p.set(key, String(value)) : p.delete(key);
+    if (key !== 'skip') p.delete('skip');
+    return p;
+  }, { replace: true });
+
+<DataTable ordering={ordering} onOrderingChange={(o) => update('ordering', o)}
+  pagination={data} onSkipChange={(s) => update('skip', s)}>
+```
 
 ### Notifications (Toast)
 
