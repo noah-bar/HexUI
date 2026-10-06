@@ -1,6 +1,7 @@
 import { Select as BaseSelect } from '@base-ui/react/select';
 import type { ComponentProps } from 'react';
 import { cn, mergeClassName } from '../../lib/cn';
+import { fieldControlClassName } from '../field/fieldStyles';
 
 export const Select = BaseSelect.Root;
 export const SelectGroup = BaseSelect.Group;
@@ -10,14 +11,9 @@ export function SelectTrigger({ className, children, ...props }: ComponentProps<
     <BaseSelect.Trigger
       className={mergeClassName(
         [
-          'hx:glass-field hx:flex hx:h-9 hx:w-full hx:min-w-40 hx:items-center hx:justify-between hx:gap-2',
-          'hx:rounded-md hx:pr-2 hx:pl-3 hx:text-sm hx:text-fg hx:cursor-pointer hx:select-none',
-          'hx:transition-[border-color,box-shadow] hx:duration-150 hx:hover:border-field-border-hover',
-          'hx:outline-none hx:focus-visible:border-accent hx:focus-visible:ring-3 hx:focus-visible:ring-ring',
-          'hx:data-popup-open:border-accent',
-          'hx:error:border-danger hx:error:ring-3 hx:error:ring-danger/15',
-          'hx:error:focus-visible:border-danger hx:error:focus-visible:ring-danger/30',
-          'hx:data-disabled:cursor-not-allowed hx:data-disabled:opacity-50',
+          fieldControlClassName,
+          'hx:flex hx:h-9 hx:w-full hx:min-w-40 hx:items-center hx:justify-between hx:gap-2 hx:pr-2 hx:pl-3',
+          'hx:cursor-pointer hx:select-none hx:data-popup-open:border-accent',
         ].join(' '),
         className,
       )}
