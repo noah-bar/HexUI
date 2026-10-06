@@ -1,0 +1,190 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Archive, Copy, Download, Ellipsis, Mail, Pencil, Trash2, UserPlus } from 'lucide-react';
+import { useState } from 'react';
+import { Badge, type BadgeProps } from '../badge/Badge';
+import { Button } from '../button/Button';
+import { Panel } from '../panel/Panel';
+import {
+  Menu,
+  MenuCheckboxItem,
+  MenuContent,
+  MenuGroup,
+  MenuGroupLabel,
+  MenuItem,
+  MenuRadioGroup,
+  MenuRadioItem,
+  MenuSeparator,
+  MenuShortcut,
+  MenuSub,
+  MenuSubContent,
+  MenuSubTrigger,
+  MenuTrigger,
+} from './Menu';
+
+const meta = {
+  title: 'Components/Menu',
+  component: Menu,
+  tags: ['autodocs'],
+  argTypes: { defaultOpen: { control: 'boolean' } },
+  decorators: [(Story) => <div className="hx:min-h-96">{Story()}</div>],
+} satisfies Meta<typeof Menu>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (args) => (
+    <Menu {...args}>
+      <MenuTrigger render={<Button variant="secondary" />}>Actions</MenuTrigger>
+      <MenuContent>
+        <MenuItem>
+          <Pencil /> Modifier <MenuShortcut>⌘E</MenuShortcut>
+        </MenuItem>
+        <MenuItem>
+          <Copy /> Dupliquer <MenuShortcut>⌘D</MenuShortcut>
+        </MenuItem>
+        <MenuItem>
+          <Download /> Exporter en PDF
+        </MenuItem>
+        <MenuSub>
+          <MenuSubTrigger>
+            <UserPlus /> Partager
+          </MenuSubTrigger>
+          <MenuSubContent>
+            <MenuItem>
+              <Mail /> Par e-mail
+            </MenuItem>
+            <MenuItem>
+              <Copy /> Copier le lien
+            </MenuItem>
+          </MenuSubContent>
+        </MenuSub>
+        <MenuSeparator />
+        <MenuItem disabled>
+          <Archive /> Archiver
+        </MenuItem>
+        <MenuItem variant="danger">
+          <Trash2 /> Supprimer <MenuShortcut>⌫</MenuShortcut>
+        </MenuItem>
+      </MenuContent>
+    </Menu>
+  ),
+};
+
+export const CheckboxAndRadio: Story = {
+  render: function ViewOptionsStory() {
+    const [columns, setColumns] = useState({ client: true, date: true, amount: true, owner: false });
+    const [density, setDensity] = useState('comfortable');
+    return (
+      <Menu>
+        <MenuTrigger render={<Button variant="secondary" />}>Affichage</MenuTrigger>
+        <MenuContent>
+          <MenuGroup>
+            <MenuGroupLabel>Colonnes</MenuGroupLabel>
+            {(
+              [
+                ['client', 'Client'],
+                ['date', 'Date'],
+                ['amount', 'Montant'],
+                ['owner', 'Responsable'],
+              ] as const
+            ).map(([key, label]) => (
+              <MenuCheckboxItem
+                key={key}
+                checked={columns[key]}
+                onCheckedChange={(checked) => setColumns((c) => ({ ...c, [key]: checked }))}
+                closeOnClick={false}
+              >
+                {label}
+              </MenuCheckboxItem>
+            ))}
+          </MenuGroup>
+          <MenuSeparator />
+          <MenuGroup>
+            <MenuGroupLabel>Densité</MenuGroupLabel>
+            <MenuRadioGroup value={density} onValueChange={setDensity}>
+              <MenuRadioItem value="comfortable" closeOnClick={false}>
+                Confortable
+              </MenuRadioItem>
+              <MenuRadioItem value="compact" closeOnClick={false}>
+                Compacte
+              </MenuRadioItem>
+            </MenuRadioGroup>
+          </MenuGroup>
+        </MenuContent>
+      </Menu>
+    );
+  },
+};
+
+const statusVariant: Record<string, BadgeProps['variant']> = {
+  Payée: 'success',
+  Envoyée: 'info',
+  'En attente': 'warning',
+  'En retard': 'danger',
+  Brouillon: 'neutral',
+};
+
+const invoices = [
+  { id: 'F-2026-1042', client: 'Banque Cantonale', amount: 'CHF 12 480,00', status: 'Payée' },
+  { id: 'F-2026-1043', client: 'Helvetia Services', amount: 'CHF 3 950,50', status: 'Envoyée' },
+  { id: 'F-2026-1044', client: 'Alpina Logistique', amount: 'CHF 7 210,00', status: 'En attente' },
+  { id: 'F-2026-1045', client: 'Romandie Santé', amount: 'CHF 18 452,90', status: 'En retard' },
+  { id: 'F-2026-1046', client: 'Léman Immobilier', amount: 'CHF 1 200,00', status: 'Brouillon' },
+];
+
+/** Data table with status badges and a row actions menu: Badge + Menu working together. */
+export const RowActions: Story = {
+  render: () => (
+    <Panel className="hx:max-w-3xl">
+      <table className="hx:w-full hx:border-collapse hx:text-left hx:text-sm hx:tabular-nums">
+        <thead className="hx:text-fg-muted">
+          <tr>
+            {['N°', 'Client', 'Montant', 'Statut', ''].map((h, i) => (
+              <th key={i} className="hx:px-4 hx:py-3 hx:font-medium">
+                {h}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {invoices.map((row) => (
+            <tr key={row.id} className="hx:border-t hx:border-glass-border hx:transition-colors hx:hover:bg-tint-hover">
+              <td className="hx:px-4 hx:py-2 hx:font-medium">{row.id}</td>
+              <td className="hx:px-4 hx:py-2">{row.client}</td>
+              <td className="hx:px-4 hx:py-2">{row.amount}</td>
+              <td className="hx:px-4 hx:py-2">
+                <Badge variant={statusVariant[row.status]}>{row.status}</Badge>
+              </td>
+              <td className="hx:w-12 hx:px-2 hx:py-2 hx:text-right">
+                <Menu>
+                  <MenuTrigger
+                    render={<Button variant="ghost" size="icon" className="hx:size-8" />}
+                    aria-label={`Actions pour ${row.id}`}
+                  >
+                    <Ellipsis />
+                  </MenuTrigger>
+                  <MenuContent align="end">
+                    <MenuItem>
+                      <Pencil /> Modifier
+                    </MenuItem>
+                    <MenuItem>
+                      <Mail /> Envoyer un rappel
+                    </MenuItem>
+                    <MenuItem>
+                      <Download /> Télécharger
+                    </MenuItem>
+                    <MenuSeparator />
+                    <MenuItem variant="danger">
+                      <Trash2 /> Supprimer
+                    </MenuItem>
+                  </MenuContent>
+                </Menu>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </Panel>
+  ),
+};
