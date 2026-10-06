@@ -122,14 +122,39 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | Card | `Card` (un `Panel` avec mise en page verticale ; accepte `variant`, `padding` et `render`), `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
 | Checkbox | `Checkbox` — états coché, `indeterminate`, invalide (`aria-invalid` ou dans un `Field` invalide) |
 | Dialog | `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose` |
+| Toast | `ToastProvider`, `useToast`, `createToastManager` — voir ci-dessous |
 | Tooltip | `TooltipProvider`, `Tooltip`, `TooltipTrigger`, `TooltipContent` |
 | Menu | `Menu`, `MenuTrigger`, `MenuContent`, `MenuItem` (`variant="danger"`), `MenuShortcut`, `MenuSeparator`, `MenuGroup`, `MenuGroupLabel`, `MenuCheckboxItem`, `MenuRadioGroup`, `MenuRadioItem`, `MenuSub`, `MenuSubTrigger`, `MenuSubContent` |
 | Panel | `Panel`, `panelVariants` — surface en verre sans mise en page ; variantes `thin`, `default`, `strong` ; marge interne `none`, `sm`, `md`, `lg` ; prop `render` pour changer l'élément (`<aside />`, `<section />`…) |
+| Popover | `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverTitle`, `PopoverDescription`, `PopoverClose` — panneau flottant libre (filtres, détails, mini-formulaires) |
 | Radio | `RadioGroup`, `Radio` |
 | Select | `Select`, `SelectTrigger`, `SelectValue`, `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator` |
 | Switch | `Switch` |
 | Tabs | `Tabs`, `TabsList`, `TabsTab`, `TabsPanel` |
 | Textarea | `Textarea` — mêmes états que `Input`, redimensionnable verticalement |
+
+### Notifications (Toast)
+
+Placez `ToastProvider` une seule fois autour de l'application, puis utilisez `useToast` n'importe où dessous :
+
+```tsx
+<ToastProvider>
+  <App />
+</ToastProvider>
+
+const toast = useToast();
+toast.add({ type: 'success', title: 'Facture envoyée', description: 'F-2026-1045 a été envoyée.' });
+toast.add({ title: 'Projet archivé', actionProps: { children: 'Annuler', onClick: undo } });
+toast.promise(save(), {
+  loading: { type: 'loading', title: 'Enregistrement…' },
+  success: { type: 'success', title: 'Enregistré' },
+  error: { type: 'error', title: 'Échec de l’enregistrement' },
+});
+```
+
+`type` : `success`, `error`, `warning`, `info`, `loading` (choisit l'icône). Les toasts disparaissent après 5 s
+(`timeout`, `0` pour les garder). Pour en créer hors de React (client API, store), utilisez `createToastManager()`
+et passez-le à `<ToastProvider toastManager={manager}>`.
 
 Pour rendre un trigger avec le style d'un bouton, utilisez la prop `render` de Base UI :
 
