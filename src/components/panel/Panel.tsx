@@ -5,7 +5,7 @@ import { mergeClassName } from '../../lib/cn';
 export const panelVariants = cva(
   // overflow-clip keeps content inside the rounded corners (tables, lists, images);
   // the 1px clip margin leaves room for the lit edge drawn over the border.
-  'hx:rounded-2xl hx:text-fg hx:overflow-clip hx:[overflow-clip-margin:1px]',
+  'hx:rounded-xl hx:text-fg hx:overflow-clip hx:[overflow-clip-margin:1px]',
   {
     variants: {
       variant: {

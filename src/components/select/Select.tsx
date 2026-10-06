@@ -11,7 +11,7 @@ export function SelectTrigger({ className, children, ...props }: ComponentProps<
       className={mergeClassName(
         [
           'hx:glass-field hx:flex hx:h-9 hx:w-full hx:min-w-40 hx:items-center hx:justify-between hx:gap-2',
-          'hx:rounded-lg hx:pr-2 hx:pl-3 hx:text-sm hx:text-fg hx:cursor-pointer hx:select-none',
+          'hx:rounded-md hx:pr-2 hx:pl-3 hx:text-sm hx:text-fg hx:cursor-pointer hx:select-none',
           'hx:transition-[border-color,box-shadow] hx:duration-150 hx:hover:border-fg-subtle/40',
           'hx:outline-none hx:focus-visible:border-accent hx:focus-visible:ring-3 hx:focus-visible:ring-ring',
           'hx:data-popup-open:border-accent',
@@ -61,7 +61,7 @@ export function SelectContent({
         <BaseSelect.Popup
           className={mergeClassName(
             [
-              'hx:glass-strong hx:min-w-(--anchor-width) hx:rounded-xl hx:p-1 hx:text-sm hx:text-fg hx:outline-none',
+              'hx:glass-strong hx:min-w-(--anchor-width) hx:rounded-lg hx:p-1 hx:text-sm hx:text-fg hx:outline-none',
               'hx:origin-(--transform-origin) hx:transition-[scale,opacity] hx:duration-150 hx:ease-out',
               'hx:data-starting-style:scale-95 hx:data-starting-style:opacity-0',
               'hx:data-ending-style:scale-95 hx:data-ending-style:opacity-0',
@@ -84,7 +84,7 @@ export function SelectItem({ className, children, ...props }: ComponentProps<typ
     <BaseSelect.Item
       className={mergeClassName(
         [
-          'hx:grid hx:grid-cols-[1fr_1rem] hx:items-center hx:gap-2 hx:rounded-lg hx:py-1.5 hx:pr-2 hx:pl-2.5',
+          'hx:grid hx:grid-cols-[1fr_1rem] hx:items-center hx:gap-2 hx:rounded-md hx:py-1.5 hx:pr-2 hx:pl-2.5',
           'hx:cursor-default hx:outline-none hx:select-none',
           'hx:data-highlighted:bg-brand/12 hx:data-highlighted:text-fg',
           'hx:data-disabled:pointer-events-none hx:data-disabled:opacity-50',

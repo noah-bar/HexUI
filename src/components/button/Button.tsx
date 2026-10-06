@@ -6,7 +6,7 @@ import { mergeClassName } from '../../lib/cn';
 export const buttonVariants = cva(
   [
     'hx:inline-flex hx:shrink-0 hx:items-center hx:justify-center hx:gap-2 hx:whitespace-nowrap hx:select-none',
-    'hx:rounded-lg hx:font-medium hx:cursor-pointer',
+    'hx:rounded-md hx:font-medium hx:cursor-pointer',
     'hx:transition-[background-color,box-shadow,color,scale] hx:duration-150 hx:ease-out',
     'hx:active:scale-[0.98] hx:focus-ring',
     'hx:data-disabled:pointer-events-none hx:data-disabled:opacity-50',

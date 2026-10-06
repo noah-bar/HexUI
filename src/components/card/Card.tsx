@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react';
 import { cn } from '../../lib/cn';
 
 export function Card({ className, ...props }: ComponentProps<'div'>) {
-  return <div className={cn('hx:glass hx:flex hx:flex-col hx:gap-5 hx:rounded-2xl hx:p-6 hx:text-fg', className)} {...props} />;
+  return <div className={cn('hx:glass hx:flex hx:flex-col hx:gap-5 hx:rounded-xl hx:p-6 hx:text-fg', className)} {...props} />;
 }
 
 export function CardHeader({ className, ...props }: ComponentProps<'div'>) {

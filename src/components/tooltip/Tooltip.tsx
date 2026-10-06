@@ -18,7 +18,7 @@ export function TooltipContent({ className, side = 'top', sideOffset = 6, align,
         <BaseTooltip.Popup
           className={mergeClassName(
             [
-              'hx:glass-strong hx:max-w-xs hx:rounded-md hx:px-2.5 hx:py-1.5 hx:text-xs hx:font-medium hx:text-fg',
+              'hx:glass-strong hx:max-w-xs hx:rounded-sm hx:px-2.5 hx:py-1.5 hx:text-xs hx:font-medium hx:text-fg',
               'hx:origin-(--transform-origin) hx:transition-[scale,opacity] hx:duration-150 hx:ease-out',
               'hx:data-starting-style:scale-95 hx:data-starting-style:opacity-0',
               'hx:data-ending-style:scale-95 hx:data-ending-style:opacity-0 hx:data-instant:transition-none',

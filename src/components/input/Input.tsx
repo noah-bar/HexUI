@@ -9,7 +9,7 @@ export function Input({ className, ...props }: InputProps) {
     <BaseInput
       className={mergeClassName(
         [
-          'hx:glass-field hx:h-9 hx:w-full hx:min-w-0 hx:rounded-lg hx:px-3 hx:text-sm hx:text-fg',
+          'hx:glass-field hx:h-9 hx:w-full hx:min-w-0 hx:rounded-md hx:px-3 hx:text-sm hx:text-fg',
           'hx:placeholder:text-fg-subtle hx:transition-[border-color,box-shadow] hx:duration-150',
           'hx:hover:border-fg-subtle/40',
           'hx:outline-none hx:focus-visible:border-accent hx:focus-visible:ring-3 hx:focus-visible:ring-ring',
