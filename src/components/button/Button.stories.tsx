@@ -8,7 +8,7 @@ const meta = {
   tags: ['autodocs'],
   args: { children: 'Enregistrer' },
   argTypes: {
-    variant: { control: 'inline-radio', options: ['primary', 'secondary', 'ghost', 'danger'] },
+    variant: { control: 'inline-radio', options: ['primary', 'secondary', 'outline', 'ghost', 'danger'] },
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg', 'icon'] },
     disabled: { control: 'boolean' },
   },
@@ -24,6 +24,7 @@ export const Variants: Story = {
     <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-3">
       <Button {...args} variant="primary">Primaire</Button>
       <Button {...args} variant="secondary">Secondaire</Button>
+      <Button {...args} variant="outline">Outline</Button>
       <Button {...args} variant="ghost">Ghost</Button>
       <Button {...args} variant="danger">Supprimer</Button>
     </div>
@@ -51,6 +52,25 @@ export const WithIcons: Story = {
       </Button>
       <Button {...args} variant="danger">
         <Trash2 /> Supprimer
+      </Button>
+    </div>
+  ),
+};
+
+export const Outline: Story = {
+  args: { variant: 'outline' },
+  render: (args) => (
+    <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-3">
+      <Button {...args} size="sm">Small</Button>
+      <Button {...args}>
+        <Download /> Exporter
+      </Button>
+      <Button {...args} size="lg">Large</Button>
+      <Button {...args} size="icon" aria-label="Ajouter">
+        <Plus />
+      </Button>
+      <Button {...args} disabled>
+        Désactivé
       </Button>
     </div>
   ),
