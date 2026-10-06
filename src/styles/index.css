@@ -52,6 +52,9 @@
   --hx-glass-dialog: rgb(255 255 255 / 0.75);
   --hx-glass-hover: rgb(255 255 255 / 0.88);
   --hx-glass-active: rgb(243 244 246 / 0.92);
+  /* Tints: light veils for hover/selection inside a glass surface (rows, list items, ghost buttons). */
+  --hx-tint-hover: rgb(15 23 42 / 0.04);
+  --hx-tint-active: rgb(15 23 42 / 0.07);
   --hx-glass-field: rgb(255 255 255 / 0.62);
   --hx-glass-border: rgb(0 0 0 / 0.09);
   --hx-glass-highlight: rgb(255 255 255 / 0.75);
@@ -113,6 +116,8 @@
   --hx-glass-dialog: rgb(22 22 26 / 0.68);
   --hx-glass-hover: rgb(38 38 38 / 0.78);
   --hx-glass-active: rgb(46 46 46 / 0.82);
+  --hx-tint-hover: rgb(255 255 255 / 0.05);
+  --hx-tint-active: rgb(255 255 255 / 0.09);
   --hx-glass-field: rgb(12 12 12 / 0.6);
   --hx-glass-border: rgb(255 255 255 / 0.07);
   --hx-glass-highlight: rgb(255 255 255 / 0.08);
@@ -163,6 +168,8 @@
   --color-glass-field: var(--hx-glass-field);
   --color-glass-border: var(--hx-glass-border);
   --color-glass-overlay: var(--hx-glass-overlay);
+  --color-tint-hover: var(--hx-tint-hover);
+  --color-tint-active: var(--hx-tint-active);
 }
 
 /* ---------------------------------------------------------------------------

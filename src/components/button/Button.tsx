@@ -17,7 +17,7 @@ export const buttonVariants = cva(
       variant: {
         primary: 'hx:lit hx:bg-primary hx:text-primary-fg hx:hover:bg-primary-hover hx:[--hx-lit-glow:var(--hx-primary-glow)]',
         secondary: 'hx:glass hx:text-fg hx:hover:bg-glass-hover hx:active:bg-glass-active',
-        ghost: 'hx:text-fg hx:hover:bg-glass-hover hx:active:bg-glass-active',
+        ghost: 'hx:text-fg hx:hover:bg-tint-hover hx:active:bg-tint-active',
         danger: 'hx:lit hx:bg-danger hx:text-danger-fg hx:hover:bg-danger-hover hx:[--hx-lit-glow:var(--hx-danger-glow)]',
       },
       size: {
