@@ -25,6 +25,23 @@ donc pas les styles de votre application.
 
 Vous pouvez passer vos propres classes via `className`, elles s'ajoutent à celles du composant.
 
+## Fond de page
+
+Le verre a besoin de quelque chose derrière lui pour se voir. `Backdrop` pose un fond décoratif,
+fixé derrière toute l'application, qui suit les couleurs du thème :
+
+```tsx
+<Backdrop />                                   {/* mesh, subtil : le réglage par défaut */}
+<Backdrop variant="aurora" intensity="medium" /> {/* page de connexion, écran d'accueil */}
+<Backdrop variant="plain" texture="grid" />      {/* écrans denses : tableaux, back-office */}
+```
+
+- `variant` : `mesh` · `aurora` · `plain` — `intensity` : `subtle` · `medium` — `texture` : `none` · `grain` · `grid`
+- `position="absolute"` le limite à un conteneur positionné (ajoutez `isolation: isolate` sur ce conteneur).
+- Placé avec un `z-index` négatif : si un wrapper de votre application a déjà une couleur de fond, il le masquera.
+- Il est optionnel : les composants restent lisibles sans lui.
+- Couleurs personnalisables avec `--hx-backdrop-base` et `--hx-backdrop-accent-1` à `-3`. Le premier accent suit `--hx-brand`.
+
 ## Thème clair / sombre
 
 Ajoutez `class="dark"` (ou `data-theme="dark"`) sur `<html>`. Il faut que ce soit sur `<html>` (et pas sur un
@@ -32,25 +49,47 @@ wrapper), parce que les dialogues, selects et tooltips sont rendus dans un porta
 
 ## Personnalisation
 
+La palette par défaut est un indigo sur des gris neutres : les teintes froides restent lumineuses
+une fois floutées, ce qui convient au verre. Trois rôles de couleur :
+
+| Token | Valeur | Usage |
+| --- | --- | --- |
+| `--hx-brand` | `#6366f1` | Décoratif : halos du fond, survol des listes. |
+| `--hx-primary` | `#4f46e5` | Fonds pleins avec texte blanc (boutons, switch) : 6,3:1. |
+| `--hx-accent` | `#4f46e5` clair / `#818cf8` sombre | Couleur de marque posée sur une surface : icônes, bordures de focus, coches. |
+
 Surchargez les variables CSS après l'import des styles :
 
 ```css
 :root {
-  --hx-primary: oklch(0.55 0.18 150);
   --hx-glass-blur: 12px;
 }
 .dark {
-  --hx-primary: oklch(0.7 0.15 150);
+  --hx-accent: #a5b4fc;
 }
 ```
 
-Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-primary(-hover|-fg)`, `--hx-danger(-hover|-fg)`,
-`--hx-ring`, `--hx-glass`, `--hx-glass-strong`, `--hx-glass-field`, `--hx-glass-border`, `--hx-glass-blur`… (voir `src/styles/index.css`).
+Si vous changez `--hx-primary`, vérifiez que le texte `--hx-primary-fg` garde un contraste d'au moins 4,5:1.
+
+Les détails du matériau sont réglables, et chacun se désactive avec `none` :
+
+```css
+:root {
+  --hx-glass-grain: none; /* grain de verre dépoli */
+  --hx-glass-sheen: none; /* reflet en haut des surfaces */
+  --hx-glass-edge: none;  /* bord éclairé */
+}
+```
+
+Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`, `--hx-primary(-hover|-fg)`, `--hx-accent`,
+`--hx-danger(-hover|-fg)`, `--hx-ring`, `--hx-glass`, `--hx-glass-strong`, `--hx-glass-field`, `--hx-glass-border`,
+`--hx-glass-blur`, `--hx-backdrop-*`… (voir `src/styles/index.css`).
 
 ## Composants
 
 | Composant | Exports |
 | --- | --- |
+| Backdrop | `Backdrop` — variantes `mesh`, `aurora`, `plain` ; textures `grain`, `grid` |
 | Button | `Button`, `buttonVariants` — variantes `primary`, `secondary`, `ghost`, `danger` ; tailles `sm`, `md`, `lg`, `icon` |
 | Input | `Input` |
 | Card | `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
