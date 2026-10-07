@@ -15,17 +15,14 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'hx:glass-tint hx:text-primary-fg',
+        primary: 'hx:glass-stained',
         secondary: 'hx:glass hx:text-fg hx:hover:bg-glass-hover hx:active:bg-glass-active',
         ghost: 'hx:text-fg hx:hover:bg-tint-hover hx:active:bg-tint-active',
         outline: [
           'hx:border hx:border-accent/50 hx:text-accent',
           'hx:hover:border-accent hx:hover:bg-accent/8 hx:active:bg-accent/12',
         ],
-        danger: [
-          'hx:glass-tint hx:text-danger-fg',
-          'hx:[--hx-tint-fill:var(--hx-danger-solid)] hx:[--hx-tint-fill-hover:var(--hx-danger-solid-hover)]',
-        ],
+        danger: 'hx:glass-stained hx:[--hx-stain:var(--hx-danger-stain)]',
       },
       size: {
         sm: 'hx:h-8 hx:px-3 hx:text-sm',
