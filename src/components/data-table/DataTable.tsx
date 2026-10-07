@@ -71,9 +71,10 @@ export function DataTableHeader({ className, ...props }: ComponentProps<'thead'>
     <TableHeader
       className={cn(
         // Translucent glass: rows scrolling underneath show through as color, blurred beyond reading.
-        'hx:[&_th]:sticky hx:[&_th]:top-0 hx:[&_th]:z-10 hx:[&_th]:bg-glass hx:[&_th]:backdrop-blur-xl hx:[&_th]:backdrop-saturate-150',
-        // Collapsed table borders don't stick: draw the separator on the cells instead.
-        'hx:[&_th]:shadow-[inset_0_-1px_0_var(--hx-glass-border)]',
+        // Sticky on the whole thead (not each th) so the blur is one surface, without seams between cells.
+        'hx:sticky hx:top-0 hx:z-10 hx:bg-glass hx:backdrop-blur-xl hx:backdrop-saturate-150',
+        // Collapsed table borders don't stick: draw the separator as an inset shadow instead.
+        'hx:shadow-[inset_0_-1px_0_var(--hx-glass-border)]',
         className,
       )}
       {...props}
