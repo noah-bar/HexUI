@@ -63,21 +63,23 @@
 
   --hx-ring: color-mix(in oklch, var(--hx-accent) 55%, transparent);
 
-  /* Stained glass (primary and danger buttons): a vivid pane, clearer at the top where light
-     comes through, denser at the bottom. White text stays ≥ 4.5:1 as rendered across the text
-     band, even on a button placed straight on a backdrop glow. */
-  --hx-primary-stain: #4338ca;
-  --hx-danger-stain: #a51c1c;
-  --hx-stain-top: 72%;
-  --hx-stain-bottom: 94%;
-  --hx-stain-hover: 8%;
-  --hx-stain-frame: 85%;
-  --hx-stain-rim: 0.45;
-  /* A dark pane on a light page reads as solid: glass cues carry the material instead.
-     Gloss on the top quarter (kept above the text), light caught by the bottom edge. */
-  --hx-stain-gloss: 0.24;
-  --hx-stain-caustic: 0.45;
-  --hx-stain-floor: rgb(255 255 255 / 0.25);
+  /* Stained glass (primary and danger buttons), light theme: a pale tinted pane the page shows
+     through, with dark colored text (≥ 5.4:1 on hover, measured). The dark theme keeps a denser pane with white text. */
+  --hx-primary-stain: #4f46e5;
+  --hx-danger-stain: #dc2626;
+  --hx-primary-stain-text: #312e81;
+  --hx-danger-stain-text: #691616;
+  --hx-stain-top: 16%;
+  --hx-stain-bottom: 24%;
+  --hx-stain-hover: 12%;
+  --hx-stain-frame: 42%;
+  /* Red is complementary to the cyan backdrop glow and turns gray when too thin: danger gets more. */
+  --hx-danger-stain-extra: 8%;
+  /* One colored lit border (see glass-stained): no white rim, gloss or bottom light on a pale pane. */
+  --hx-stain-rim: 0;
+  --hx-stain-gloss: 0;
+  --hx-stain-caustic: 0;
+  --hx-stain-floor: transparent;
 
   /* Glass surfaces: opaque enough to stay readable on any background. */
   --hx-glass-thin: rgb(255 255 255 / 0.4);
@@ -174,6 +176,9 @@
   /* Stained glass over dark surfaces: more see-through (white text ≥ 8:1). */
   --hx-primary-stain: #4f46e5;
   --hx-danger-stain: #dc2626;
+  --hx-primary-stain-text: #ffffff;
+  --hx-danger-stain-text: #ffffff;
+  --hx-danger-stain-extra: 0%;
   --hx-stain-top: 36%;
   --hx-stain-bottom: 56%;
   --hx-stain-hover: 10%;
@@ -364,10 +369,17 @@
 /* Stained glass: a translucent colored pane with a frosted finish — think of a stained glass
    block. Vertical gradient (light comes through the top), lit edge over a colored frame, bright
    top rim, fine grain, heavy blur that boosts the colors behind, no glow.
-   Set --hx-stain (pane color) to recolor it (see the danger button); text stays white. */
+   Set --hx-stain (pane color) and --hx-stain-text to recolor it (see the danger button). */
 @utility glass-stained {
-  --hx-stain-lift: 0%;
-  color: var(--hx-primary-fg);
+  --hx-stain-lift: var(--hx-stain-extra, 0%);
+  /* Lit edge in the pane's own color: bright where light hits (top left), deeper at the bottom right. */
+  --hx-glass-edge: linear-gradient(
+    150deg,
+    color-mix(in oklch, var(--hx-stain, var(--hx-primary-stain)) 35%, white),
+    color-mix(in oklch, var(--hx-stain, var(--hx-primary-stain)) 30%, transparent) 45%,
+    color-mix(in oklch, var(--hx-stain, var(--hx-primary-stain)) 85%, transparent)
+  );
+  color: var(--hx-stain-text, var(--hx-primary-stain-text));
   background-color: transparent;
   background-image:
     var(--hx-glass-grain),
@@ -392,7 +404,11 @@
   backdrop-filter: blur(calc(var(--hx-glass-blur) * 1.5)) saturate(180%);
 
   &:hover {
-    --hx-stain-lift: var(--hx-stain-hover);
+    --hx-stain-lift: calc(var(--hx-stain-extra, 0%) + var(--hx-stain-hover));
+  }
+
+  &:active {
+    --hx-stain-lift: calc(var(--hx-stain-extra, 0%) + var(--hx-stain-hover) * 1.6);
   }
 }
 
