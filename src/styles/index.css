@@ -173,20 +173,21 @@
 
   --hx-ring: color-mix(in oklch, var(--hx-accent) 60%, transparent);
 
-  /* Stained glass over dark surfaces: more see-through (white text ≥ 8:1). */
+  /* Stained glass over dark surfaces: same tonal look as the light theme — a tinted pane the page
+     shows through, light colored text (≥ 7.9:1 measured), one colored lit border. */
   --hx-primary-stain: #4f46e5;
   --hx-danger-stain: #dc2626;
-  --hx-primary-stain-text: #ffffff;
-  --hx-danger-stain-text: #ffffff;
+  --hx-primary-stain-text: #c7d2fe;
+  --hx-danger-stain-text: #fecaca;
   --hx-danger-stain-extra: 0%;
-  --hx-stain-top: 36%;
-  --hx-stain-bottom: 56%;
+  --hx-stain-top: 22%;
+  --hx-stain-bottom: 32%;
   --hx-stain-hover: 10%;
   --hx-stain-frame: 75%;
-  --hx-stain-rim: 0.18;
+  --hx-stain-rim: 0;
   --hx-stain-gloss: 0;
   --hx-stain-caustic: 0;
-  --hx-stain-floor: rgb(0 0 0 / 0.12);
+  --hx-stain-floor: transparent;
 
   --hx-glass-thin: rgb(30 30 34 / 0.42);
   --hx-glass-blur: 16px;
