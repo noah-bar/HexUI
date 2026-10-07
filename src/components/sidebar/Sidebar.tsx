@@ -159,7 +159,7 @@ export function Sidebar({
     'hx:glass-thin hx:flex hx:size-full hx:flex-col',
     floating
       ? 'hx:rounded-xl'
-      : cn('hx:rounded-none hx:border-y-0', side === 'left' ? 'hx:border-l-0' : 'hx:border-r-0'),
+      : cn('hx:rounded-none hx:border-y-0! hx:shadow-none hx:before:hidden hx:after:shadow-none', side === 'left' ? 'hx:border-l-0!' : 'hx:border-r-0!'),
     className,
   );
 
@@ -312,7 +312,9 @@ export function SidebarInsetHeader({ variant = 'floating', className, children, 
       <div
         className={cn(
           'hx:glass-thin hx:flex hx:h-12 hx:items-center hx:gap-2 hx:px-2',
-          floating ? 'hx:rounded-xl' : 'hx:rounded-none hx:border-x-0 hx:border-t-0',
+          // Attached: only the bottom border; the lit edge ring and top highlight would draw lines on the open sides.
+          // `!` because the glass utility's `border` shorthand is emitted after border-side utilities.
+          floating ? 'hx:rounded-xl' : 'hx:rounded-none hx:border-x-0! hx:border-t-0! hx:shadow-(--hx-glass-shadow) hx:before:hidden hx:after:shadow-none',
           className,
         )}
       >
