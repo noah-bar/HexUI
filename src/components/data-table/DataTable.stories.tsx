@@ -24,9 +24,23 @@ type Story = StoryObj<typeof meta>;
 // ---------------------------------------------------------------------------
 type Quote = { id: number; title: string; client: string; date: string; total: number; status: string };
 
-const clients = ['Banque Cantonale', 'Helvetia Services', 'Alpina Logistique', 'Romandie Santé', 'Léman Immobilier', 'Jura Énergie'];
+const clients = [
+  'Banque Cantonale',
+  'Helvetia Services',
+  'Alpina Logistique',
+  'Romandie Santé',
+  'Léman Immobilier',
+  'Jura Énergie',
+];
 const statuses = ['Draft', 'Sent', 'Accepted', 'Declined'];
-const subjects = ['Website redesign', 'Annual maintenance', 'Security audit', 'Cloud migration', 'Team training', 'Mobile app'];
+const subjects = [
+  'Website redesign',
+  'Annual maintenance',
+  'Security audit',
+  'Cloud migration',
+  'Team training',
+  'Mobile app',
+];
 
 const allQuotes: Quote[] = Array.from({ length: 87 }, (_, i) => ({
   id: 1000 + i,
@@ -52,22 +66,20 @@ function fetchQuotes({ search, ordering, skip, limit }: Query): Promise<DataTabl
 }
 
 /** Minimal stand-in for a query hook (TanStack Query, SWR…). */
-function useQuotes(query: Query) {
-  const [data, setData] = useState<Awaited<ReturnType<typeof fetchQuotes>>>();
-  const [isPending, setIsPending] = useState(true);
+function useQuotes({ search, ordering, skip, limit }: Query) {
+  const key = JSON.stringify([search, ordering, skip, limit]);
+  // The previous page stays displayed while the next one loads; pending until the result matches the query.
+  const [result, setResult] = useState<{ key: string; data: Awaited<ReturnType<typeof fetchQuotes>> }>();
   useEffect(() => {
     let active = true;
-    setIsPending(true);
-    fetchQuotes(query).then((res) => {
-      if (!active) return;
-      setData(res);
-      setIsPending(false);
+    fetchQuotes({ search, ordering, skip, limit }).then((data) => {
+      if (active) setResult({ key, data });
     });
     return () => {
       active = false;
     };
-  }, [query.search, query.ordering, query.skip, query.limit]); // eslint-disable-line react-hooks/exhaustive-deps
-  return { data, isPending };
+  }, [key, search, ordering, skip, limit]);
+  return { data: result?.data, isPending: result?.key !== key };
 }
 
 const statusVariant: Record<string, BadgeProps['variant']> = {
