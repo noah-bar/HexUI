@@ -26,6 +26,7 @@ export { Badge, badgeVariants, type BadgeProps } from './components/badge/Badge'
 export { Button, buttonVariants, type ButtonProps } from './components/button/Button';
 export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './components/card/Card';
 export { Checkbox, type CheckboxProps } from './components/checkbox/Checkbox';
+export { Collapsible, CollapsibleChevron, CollapsibleContent, CollapsibleTrigger } from './components/collapsible/Collapsible';
 export {
   Combobox,
   ComboboxChips,
