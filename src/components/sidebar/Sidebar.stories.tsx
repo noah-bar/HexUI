@@ -11,6 +11,7 @@ import {
   Settings,
   Users,
 } from 'lucide-react';
+import { Avatar, AvatarFallback } from '../avatar/Avatar';
 import { Badge } from '../badge/Badge';
 import { Button } from '../button/Button';
 import { Menu, MenuContent, MenuItem, MenuSeparator, MenuTrigger } from '../menu/Menu';
@@ -204,9 +205,9 @@ export const Default: Story = {
             </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton size="lg" tooltip="Camille Martin">
-                <span className="hx:flex hx:size-8 hx:shrink-0 hx:items-center hx:justify-center hx:rounded-md hx:bg-tint-active hx:text-xs hx:font-semibold">
-                  CM
-                </span>
+                <Avatar size="sm" shape="square">
+                  <AvatarFallback>CM</AvatarFallback>
+                </Avatar>
                 <span className="hx:flex hx:flex-col hx:leading-tight">
                   <span className="hx:font-medium">Camille Martin</span>
                   <span className="hx:text-xs hx:text-fg-muted">camille@hex-tech.ch</span>
