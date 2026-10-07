@@ -3,11 +3,51 @@ import './styles/index.css';
 export { cn } from './lib/cn';
 export { useDebouncedValue } from './hooks/useDebouncedValue';
 
+export {
+  Autocomplete,
+  AutocompleteCollection,
+  AutocompleteContent,
+  AutocompleteEmpty,
+  AutocompleteGroup,
+  AutocompleteGroupLabel,
+  AutocompleteInput,
+  AutocompleteItem,
+  AutocompleteList,
+  AutocompleteSeparator,
+  AutocompleteStatus,
+  useAutocompleteFilter,
+  type AutocompleteContentProps,
+  type AutocompleteInputProps,
+  type AutocompleteStatusProps,
+} from './components/autocomplete/Autocomplete';
 export { Backdrop, type BackdropProps } from './components/backdrop/Backdrop';
 export { Badge, badgeVariants, type BadgeProps } from './components/badge/Badge';
 export { Button, buttonVariants, type ButtonProps } from './components/button/Button';
 export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './components/card/Card';
 export { Checkbox, type CheckboxProps } from './components/checkbox/Checkbox';
+export {
+  Combobox,
+  ComboboxChips,
+  ComboboxCollection,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxGroup,
+  ComboboxGroupLabel,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+  ComboboxSearch,
+  ComboboxSeparator,
+  ComboboxStatus,
+  ComboboxTrigger,
+  ComboboxValue,
+  createComboboxItems,
+  useComboboxFilter,
+  type ComboboxChipsProps,
+  type ComboboxContentProps,
+  type ComboboxInputProps,
+  type ComboboxStatusProps,
+} from './components/combobox/Combobox';
 export {
   DataTable,
   DataTableBody,
