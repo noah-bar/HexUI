@@ -406,7 +406,7 @@ export const sidebarMenuButtonVariants = cva(
     'hx:transition-[width,height,padding,background-color] hx:duration-150 hx:ease-linear',
     'hx:hover:bg-tint-hover hx:active:bg-tint-active hx:focus-visible:ring-2 hx:focus-visible:ring-ring',
     'hx:disabled:pointer-events-none hx:disabled:opacity-50 hx:aria-disabled:pointer-events-none hx:aria-disabled:opacity-50',
-    // Selected item: raised glass in dark, a faint indigo pane in light (--hx-nav-active), icon in the brand color.
+    // Selected item: raised glass in dark, clear glass in light (--hx-nav-active), icon in the brand color.
     'hx:data-active:border-(--hx-nav-active-border) hx:data-active:bg-(--hx-nav-active) hx:data-active:hover:bg-(--hx-nav-active) hx:data-active:font-medium',
     'hx:data-active:shadow-[inset_0_1px_0_0_var(--hx-glass-highlight),var(--hx-glass-shadow)] hx:data-active:[&>svg]:text-accent',
     'hx:[&>svg]:size-4 hx:[&>svg]:shrink-0 hx:[&>svg]:text-fg-muted hx:[&>span]:min-w-0 hx:[&>span]:truncate',
