@@ -411,7 +411,9 @@ open/collapsed state, `Sidebar` contains the navigation, `SidebarInset` the main
   </Sidebar>
   <SidebarInset>
     <SidebarInsetHeader>
-      <SidebarTrigger />
+      <SidebarTrigger>
+        <PanelLeft />
+      </SidebarTrigger>
       Invoices
     </SidebarInsetHeader>
     …
@@ -420,6 +422,7 @@ open/collapsed state, `Sidebar` contains the navigation, `SidebarInset` the main
 ```
 
 - `variant`: `floating` (glass panel set off the edges, default) or `sidebar` (attached to the page edge).
+- `SidebarTrigger` takes its icon as children, from any icon library (`PanelLeft` from Lucide above). `label` sets its accessible name.
 - `collapsible`: `offcanvas` (slides off screen, default), `icon` (keeps only the icons, with labels shown as
   tooltips via `tooltip`) or `none`. `side`: `left` or `right`.
 - Below 768 px, it opens in a `Sheet`; `useSidebar().setOpenMobile(false)` closes it after navigating.
