@@ -85,6 +85,10 @@
   --hx-glass-strong: rgb(255 255 255 / 0.88);
   /* Raised: a selected segment sitting on a glass surface (tabs indicator). */
   --hx-glass-raised: rgb(255 255 255 / 0.92);
+  /* Current page in a navigation (sidebar): white raised glass would read as a flat white block
+     on light glass, so it is a faint indigo pane instead. */
+  --hx-nav-active: color-mix(in oklch, var(--hx-brand) 13%, transparent);
+  --hx-nav-active-border: color-mix(in oklch, var(--hx-brand) 24%, transparent);
   /* Dialogs sit on a dimmed overlay and blur hard, so they can be more transparent. */
   --hx-glass-dialog: rgb(255 255 255 / 0.62);
   --hx-glass-hover: rgb(255 255 255 / 0.88);
@@ -184,6 +188,8 @@
   --hx-glass: rgb(26 26 30 / 0.58);
   --hx-glass-strong: rgb(22 22 26 / 0.84);
   --hx-glass-raised: rgb(64 64 72 / 0.6);
+  --hx-nav-active: var(--hx-glass-raised);
+  --hx-nav-active-border: var(--hx-glass-border);
   --hx-glass-dialog: rgb(22 22 26 / 0.56);
   --hx-glass-hover: rgb(38 38 38 / 0.78);
   --hx-glass-active: rgb(46 46 46 / 0.82);

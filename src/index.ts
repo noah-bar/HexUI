@@ -2,6 +2,7 @@ import './styles/index.css';
 
 export { cn } from './lib/cn';
 export { useDebouncedValue } from './hooks/useDebouncedValue';
+export { useMediaQuery } from './hooks/useMediaQuery';
 
 export {
   Autocomplete,
@@ -110,6 +111,43 @@ export {
   PopoverTrigger,
   type PopoverContentProps,
 } from './components/popover/Popover';
+export {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInset,
+  SidebarInsetHeader,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuBadge,
+  SidebarMenuButton,
+  SidebarMenuCollapsible,
+  SidebarMenuCollapsibleContent,
+  SidebarMenuCollapsibleTrigger,
+  SidebarMenuItem,
+  SidebarMenuSkeleton,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarSeparator,
+  SidebarTrigger,
+  sidebarMenuButtonVariants,
+  useSidebar,
+  type SidebarMenuActionProps,
+  type SidebarMenuButtonProps,
+  type SidebarMenuSubButtonProps,
+  type SidebarInsetHeaderProps,
+  type SidebarProps,
+  type SidebarProviderProps,
+  type SidebarTriggerProps,
+} from './components/sidebar/Sidebar';
 export { Skeleton } from './components/skeleton/Skeleton';
 export {
   Sheet,
