@@ -34,7 +34,7 @@ const preview: Preview = {
     (Story, { globals, parameters, viewMode }) => {
       const variant = globals.backdrop as BackdropProps['variant'] | 'none';
       return (
-        <div className="sb-stage" data-view={viewMode}>
+        <div className="sb-stage" data-view={viewMode} data-stage={parameters.stage}>
           {parameters.backdrop !== false && variant !== 'none' && <Backdrop position="absolute" variant={variant} />}
           <Story />
         </div>

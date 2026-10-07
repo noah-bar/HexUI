@@ -24,6 +24,10 @@ body {
   background-color: var(--hx-backdrop-base);
 }
 
+.sb-stage[data-stage='bare'] {
+  padding: 0;
+}
+
 .sb-stage[data-view='story'] {
   min-height: 100dvh;
 }
