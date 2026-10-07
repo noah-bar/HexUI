@@ -6,6 +6,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useId,
   useMemo,
   useState,
   type ComponentProps,
@@ -521,14 +522,20 @@ export function SidebarMenuBadge({ className, ...props }: ComponentProps<'span'>
 
 /** Loading placeholder for a menu item. */
 export function SidebarMenuSkeleton({ showIcon = false, className, ...props }: ComponentProps<'div'> & { showIcon?: boolean }) {
-  // Random width between 50 and 90%, fixed for the lifetime of the placeholder.
-  const [width] = useState(() => `${Math.floor(Math.random() * 40) + 50}%`);
+  // Stable across server and client rendering while still varying between sibling placeholders.
+  const width = skeletonWidth(useId());
   return (
     <div data-sidebar="menu-skeleton" className={cn('hx:flex hx:h-8 hx:items-center hx:gap-2 hx:rounded-md hx:px-2', className)} {...props}>
       {showIcon && <Skeleton className="hx:size-4 hx:rounded-md" />}
       <Skeleton className="hx:h-4 hx:flex-1" style={{ maxWidth: width }} />
     </div>
   );
+}
+
+function skeletonWidth(id: string): string {
+  let hash = 0;
+  for (let index = 0; index < id.length; index += 1) hash = (hash * 31 + id.charCodeAt(index)) >>> 0;
+  return `${50 + (hash % 41)}%`;
 }
 
 /** Nested list under a menu item. Hidden while collapsed to icons. */
