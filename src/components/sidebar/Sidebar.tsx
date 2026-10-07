@@ -169,7 +169,10 @@ export function Sidebar({
       <div
         data-sidebar="sidebar"
         data-variant={variant}
-        className={cn('hx:group/sidebar hx:w-(--hx-sidebar-width) hx:shrink-0', floating && 'hx:p-2')}
+        className={cn(
+          'hx:group/sidebar hx:w-(--hx-sidebar-width) hx:shrink-0',
+          floating && (side === 'left' ? 'hx:py-2 hx:pr-1 hx:pl-2' : 'hx:py-2 hx:pr-2 hx:pl-1'),
+        )}
         {...props}
       >
         <div className={panelClassName}>{children}</div>
@@ -209,7 +212,7 @@ export function Sidebar({
           ? 'hx:w-0'
           : iconOnly
             ? floating
-              ? 'hx:w-[calc(var(--hx-sidebar-width-icon)+1rem)]'
+              ? 'hx:w-[calc(var(--hx-sidebar-width-icon)+0.75rem)]'
               : 'hx:w-(--hx-sidebar-width-icon)'
             : 'hx:w-(--hx-sidebar-width)',
       )}
@@ -222,7 +225,7 @@ export function Sidebar({
           side === 'left' ? 'hx:left-0' : 'hx:right-0',
           iconOnly ? 'hx:w-full' : 'hx:w-(--hx-sidebar-width)',
           hidden && (side === 'left' ? 'hx:-translate-x-full' : 'hx:translate-x-full'),
-          floating && 'hx:p-2',
+          floating && (side === 'left' ? 'hx:py-2 hx:pr-1 hx:pl-2' : 'hx:py-2 hx:pr-2 hx:pl-1'),
         )}
       >
         <div data-sidebar="sidebar" className={panelClassName} {...props}>
