@@ -162,6 +162,7 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | Skeleton | `Skeleton` — forme de chargement animée |
 | Select | `Select`, `SelectTrigger`, `SelectValue`, `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator` |
 | Sheet | `Sheet`, `SheetTrigger`, `SheetContent` (`side`, `size`), `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetCloseButton`, `SheetBody`, `SheetFooter`, `SheetClose` |
+| Spinner | `Spinner` (`size` : `xs`, `sm`, `md`, `lg` ; `tone` : `current`, `muted`, `accent` ; `label` pour les lecteurs d'écran quand il est seul), `spinnerVariants` — continue de tourner, plus lentement, si l'utilisateur réduit les animations |
 | Switch | `Switch` |
 | Table | `Table` (`density`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow` (`selected`), `TableHead` (`align`, `sortDirection`, `onSort`), `TableCell` (`align`), `TableCaption`, `TableEmpty` — à placer dans un `Panel` ; défilement horizontal intégré pour les tableaux larges |
 | Tabs | `Tabs`, `TabsList`, `TabsTab`, `TabsPanel` |
