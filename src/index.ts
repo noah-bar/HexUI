@@ -3,7 +3,7 @@ import './styles/index.css';
 export { cn } from './lib/cn';
 export { useDebouncedValue } from './hooks/useDebouncedValue';
 export { useMediaQuery } from './hooks/useMediaQuery';
-export { useTheme, type ResolvedTheme, type Theme, type UseThemeResult } from './hooks/useTheme';
+export { themeScript, useTheme, type ResolvedTheme, type Theme, type UseThemeResult } from './hooks/useTheme';
 
 export {
   Autocomplete,

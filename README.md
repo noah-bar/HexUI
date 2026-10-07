@@ -84,6 +84,21 @@ function ThemeButton() {
 
 `theme` vaut `light`, `dark` ou `system`. `resolvedTheme` contient toujours le thème effectivement appliqué,
 `light` ou `dark`. Les changements sont synchronisés avec le thème du système et entre les onglets ouverts.
+Si le stockage est indisponible (navigation privée, stockage bloqué), la préférence est gardée en mémoire le temps
+de la page.
+
+Pour éviter un flash du thème clair au chargement, appliquez le thème avant le premier rendu avec `themeScript`,
+placé dans le `<head>` :
+
+```tsx
+import { themeScript } from '@hxtc/hexui';
+
+<head>
+  <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+</head>
+```
+
+Avec un `index.html` statique (Vite sans SSR), collez le contenu de `themeScript` dans un `<script>` du `<head>`.
 
 ## Personnalisation
 

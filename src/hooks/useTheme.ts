@@ -23,9 +23,29 @@ function isTheme(value: string | null): value is Theme {
   return value === 'light' || value === 'dark' || value === 'system';
 }
 
+/** Fallback when localStorage is unavailable (private browsing, blocked storage): the choice lasts for the page's lifetime. */
+let memoryTheme: Theme = 'system';
+
+function readStoredTheme(): string | null {
+  try {
+    return window.localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return memoryTheme;
+  }
+}
+
+function storeTheme(theme: Theme) {
+  memoryTheme = theme;
+  try {
+    window.localStorage.setItem(STORAGE_KEY, theme);
+  } catch {
+    // Storage unavailable: the in-memory value is used instead.
+  }
+}
+
 function getTheme(): Theme {
   if (typeof window === 'undefined') return 'system';
-  const storedTheme = window.localStorage.getItem(STORAGE_KEY);
+  const storedTheme = readStoredTheme();
   return isTheme(storedTheme) ? storedTheme : 'system';
 }
 
@@ -78,10 +98,16 @@ function subscribe(onChange: () => void) {
 }
 
 function updateTheme(theme: Theme) {
-  window.localStorage.setItem(STORAGE_KEY, theme);
+  storeTheme(theme);
   applyTheme(theme);
   window.dispatchEvent(new Event(CHANGE_EVENT));
 }
+
+/**
+ * Inline script that applies the saved theme before the first paint, so a dark page never flashes light
+ * while React loads. Render it in `<head>`: `<script dangerouslySetInnerHTML={{ __html: themeScript }} />`.
+ */
+export const themeScript = `(function(){var t;try{t=localStorage.getItem(${JSON.stringify(STORAGE_KEY)})}catch(e){}if(t!=='light'&&t!=='dark')t=matchMedia(${JSON.stringify(SYSTEM_QUERY)}).matches?'dark':'light';var d=document.documentElement;d.dataset.theme=t;d.classList.toggle('dark',t==='dark')})()`;
 
 /**
  * Controls HexUI's global light/dark theme on `<html>`, persists the preference,
