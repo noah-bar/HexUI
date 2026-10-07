@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, userEvent, within } from 'storybook/test';
 import { Field, FieldDescription, FieldError, FieldLabel, FieldRow } from '../field/Field';
 import { Panel } from '../panel/Panel';
 import { InputNumber } from './InputNumber';
@@ -19,7 +20,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** Arrow keys and the buttons step the value; Shift + arrow uses `largeStep`. */
+/** Left-aligned field without steppers, which is the default presentation. */
 export const Default: Story = {
   render: () => (
     <Field>
@@ -27,6 +28,37 @@ export const Default: Story = {
       <InputNumber defaultValue={3} min={1} max={999} />
     </Field>
   ),
+};
+
+/** `decimalPlaces` controls the fixed number of digits after the decimal separator. */
+export const Decimals: Story = {
+  render: () => (
+    <Field>
+      <FieldLabel>Poids</FieldLabel>
+      <InputNumber defaultValue={12.5} min={0} step={0.01} decimalPlaces={2} locale="fr-CH" />
+      <FieldDescription>Affiché avec deux décimales.</FieldDescription>
+    </Field>
+  ),
+};
+
+/** A required field restores `0` when the user clears it and moves focus away. */
+export const Required: Story = {
+  render: () => (
+    <Field>
+      <FieldLabel>Quantité</FieldLabel>
+      <InputNumber required />
+      <FieldDescription>Effacez la valeur puis quittez le champ : elle revient à zéro.</FieldDescription>
+    </Field>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole('textbox', { name: 'Quantité' });
+    await expect(input).toHaveValue('0');
+    await userEvent.clear(input);
+    await expect(input).toHaveValue('');
+    await userEvent.tab();
+    await expect(input).toHaveValue('0');
+  },
 };
 
 /** `format` and `locale` display the value as an amount; typing "1250,5" is understood. */
@@ -54,7 +86,7 @@ export const InvoiceLine: Story = {
     <FieldRow columns="1.3fr 1.4fr 1fr" stackBelow="sm">
       <Field>
         <FieldLabel>Heures</FieldLabel>
-        <InputNumber defaultValue={32} min={0} step={0.5} locale="fr-CH" />
+        <InputNumber defaultValue={32} min={0} step={0.5} decimalPlaces={1} showSteppers locale="fr-CH" />
       </Field>
       <Field>
         <FieldLabel>Taux horaire</FieldLabel>
