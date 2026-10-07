@@ -47,6 +47,31 @@ fixé derrière toute l'application, qui suit les couleurs du thème :
 Ajoutez `class="dark"` (ou `data-theme="dark"`) sur `<html>`. Il faut que ce soit sur `<html>` (et pas sur un
 wrapper), parce que les dialogues, selects et tooltips sont rendus dans un portal à la racine du document.
 
+Le hook `useTheme` peut gérer cet attribut, suivre le thème du système et mémoriser la préférence dans
+`localStorage` avec la clé `hx-theme` :
+
+```tsx
+import { Button, useTheme } from '@hxtc/hexui';
+
+function ThemeButton() {
+  const { theme, resolvedTheme, setTheme, toggleTheme } = useTheme();
+
+  return (
+    <>
+      <Button variant="ghost" onClick={toggleTheme}>
+        Passer au thème {resolvedTheme === 'dark' ? 'clair' : 'sombre'}
+      </Button>
+      <Button variant="ghost" onClick={() => setTheme('system')} disabled={theme === 'system'}>
+        Utiliser le thème du système
+      </Button>
+    </>
+  );
+}
+```
+
+`theme` vaut `light`, `dark` ou `system`. `resolvedTheme` contient toujours le thème effectivement appliqué,
+`light` ou `dark`. Les changements sont synchronisés avec le thème du système et entre les onglets ouverts.
+
 ## Personnalisation
 
 La palette par défaut est un indigo sur des gris neutres : les teintes froides restent lumineuses
