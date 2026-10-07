@@ -7,9 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-07
+
 ### Added
 
 - `SafeArea`: keeps content clear of the notch, status bar and home indicator, with styleable top and bottom bands.
+
+### Changed
+
+- Light theme primary and danger buttons: deeper stained glass gradient, firmer colored frame and a shadow tinted with the pane color.
+- Dark theme active navigation items (Sidebar, Tabs, Menubar, Toggle): clear glass chip with a lit border and top rim instead of an opaque gray fill.
+- Active Sidebar sub-items use the same glass chip as top-level items.
+
+### Fixed
+
+- Remove the saturating backdrop blur from the Tabs indicator, which tinted the active tab with the backdrop color.
+
+### Chore
+
+- Document the `SafeArea` component and its `viewport-fit=cover` requirement.
 
 ## [0.3.1] - 2026-10-07
 
