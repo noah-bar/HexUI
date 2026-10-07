@@ -69,8 +69,8 @@
   --hx-danger-stain: #dc2626;
   --hx-primary-stain-text: #312e81;
   --hx-danger-stain-text: #691616;
-  --hx-stain-top: 16%;
-  --hx-stain-bottom: 24%;
+  --hx-stain-top: 20%;
+  --hx-stain-bottom: 26%;
   --hx-stain-hover: 12%;
   --hx-stain-frame: 42%;
   /* Red is complementary to the cyan backdrop glow and turns gray when too thin: danger gets more. */
