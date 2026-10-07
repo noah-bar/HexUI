@@ -2,6 +2,7 @@ import { Combobox as BaseCombobox } from '@base-ui/react/combobox';
 import type { ComponentProps } from 'react';
 import { cn, mergeClassName } from '../../lib/cn';
 import { fieldControlClassName } from '../field/fieldStyles';
+import { Spinner } from '../spinner/Spinner';
 import {
   groupLabelClassName,
   inputGroupButtonClassName,
@@ -12,7 +13,6 @@ import {
   messageClassName,
   popupClassName,
   separatorClassName,
-  spinnerClassName,
 } from './comboboxStyles';
 
 export const Combobox = BaseCombobox.Root;
@@ -223,7 +223,7 @@ export function ComboboxStatus({ className, loading = false, children, ...props 
     <BaseCombobox.Status className={mergeClassName(messageClassName, className)} {...props}>
       {children != null && children !== false && (
         <>
-          {loading && <span aria-hidden="true" className={spinnerClassName} />}
+          {loading && <Spinner />}
           {children}
         </>
       )}

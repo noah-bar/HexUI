@@ -1,6 +1,7 @@
 import { Toast as BaseToast } from '@base-ui/react/toast';
 import type { ComponentProps, ReactNode } from 'react';
 import { buttonVariants } from '../button/Button';
+import { Spinner } from '../spinner/Spinner';
 
 /** Show toasts from any component under ToastProvider: `const toast = useToast(); toast.add({ … })`. */
 export const useToast = BaseToast.useToastManager;
@@ -101,9 +102,5 @@ const toastIcons: Record<ToastType, ReactNode> = {
       <path d="M8 7.25v3.5M8 5.25v.01" />
     </Icon>
   ),
-  loading: (
-    <Icon className={`${statusIconClassName} hx:animate-spin hx:text-fg-muted hx:motion-reduce:animate-none`}>
-      <path d="M8 1.75A6.25 6.25 0 1 1 1.75 8" />
-    </Icon>
-  ),
+  loading: <Spinner tone="muted" className={statusIconClassName} />,
 };

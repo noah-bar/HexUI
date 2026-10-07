@@ -54,6 +54,3 @@ export const separatorClassName = 'hx:mx-1 hx:my-1 hx:h-px hx:bg-glass-border';
 // Empty and Status stay mounted (live regions): they only take room once they have content.
 export const messageClassName =
   'hx:flex hx:items-center hx:justify-center hx:gap-2 hx:text-center hx:text-sm hx:text-fg-muted hx:not-empty:px-3 hx:not-empty:py-5';
-
-export const spinnerClassName =
-  'hx:inline-block hx:size-3.5 hx:shrink-0 hx:animate-spin hx:rounded-full hx:border-2 hx:border-current hx:border-r-transparent hx:motion-reduce:animate-none';

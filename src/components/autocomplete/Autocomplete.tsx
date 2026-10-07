@@ -1,6 +1,7 @@
 import { Autocomplete as BaseAutocomplete } from '@base-ui/react/autocomplete';
 import type { ComponentProps } from 'react';
 import { cn, mergeClassName } from '../../lib/cn';
+import { Spinner } from '../spinner/Spinner';
 import {
   groupLabelClassName,
   inputGroupButtonClassName,
@@ -11,7 +12,6 @@ import {
   messageClassName,
   popupClassName,
   separatorClassName,
-  spinnerClassName,
 } from '../combobox/comboboxStyles';
 
 export const Autocomplete = BaseAutocomplete.Root;
@@ -99,7 +99,7 @@ export function AutocompleteStatus({ className, loading = false, children, ...pr
     <BaseAutocomplete.Status className={mergeClassName(messageClassName, className)} {...props}>
       {children != null && children !== false && (
         <>
-          {loading && <span aria-hidden="true" className={spinnerClassName} />}
+          {loading && <Spinner />}
           {children}
         </>
       )}
