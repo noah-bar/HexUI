@@ -155,6 +155,7 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | Panel | `Panel`, `panelVariants` — surface en verre sans mise en page ; variantes `thin`, `default`, `strong` ; marge interne `none`, `sm`, `md`, `lg` ; prop `render` pour changer l'élément (`<aside />`, `<section />`…) |
 | Popover | `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverTitle`, `PopoverDescription`, `PopoverClose` — panneau flottant libre (filtres, détails, mini-formulaires) |
 | Radio | `RadioGroup`, `Radio` |
+| Sidebar | `SidebarProvider`, `Sidebar` (`variant`, `collapsible`, `side`), `SidebarTrigger`, `SidebarRail`, `SidebarInset`, `SidebarInsetHeader` (`variant`), `SidebarHeader`, `SidebarContent`, `SidebarFooter`, `SidebarSeparator`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarGroupAction`, `SidebarGroupContent`, `SidebarMenu`, `SidebarMenuItem`, `SidebarMenuButton` (`isActive`, `tooltip`, `size`), `SidebarMenuAction`, `SidebarMenuBadge`, `SidebarMenuSkeleton`, `SidebarMenuSub`, `SidebarMenuSubItem`, `SidebarMenuSubButton`, `SidebarMenuCollapsible`, `SidebarMenuCollapsibleTrigger`, `SidebarMenuCollapsibleContent`, `useSidebar` — voir ci-dessous |
 | Skeleton | `Skeleton` — forme de chargement animée |
 | Select | `Select`, `SelectTrigger`, `SelectValue`, `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator` |
 | Sheet | `Sheet`, `SheetTrigger`, `SheetContent` (`side`, `size`), `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetCloseButton`, `SheetBody`, `SheetFooter`, `SheetClose` |
@@ -277,6 +278,73 @@ const { data = [], isPending } = useClients(debounced); // gardez le client sél
 une suggestion ne fait que compléter ce texte. `autoHighlight` permet de valider la première suggestion avec Entrée.
 
 Les libellés accessibles des boutons (`clearLabel`, `triggerLabel`, `removeLabel`) sont en français par défaut.
+
+### Barre latérale (Sidebar)
+
+`Sidebar` reprend l'API de la sidebar de shadcn/ui : `SidebarProvider` met la page en page et garde l'état ouvert/replié,
+`Sidebar` contient la navigation, `SidebarInset` le contenu principal.
+
+```tsx
+<SidebarProvider>
+  <Sidebar collapsible="icon">
+    <SidebarHeader>…</SidebarHeader>
+    <SidebarContent>
+      <SidebarGroup>
+        <SidebarGroupLabel>Gestion</SidebarGroupLabel>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton render={<Link to="/factures" />} isActive tooltip="Factures">
+              <ReceiptText />
+              <span>Factures</span>
+            </SidebarMenuButton>
+            <SidebarMenuBadge>3</SidebarMenuBadge>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarGroup>
+    </SidebarContent>
+    <SidebarFooter>…</SidebarFooter>
+    <SidebarRail />
+  </Sidebar>
+  <SidebarInset>
+    <SidebarInsetHeader>
+      <SidebarTrigger />
+      Factures
+    </SidebarInsetHeader>
+    …
+  </SidebarInset>
+</SidebarProvider>
+```
+
+- `variant` : `floating` (panneau en verre détaché des bords, par défaut) ou `sidebar` (collé au bord de la page).
+- `collapsible` : `offcanvas` (glisse hors de l'écran, par défaut), `icon` (ne garde que les icônes, avec les
+  libellés en infobulle via `tooltip`) ou `none`. `side` : `left` ou `right`.
+- Ctrl/⌘ + B ouvre et replie la barre (`keyboardShortcut`, `false` pour désactiver). Sous 768 px, elle s'ouvre dans
+  un `Sheet` ; `useSidebar().setOpenMobile(false)` la referme après une navigation.
+- Largeurs : `--hx-sidebar-width` (16rem), `--hx-sidebar-width-icon` (3rem), `--hx-sidebar-width-mobile` (18rem),
+  à surcharger via `style` sur `SidebarProvider`.
+- Liens : `render={<a href="…" />}` ou le `Link` de votre routeur sur `SidebarMenuButton` ; `SidebarMenuSubButton`
+  rend un lien par défaut.
+- Sous-menus repliables : `SidebarMenuCollapsible` + `SidebarMenuCollapsibleTrigger` + `SidebarMenuCollapsibleContent`
+  (qui contient un `SidebarMenuSub`).
+- `SidebarInsetHeader` est l'en-tête en verre du contenu (bouton de la barre, titre, actions). Il reste visible en haut
+  de la page et floute ce qui défile dessous. `variant` : `floating` (panneau aligné sur une barre flottante, par
+  défaut) ou `attached` (barre collée en haut, à associer à `variant="sidebar"`).
+- La barre est collante (`sticky`), pas fixe : elle reste dans le flux de la page, même dans un conteneur.
+- Le hook `useMediaQuery('(max-width: 767px)')`, utilisé pour le passage en mobile, est aussi exporté.
+
+**Retenir l'état entre deux visites** : contrôlez `open` et enregistrez-le.
+
+```tsx
+const [open, setOpen] = useState(() => localStorage.getItem('sidebar') !== 'closed');
+
+<SidebarProvider
+  open={open}
+  onOpenChange={(value) => {
+    setOpen(value);
+    localStorage.setItem('sidebar', value ? 'open' : 'closed');
+  }}
+>
+```
 
 ### Notifications (Toast)
 
