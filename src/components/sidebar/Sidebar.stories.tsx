@@ -6,6 +6,7 @@ import {
   Folder,
   LayoutDashboard,
   Package,
+  PanelLeft,
   Plus,
   ReceiptText,
   Settings,
@@ -223,7 +224,9 @@ export const Default: Story = {
       {/* Viewport-high page: the table scrolls inside its panel, which stops at the bottom of the screen. */}
       <SidebarInset className="hx:h-svh">
         <SidebarInsetHeader>
-          <SidebarTrigger />
+          <SidebarTrigger>
+            <PanelLeft />
+          </SidebarTrigger>
           <div className="hx:h-4 hx:w-px hx:bg-glass-border" />
           <h1 className="hx:text-sm hx:font-medium">Invoices</h1>
           <Button className="hx:ml-auto" size="sm">
@@ -303,7 +306,9 @@ export const AttachedOffcanvas: Story = {
       </Sidebar>
       <SidebarInset>
         <SidebarInsetHeader variant="attached">
-          <SidebarTrigger />
+          <SidebarTrigger>
+            <PanelLeft />
+          </SidebarTrigger>
           <h1 className="hx:text-sm hx:font-medium">Clients</h1>
         </SidebarInsetHeader>
         <div className="hx:grid hx:gap-4 hx:p-4 hx:sm:grid-cols-3">
@@ -339,7 +344,9 @@ export const Loading: Story = {
       </Sidebar>
       <SidebarInset>
         <SidebarInsetHeader>
-          <SidebarTrigger />
+          <SidebarTrigger>
+            <PanelLeft />
+          </SidebarTrigger>
         </SidebarInsetHeader>
       </SidebarInset>
     </SidebarProvider>

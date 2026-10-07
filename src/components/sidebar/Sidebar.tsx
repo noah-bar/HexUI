@@ -215,6 +215,8 @@ export function Sidebar({
 
 export type SidebarTriggerProps = ComponentProps<typeof Button> & {
   label?: string;
+  /** The icon, from any icon library. */
+  children: ReactNode;
 };
 
 export function SidebarTrigger({ label = 'Toggle navigation', onClick, children, ...props }: SidebarTriggerProps) {
@@ -231,7 +233,7 @@ export function SidebarTrigger({ label = 'Toggle navigation', onClick, children,
       }}
       {...props}
     >
-      {children ?? <PanelIcon />}
+      {children}
     </Button>
   );
 }
@@ -632,22 +634,6 @@ function ChevronIcon() {
       className="hx:ml-auto hx:transition-transform hx:duration-200 hx:group-data-panel-open/collapsible-trigger:rotate-90"
     >
       <path d="m6 4 4 4-4 4" />
-    </svg>
-  );
-}
-
-function PanelIcon() {
-  return (
-    <svg
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <rect x="2" y="2.5" width="12" height="11" rx="2" />
-      <path d="M6 2.5v11" />
     </svg>
   );
 }
