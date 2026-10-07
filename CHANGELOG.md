@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `SafeArea`: keeps content clear of the notch, status bar and home indicator, with styleable top and bottom bands.
+
 ## [0.3.1] - 2026-10-07
 
 ### Changed
