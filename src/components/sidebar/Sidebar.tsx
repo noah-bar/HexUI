@@ -5,7 +5,6 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useId,
   useMemo,
   useState,
@@ -49,8 +48,6 @@ export type SidebarProviderProps = ComponentProps<'div'> & {
   /** Desktop state when controlled, e.g. restored from localStorage. */
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
-  /** Key toggling the sidebar with Ctrl/⌘. `false` turns the shortcut off. Defaults to `"b"`. */
-  keyboardShortcut?: string | false;
 };
 
 /**
@@ -62,7 +59,6 @@ export function SidebarProvider({
   defaultOpen = true,
   open: openProp,
   onOpenChange,
-  keyboardShortcut = 'b',
   className,
   style,
   children,
@@ -85,18 +81,6 @@ export function SidebarProvider({
     if (isMobile) setOpenMobile((value) => !value);
     else setOpen(!open);
   }, [isMobile, open, setOpen]);
-
-  useEffect(() => {
-    if (!keyboardShortcut) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key.toLowerCase() === keyboardShortcut && (event.metaKey || event.ctrlKey)) {
-        event.preventDefault();
-        toggleSidebar();
-      }
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [keyboardShortcut, toggleSidebar]);
 
   const value = useMemo<SidebarContextValue>(
     () => ({

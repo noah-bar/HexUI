@@ -81,7 +81,7 @@ const statusVariant = { Payée: 'success', 'En retard': 'danger', Envoyée: 'inf
 
 /**
  * Floating glass sidebar that collapses to icons (`collapsible="icon"`): use the button in the
- * header, the rail along its edge, or Ctrl/⌘ + B. Labels show as tooltips while collapsed.
+ * header or the rail along its edge. Labels show as tooltips while collapsed.
  * Under 768px it opens as a sheet.
  */
 export const Default: Story = {

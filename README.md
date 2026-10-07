@@ -385,8 +385,7 @@ Les libellés accessibles des boutons (`clearLabel`, `triggerLabel`, `removeLabe
 - `variant` : `floating` (panneau en verre détaché des bords, par défaut) ou `sidebar` (collé au bord de la page).
 - `collapsible` : `offcanvas` (glisse hors de l'écran, par défaut), `icon` (ne garde que les icônes, avec les
   libellés en infobulle via `tooltip`) ou `none`. `side` : `left` ou `right`.
-- Ctrl/⌘ + B ouvre et replie la barre (`keyboardShortcut`, `false` pour désactiver). Sous 768 px, elle s'ouvre dans
-  un `Sheet` ; `useSidebar().setOpenMobile(false)` la referme après une navigation.
+- Sous 768 px, elle s'ouvre dans un `Sheet` ; `useSidebar().setOpenMobile(false)` la referme après une navigation.
 - Largeurs : `--hx-sidebar-width` (16rem), `--hx-sidebar-width-icon` (3rem), `--hx-sidebar-width-mobile` (18rem),
   à surcharger via `style` sur `SidebarProvider`.
 - Liens : `render={<a href="…" />}` ou le `Link` de votre routeur sur `SidebarMenuButton` ; `SidebarMenuSubButton`
