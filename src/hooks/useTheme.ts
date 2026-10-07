@@ -4,12 +4,10 @@ export type Theme = 'light' | 'dark' | 'system';
 export type ResolvedTheme = Exclude<Theme, 'system'>;
 
 export type UseThemeResult = {
-  /** Saved preference. `system` follows the operating-system setting. */
   theme: Theme;
-  /** Theme currently applied to the document. */
   resolvedTheme: ResolvedTheme;
   setTheme: (theme: Theme) => void;
-  /** Switches between explicit light and dark themes. */
+  /** Switches to the explicit opposite theme, never to `system`. */
   toggleTheme: () => void;
 };
 
@@ -23,7 +21,7 @@ function isTheme(value: string | null): value is Theme {
   return value === 'light' || value === 'dark' || value === 'system';
 }
 
-/** Fallback when localStorage is unavailable (private browsing, blocked storage): the choice lasts for the page's lifetime. */
+// Used when localStorage is unavailable (private browsing, blocked storage).
 let memoryTheme: Theme = 'system';
 
 function readStoredTheme(): string | null {
@@ -39,7 +37,7 @@ function storeTheme(theme: Theme) {
   try {
     window.localStorage.setItem(STORAGE_KEY, theme);
   } catch {
-    // Storage unavailable: the in-memory value is used instead.
+    // Storage unavailable: memoryTheme is used instead.
   }
 }
 
@@ -103,16 +101,9 @@ function updateTheme(theme: Theme) {
   window.dispatchEvent(new Event(CHANGE_EVENT));
 }
 
-/**
- * Inline script that applies the saved theme before the first paint, so a dark page never flashes light
- * while React loads. Render it in `<head>`: `<script dangerouslySetInnerHTML={{ __html: themeScript }} />`.
- */
+/** Applies the saved theme before the first paint. Render it in `<head>`: `<script dangerouslySetInnerHTML={{ __html: themeScript }} />`. */
 export const themeScript = `(function(){var t;try{t=localStorage.getItem(${JSON.stringify(STORAGE_KEY)})}catch(e){}if(t!=='light'&&t!=='dark')t=matchMedia(${JSON.stringify(SYSTEM_QUERY)}).matches?'dark':'light';var d=document.documentElement;d.dataset.theme=t;d.classList.toggle('dark',t==='dark')})()`;
 
-/**
- * Controls HexUI's global light/dark theme on `<html>`, persists the preference,
- * follows the operating-system theme, and synchronizes changes between tabs.
- */
 export function useTheme(): UseThemeResult {
   const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const separatorIndex = snapshot.indexOf(':');

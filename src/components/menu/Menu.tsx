@@ -13,8 +13,8 @@ type PositionerProps = ComponentProps<typeof BaseMenu.Positioner>;
 export type MenuContentProps = ComponentProps<typeof BaseMenu.Popup> &
   Pick<PositionerProps, 'side' | 'sideOffset' | 'align' | 'alignOffset'>;
 
-// The glass panel itself must not scroll: its lit edge overhangs the box by 1px and would
-// add scrollable overflow. Scrolling happens in an inner wrapper instead (like SelectList).
+// The glass panel must not scroll: its lit edge overhangs the box by 1px and would add scrollable overflow.
+// Scrolling happens in an inner wrapper.
 const popupClassName = [
   'hx:glass-strong hx:flex hx:min-w-44 hx:max-h-(--available-height) hx:flex-col hx:rounded-lg',
   'hx:text-sm hx:text-fg hx:outline-none',
@@ -49,7 +49,6 @@ export function MenuContent({
   );
 }
 
-/** Submenu panel: opens beside its MenuSubTrigger. */
 export function MenuSubContent({ side = 'inline-end', sideOffset = 2, alignOffset = -5, ...props }: MenuContentProps) {
   return <MenuContent side={side} sideOffset={sideOffset} alignOffset={alignOffset} {...props} />;
 }
@@ -63,7 +62,6 @@ const itemClassName = [
 ].join(' ');
 
 export type MenuItemProps = ComponentProps<typeof BaseMenu.Item> & {
-  /** `danger` for destructive actions (delete, revoke…). */
   variant?: 'default' | 'danger';
 };
 
@@ -132,7 +130,6 @@ export function MenuSeparator({ className, ...props }: ComponentProps<typeof Bas
   );
 }
 
-/** Keyboard shortcut hint, aligned to the right of a MenuItem. */
 export function MenuShortcut({ className, ...props }: ComponentProps<'span'>) {
   return (
     <span className={cn('hx:ml-auto hx:pl-4 hx:text-xs hx:tracking-wide hx:text-fg-muted', className)} {...props} />

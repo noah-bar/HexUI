@@ -68,11 +68,10 @@ export const sheetContentVariants = cva(
 
 export type SheetContentProps = Omit<ComponentProps<typeof BaseDialog.Popup>, 'size'> &
   VariantProps<typeof sheetContentVariants> & {
-    /** Props forwarded to the Portal (e.g. `container`). */
     portalProps?: ComponentProps<typeof BaseDialog.Portal>;
   };
 
-/** Modal panel attached to a viewport edge. Put scrollable content in `SheetBody`. */
+/** Put scrollable content in `SheetBody`. */
 export function SheetContent({ className, side, size, portalProps, ...props }: SheetContentProps) {
   return (
     <BaseDialog.Portal {...portalProps}>
@@ -100,7 +99,6 @@ export function SheetHeader({ className, ...props }: ComponentProps<'div'>) {
   );
 }
 
-/** The only scroll container in a Sheet, preserving the glass surface's lit edge. */
 export function SheetBody({ className, ...props }: ComponentProps<'div'>) {
   return <div className={cn('hx:min-h-0 hx:flex-1 hx:overflow-y-auto hx:p-5', className)} {...props} />;
 }

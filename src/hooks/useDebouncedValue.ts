@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-/** Returns `value` once it has stopped changing for `delay` ms (e.g. a search field feeding an API). */
 export function useDebouncedValue<T>(value: T, delay = 300): T {
   const [debounced, setDebounced] = useState(value);
 

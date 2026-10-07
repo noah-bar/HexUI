@@ -22,11 +22,6 @@ export const panelVariants = cva(
 
 export type PanelProps = useRender.ComponentProps<'div'> & VariantProps<typeof panelVariants>;
 
-/**
- * Plain glass surface with no inner layout — the building block for custom
- * containers (tables, lists, sidebars). Use `render` to change the element,
- * e.g. `<Panel render={<section />} />`.
- */
 export function Panel({ variant, className, render, ...props }: PanelProps) {
   return useRender({
     defaultTagName: 'div',

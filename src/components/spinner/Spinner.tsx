@@ -13,7 +13,6 @@ export const spinnerVariants = cva(
         md: 'hx:size-5',
         lg: 'hx:size-8',
       },
-      /** `current` follows the surrounding text color (inside a button, a badge…). */
       tone: {
         current: '',
         muted: 'hx:text-fg-muted',
@@ -29,14 +28,9 @@ export const spinnerVariants = cva(
 
 export type SpinnerProps = Omit<ComponentProps<'svg'>, 'children'> &
   VariantProps<typeof spinnerVariants> & {
-    /**
-     * Text announced to screen readers. Set it when the spinner is the only sign of loading;
-     * leave it empty when a visible label says it already (e.g. "Enregistrement…").
-     */
     label?: string;
   };
 
-/** Loading indicator: a ring with a turning arc, in the current text color. */
 export function Spinner({ size, tone, label, className, ...props }: SpinnerProps) {
   return (
     <svg

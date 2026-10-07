@@ -18,17 +18,12 @@ import {
   type MenuItemProps,
 } from '../menu/Menu';
 
-/*
- * shadcn/ui naming for the Menu component: same parts, same look. Use whichever reads better;
- * changes to Menu apply here too.
- */
+// shadcn/ui names for Menu: same parts, same look.
 
-/** Menu opened from a button (row actions, user menu…). */
 export function DropdownMenu(props: ComponentProps<typeof Menu>) {
   return <Menu {...props} />;
 }
 
-/** Use `render` to style it as a Button: `<DropdownMenuTrigger render={<Button variant="ghost" />}>`. */
 export function DropdownMenuTrigger(props: ComponentProps<typeof MenuTrigger>) {
   return <MenuTrigger {...props} />;
 }
@@ -57,7 +52,6 @@ export function DropdownMenuGroup(props: ComponentProps<typeof MenuGroup>) {
   return <MenuGroup {...props} />;
 }
 
-/** Heading of a DropdownMenuGroup. */
 export function DropdownMenuLabel(props: ComponentProps<typeof MenuGroupLabel>) {
   return <MenuGroupLabel {...props} />;
 }

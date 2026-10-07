@@ -2,20 +2,18 @@ import { cn } from '../../lib/cn';
 import { Button } from '../button/Button';
 
 export type PaginationProps = {
-  /** Current page, starting at 1. */
+  /** 1-based. */
   page: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-  /** Maximum number of page buttons, ellipses included (odd numbers work best). */
+  /** Maximum number of page buttons, ellipses included. */
   maxVisible?: number;
   previousLabel?: string;
   nextLabel?: string;
-  /** Accessible label of a page button. */
   pageLabel?: (page: number) => string;
   className?: string;
 };
 
-/** Page numbers with ellipses for `maxVisible` slots, e.g. `1 … 4 5 6 … 12`. */
 export function getVisiblePages(current: number, totalPages: number, maxVisible = 5): (number | 'ellipsis')[] {
   if (totalPages <= maxVisible) return Array.from({ length: totalPages }, (_, i) => i + 1);
   const side = Math.floor((maxVisible - 3) / 2);
@@ -31,7 +29,6 @@ export function getVisiblePages(current: number, totalPages: number, maxVisible 
   return pages;
 }
 
-/** Previous / next arrows and page numbers. Renders nothing when there are no pages. */
 export function Pagination({
   page,
   totalPages,

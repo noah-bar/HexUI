@@ -8,26 +8,17 @@ type ValueChangeDetails = Parameters<NonNullable<BaseNumberFieldProps['onValueCh
 type ValueCommitDetails = Parameters<NonNullable<BaseNumberFieldProps['onValueCommitted']>>[1];
 
 export type InputNumberProps = Omit<BaseNumberFieldProps, 'className' | 'required'> & {
-  /** Number of digits after the decimal separator. Defaults to `0`. */
   decimalPlaces?: number;
-  /** Makes the field required and restores an empty value to `0` on blur. */
+  /** Also restores an empty value to `0` on blur. */
   required?: boolean;
-  /** Shows − and + buttons around the value. Defaults to `false`. */
   showSteppers?: boolean;
-  /** Text alignment of the value. Defaults to `left`. */
   align?: 'left' | 'center' | 'right';
   placeholder?: string;
-  /** Accessible labels of the buttons. */
   decrementLabel?: string;
   incrementLabel?: string;
-  /** Applied to the field wrapper. */
   className?: string;
 };
 
-/**
- * Numeric field: typing is checked, arrow keys and the optional buttons step the value (Shift for `largeStep`),
- * and `format` + `locale` display it (CHF, %, units). Use it inside a Field like Input.
- */
 export function InputNumber({
   decimalPlaces = 0,
   required = false,

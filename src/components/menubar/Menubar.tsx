@@ -20,10 +20,6 @@ import {
   type MenuItemProps,
 } from '../menu/Menu';
 
-/**
- * Horizontal bar of menus (File, Edit, View…), as in desktop apps. Arrow keys move between
- * menus; once one is open, hovering another trigger opens it.
- */
 export function Menubar({ className, ...props }: ComponentProps<typeof BaseMenubar>) {
   return (
     <BaseMenubar
@@ -36,7 +32,6 @@ export function Menubar({ className, ...props }: ComponentProps<typeof BaseMenub
   );
 }
 
-/** One menu of the bar: holds a MenubarTrigger and a MenubarContent. */
 export function MenubarMenu(props: ComponentProps<typeof Menu>) {
   return <Menu {...props} />;
 }
@@ -49,7 +44,6 @@ export function MenubarTrigger({ className, ...props }: ComponentProps<typeof Ba
           'hx:flex hx:h-8 hx:items-center hx:rounded-md hx:border hx:border-transparent hx:px-3 hx:cursor-pointer hx:select-none',
           'hx:text-sm hx:font-medium hx:text-fg hx:outline-none',
           'hx:transition-colors hx:duration-150 hx:hover:bg-tint-hover hx:focus-visible:ring-2 hx:focus-visible:ring-ring',
-          // Open menu: same selected look as the sidebar's active item and the selected tab.
           'hx:data-popup-open:border-(--hx-nav-active-border) hx:data-popup-open:bg-(--hx-nav-active)',
           'hx:data-disabled:pointer-events-none hx:data-disabled:opacity-50',
         ].join(' '),
@@ -60,7 +54,6 @@ export function MenubarTrigger({ className, ...props }: ComponentProps<typeof Ba
   );
 }
 
-/** Glass popup under a MenubarTrigger. */
 export function MenubarContent({ sideOffset = 8, align = 'start', alignOffset = -4, ...props }: MenuContentProps) {
   return <MenuContent sideOffset={sideOffset} align={align} alignOffset={alignOffset} {...props} />;
 }

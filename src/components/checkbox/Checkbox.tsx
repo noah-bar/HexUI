@@ -5,7 +5,6 @@ import { checkControlClassName } from '../field/fieldStyles';
 
 export type CheckboxProps = ComponentProps<typeof BaseCheckbox.Root>;
 
-/** Supports `indeterminate` for "select all" style checkboxes. */
 export function Checkbox({ className, ...props }: CheckboxProps) {
   return (
     <BaseCheckbox.Root

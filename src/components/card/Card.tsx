@@ -2,7 +2,6 @@ import type { ComponentProps } from 'react';
 import { cn } from '../../lib/cn';
 import { Panel, type PanelProps } from '../panel/Panel';
 
-/** A Panel with a vertical layout and comfortable padding. */
 export function Card({ className, ...props }: PanelProps) {
   return <Panel className={cn('hx:flex hx:flex-col hx:gap-5 hx:p-6', className)} {...props} />;
 }

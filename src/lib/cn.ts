@@ -10,17 +10,13 @@ const twMerge = extendTailwindMerge<'glass'>({
   },
 });
 
-/** Merge class names, letting later Tailwind classes override earlier ones. */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 type ClassNameProp<State> = string | ((state: State) => string | undefined) | undefined;
 
-/**
- * Merge a base class string with a Base UI `className` prop, which may be a
- * function of the component state.
- */
+/** Merges with a Base UI `className`, which may be a function of the component state. */
 export function mergeClassName<State>(
   base: string,
   className: ClassNameProp<State>,

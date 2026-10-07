@@ -1,6 +1,6 @@
 import { useCallback, useSyncExternalStore } from 'react';
 
-/** Whether `query` (e.g. `"(max-width: 767px)"`) currently matches. `false` during server rendering. */
+/** `false` during server rendering. */
 export function useMediaQuery(query: string): boolean {
   const subscribe = useCallback(
     (onChange: () => void) => {

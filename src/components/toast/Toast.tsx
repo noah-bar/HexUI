@@ -3,24 +3,16 @@ import type { ComponentProps, ReactNode } from 'react';
 import { buttonVariants } from '../button/Button';
 import { Spinner } from '../spinner/Spinner';
 
-/** Show toasts from any component under ToastProvider: `const toast = useToast(); toast.add({ … })`. */
 export const useToast = BaseToast.useToastManager;
 
-/**
- * Creates a toast manager usable outside React (API clients, stores…).
- * Pass it to `<ToastProvider toastManager={manager}>`.
- */
 export const createToastManager = BaseToast.createToastManager;
 
-/** Values accepted by `type` in `toast.add({ type })`; they pick the icon and its color. */
 export type ToastType = 'success' | 'error' | 'warning' | 'info' | 'loading';
 
 export type ToastProviderProps = ComponentProps<typeof BaseToast.Provider> & {
-  /** Accessible label of the close button. */
   closeLabel?: string;
 };
 
-/** Wrap the app once: holds the toast queue and renders the toast stack (bottom-right). */
 export function ToastProvider({ children, closeLabel = 'Close', ...props }: ToastProviderProps) {
   return (
     <BaseToast.Provider {...props}>

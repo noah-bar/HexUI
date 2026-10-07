@@ -2,20 +2,14 @@ import { Collapsible as BaseCollapsible } from '@base-ui/react/collapsible';
 import type { ComponentProps } from 'react';
 import { cn, mergeClassName } from '../../lib/cn';
 
-/** Section that folds and unfolds (details, advanced options). Holds a CollapsibleTrigger and a CollapsibleContent. */
 export function Collapsible({ className, ...props }: ComponentProps<typeof BaseCollapsible.Root>) {
   return <BaseCollapsible.Root className={mergeClassName('hx:flex hx:flex-col', className)} {...props} />;
 }
 
-/**
- * Button that folds the section. Style it with `render`: `<CollapsibleTrigger render={<Button variant="ghost" />}>`,
- * and add a CollapsibleChevron inside.
- */
 export function CollapsibleTrigger({ className, ...props }: ComponentProps<typeof BaseCollapsible.Trigger>) {
   return <BaseCollapsible.Trigger className={mergeClassName('hx:group/collapsible', className)} {...props} />;
 }
 
-/** Chevron that turns when its CollapsibleTrigger is open. */
 export function CollapsibleChevron({ className, ...props }: ComponentProps<'svg'>) {
   return (
     <svg
@@ -38,10 +32,6 @@ export function CollapsibleChevron({ className, ...props }: ComponentProps<'svg'
   );
 }
 
-/**
- * Folding content, with a height animation. `hiddenUntilFound` lets the browser's find-in-page
- * search inside and open it.
- */
 export function CollapsibleContent({ className, ...props }: ComponentProps<typeof BaseCollapsible.Panel>) {
   return (
     <BaseCollapsible.Panel

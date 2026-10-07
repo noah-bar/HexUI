@@ -22,11 +22,9 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../too
 const MOBILE_QUERY = '(max-width: 767px)';
 
 type SidebarContextValue = {
-  /** Desktop state. */
   state: 'expanded' | 'collapsed';
   open: boolean;
   setOpen: (open: boolean) => void;
-  /** Mobile state: the sidebar is a Sheet below 768px. */
   openMobile: boolean;
   setOpenMobile: (open: boolean) => void;
   isMobile: boolean;
@@ -35,7 +33,6 @@ type SidebarContextValue = {
 
 const SidebarContext = createContext<SidebarContextValue | null>(null);
 
-/** State and actions of the closest SidebarProvider: build a custom trigger, close the mobile sheet after navigation… */
 export function useSidebar() {
   const context = useContext(SidebarContext);
   if (!context) throw new Error('useSidebar must be used within <SidebarProvider>.');
@@ -43,18 +40,11 @@ export function useSidebar() {
 }
 
 export type SidebarProviderProps = ComponentProps<'div'> & {
-  /** Initial desktop state when uncontrolled. Defaults to `true` (expanded). */
   defaultOpen?: boolean;
-  /** Desktop state when controlled, e.g. restored from localStorage. */
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
 };
 
-/**
- * Lays out the page: a Sidebar next to a SidebarInset. Holds the open/collapsed state.
- * Widths are set with `--hx-sidebar-width` (16rem), `--hx-sidebar-width-icon` (3rem)
- * and `--hx-sidebar-width-mobile` (18rem).
- */
 export function SidebarProvider({
   defaultOpen = true,
   open: openProp,
@@ -119,15 +109,11 @@ export function SidebarProvider({
 
 export type SidebarProps = ComponentProps<'div'> & {
   side?: 'left' | 'right';
-  /** `floating`: a rounded glass panel set off the edges (default). `sidebar`: attached to the page edge. */
   variant?: 'floating' | 'sidebar';
-  /** How it collapses: slides out (`offcanvas`), shrinks to icons (`icon`), or never (`none`). */
   collapsible?: 'offcanvas' | 'icon' | 'none';
-  /** Accessible title of the mobile sheet. */
   mobileTitle?: string;
 };
 
-/** Navigation panel. On screens under 768px it opens as a Sheet. */
 export function Sidebar({
   side = 'left',
   variant = 'floating',
@@ -196,8 +182,7 @@ export function Sidebar({
       data-variant={variant}
       data-side={side}
       className={cn(
-        // Sticky rather than fixed: the sidebar stays in the page flow, so it also works inside
-        // a container (or a docs page). The inner panel slides; this box reserves its width.
+        // Sticky, not fixed: stays in the page flow, so it also works inside a container.
         'hx:group/sidebar hx:sticky hx:top-0 hx:hidden hx:h-svh hx:shrink-0 hx:self-start hx:md:block',
         'hx:transition-[width] hx:duration-200 hx:ease-linear hx:motion-reduce:transition-none',
         hidden
@@ -229,11 +214,9 @@ export function Sidebar({
 }
 
 export type SidebarTriggerProps = ComponentProps<typeof Button> & {
-  /** Accessible label. */
   label?: string;
 };
 
-/** Button that opens or collapses the sidebar (and opens the mobile sheet). */
 export function SidebarTrigger({ label = 'Toggle navigation', onClick, children, ...props }: SidebarTriggerProps) {
   const { toggleSidebar, open, openMobile, isMobile } = useSidebar();
   return (
@@ -253,7 +236,6 @@ export function SidebarTrigger({ label = 'Toggle navigation', onClick, children,
   );
 }
 
-/** Thin hit area along the sidebar's inner edge: click to collapse or expand. Place it inside Sidebar. */
 export function SidebarRail({
   className,
   label = 'Toggle navigation',
@@ -280,20 +262,14 @@ export function SidebarRail({
   );
 }
 
-/** Main area next to the sidebar. */
 export function SidebarInset({ className, ...props }: ComponentProps<'main'>) {
   return <main className={cn('hx:relative hx:flex hx:min-w-0 hx:flex-1 hx:flex-col', className)} {...props} />;
 }
 
 export type SidebarInsetHeaderProps = ComponentProps<'header'> & {
-  /** `floating`: a rounded glass panel lined up with a floating sidebar (default). `attached`: a bar across the top. */
   variant?: 'floating' | 'attached';
 };
 
-/**
- * Glass header at the top of SidebarInset, holding the SidebarTrigger, the page title and actions.
- * It stays visible while the page scrolls; content passing underneath is blurred.
- */
 export function SidebarInsetHeader({ variant = 'floating', className, children, ...props }: SidebarInsetHeaderProps) {
   const floating = variant === 'floating';
   return (
@@ -302,7 +278,6 @@ export function SidebarInsetHeader({ variant = 'floating', className, children, 
         'hx:sticky hx:top-0 hx:z-10 hx:shrink-0',
         floating && [
           'hx:p-2 hx:pb-0',
-          // Content scrolling through the gaps around the floating panel is blurred too, fading out below it.
           'hx:before:absolute hx:before:inset-x-0 hx:before:top-0 hx:before:-bottom-3 hx:before:-z-1',
           'hx:before:backdrop-blur-md hx:before:[mask-image:linear-gradient(to_bottom,#000_70%,transparent)]',
         ],
@@ -326,12 +301,10 @@ export function SidebarInsetHeader({ variant = 'floating', className, children, 
   );
 }
 
-/** Top of the sidebar: app name, workspace switcher. */
 export function SidebarHeader({ className, ...props }: ComponentProps<'div'>) {
   return <div data-sidebar="header" className={cn('hx:flex hx:flex-col hx:gap-2 hx:p-2', className)} {...props} />;
 }
 
-/** Bottom of the sidebar: user menu, settings. */
 export function SidebarFooter({ className, ...props }: ComponentProps<'div'>) {
   return <div data-sidebar="footer" className={cn('hx:flex hx:flex-col hx:gap-2 hx:p-2', className)} {...props} />;
 }
@@ -342,7 +315,6 @@ export function SidebarSeparator({ className, ...props }: ComponentProps<'div'>)
   );
 }
 
-/** Scrollable middle part holding the groups. The glass panel itself never scrolls. */
 export function SidebarContent({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
@@ -385,7 +357,6 @@ export function SidebarGroupLabel({ className, render, ...props }: useRender.Com
   });
 }
 
-/** Small button at the right of a group label (e.g. "add a project"). */
 export function SidebarGroupAction({ className, render, ...props }: useRender.ComponentProps<'button'>) {
   return useRender({
     defaultTagName: 'button',
@@ -424,11 +395,9 @@ export const sidebarMenuButtonVariants = cva(
     'hx:transition-[width,height,padding,background-color] hx:duration-150 hx:ease-linear',
     'hx:hover:bg-tint-hover hx:active:bg-tint-active hx:focus-visible:ring-2 hx:focus-visible:ring-ring',
     'hx:disabled:pointer-events-none hx:disabled:opacity-50 hx:aria-disabled:pointer-events-none hx:aria-disabled:opacity-50',
-    // Selected item: raised glass in dark, clear glass in light (--hx-nav-active), icon in the brand color.
     'hx:data-active:border-(--hx-nav-active-border) hx:data-active:bg-(--hx-nav-active) hx:data-active:hover:bg-(--hx-nav-active) hx:data-active:font-medium',
     'hx:data-active:shadow-[inset_0_1px_0_0_var(--hx-glass-highlight),var(--hx-glass-shadow)] hx:data-active:[&>svg]:text-accent',
     'hx:[&>svg]:size-4 hx:[&>svg]:shrink-0 hx:[&>svg]:text-fg-muted hx:[&>span]:min-w-0 hx:[&>span]:truncate',
-    // Room for a SidebarMenuAction or SidebarMenuBadge on the right.
     'hx:group-has-data-[sidebar=menu-action]/menu-item:pr-8 hx:group-has-data-[sidebar=menu-badge]/menu-item:pr-10',
     'hx:group-data-[collapsible=icon]/sidebar:size-8! hx:group-data-[collapsible=icon]/sidebar:p-2!',
   ],
@@ -437,7 +406,6 @@ export const sidebarMenuButtonVariants = cva(
       size: {
         sm: 'hx:h-7 hx:text-xs',
         md: 'hx:h-8 hx:text-sm',
-        // App name or user, with a 2rem logo/avatar: the logo alone shows when collapsed.
         lg: 'hx:h-12 hx:text-sm hx:group-data-[collapsible=icon]/sidebar:p-0!',
       },
     },
@@ -447,16 +415,11 @@ export const sidebarMenuButtonVariants = cva(
 
 export type SidebarMenuButtonProps = useRender.ComponentProps<'button'> &
   VariantProps<typeof sidebarMenuButtonVariants> & {
-    /** Marks the current page: raised glass and `aria-current="page"`. */
     isActive?: boolean;
     /** Label shown in a tooltip while the sidebar is collapsed to icons. */
     tooltip?: ReactNode;
   };
 
-/**
- * Navigation entry: an icon and a label. Use `render` for links:
- * `<SidebarMenuButton render={<a href="/factures" />}>` or your router's Link.
- */
 export function SidebarMenuButton({
   isActive = false,
   tooltip,
@@ -496,7 +459,6 @@ const actionClassName = [
   'hx:absolute hx:flex hx:size-6 hx:items-center hx:justify-center hx:rounded-md hx:text-fg-muted hx:cursor-pointer hx:outline-none',
   'hx:transition-[opacity,background-color] hx:hover:bg-tint-hover hx:hover:text-fg hx:focus-visible:ring-2 hx:focus-visible:ring-ring',
   'hx:[&>svg]:size-4 hx:[&>svg]:shrink-0',
-  // Bigger hit area on touch screens.
   'hx:after:absolute hx:after:-inset-2 hx:md:after:hidden',
   'hx:group-data-[collapsible=icon]/sidebar:hidden',
 ].join(' ');
@@ -506,7 +468,6 @@ export type SidebarMenuActionProps = useRender.ComponentProps<'button'> & {
   showOnHover?: boolean;
 };
 
-/** Secondary button inside a menu item (e.g. "…" opening a Menu). */
 export function SidebarMenuAction({ showOnHover = false, className, render, ...props }: SidebarMenuActionProps) {
   return useRender({
     defaultTagName: 'button',
@@ -526,7 +487,6 @@ export function SidebarMenuAction({ showOnHover = false, className, render, ...p
   });
 }
 
-/** Counter at the right of a menu item (unread, overdue…). */
 export function SidebarMenuBadge({ className, ...props }: ComponentProps<'span'>) {
   return (
     <span
@@ -542,7 +502,6 @@ export function SidebarMenuBadge({ className, ...props }: ComponentProps<'span'>
   );
 }
 
-/** Loading placeholder for a menu item. */
 export function SidebarMenuSkeleton({
   showIcon = false,
   className,
@@ -568,7 +527,6 @@ function skeletonWidth(id: string): string {
   return `${50 + (hash % 41)}%`;
 }
 
-/** Nested list under a menu item. Hidden while collapsed to icons. */
 export function SidebarMenuSub({ className, ...props }: ComponentProps<'ul'>) {
   return (
     <ul
@@ -592,7 +550,7 @@ export type SidebarMenuSubButtonProps = useRender.ComponentProps<'a'> & {
   size?: 'sm' | 'md';
 };
 
-/** Entry of a nested list. Renders a link by default: pass `href`, or `render` for a router Link. */
+/** Renders a link by default: pass `href`, or `render` for a router Link. */
 export function SidebarMenuSubButton({
   isActive = false,
   size = 'md',
@@ -621,7 +579,6 @@ export function SidebarMenuSubButton({
   });
 }
 
-/** Menu item whose sub list folds and unfolds. Put a SidebarMenuCollapsibleTrigger and a SidebarMenuCollapsibleContent inside. */
 export function SidebarMenuCollapsible({ className, ...props }: ComponentProps<typeof BaseCollapsible.Root>) {
   return (
     <BaseCollapsible.Root
@@ -633,7 +590,6 @@ export function SidebarMenuCollapsible({ className, ...props }: ComponentProps<t
   );
 }
 
-/** SidebarMenuButton that folds its SidebarMenuCollapsible, with a chevron. */
 export function SidebarMenuCollapsibleTrigger({ children, className, ...props }: SidebarMenuButtonProps) {
   return (
     <BaseCollapsible.Trigger

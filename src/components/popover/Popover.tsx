@@ -11,7 +11,6 @@ type PositionerProps = ComponentProps<typeof BasePopover.Positioner>;
 export type PopoverContentProps = ComponentProps<typeof BasePopover.Popup> &
   Pick<PositionerProps, 'side' | 'sideOffset' | 'align' | 'alignOffset'>;
 
-/** Floating glass panel anchored to its trigger. Free layout: filters, details, quick forms. */
 export function PopoverContent({
   className,
   side,

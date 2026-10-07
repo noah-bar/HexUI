@@ -12,7 +12,6 @@ import {
   type TableHeadProps,
 } from '../table/Table';
 
-/** Server-side page: same shape as a paginated API response (`results` is ignored here). */
 export type DataTablePage = { total: number; skip: number; limit: number };
 
 type DataTableContextValue = {
@@ -27,19 +26,13 @@ export type DataTableProps = {
   /** Current sort, Django style: `"field"` ascending, `"-field"` descending, `""` none. */
   ordering?: string;
   onOrderingChange?: (ordering: string) => void;
-  /** Pagination info from the API. Omit it to hide the pagination bar. */
   pagination?: DataTablePage;
-  /** Called with the new `skip` when the user changes page. */
   onSkipChange?: (skip: number) => void;
   density?: 'comfortable' | 'compact';
   className?: string;
 };
 
-/**
- * Data table wired for server-side data: sorting, pagination, loading and empty states,
- * sticky header. It fills its parent's height and scrolls inside, so give the parent a height
- * (e.g. a Panel in a flex layout): `<Panel className="h-[600px] p-0"><DataTable …/></Panel>`.
- */
+/** Fills its parent's height and scrolls inside: give the parent a height. */
 export function DataTable({
   children,
   ordering = '',
@@ -51,8 +44,7 @@ export function DataTable({
 }: DataTableProps) {
   return (
     <DataTableContext value={{ ordering, onOrderingChange }}>
-      {/* Clips the sticky header's background inside the container's border and rounded corners,
-          so it never paints over the Panel's border or lit edge. */}
+      {/* Clips the sticky header inside the rounded border, so it never paints over the lit edge. */}
       <div
         className={cn('hx:flex hx:size-full hx:min-h-0 hx:flex-col hx:overflow-hidden hx:rounded-[inherit]', className)}
       >
@@ -67,13 +59,11 @@ export function DataTable({
   );
 }
 
-/** Header that stays visible while the body scrolls. */
 export function DataTableHeader({ className, ...props }: ComponentProps<'thead'>) {
   return (
     <TableHeader
       className={cn(
-        // Translucent glass: rows scrolling underneath show through as color, blurred beyond reading.
-        // Sticky on the whole thead (not each th) so the blur is one surface, without seams between cells.
+        // Sticky on the whole thead, not each th, so the blur is one surface without seams.
         'hx:sticky hx:top-0 hx:z-10 hx:bg-glass hx:backdrop-blur-xl hx:backdrop-saturate-150',
         // Collapsed table borders don't stick: draw the separator as an inset shadow instead.
         'hx:shadow-[inset_0_-1px_0_var(--hx-glass-border)]',
@@ -84,7 +74,7 @@ export function DataTableHeader({ className, ...props }: ComponentProps<'thead'>
   );
 }
 
-/** Next value of a Django-style ordering when `field` is clicked: ascending → descending → none. */
+/** Cycles a Django-style ordering for `field`: ascending → descending → none. */
 export function nextOrdering(ordering: string, field: string): string {
   if (ordering === field) return `-${field}`;
   if (ordering === `-${field}`) return '';
@@ -92,11 +82,9 @@ export function nextOrdering(ordering: string, field: string): string {
 }
 
 export type DataTableSortableHeadProps = Omit<TableHeadProps, 'sortDirection' | 'onSort'> & {
-  /** API field name sent in `ordering` (e.g. `"client__full_name"`). */
   field: string;
 };
 
-/** Column header that sorts the table by `field`. */
 export function DataTableSortableHead({ field, ...props }: DataTableSortableHeadProps) {
   const { ordering, onOrderingChange } = use(DataTableContext);
   const direction: SortDirection = ordering === field ? 'ascending' : ordering === `-${field}` ? 'descending' : 'none';
@@ -106,14 +94,10 @@ export function DataTableSortableHead({ field, ...props }: DataTableSortableHead
 }
 
 export type DataTableBodyProps = Omit<ComponentProps<'tbody'>, 'children'> & {
-  /** Number of columns, so loading and empty rows span the whole table. */
   colSpan: number;
-  /** Shows skeleton rows instead of the children. */
   isPending?: boolean;
-  /** Shows `emptyText` instead of the children. */
   isEmpty?: boolean;
   emptyText?: ReactNode;
-  /** Number of skeleton rows while pending. */
   pendingRows?: number;
   children?: ReactNode;
 };
@@ -156,7 +140,6 @@ export function DataTableBody({
 
 type DataTablePaginationProps = DataTablePage & { onSkipChange: (skip: number) => void };
 
-/** Adapts the API's `skip` / `limit` / `total` to page numbers, inside the table's bottom bar. */
 function DataTablePagination({ total, skip, limit, onSkipChange }: DataTablePaginationProps) {
   if (total === 0 || limit <= 0) return null;
   return (

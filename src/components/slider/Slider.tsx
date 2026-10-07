@@ -3,18 +3,11 @@ import type { ComponentProps, ReactNode } from 'react';
 import { cn, mergeClassName } from '../../lib/cn';
 
 export type SliderProps = ComponentProps<typeof BaseSlider.Root> & {
-  /** Text above the rail. Without it, label the slider with `aria-label` or `thumbLabels`. */
   label?: ReactNode;
-  /** Shows the formatted value (or range) at the right of the label; formatted with `format` and `locale`. */
   showValue?: boolean;
-  /** Accessible label of each thumb, in order (e.g. `["Montant minimum", "Montant maximum"]`). */
   thumbLabels?: string[];
 };
 
-/**
- * Picks a number (or a range when the value is an array) by dragging a thumb along a rail.
- * One thumb is rendered per value.
- */
 export function Slider({
   className,
   value,

@@ -5,22 +5,16 @@ import { cn } from '../../lib/cn';
 export type BackdropThemed<T> = T | { light: T; dark?: T };
 
 export type BackdropProps = ComponentProps<'div'> & {
-  /** `mesh`: soft glows (default) · `aurora`: more color, for login or landing screens · `plain`: near-solid, for dense screens. */
   variant?: 'mesh' | 'aurora' | 'plain';
-  /** How strong the colored glows are. */
   intensity?: 'subtle' | 'medium';
-  /** Optional texture layered over the glows. */
   texture?: 'none' | 'grain' | 'grid';
-  /**
-   * `fixed` covers the viewport behind the whole app.
-   * `absolute` fills the nearest positioned parent — give that parent `isolation: isolate`.
-   */
+  /** `absolute` fills the nearest positioned parent: give that parent `isolation: isolate`. */
   position?: 'fixed' | 'absolute';
-  /** Background image URL, or one per theme: `{ light: '/day.jpg', dark: '/night.jpg' }`. Replaces the colored glows. */
+  /** Replaces the colored glows. */
   image?: BackdropThemed<string>;
-  /** Blur applied to the image, in pixels. */
+  /** In pixels. */
   imageBlur?: number;
-  /** Opacity of a black veil over the image, from `0` to `1`, or one per theme: `{ light: 0.1, dark: 0.5 }`. */
+  /** Opacity of a black veil over the image, from `0` to `1`. */
   overlay?: BackdropThemed<number>;
 };
 
@@ -35,12 +29,6 @@ function cssUrl(src: string) {
   return `url(${JSON.stringify(src)})`;
 }
 
-/**
- * Decorative page background that gives glass surfaces something to blur.
- * Colors follow the theme tokens (`--hx-backdrop-*`, `--hx-brand`).
- * When children are provided, they are rendered next to the decorative layer
- * without an extra layout wrapper, so Backdrop can sit at the application root.
- */
 export function Backdrop({
   variant = 'mesh',
   intensity = 'subtle',

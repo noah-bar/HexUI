@@ -5,7 +5,6 @@ import { fieldControlClassName } from '../field/fieldStyles';
 
 export type TextareaProps = ComponentProps<'textarea'>;
 
-/** Multi-line text field. Works inside a Field like Input does. */
 export function Textarea({ className, ...props }: TextareaProps) {
   return (
     <BaseField.Control

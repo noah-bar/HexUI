@@ -1,9 +1,3 @@
-/**
- * Shared look of the searchable lists (Combobox, Autocomplete): input group,
- * glass popup, items, empty and status messages.
- */
-
-/** Field-like wrapper around the input and its buttons; focus and error rings follow the inner input. */
 export const inputGroupClassName = [
   'hx:glass-field hx:flex hx:w-full hx:min-w-40 hx:items-center hx:rounded-md hx:text-sm hx:text-fg',
   'hx:transition-[border-color,box-shadow] hx:duration-150 hx:hover:border-field-border-hover',
@@ -14,11 +8,9 @@ export const inputGroupClassName = [
   'hx:data-disabled:cursor-not-allowed hx:data-disabled:opacity-50',
 ].join(' ');
 
-/** The text input inside an input group: no own border, the group draws it. */
 export const inputGroupInputClassName =
   'hx:h-full hx:min-w-0 hx:flex-1 hx:bg-transparent hx:outline-none hx:placeholder:text-fg-subtle hx:disabled:cursor-not-allowed';
 
-/** Clear and open buttons at the end of an input group. */
 export const inputGroupButtonClassName = [
   'hx:flex hx:size-7 hx:shrink-0 hx:items-center hx:justify-center hx:rounded hx:cursor-pointer hx:text-fg-muted',
   'hx:transition-colors hx:duration-150 hx:hover:bg-tint-hover hx:hover:text-fg hx:active:bg-tint-active',

@@ -7,7 +7,6 @@ export const DialogTrigger = BaseDialog.Trigger;
 export const DialogClose = BaseDialog.Close;
 
 export type DialogContentProps = ComponentProps<typeof BaseDialog.Popup> & {
-  /** Props forwarded to the Portal (e.g. `container`). */
   portalProps?: ComponentProps<typeof BaseDialog.Portal>;
 };
 

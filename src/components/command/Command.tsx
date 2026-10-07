@@ -8,15 +8,10 @@ export const CommandGroup = BaseAutocomplete.Group;
 export const CommandCollection = BaseAutocomplete.Collection;
 
 export type CommandProps = ComponentProps<typeof BaseAutocomplete.Root> & {
-  /** Applied to the wrapper. */
   className?: string;
 };
 
-/**
- * Searchable list of actions (command palette, quick switcher). Pass the entries to `items`
- * (flat, or groups `{ value, items }`); typing filters them, Enter runs the highlighted one.
- * Always open and inline: put it in a CommandDialog, a Popover or a panel.
- */
+/** Always open and inline: put it in a CommandDialog, a Popover or a panel. */
 export function Command({ className, children, ...props }: CommandProps) {
   return (
     <div className={cn('hx:flex hx:min-h-0 hx:w-full hx:flex-col hx:text-sm hx:text-fg', className)}>
@@ -27,7 +22,6 @@ export function Command({ className, children, ...props }: CommandProps) {
   );
 }
 
-/** Search field at the top of a Command. */
 export function CommandInput({
   className,
   ...props
@@ -59,7 +53,6 @@ export function CommandInput({
   );
 }
 
-/** Scrollable list of results. Pass a function child to render each entry (or group) of `items`. */
 export function CommandList({ className, ...props }: ComponentProps<typeof BaseAutocomplete.List>) {
   return (
     <BaseAutocomplete.List
@@ -72,7 +65,6 @@ export function CommandList({ className, ...props }: ComponentProps<typeof BaseA
   );
 }
 
-/** Shown when nothing matches. Stays mounted so screen readers announce it. */
 export function CommandEmpty({ className, ...props }: ComponentProps<typeof BaseAutocomplete.Empty>) {
   return (
     <BaseAutocomplete.Empty
@@ -86,7 +78,7 @@ export function CommandGroupLabel({ className, ...props }: ComponentProps<typeof
   return <BaseAutocomplete.GroupLabel className={mergeClassName(groupLabelClassName, className)} {...props} />;
 }
 
-/** An action. Run it with `onClick` (also fired by Enter on the highlighted item). */
+/** Run it with `onClick`, also fired by Enter. */
 export function CommandItem({ className, ...props }: ComponentProps<typeof BaseAutocomplete.Item>) {
   return (
     <BaseAutocomplete.Item
@@ -103,7 +95,6 @@ export function CommandSeparator({ className, ...props }: ComponentProps<typeof 
   return <BaseAutocomplete.Separator className={mergeClassName(separatorClassName, className)} {...props} />;
 }
 
-/** Keyboard shortcut hint at the right of a CommandItem. */
 export function CommandShortcut({ className, ...props }: ComponentProps<'kbd'>) {
   return (
     <kbd
@@ -114,13 +105,11 @@ export function CommandShortcut({ className, ...props }: ComponentProps<'kbd'>) 
 }
 
 export type CommandDialogProps = ComponentProps<typeof BaseDialog.Root> & {
-  /** Accessible title of the dialog (visually hidden). */
   title?: string;
   className?: string;
   children?: ReactNode;
 };
 
-/** Command palette in a dialog near the top of the screen. Open it from a button or a shortcut (e.g. ⌘K). */
 export function CommandDialog({ title = 'Command palette', className, children, ...props }: CommandDialogProps) {
   return (
     <BaseDialog.Root {...props}>

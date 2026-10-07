@@ -20,15 +20,11 @@ export const AutocompleteCollection = BaseAutocomplete.Collection;
 export const useAutocompleteFilter = BaseAutocomplete.useFilter;
 
 export type AutocompleteInputProps = Omit<ComponentProps<typeof BaseAutocomplete.Input>, 'className'> & {
-  /** Shows a button that empties the field once it has text. Defaults to `true`. */
   clearable?: boolean;
-  /** Accessible label of the clear button. */
   clearLabel?: string;
-  /** Applied to the field wrapper. */
   className?: string;
 };
 
-/** Free text field that suggests completions as the user types. */
 export function AutocompleteInput({
   className,
   clearable = true,
@@ -52,7 +48,6 @@ type PositionerProps = ComponentProps<typeof BaseAutocomplete.Positioner>;
 export type AutocompleteContentProps = ComponentProps<typeof BaseAutocomplete.Popup> &
   Pick<PositionerProps, 'side' | 'sideOffset' | 'align' | 'alignOffset'>;
 
-/** Glass popup holding the suggestions. As wide as its field. */
 export function AutocompleteContent({
   className,
   side,
@@ -76,7 +71,6 @@ export function AutocompleteContent({
   );
 }
 
-/** Scrollable list of suggestions. Pass a function child to render each entry of the root's `items`. */
 export function AutocompleteList({ className, ...props }: ComponentProps<typeof BaseAutocomplete.List>) {
   return <BaseAutocomplete.List className={mergeClassName(listClassName, className)} {...props} />;
 }
@@ -85,20 +79,15 @@ export function AutocompleteItem({ className, ...props }: ComponentProps<typeof 
   return <BaseAutocomplete.Item className={mergeClassName(itemClassName, className)} {...props} />;
 }
 
-/** Message shown when no suggestion matches. Stays mounted so screen readers announce it. */
 export function AutocompleteEmpty({ className, ...props }: ComponentProps<typeof BaseAutocomplete.Empty>) {
   return <BaseAutocomplete.Empty className={mergeClassName(messageClassName, className)} {...props} />;
 }
 
 export type AutocompleteStatusProps = ComponentProps<typeof BaseAutocomplete.Status> & {
-  /** Shows a spinner before the message while suggestions load. */
   loading?: boolean;
 };
 
-/**
- * Loading or error message for suggestions fetched from an API. It stays mounted so screen
- * readers announce changes: pass `children` conditionally rather than rendering it conditionally.
- */
+/** Stays mounted so screen readers announce changes: pass `children` conditionally, not the component. */
 export function AutocompleteStatus({ className, loading = false, children, ...props }: AutocompleteStatusProps) {
   return (
     <BaseAutocomplete.Status className={mergeClassName(messageClassName, className)} {...props}>

@@ -2,14 +2,10 @@ import type { ComponentProps, ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 
 export type TableProps = ComponentProps<'table'> & {
-  /** Row height: `comfortable` (default) or `compact` for dense back-office screens. */
   density?: 'comfortable' | 'compact';
 };
 
-/**
- * Data table. It is not a glass surface itself: put it in a Panel (`<Panel><Table>…</Table></Panel>`).
- * Wide tables scroll horizontally inside their own wrapper.
- */
+/** Not a glass surface itself: put it in a Panel. */
 export function Table({ density = 'comfortable', className, ...props }: TableProps) {
   return (
     <div className="hx:w-full hx:overflow-x-auto">
@@ -18,7 +14,7 @@ export function Table({ density = 'comfortable', className, ...props }: TablePro
   );
 }
 
-/** @internal Shared by Table and DataTable (which provides its own scroll container). */
+/** @internal */
 export const tableClassName =
   'hx:group/table hx:w-full hx:caption-bottom hx:border-collapse hx:text-left hx:text-sm hx:text-fg hx:tabular-nums';
 
@@ -37,7 +33,6 @@ export function TableFooter({ className, ...props }: ComponentProps<'tfoot'>) {
 }
 
 export type TableRowProps = ComponentProps<'tr'> & {
-  /** Highlights the row as selected (also sets `aria-selected`). */
   selected?: boolean;
 };
 
@@ -49,7 +44,6 @@ export function TableRow({ selected, className, ...props }: TableRowProps) {
       className={cn(
         'hx:border-t hx:border-glass-border hx:transition-colors',
         props.onClick && 'hx:cursor-pointer',
-        // Header rows have no hover; body rows get the tint veil used inside glass surfaces.
         'hx:[tbody>&]:hover:bg-tint-hover hx:data-selected:bg-tint-active hx:[tbody>&]:data-selected:hover:bg-tint-active',
         'hx:[thead>&]:border-t-0',
         className,
@@ -72,9 +66,8 @@ const cellPadding = 'hx:px-4 hx:py-3 hx:group-data-[density=compact]/table:py-1.
 export type SortDirection = 'ascending' | 'descending' | 'none';
 
 export type TableHeadProps = ComponentProps<'th'> & {
-  /** Use `right` for amounts and numbers. */
   align?: Align;
-  /** Makes the column sortable: shows a sort button and sets `aria-sort`. */
+  /** Makes the column sortable. */
   sortDirection?: SortDirection;
   onSort?: () => void;
 };
@@ -115,7 +108,6 @@ export function TableHead({ align = 'left', sortDirection, onSort, className, ch
 }
 
 export type TableCellProps = ComponentProps<'td'> & {
-  /** Use `right` for amounts and numbers. */
   align?: Align;
 };
 
@@ -128,12 +120,10 @@ export function TableCaption({ className, ...props }: ComponentProps<'caption'>)
 }
 
 export type TableEmptyProps = {
-  /** Number of columns of the table, so the message spans the full width. */
   colSpan: number;
   children: ReactNode;
 };
 
-/** Full-width row shown when there is no data. */
 export function TableEmpty({ colSpan, children }: TableEmptyProps) {
   return (
     <tr className="hx:border-t hx:border-glass-border">

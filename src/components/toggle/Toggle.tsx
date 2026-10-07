@@ -10,7 +10,6 @@ export const toggleVariants = cva(
     'hx:text-sm hx:font-medium hx:text-fg hx:cursor-pointer hx:select-none hx:focus-ring',
     'hx:transition-[background-color,border-color,color] hx:duration-150 hx:ease-out',
     'hx:hover:bg-tint-hover hx:active:bg-tint-active',
-    // Pressed: same selected look as the sidebar's active item and the selected tab, icon in the brand color.
     'hx:data-pressed:border-(--hx-nav-active-border) hx:data-pressed:bg-(--hx-nav-active) hx:data-pressed:[&_svg]:text-accent',
     'hx:data-pressed:shadow-[inset_0_1px_0_0_var(--hx-glass-highlight),var(--hx-glass-shadow)]',
     'hx:data-disabled:pointer-events-none hx:data-disabled:opacity-50',
@@ -37,15 +36,10 @@ export const toggleVariants = cva(
 
 export type ToggleProps = ComponentProps<typeof BaseToggle> & VariantProps<typeof toggleVariants>;
 
-/** Two-state button (bold, favorite, show archived…). Give icon-only toggles an `aria-label`. */
 export function Toggle({ variant, size, className, ...props }: ToggleProps) {
   return <BaseToggle className={mergeClassName(toggleVariants({ variant, size }), className)} {...props} />;
 }
 
-/**
- * Set of toggles sharing one value (alignment, list/grid view), on a thin glass strip.
- * Single choice by default; `multiple` allows several. Give each Toggle a `value`.
- */
 export function ToggleGroup({ className, ...props }: ComponentProps<typeof BaseToggleGroup>) {
   return (
     <BaseToggleGroup

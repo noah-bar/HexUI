@@ -10,7 +10,6 @@ export const badgeVariants = cva(
   ],
   {
     variants: {
-      // Tinted glass: translucent hue fill + border, darker shade for the text.
       variant: {
         neutral: 'hx:border-neutral/25 hx:bg-neutral/12 hx:text-neutral-text',
         info: 'hx:border-info/25 hx:bg-info/12 hx:text-info-text',
@@ -27,11 +26,9 @@ export const badgeVariants = cva(
 
 export type BadgeProps = useRender.ComponentProps<'span'> &
   VariantProps<typeof badgeVariants> & {
-    /** Shows a small status dot before the label. */
     dot?: boolean;
   };
 
-/** Short status or category label. */
 export function Badge({ variant, dot, className, render, children, ...props }: BadgeProps) {
   return useRender({
     defaultTagName: 'span',

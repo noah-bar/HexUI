@@ -23,21 +23,16 @@ export const useComboboxFilter = BaseCombobox.useFilter;
 export const createComboboxItems = BaseCombobox.createItems;
 
 type InputGroupButtonsProps = {
-  /** Shows a button that clears the selection once there is one. Defaults to `true`. */
   clearable?: boolean;
-  /** Accessible label of the clear button. */
   clearLabel?: string;
-  /** Accessible label of the button that opens the list. */
   triggerLabel?: string;
 };
 
 export type ComboboxInputProps = Omit<ComponentProps<typeof BaseCombobox.Input>, 'className'> &
   InputGroupButtonsProps & {
-    /** Applied to the field wrapper. */
     className?: string;
   };
 
-/** Text field that filters the list as the user types, with clear and open buttons. */
 export function ComboboxInput({
   className,
   clearable = true,
@@ -54,16 +49,11 @@ export function ComboboxInput({
 }
 
 export type ComboboxChipsProps<Item> = ComboboxInputProps & {
-  /** Text of the chip for a selected item. Defaults to its `label` (or `value`) property. */
+  /** Defaults to the item's `label` (or `value`) property. */
   chipLabel?: (item: Item) => string;
-  /** Accessible label of a chip's remove button. */
   removeLabel?: (label: string) => string;
 };
 
-/**
- * Text field for `<Combobox multiple>`: each selected item shows as a removable chip
- * before the input. Backspace removes the last chip; Left Arrow moves into the chips.
- */
 export function ComboboxChips<Item>({
   className,
   placeholder,
@@ -131,10 +121,6 @@ function InputGroupButtons({ clearable, clearLabel, triggerLabel }: InputGroupBu
   );
 }
 
-/**
- * Button that opens a dropdown with a search field inside (`ComboboxSearch`):
- * looks like a Select trigger. Put a `ComboboxValue` inside.
- */
 export function ComboboxTrigger({ className, children, ...props }: ComponentProps<typeof BaseCombobox.Trigger>) {
   return (
     <BaseCombobox.Trigger
@@ -156,7 +142,6 @@ export function ComboboxTrigger({ className, children, ...props }: ComponentProp
   );
 }
 
-/** Search field at the top of a dropdown opened by `ComboboxTrigger`. */
 export function ComboboxSearch({
   className,
   ...props
@@ -179,7 +164,6 @@ type PositionerProps = ComponentProps<typeof BaseCombobox.Positioner>;
 export type ComboboxContentProps = ComponentProps<typeof BaseCombobox.Popup> &
   Pick<PositionerProps, 'side' | 'sideOffset' | 'align' | 'alignOffset'>;
 
-/** Glass popup holding the list (and the search field of a dropdown). As wide as its field. */
 export function ComboboxContent({
   className,
   side,
@@ -203,7 +187,6 @@ export function ComboboxContent({
   );
 }
 
-/** Scrollable list of items. Pass a function child to render each entry of the root's `items`. */
 export function ComboboxList({ className, ...props }: ComponentProps<typeof BaseCombobox.List>) {
   return <BaseCombobox.List className={mergeClassName(listClassName, className)} {...props} />;
 }
@@ -219,20 +202,15 @@ export function ComboboxItem({ className, children, ...props }: ComponentProps<t
   );
 }
 
-/** Message shown when no item matches the search. Stays mounted so screen readers announce it. */
 export function ComboboxEmpty({ className, ...props }: ComponentProps<typeof BaseCombobox.Empty>) {
   return <BaseCombobox.Empty className={mergeClassName(messageClassName, className)} {...props} />;
 }
 
 export type ComboboxStatusProps = ComponentProps<typeof BaseCombobox.Status> & {
-  /** Shows a spinner before the message while results load. */
   loading?: boolean;
 };
 
-/**
- * Loading or error message for lists fetched from an API. It stays mounted so screen
- * readers announce changes: pass `children` conditionally rather than rendering it conditionally.
- */
+/** Stays mounted so screen readers announce changes: pass `children` conditionally, not the component. */
 export function ComboboxStatus({ className, loading = false, children, ...props }: ComboboxStatusProps) {
   return (
     <BaseCombobox.Status className={mergeClassName(messageClassName, className)} {...props}>

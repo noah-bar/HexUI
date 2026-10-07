@@ -2,11 +2,6 @@ import { Field as BaseField } from '@base-ui/react/field';
 import { Children, type ComponentProps, type CSSProperties } from 'react';
 import { cn, mergeClassName } from '../../lib/cn';
 
-/**
- * Groups a label, a control, a description and an error message.
- * Controls inside (Input, Textarea, Select, Checkbox…) get their ids, aria links
- * and invalid state wired automatically.
- */
 export function Field({ className, ...props }: ComponentProps<typeof BaseField.Root>) {
   return <BaseField.Root className={mergeClassName('hx:flex hx:flex-col hx:gap-1.5', className)} {...props} />;
 }
@@ -24,10 +19,6 @@ export function FieldDescription({ className, ...props }: ComponentProps<typeof 
   return <BaseField.Description className={mergeClassName('hx:text-xs hx:text-fg-muted', className)} {...props} />;
 }
 
-/**
- * Shown when the field is invalid. Use `match` to target a specific validity state
- * (e.g. `match="valueMissing"`), or `match={true}` to always show it while invalid.
- */
 export function FieldError({ className, ...props }: ComponentProps<typeof BaseField.Error>) {
   return (
     <BaseField.Error
@@ -37,7 +28,6 @@ export function FieldError({ className, ...props }: ComponentProps<typeof BaseFi
   );
 }
 
-/** Wraps a single option (checkbox, radio) inside a Field that holds a group. */
 export function FieldItem({ className, ...props }: ComponentProps<typeof BaseField.Item>) {
   return <BaseField.Item className={mergeClassName('hx:flex hx:items-center hx:gap-2', className)} {...props} />;
 }
@@ -50,19 +40,12 @@ const stackBelowClassNames = {
 } as const;
 
 export type FieldRowProps = ComponentProps<'div'> & {
-  /**
-   * Column widths once the row is wide enough: a count (`3`) for equal columns,
-   * or a CSS grid template (`"1fr 3fr"`). Defaults to one equal column per child.
-   */
+  /** A column count (`3`) or a CSS grid template (`"1fr 3fr"`). */
   columns?: number | string;
-  /**
-   * Row width under which fields stack vertically: `sm` 24rem · `md` 28rem · `lg` 32rem (default) · `xl` 36rem.
-   * Measured on the row itself (container query), so it also works in dialogs and side panels.
-   */
+  /** Row width under which fields stack: `sm` 24rem · `md` 28rem · `lg` 32rem · `xl` 36rem. Measured on the row (container query). */
   stackBelow?: keyof typeof stackBelowClassNames;
 };
 
-/** Lays out several Fields on one line, stacking them when the row gets too narrow. */
 export function FieldRow({ columns, stackBelow = 'lg', className, style, children, ...props }: FieldRowProps) {
   const count = Children.toArray(children).length;
   const template = typeof columns === 'string' ? columns : `repeat(${columns ?? Math.max(count, 1)}, minmax(0, 1fr))`;
