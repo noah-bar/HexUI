@@ -3,6 +3,11 @@ import type { Preview } from '@storybook/react-vite';
 import { Backdrop, type BackdropProps } from '../src/components/backdrop/Backdrop';
 import './preview.css';
 
+const backdropImage = {
+  light: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1600&q=80',
+  dark: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&q=80',
+};
+
 const preview: Preview = {
   parameters: {
     layout: 'fullscreen',
@@ -21,6 +26,8 @@ const preview: Preview = {
           { value: 'mesh', title: 'Mesh' },
           { value: 'aurora', title: 'Aurora' },
           { value: 'plain', title: 'Plain' },
+          { value: 'image', title: 'Image' },
+          { value: 'image-blur', title: 'Image (blurred)' },
           { value: 'none', title: 'None (solid color)' },
         ],
         dynamicTitle: true,
@@ -32,10 +39,16 @@ const preview: Preview = {
   },
   decorators: [
     (Story, { globals, parameters, viewMode }) => {
-      const variant = globals.backdrop as BackdropProps['variant'] | 'none';
+      const backdrop = globals.backdrop as BackdropProps['variant'] | 'image' | 'image-blur' | 'none';
       return (
         <div className="sb-stage" data-view={viewMode} data-stage={parameters.stage}>
-          {parameters.backdrop !== false && variant !== 'none' && <Backdrop position="absolute" variant={variant} />}
+          {parameters.backdrop !== false &&
+            backdrop !== 'none' &&
+            (backdrop === 'image' || backdrop === 'image-blur' ? (
+              <Backdrop position="absolute" image={backdropImage} imageBlur={backdrop === 'image-blur' ? 16 : 0} />
+            ) : (
+              <Backdrop position="absolute" variant={backdrop} />
+            ))}
           <Story />
         </div>
       );
