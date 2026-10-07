@@ -1,6 +1,6 @@
 # @hxtc/hexui
 
-Librairie de composants React de Hex-Tech — [Base UI](https://base-ui.com) + Tailwind CSS v4, avec un glassmorphisme pensé pour des interfaces professionnelles.
+Hex-Tech's React component library — [Base UI](https://base-ui.com) + Tailwind CSS v4, with glassmorphism designed for professional interfaces.
 
 ## Installation
 
@@ -8,11 +8,11 @@ Librairie de composants React de Hex-Tech — [Base UI](https://base-ui.com) + T
 npm install @hxtc/hexui
 ```
 
-Importez les styles une seule fois, dans la feuille CSS principale de l'application :
+Import the styles once, in the application's main stylesheet:
 
 ```css
 /* app.css */
-@import 'tailwindcss'; /* si l'application utilise Tailwind */
+@import 'tailwindcss'; /* if the application uses Tailwind */
 @import '@hxtc/hexui';
 ```
 
@@ -20,30 +20,29 @@ Importez les styles une seule fois, dans la feuille CSS principale de l'applicat
 import { Button, Card, CardHeader, CardTitle } from '@hxtc/hexui';
 ```
 
-L'import depuis le JavaScript fonctionne aussi : `import '@hxtc/hexui/styles.css';` dans le point d'entrée.
+Importing from JavaScript works too: `import '@hxtc/hexui/styles.css';` in the entry point.
 
-Prérequis : React 19. **Tailwind n'est pas requis** côté application : le CSS est précompilé.
+Requirements: React 19. **Tailwind is not required** in the application: the CSS is precompiled.
 
-### Cohabitation avec le Tailwind de l'application
+### Coexisting with the application's Tailwind
 
-Toutes les classes internes sont préfixées `hx:` et toutes les variables `--hx-*` : aucune collision avec
-votre propre configuration Tailwind. La librairie n'embarque pas de reset global (preflight) et ne modifie
-donc pas les styles de votre application.
+Every internal class is prefixed with `hx:` and every variable with `--hx-*`: no collision with your own
+Tailwind setup. The library ships no global reset (preflight), so it never changes your application's styles.
 
-Vous pouvez passer vos propres classes via `className`, elles s'ajoutent à celles du composant.
+You can pass your own classes through `className`; they are added to the component's classes.
 
-## Fond de page
+## Page background
 
-Le verre a besoin de quelque chose derrière lui pour se voir. `Backdrop` pose un fond décoratif,
-fixé derrière toute l'application, qui suit les couleurs du thème :
+Glass needs something behind it to show. `Backdrop` adds a decorative background, fixed behind the whole
+application, that follows the theme colors:
 
 ```tsx
-<Backdrop />                                   {/* mesh, subtil : le réglage par défaut */}
-<Backdrop variant="aurora" intensity="medium" /> {/* page de connexion, écran d'accueil */}
-<Backdrop variant="plain" texture="grid" />      {/* écrans denses : tableaux, back-office */}
+<Backdrop />                                     {/* mesh, subtle: the default */}
+<Backdrop variant="aurora" intensity="medium" /> {/* login page, welcome screen */}
+<Backdrop variant="plain" texture="grid" />      {/* dense screens: tables, back office */}
 ```
 
-Il peut aussi envelopper l'application à la racine, à la manière d'un provider :
+It can also wrap the application at the root, like a provider:
 
 ```tsx
 createRoot(document.getElementById('root')!).render(
@@ -53,38 +52,38 @@ createRoot(document.getElementById('root')!).render(
 );
 ```
 
-Les enfants sont rendus à côté de la couche décorative, sans wrapper DOM supplémentaire : `Backdrop` ne modifie
-donc pas la mise en page de l'application.
+Children are rendered next to the decorative layer, without an extra DOM wrapper, so `Backdrop` does not change
+the application's layout.
 
-- `variant` : `mesh` · `aurora` · `plain` — `intensity` : `subtle` · `medium` — `texture` : `none` · `grain` · `grid`
-- `position="absolute"` le limite à un conteneur positionné (ajoutez `isolation: isolate` sur ce conteneur).
-- Placé avec un `z-index` négatif : si un wrapper de votre application a déjà une couleur de fond, il le masquera.
-- Il est optionnel : les composants restent lisibles sans lui.
-- Couleurs personnalisables avec `--hx-backdrop-base` et `--hx-backdrop-accent-1` à `-3`. Le premier accent suit `--hx-brand`.
+- `variant`: `mesh` · `aurora` · `plain` — `intensity`: `subtle` · `medium` — `texture`: `none` · `grain` · `grid`
+- `position="absolute"` confines it to a positioned container (add `isolation: isolate` to that container).
+- It sits at a negative `z-index`: if one of your application's wrappers already has a background color, it will hide it.
+- It is optional: components stay readable without it.
+- Colors can be customized with `--hx-backdrop-base` and `--hx-backdrop-accent-1` to `-3`. The first accent follows `--hx-brand`.
 
-Une image peut remplacer les halos colorés, éventuellement différente selon le thème. Seule l'image du thème courant
-est téléchargée :
+An image can replace the colored glows, optionally a different one per theme. Only the current theme's image
+is downloaded:
 
 ```tsx
-<Backdrop image="/fond.jpg" />
+<Backdrop image="/background.jpg" />
 <Backdrop
-  image={{ light: '/jour.jpg', dark: '/nuit.jpg' }}
-  imageBlur={12}                      {/* flou en px, 0 par défaut */}
-  overlay={{ light: 0.1, dark: 0.5 }} {/* voile noir, de 0 à 1 */}
+  image={{ light: '/day.jpg', dark: '/night.jpg' }}
+  imageBlur={12}                      {/* blur in px, 0 by default */}
+  overlay={{ light: 0.1, dark: 0.5 }} {/* black veil, from 0 to 1 */}
 />
 ```
 
-- `image` et `overlay` acceptent une valeur unique ou `{ light, dark }` (sans `dark`, la valeur `light` sert aux deux thèmes).
-- Le voile noir et le flou aident à garder le texte lisible sur une photo chargée. `texture` reste disponible par-dessus.
-- Le cadrage se règle avec `--hx-backdrop-image-position` (`center` par défaut).
+- `image` and `overlay` accept a single value or `{ light, dark }` (without `dark`, the `light` value is used for both themes).
+- The black veil and the blur help keep text readable over a busy photo. `texture` is still available on top.
+- Framing is set with `--hx-backdrop-image-position` (`center` by default).
 
-## Thème clair / sombre
+## Light / dark theme
 
-Ajoutez `class="dark"` (ou `data-theme="dark"`) sur `<html>`. Il faut que ce soit sur `<html>` (et pas sur un
-wrapper), parce que les dialogues, selects et tooltips sont rendus dans un portal à la racine du document.
+Add `class="dark"` (or `data-theme="dark"`) to `<html>`. It must be on `<html>` (not on a wrapper), because
+dialogs, selects and tooltips are rendered in a portal at the root of the document.
 
-Le hook `useTheme` peut gérer cet attribut, suivre le thème du système et mémoriser la préférence dans
-`localStorage` avec la clé `hx-theme` :
+The `useTheme` hook can manage this attribute, follow the system theme and remember the preference in
+`localStorage` under the `hx-theme` key:
 
 ```tsx
 import { Button, useTheme } from '@hxtc/hexui';
@@ -95,23 +94,22 @@ function ThemeButton() {
   return (
     <>
       <Button variant="ghost" onClick={toggleTheme}>
-        Passer au thème {resolvedTheme === 'dark' ? 'clair' : 'sombre'}
+        Switch to {resolvedTheme === 'dark' ? 'light' : 'dark'} theme
       </Button>
       <Button variant="ghost" onClick={() => setTheme('system')} disabled={theme === 'system'}>
-        Utiliser le thème du système
+        Use system theme
       </Button>
     </>
   );
 }
 ```
 
-`theme` vaut `light`, `dark` ou `system`. `resolvedTheme` contient toujours le thème effectivement appliqué,
-`light` ou `dark`. Les changements sont synchronisés avec le thème du système et entre les onglets ouverts.
-Si le stockage est indisponible (navigation privée, stockage bloqué), la préférence est gardée en mémoire le temps
-de la page.
+`theme` is `light`, `dark` or `system`. `resolvedTheme` always holds the theme actually applied, `light` or
+`dark`. Changes are kept in sync with the system theme and across open tabs. If storage is unavailable
+(private browsing, blocked storage), the preference is kept in memory for the lifetime of the page.
 
-Pour éviter un flash du thème clair au chargement, appliquez le thème avant le premier rendu avec `themeScript`,
-placé dans le `<head>` :
+To avoid a flash of the light theme on load, apply the theme before the first paint with `themeScript`,
+placed in `<head>`:
 
 ```tsx
 import { themeScript } from '@hxtc/hexui';
@@ -121,20 +119,20 @@ import { themeScript } from '@hxtc/hexui';
 </head>
 ```
 
-Avec un `index.html` statique (Vite sans SSR), collez le contenu de `themeScript` dans un `<script>` du `<head>`.
+With a static `index.html` (Vite without SSR), paste the contents of `themeScript` into a `<script>` in `<head>`.
 
-## Personnalisation
+## Customization
 
-La palette par défaut est un indigo sur des gris neutres : les teintes froides restent lumineuses
-une fois floutées, ce qui convient au verre. Trois rôles de couleur :
+The default palette is indigo on neutral grays: cool hues stay luminous once blurred, which suits glass.
+Three color roles:
 
-| Token | Valeur | Usage |
+| Token | Value | Usage |
 | --- | --- | --- |
-| `--hx-brand` | `#6366f1` | Décoratif : halos du fond, survol des listes. |
-| `--hx-primary` | `#4f46e5` | Fonds pleins avec texte blanc (boutons, switch) : 6,3:1. |
-| `--hx-accent` | `#4f46e5` clair / `#818cf8` sombre | Couleur de marque posée sur une surface : icônes, bordures de focus, coches. |
+| `--hx-brand` | `#6366f1` | Decorative: background glows, list hover. |
+| `--hx-primary` | `#4f46e5` | Filled surfaces with white text (buttons, switch): 6.3:1. |
+| `--hx-accent` | `#4f46e5` light / `#818cf8` dark | Brand color on top of a surface: icons, focus borders, check marks. |
 
-Surchargez les variables CSS après l'import des styles :
+Override the CSS variables after importing the styles:
 
 ```css
 :root {
@@ -145,36 +143,36 @@ Surchargez les variables CSS après l'import des styles :
 }
 ```
 
-Si vous changez `--hx-primary`, vérifiez que le texte `--hx-primary-fg` garde un contraste d'au moins 4,5:1.
+If you change `--hx-primary`, check that the `--hx-primary-fg` text keeps a contrast of at least 4.5:1.
 
-Les détails du matériau sont réglables, et chacun se désactive avec `none` :
+The material details can be tuned, and each one is turned off with `none`:
 
 ```css
 :root {
-  --hx-glass-grain: none; /* grain de verre dépoli */
-  --hx-glass-sheen: none; /* reflet en haut des surfaces */
-  --hx-glass-edge: none;  /* bord éclairé */
+  --hx-glass-grain: none; /* frosted glass grain */
+  --hx-glass-sheen: none; /* highlight at the top of surfaces */
+  --hx-glass-edge: none;  /* lit edge */
 }
 ```
 
-### Survol et sélection
+### Hover and selection
 
-- **À l'intérieur d'une surface en verre** (lignes de tableau, éléments de liste, bouton ghost) : voile léger
-  `hx:bg-tint-hover` / `hx:bg-tint-active`. Ne jamais y poser un gris opaque, qui efface l'effet de verre.
-- **Sur un élément qui est lui-même en verre** (bouton secondary) : `hx:bg-glass-hover` / `hx:bg-glass-active`.
+- **Inside a glass surface** (table rows, list items, ghost button): a light veil,
+  `hx:bg-tint-hover` / `hx:bg-tint-active`. Never put an opaque gray there: it erases the glass effect.
+- **On an element that is itself glass** (secondary button): `hx:bg-glass-hover` / `hx:bg-glass-active`.
 
-### Éléments flous dans une surface en verre
+### Blurred elements inside a glass surface
 
-Les surfaces (`glass-thin`, `glass`, `glass-strong`, `glass-dialog`) ne floutent pas elles-mêmes : leur flou est
-porté par un pseudo-élément `::after` placé derrière leur contenu, réglé par `--hx-glass-filter`. Ainsi, un élément
-flou placé à l'intérieur (en-tête collant, barre flottante, bouton) floute bien le contenu de la surface. Dans
-Chrome, un élément qui a lui-même un `backdrop-filter` empêche ses enfants de flouter ce qu'il contient.
-N'utilisez donc pas `::after` sur une surface en verre, ni de `z-index` négatif à l'intérieur : le flou le recouvrirait.
+Surfaces (`glass-thin`, `glass`, `glass-strong`, `glass-dialog`) do not blur by themselves: their blur is carried
+by an `::after` pseudo-element placed behind their content, set by `--hx-glass-filter`. This way, a blurred element
+placed inside (sticky header, floating bar, button) does blur the surface's content. In Chrome, an element that has
+a `backdrop-filter` itself prevents its children from blurring what it contains.
+So do not use `::after` on a glass surface, nor a negative `z-index` inside it: the blur would cover it.
 
-### Défilement dans une surface en verre
+### Scrolling inside a glass surface
 
-Ne mettez pas `overflow: auto` directement sur une surface en verre (Panel, Card…) : son bord éclairé dépasse
-de 1 px et la ferait défiler en largeur et en hauteur. Faites défiler un conteneur intérieur :
+Do not put `overflow: auto` directly on a glass surface (Panel, Card…): its lit edge overflows by 1 px and would
+make it scroll horizontally and vertically. Scroll an inner container instead:
 
 ```tsx
 <Panel className="flex max-h-96 flex-col">
@@ -182,94 +180,94 @@ de 1 px et la ferait défiler en largeur et en hauteur. Faites défiler un conte
 </Panel>
 ```
 
-### Vitrail (boutons primary et danger)
+### Stained glass (primary and danger buttons)
 
-`glass-stained` est un verre coloré translucide et dépoli, comme un bloc de vitrail : dégradé vertical, grain fin,
-aucun halo, et une bordure éclairée dans la couleur du verre (éclat principal en haut à gauche et second reflet en bas
-à droite). Le contenu derrière le bouton est flouté.
+`glass-stained` is a translucent, frosted colored glass, like a block of stained glass: vertical gradient, fine
+grain, no glow, and a lit border in the glass color (main highlight at the top left and a second reflection at the
+bottom right). The content behind the button is blurred.
 
-- **Mode clair** : un verre indigo (ou rouge) pâle, à travers lequel la page reste visible, avec un texte coloré foncé
-  (`--hx-primary-stain-text`, `--hx-danger-stain-text`, au moins 5,4:1 au survol). Le danger a un verre un peu plus
-  dense (`--hx-danger-stain-extra`) pour ne pas tirer vers le gris sur les halos cyan. Le verre fonce aussi à l'appui.
-- **Mode sombre** : le même principe, avec un verre teinté un peu plus dense et un texte clair coloré (indigo et rouge
-  pâles, au moins 7,2:1 au survol).
+- **Light mode**: a pale indigo (or red) glass through which the page stays visible, with dark colored text
+  (`--hx-primary-stain-text`, `--hx-danger-stain-text`, at least 5.4:1 on hover). Danger has a slightly denser glass
+  (`--hx-danger-stain-extra`) so it does not turn gray over the cyan glows. The glass also darkens when pressed.
+- **Dark mode**: the same principle, with a slightly denser tinted glass and light colored text (pale indigo and
+  red, at least 7.2:1 on hover).
 
-- Couleur : `--hx-stain` (verre) et `--hx-stain-text` (texte), comme le fait le bouton danger avec `--hx-danger-stain`
-  et `--hx-danger-stain-text`.
-- Densité : `--hx-stain-top` et `--hx-stain-bottom` (haut et bas du dégradé), `--hx-stain-hover` (ajouté au survol),
-  à régler par thème. Si vous baissez la densité, revérifiez le contraste du texte.
+- Color: `--hx-stain` (glass) and `--hx-stain-text` (text), as the danger button does with `--hx-danger-stain`
+  and `--hx-danger-stain-text`.
+- Density: `--hx-stain-top` and `--hx-stain-bottom` (top and bottom of the gradient), `--hx-stain-hover` (added on
+  hover), to be set per theme. If you lower the density, check the text contrast again.
 
-### Verre teinté (switch, checkbox, radio)
+### Tinted glass (switch, checkbox, radio)
 
-`glass-tint` est un verre coloré presque plein, pour les contrôles cochés. Il utilise `--hx-primary` par défaut.
-On change la couleur avec `--hx-tint-fill` et `--hx-tint-fill-hover`. Le remplissage reste à 85 % minimum et
-la couleur doit garder au moins 4,5:1 avec le texte blanc.
+`glass-tint` is an almost solid colored glass, for checked controls. It uses `--hx-primary` by default.
+Change the color with `--hx-tint-fill` and `--hx-tint-fill-hover`. The fill stays at 85% minimum and the color
+must keep at least 4.5:1 with white text.
 
-Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`, `--hx-primary(-hover|-fg)`, `--hx-accent`,
+Available tokens: `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`, `--hx-primary(-hover|-fg)`, `--hx-accent`,
 `--hx-danger(-hover|-fg)`, `--hx-danger-solid(-hover)`, `--hx-stain-*`, `--hx-primary-stain(-text)`, `--hx-danger-stain(-text)`, `--hx-ring`, `--hx-glass-thin`, `--hx-glass`, `--hx-glass-strong`,
 `--hx-glass-raised`, `--hx-glass-dialog`, `--hx-glass-field`, `--hx-glass-border`, `--hx-glass-blur`, `--hx-tint-hover`,
-`--hx-tint-active`, `--hx-backdrop-*`… (voir `src/styles/index.css`).
+`--hx-tint-active`, `--hx-backdrop-*`… (see `src/styles/index.css`).
 
-## Composants
+## Components
 
-| Composant | Exports |
+| Component | Exports |
 | --- | --- |
-| Autocomplete | `Autocomplete`, `AutocompleteInput` (`clearable`), `AutocompleteContent`, `AutocompleteList`, `AutocompleteItem`, `AutocompleteEmpty`, `AutocompleteStatus` (`loading`), `AutocompleteGroup`, `AutocompleteGroupLabel`, `AutocompleteCollection`, `AutocompleteSeparator`, `useAutocompleteFilter` — texte libre avec suggestions, voir ci-dessous |
-| Avatar | `Avatar` (`size` : `xs`, `sm`, `md`, `lg` ; `shape` : `circle`, `square`), `AvatarImage`, `AvatarFallback` (initiales ou icône, affichées tant que l'image n'est pas chargée), `AvatarGroup` (avatars superposés), `avatarVariants` |
-| Backdrop | `Backdrop` — variantes `mesh`, `aurora`, `plain` ; textures `grain`, `grid` |
-| Badge | `Badge`, `badgeVariants` — statuts `neutral`, `info`, `success`, `warning`, `danger` ; `dot` pour une pastille ; icônes acceptées |
-| Button | `Button`, `buttonVariants` — variantes `primary`, `secondary`, `outline`, `ghost`, `danger` ; tailles `sm`, `md`, `lg`, `icon` |
-| DropdownMenu | `DropdownMenu`, `DropdownMenuTrigger`, `DropdownMenuContent`, `DropdownMenuItem`, `DropdownMenuCheckboxItem`, `DropdownMenuRadioGroup`, `DropdownMenuRadioItem`, `DropdownMenuGroup`, `DropdownMenuLabel`, `DropdownMenuSeparator`, `DropdownMenuShortcut`, `DropdownMenuSub`, `DropdownMenuSubTrigger`, `DropdownMenuSubContent` — les noms de shadcn/ui pour `Menu` (mêmes composants, même rendu) |
-| Field | `Field`, `FieldLabel`, `FieldDescription`, `FieldError`, `FieldItem` — relie automatiquement libellé, aide et erreur au champ ; `<Field invalid>` ou la validation native (`required`, `validationMode`) passent le champ en rouge |
-| FieldRow | `FieldRow` — plusieurs `Field` sur une ligne, en colonne quand la ligne devient trop étroite (container query : marche aussi dans un dialogue ou un panneau latéral) ; `columns` (`3` ou `"1fr 3fr"`), `stackBelow` (`sm`, `md`, `lg` par défaut, `xl`) |
-| Input | `Input` — état d'erreur avec `aria-invalid` (ou automatiquement dans un `Field` Base UI invalide) ; même comportement sur `SelectTrigger` |
-| InputNumber | `InputNumber` (`min`, `max`, `step`, `decimalPlaces` — `0` par défaut, `required`, `format`, `locale`, `showSteppers`, `align`) — aligné à gauche et sans boutons −/+ par défaut ; un champ `required` vidé revient à `0` au blur ; flèches du clavier, Maj pour `largeStep` ; montants en CHF et pourcentages via `format` |
-| Card | `Card` (un `Panel` avec mise en page verticale et `p-6` par défaut ; accepte `variant` et `render`, utilisez les classes Tailwind pour modifier la marge interne), `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
-| Checkbox | `Checkbox` — états coché, `indeterminate`, invalide (`aria-invalid` ou dans un `Field` invalide) |
-| Collapsible | `Collapsible`, `CollapsibleTrigger` (à styler avec `render={<Button variant="ghost" />}`), `CollapsibleChevron` (tourne à l'ouverture), `CollapsibleContent` (hauteur animée ; `hiddenUntilFound` pour la recherche du navigateur) — section repliable |
-| Combobox | `Combobox`, `ComboboxInput` (`clearable`), `ComboboxChips` (sélection multiple), `ComboboxTrigger` + `ComboboxSearch` (liste déroulante avec recherche), `ComboboxValue`, `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), `ComboboxGroup`, `ComboboxGroupLabel`, `ComboboxCollection`, `ComboboxSeparator`, `useComboboxFilter`, `createComboboxItems` — voir ci-dessous |
-| Command | `Command` (`items`), `CommandInput`, `CommandList`, `CommandEmpty`, `CommandGroup`, `CommandGroupLabel`, `CommandCollection`, `CommandItem` (`onClick`), `CommandShortcut`, `CommandSeparator`, `CommandDialog` — palette de commandes filtrable ; voir ci-dessous |
-| DataTable | `DataTable`, `DataTableHeader`, `DataTableSortableHead`, `DataTableBody`, `nextOrdering` — voir ci-dessous (pagination intégrée) |
+| Autocomplete | `Autocomplete`, `AutocompleteInput` (`clearable`), `AutocompleteContent`, `AutocompleteList`, `AutocompleteItem`, `AutocompleteEmpty`, `AutocompleteStatus` (`loading`), `AutocompleteGroup`, `AutocompleteGroupLabel`, `AutocompleteCollection`, `AutocompleteSeparator`, `useAutocompleteFilter` — free text with suggestions, see below |
+| Avatar | `Avatar` (`size`: `xs`, `sm`, `md`, `lg`; `shape`: `circle`, `square`), `AvatarImage`, `AvatarFallback` (initials or icon, shown until the image has loaded), `AvatarGroup` (overlapping avatars), `avatarVariants` |
+| Backdrop | `Backdrop` — variants `mesh`, `aurora`, `plain`; textures `grain`, `grid`; `image`, `imageBlur`, `overlay` |
+| Badge | `Badge`, `badgeVariants` — statuses `neutral`, `info`, `success`, `warning`, `danger`; `dot` for a status dot; icons accepted |
+| Button | `Button`, `buttonVariants` — variants `primary`, `secondary`, `outline`, `ghost`, `danger`; sizes `sm`, `md`, `lg`, `icon` |
+| DropdownMenu | `DropdownMenu`, `DropdownMenuTrigger`, `DropdownMenuContent`, `DropdownMenuItem`, `DropdownMenuCheckboxItem`, `DropdownMenuRadioGroup`, `DropdownMenuRadioItem`, `DropdownMenuGroup`, `DropdownMenuLabel`, `DropdownMenuSeparator`, `DropdownMenuShortcut`, `DropdownMenuSub`, `DropdownMenuSubTrigger`, `DropdownMenuSubContent` — the shadcn/ui names for `Menu` (same components, same rendering) |
+| Field | `Field`, `FieldLabel`, `FieldDescription`, `FieldError`, `FieldItem` — automatically links label, help text and error to the control; `<Field invalid>` or native validation (`required`, `validationMode`) turns the field red |
+| FieldRow | `FieldRow` — several `Field`s on one row, stacked when the row gets too narrow (container query: also works in a dialog or a side panel); `columns` (`3` or `"1fr 3fr"`), `stackBelow` (`sm`, `md`, `lg` by default, `xl`) |
+| Input | `Input` — error state with `aria-invalid` (or automatically inside an invalid Base UI `Field`); same behavior on `SelectTrigger` |
+| InputNumber | `InputNumber` (`min`, `max`, `step`, `decimalPlaces` — `0` by default, `required`, `format`, `locale`, `showSteppers`, `align`) — left-aligned and without −/+ buttons by default; an emptied `required` field goes back to `0` on blur; arrow keys, Shift for `largeStep`; CHF amounts and percentages via `format` |
+| Card | `Card` (a `Panel` with a vertical layout and `p-6` by default; accepts `variant` and `render`, use Tailwind classes to change the padding), `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
+| Checkbox | `Checkbox` — checked, `indeterminate` and invalid states (`aria-invalid` or inside an invalid `Field`) |
+| Collapsible | `Collapsible`, `CollapsibleTrigger` (style it with `render={<Button variant="ghost" />}`), `CollapsibleChevron` (rotates when open), `CollapsibleContent` (animated height; `hiddenUntilFound` for the browser's find-in-page) — collapsible section |
+| Combobox | `Combobox`, `ComboboxInput` (`clearable`), `ComboboxChips` (multiple selection), `ComboboxTrigger` + `ComboboxSearch` (dropdown with search), `ComboboxValue`, `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), `ComboboxGroup`, `ComboboxGroupLabel`, `ComboboxCollection`, `ComboboxSeparator`, `useComboboxFilter`, `createComboboxItems` — see below |
+| Command | `Command` (`items`), `CommandInput`, `CommandList`, `CommandEmpty`, `CommandGroup`, `CommandGroupLabel`, `CommandCollection`, `CommandItem` (`onClick`), `CommandShortcut`, `CommandSeparator`, `CommandDialog` — filterable command palette; see below |
+| DataTable | `DataTable`, `DataTableHeader`, `DataTableSortableHead`, `DataTableBody`, `nextOrdering` — see below (built-in pagination) |
 | Dialog | `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose` |
-| Toast | `ToastProvider`, `useToast`, `createToastManager` — voir ci-dessous |
+| Toast | `ToastProvider`, `useToast`, `createToastManager` — see below |
 | Tooltip | `TooltipProvider`, `Tooltip`, `TooltipTrigger`, `TooltipContent` |
-| Label | `Label` — libellé d'un contrôle hors `Field` (switch, case à cocher dans une ligne) ; s'atténue avec le contrôle désactivé qu'il entoure |
+| Label | `Label` — label for a control outside a `Field` (switch, inline checkbox); dims with the disabled control it wraps |
 | Menu | `Menu`, `MenuTrigger`, `MenuContent`, `MenuItem` (`variant="danger"`), `MenuShortcut`, `MenuSeparator`, `MenuGroup`, `MenuGroupLabel`, `MenuCheckboxItem`, `MenuRadioGroup`, `MenuRadioItem`, `MenuSub`, `MenuSubTrigger`, `MenuSubContent` |
-| Menubar | `Menubar`, `MenubarMenu`, `MenubarTrigger`, `MenubarContent`, `MenubarItem` (`variant="danger"`), `MenubarShortcut`, `MenubarSeparator`, `MenubarGroup`, `MenubarLabel`, `MenubarCheckboxItem`, `MenubarRadioGroup`, `MenubarRadioItem`, `MenubarSub`, `MenubarSubTrigger`, `MenubarSubContent` — barre de menus (Fichier, Édition…) en verre fin ; les éléments sont ceux de `Menu` |
-| Pagination | `Pagination` (`page`, `totalPages`, `onPageChange`, `maxVisible`, libellés), `getVisiblePages` — utilisable seule, hors tableau |
-| Panel | `Panel`, `panelVariants` — surface en verre avec `p-2` par défaut ; variantes `thin`, `default`, `strong` ; utilisez les classes Tailwind pour modifier la marge interne ; prop `render` pour changer l'élément (`<aside />`, `<section />`…) |
-| Popover | `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverTitle`, `PopoverDescription`, `PopoverClose` — panneau flottant libre (filtres, détails, mini-formulaires) |
-| Progress | `Progress` (`value`, `null` pour une durée inconnue ; `label`, `showValue`, `format`, `locale`) — barre d'avancement qui passe au vert une fois terminée |
+| Menubar | `Menubar`, `MenubarMenu`, `MenubarTrigger`, `MenubarContent`, `MenubarItem` (`variant="danger"`), `MenubarShortcut`, `MenubarSeparator`, `MenubarGroup`, `MenubarLabel`, `MenubarCheckboxItem`, `MenubarRadioGroup`, `MenubarRadioItem`, `MenubarSub`, `MenubarSubTrigger`, `MenubarSubContent` — menu bar (File, Edit…) in thin glass; its items are those of `Menu` |
+| Pagination | `Pagination` (`page`, `totalPages`, `onPageChange`, `maxVisible`, labels), `getVisiblePages` — usable on its own, outside a table |
+| Panel | `Panel`, `panelVariants` — glass surface with `p-2` by default; variants `thin`, `default`, `strong`; use Tailwind classes to change the padding; `render` prop to change the element (`<aside />`, `<section />`…) |
+| Popover | `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverTitle`, `PopoverDescription`, `PopoverClose` — free-form floating panel (filters, details, small forms) |
+| Progress | `Progress` (`value`, `null` for an unknown duration; `label`, `showValue`, `format`, `locale`) — progress bar that turns green once complete |
 | Radio | `RadioGroup`, `Radio` |
-| Sidebar | `SidebarProvider`, `Sidebar` (`variant`, `collapsible`, `side`), `SidebarTrigger`, `SidebarRail`, `SidebarInset`, `SidebarInsetHeader` (`variant`), `SidebarHeader`, `SidebarContent`, `SidebarFooter`, `SidebarSeparator`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarGroupAction`, `SidebarGroupContent`, `SidebarMenu`, `SidebarMenuItem`, `SidebarMenuButton` (`isActive`, `tooltip`, `size`), `SidebarMenuAction`, `SidebarMenuBadge`, `SidebarMenuSkeleton`, `SidebarMenuSub`, `SidebarMenuSubItem`, `SidebarMenuSubButton`, `SidebarMenuCollapsible`, `SidebarMenuCollapsibleTrigger`, `SidebarMenuCollapsibleContent`, `useSidebar` — voir ci-dessous |
-| Separator | `Separator` (`orientation`) — ligne fine entre deux groupes de contenu |
-| Skeleton | `Skeleton` — forme de chargement animée |
+| Sidebar | `SidebarProvider`, `Sidebar` (`variant`, `collapsible`, `side`), `SidebarTrigger`, `SidebarRail`, `SidebarInset`, `SidebarInsetHeader` (`variant`), `SidebarHeader`, `SidebarContent`, `SidebarFooter`, `SidebarSeparator`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarGroupAction`, `SidebarGroupContent`, `SidebarMenu`, `SidebarMenuItem`, `SidebarMenuButton` (`isActive`, `tooltip`, `size`), `SidebarMenuAction`, `SidebarMenuBadge`, `SidebarMenuSkeleton`, `SidebarMenuSub`, `SidebarMenuSubItem`, `SidebarMenuSubButton`, `SidebarMenuCollapsible`, `SidebarMenuCollapsibleTrigger`, `SidebarMenuCollapsibleContent`, `useSidebar` — see below |
+| Separator | `Separator` (`orientation`) — thin line between two groups of content |
+| Skeleton | `Skeleton` — animated loading placeholder |
 | Select | `Select`, `SelectTrigger`, `SelectValue`, `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator` |
 | Sheet | `Sheet`, `SheetTrigger`, `SheetContent` (`side`, `size`), `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetCloseButton`, `SheetBody`, `SheetFooter`, `SheetClose` |
-| Slider | `Slider` (`label`, `showValue`, `format`, `locale`, `min`, `max`, `step` ; une valeur tableau donne une plage à deux poignées, nommées par `thumbLabels` ; `orientation`) |
-| Spinner | `Spinner` (`size` : `xs`, `sm`, `md`, `lg` ; `tone` : `current`, `muted`, `accent` ; `label` pour les lecteurs d'écran quand il est seul), `spinnerVariants` — continue de tourner, plus lentement, si l'utilisateur réduit les animations |
+| Slider | `Slider` (`label`, `showValue`, `format`, `locale`, `min`, `max`, `step`; an array value gives a two-thumb range, named by `thumbLabels`; `orientation`) |
+| Spinner | `Spinner` (`size`: `xs`, `sm`, `md`, `lg`; `tone`: `current`, `muted`, `accent`; `label` for screen readers when it stands alone), `spinnerVariants` — keeps spinning, more slowly, when the user reduces motion |
 | Switch | `Switch` |
-| Table | `Table` (`density`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow` (`selected`), `TableHead` (`align`, `sortDirection`, `onSort`), `TableCell` (`align`), `TableCaption`, `TableEmpty` — à placer dans un `Panel` ; défilement horizontal intégré pour les tableaux larges |
+| Table | `Table` (`density`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow` (`selected`), `TableHead` (`align`, `sortDirection`, `onSort`), `TableCell` (`align`), `TableCaption`, `TableEmpty` — place it in a `Panel`; built-in horizontal scrolling for wide tables |
 | Tabs | `Tabs`, `TabsList`, `TabsTab`, `TabsPanel` |
-| Toggle | `Toggle` (`variant` : `default`, `outline` ; `size` : `sm`, `md`, `lg`), `ToggleGroup` (choix unique, ou `multiple`), `toggleVariants` — bouton à deux états, enfoncé avec le même verre que l'élément actif de la sidebar |
-| Textarea | `Textarea` — mêmes états que `Input`, redimensionnable verticalement |
+| Toggle | `Toggle` (`variant`: `default`, `outline`; `size`: `sm`, `md`, `lg`), `ToggleGroup` (single choice, or `multiple`), `toggleVariants` — two-state button, pressed with the same glass as the sidebar's active item |
+| Textarea | `Textarea` — same states as `Input`, vertically resizable |
 
-### Tableau de données (DataTable)
+### Data table (DataTable)
 
-`DataTable` gère les listes alimentées par une API paginée : tri, pagination, chargement, état vide, en-tête fixe.
-Il remplit la hauteur de son parent et défile à l'intérieur : donnez une hauteur au `Panel` qui le contient.
-Il est **contrôlé** et ne dépend d'aucun routeur.
+`DataTable` handles lists fed by a paginated API: sorting, pagination, loading, empty state, sticky header.
+It fills its parent's height and scrolls inside: give the `Panel` that contains it a height.
+It is **controlled** and does not depend on any router.
 
 ```tsx
 <Panel className="h-[600px] p-0">
   <DataTable ordering={ordering} onOrderingChange={setOrdering} pagination={data} onSkipChange={setSkip}>
     <DataTableHeader>
       <TableRow>
-        <DataTableSortableHead field="full_name">Nom</DataTableSortableHead>
+        <DataTableSortableHead field="full_name">Name</DataTableSortableHead>
         <DataTableSortableHead field="total" align="right">Total</DataTableSortableHead>
       </TableRow>
     </DataTableHeader>
-    <DataTableBody colSpan={2} isPending={isPending} isEmpty={rows.length === 0} emptyText="Aucun client.">
+    <DataTableBody colSpan={2} isPending={isPending} isEmpty={rows.length === 0} emptyText="No clients.">
       {rows.map((row) => (
         <TableRow key={row.id} onClick={() => open(row)}>…</TableRow>
       ))}
@@ -278,13 +276,13 @@ Il est **contrôlé** et ne dépend d'aucun routeur.
 </Panel>
 ```
 
-- `ordering` au format Django : `"field"` croissant, `"-field"` décroissant, `""` aucun. Un clic fait
-  croissant → décroissant → aucun (`nextOrdering`).
-- `pagination` reçoit directement la réponse de l'API (`{ total, skip, limit }`) ; `onSkipChange` le nouveau `skip`.
-- Pensez à remettre `skip` à 0 quand la recherche ou le tri changent.
-- `useDebouncedValue(search, 300)` évite une requête à chaque frappe.
+- `ordering` uses the Django format: `"field"` ascending, `"-field"` descending, `""` none. A click cycles
+  ascending → descending → none (`nextOrdering`).
+- `pagination` takes the API response directly (`{ total, skip, limit }`); `onSkipChange` receives the new `skip`.
+- Remember to reset `skip` to 0 when the search or the sort changes.
+- `useDebouncedValue(search, 300)` avoids a request on every keystroke.
 
-**Garder l'état dans l'URL (react-router)** — partage de lien et retour arrière conservent la page et le tri :
+**Keeping the state in the URL (react-router)** — shared links and the back button keep the page and the sort:
 
 ```tsx
 const [params, setParams] = useSearchParams();
@@ -302,25 +300,25 @@ const update = (key: string, value: string | number) =>
   pagination={data} onSkipChange={(s) => update('skip', s)}>
 ```
 
-### Recherche dans une liste (Combobox, Autocomplete)
+### Searching a list (Combobox, Autocomplete)
 
-Trois composants selon le besoin :
+Pick the component that fits the need:
 
-| Besoin | Composant |
+| Need | Component |
 | --- | --- |
-| Peu d'options (moins de 10), pas de saisie | `Select` |
-| Choisir parmi une longue liste en tapant pour filtrer (client, collaborateur) | `Combobox` + `ComboboxInput` |
-| Plusieurs choix, affichés en puces | `<Combobox multiple>` + `ComboboxChips` |
-| Un champ qui ressemble à un Select, avec une recherche dans la liste déroulante | `Combobox` + `ComboboxTrigger` + `ComboboxSearch` |
-| Texte libre avec suggestions (localité, désignation, adresse) | `Autocomplete` |
+| Few options (fewer than 10), no typing | `Select` |
+| Pick from a long list by typing to filter (client, employee) | `Combobox` + `ComboboxInput` |
+| Several choices, shown as chips | `<Combobox multiple>` + `ComboboxChips` |
+| A field that looks like a Select, with a search inside the dropdown | `Combobox` + `ComboboxTrigger` + `ComboboxSearch` |
+| Free text with suggestions (city, description, address) | `Autocomplete` |
 
 ```tsx
 <Field>
   <FieldLabel>Client</FieldLabel>
   <Combobox items={clients}>
-    <ComboboxInput placeholder="Rechercher un client" />
+    <ComboboxInput placeholder="Search for a client" />
     <ComboboxContent>
-      <ComboboxEmpty>Aucun client trouvé.</ComboboxEmpty>
+      <ComboboxEmpty>No client found.</ComboboxEmpty>
       <ComboboxList>
         {(client: Client) => (
           <ComboboxItem key={client.id} value={client}>
@@ -333,46 +331,46 @@ Trois composants selon le besoin :
 </Field>
 ```
 
-- `items` reçoit la liste complète, que `ComboboxList` affiche une fois filtrée. Les objets sont filtrés
-  et affichés via leur propriété `label`. Sinon, passez `itemToStringLabel` au `Combobox`.
-- **Plusieurs choix** : `<Combobox multiple>` avec `<ComboboxChips placeholder="…" />`. Retour arrière retire la
-  dernière puce. `chipLabel` choisit le texte des puces.
-- **Liste déroulante avec recherche** : remplacez `ComboboxInput` par
-  `<ComboboxTrigger><ComboboxValue placeholder="Choisir…" /></ComboboxTrigger>` et ajoutez
-  `<ComboboxSearch placeholder="Rechercher…" />` en tête de `ComboboxContent`.
-- **Groupes** : `items={[{ value: 'Conseil', items: [...] }]}`, puis `ComboboxGroup` + `ComboboxGroupLabel`
-  + `ComboboxCollection` dans `ComboboxList`.
-- **Stocker des identifiants** plutôt que des objets : `createComboboxItems(clients, { getValue: (c) => c.id, getLabel: (c) => c.name })`.
-- `ComboboxEmpty` et `ComboboxStatus` restent montés pour être annoncés aux lecteurs d'écran. Rendez leur
-  **contenu** conditionnel, pas le composant.
+- `items` takes the full list, which `ComboboxList` renders once filtered. Objects are filtered and displayed
+  through their `label` property. Otherwise, pass `itemToStringLabel` to the `Combobox`.
+- **Several choices**: `<Combobox multiple>` with `<ComboboxChips placeholder="…" />`. Backspace removes the
+  last chip. `chipLabel` sets the chips' text.
+- **Dropdown with search**: replace `ComboboxInput` with
+  `<ComboboxTrigger><ComboboxValue placeholder="Choose…" /></ComboboxTrigger>` and add
+  `<ComboboxSearch placeholder="Search…" />` at the top of `ComboboxContent`.
+- **Groups**: `items={[{ value: 'Consulting', items: [...] }]}`, then `ComboboxGroup` + `ComboboxGroupLabel`
+  + `ComboboxCollection` inside `ComboboxList`.
+- **Store IDs** rather than objects: `createComboboxItems(clients, { getValue: (c) => c.id, getLabel: (c) => c.name })`.
+- `ComboboxEmpty` and `ComboboxStatus` stay mounted so screen readers announce them. Make their **content**
+  conditional, not the component.
 
-**Résultats venant d'une API** : désactivez le filtrage local et interrogez l'API à chaque frappe.
+**Results from an API**: turn off local filtering and query the API on each keystroke.
 
 ```tsx
 const [query, setQuery] = useState('');
 const debounced = useDebouncedValue(query, 300);
-const { data = [], isPending } = useClients(debounced); // gardez le client sélectionné dans la liste
+const { data = [], isPending } = useClients(debounced); // keep the selected client in the list
 
 <Combobox items={data} filter={null} onInputValueChange={setQuery} value={client} onValueChange={setClient}>
-  <ComboboxInput placeholder="Rechercher un client" />
+  <ComboboxInput placeholder="Search for a client" />
   <ComboboxContent>
-    <ComboboxStatus loading={isPending}>{isPending ? 'Recherche…' : null}</ComboboxStatus>
-    <ComboboxEmpty>{!isPending && query ? 'Aucun client trouvé.' : null}</ComboboxEmpty>
+    <ComboboxStatus loading={isPending}>{isPending ? 'Searching…' : null}</ComboboxStatus>
+    <ComboboxEmpty>{!isPending && query ? 'No client found.' : null}</ComboboxEmpty>
     <ComboboxList>{(c: Client) => <ComboboxItem key={c.id} value={c}>{c.label}</ComboboxItem>}</ComboboxList>
   </ComboboxContent>
 </Combobox>
 ```
 
-`Autocomplete` s'utilise de la même façon (`AutocompleteInput`, `AutocompleteContent`, `AutocompleteList`,
-`AutocompleteItem`…). Sa valeur est le **texte saisi**, une chaîne qu'on lit avec `value` / `onValueChange` :
-une suggestion ne fait que compléter ce texte. `autoHighlight` permet de valider la première suggestion avec Entrée.
+`Autocomplete` is used the same way (`AutocompleteInput`, `AutocompleteContent`, `AutocompleteList`,
+`AutocompleteItem`…). Its value is the **typed text**, a string read with `value` / `onValueChange`:
+a suggestion only completes that text. `autoHighlight` lets Enter accept the first suggestion.
 
-Les libellés accessibles des boutons (`clearLabel`, `triggerLabel`, `removeLabel`) sont en français par défaut.
+The buttons' accessible labels (`clearLabel`, `triggerLabel`, `removeLabel`) are in English by default.
 
-### Barre latérale (Sidebar)
+### Sidebar
 
-`Sidebar` reprend l'API de la sidebar de shadcn/ui : `SidebarProvider` met la page en page et garde l'état ouvert/replié,
-`Sidebar` contient la navigation, `SidebarInset` le contenu principal.
+`Sidebar` follows the API of the shadcn/ui sidebar: `SidebarProvider` lays out the page and holds the
+open/collapsed state, `Sidebar` contains the navigation, `SidebarInset` the main content.
 
 ```tsx
 <SidebarProvider>
@@ -380,12 +378,12 @@ Les libellés accessibles des boutons (`clearLabel`, `triggerLabel`, `removeLabe
     <SidebarHeader>…</SidebarHeader>
     <SidebarContent>
       <SidebarGroup>
-        <SidebarGroupLabel>Gestion</SidebarGroupLabel>
+        <SidebarGroupLabel>Management</SidebarGroupLabel>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton render={<Link to="/factures" />} isActive tooltip="Factures">
+            <SidebarMenuButton render={<Link to="/invoices" />} isActive tooltip="Invoices">
               <ReceiptText />
-              <span>Factures</span>
+              <span>Invoices</span>
             </SidebarMenuButton>
             <SidebarMenuBadge>3</SidebarMenuBadge>
           </SidebarMenuItem>
@@ -398,30 +396,30 @@ Les libellés accessibles des boutons (`clearLabel`, `triggerLabel`, `removeLabe
   <SidebarInset>
     <SidebarInsetHeader>
       <SidebarTrigger />
-      Factures
+      Invoices
     </SidebarInsetHeader>
     …
   </SidebarInset>
 </SidebarProvider>
 ```
 
-- `variant` : `floating` (panneau en verre détaché des bords, par défaut) ou `sidebar` (collé au bord de la page).
-- `collapsible` : `offcanvas` (glisse hors de l'écran, par défaut), `icon` (ne garde que les icônes, avec les
-  libellés en infobulle via `tooltip`) ou `none`. `side` : `left` ou `right`.
-- Sous 768 px, elle s'ouvre dans un `Sheet` ; `useSidebar().setOpenMobile(false)` la referme après une navigation.
-- Largeurs : `--hx-sidebar-width` (16rem), `--hx-sidebar-width-icon` (3rem), `--hx-sidebar-width-mobile` (18rem),
-  à surcharger via `style` sur `SidebarProvider`.
-- Liens : `render={<a href="…" />}` ou le `Link` de votre routeur sur `SidebarMenuButton` ; `SidebarMenuSubButton`
-  rend un lien par défaut.
-- Sous-menus repliables : `SidebarMenuCollapsible` + `SidebarMenuCollapsibleTrigger` + `SidebarMenuCollapsibleContent`
-  (qui contient un `SidebarMenuSub`).
-- `SidebarInsetHeader` est l'en-tête en verre du contenu (bouton de la barre, titre, actions). Il reste visible en haut
-  de la page et floute ce qui défile dessous. `variant` : `floating` (panneau aligné sur une barre flottante, par
-  défaut) ou `attached` (barre collée en haut, à associer à `variant="sidebar"`).
-- La barre est collante (`sticky`), pas fixe : elle reste dans le flux de la page, même dans un conteneur.
-- Le hook `useMediaQuery('(max-width: 767px)')`, utilisé pour le passage en mobile, est aussi exporté.
+- `variant`: `floating` (glass panel set off the edges, default) or `sidebar` (attached to the page edge).
+- `collapsible`: `offcanvas` (slides off screen, default), `icon` (keeps only the icons, with labels shown as
+  tooltips via `tooltip`) or `none`. `side`: `left` or `right`.
+- Below 768 px, it opens in a `Sheet`; `useSidebar().setOpenMobile(false)` closes it after navigating.
+- Widths: `--hx-sidebar-width` (16rem), `--hx-sidebar-width-icon` (3rem), `--hx-sidebar-width-mobile` (18rem),
+  to override through `style` on `SidebarProvider`.
+- Links: `render={<a href="…" />}` or your router's `Link` on `SidebarMenuButton`; `SidebarMenuSubButton`
+  renders a link by default.
+- Collapsible submenus: `SidebarMenuCollapsible` + `SidebarMenuCollapsibleTrigger` + `SidebarMenuCollapsibleContent`
+  (which contains a `SidebarMenuSub`).
+- `SidebarInsetHeader` is the content's glass header (sidebar button, title, actions). It stays visible at the top
+  of the page and blurs what scrolls underneath. `variant`: `floating` (panel aligned with a floating sidebar,
+  default) or `attached` (bar attached to the top, to pair with `variant="sidebar"`).
+- The bar is `sticky`, not fixed: it stays in the page flow, even inside a container.
+- The `useMediaQuery('(max-width: 767px)')` hook, used for the switch to mobile, is exported too.
 
-**Retenir l'état entre deux visites** : contrôlez `open` et enregistrez-le.
+**Remembering the state between visits**: control `open` and save it.
 
 ```tsx
 const [open, setOpen] = useState(() => localStorage.getItem('sidebar') !== 'closed');
@@ -435,18 +433,18 @@ const [open, setOpen] = useState(() => localStorage.getItem('sidebar') !== 'clos
 >
 ```
 
-### Palette de commandes (Command)
+### Command palette (Command)
 
-`Command` est une liste d'actions filtrable : on tape pour filtrer, les flèches déplacent la sélection, Entrée lance
-l'action en surbrillance. Elle est toujours ouverte : placez-la dans un `CommandDialog`, un `Popover` ou un panneau.
+`Command` is a filterable list of actions: type to filter, the arrow keys move the selection, Enter runs the
+highlighted action. It is always open: place it in a `CommandDialog`, a `Popover` or a panel.
 
 ```tsx
-const [open, setOpen] = useState(false); // ouvrez-la avec un bouton ou un raccourci ⌘K
+const [open, setOpen] = useState(false); // open it with a button or a ⌘K shortcut
 
 <CommandDialog open={open} onOpenChange={setOpen}>
   <Command items={groups}>
-    <CommandInput placeholder="Rechercher une action…" />
-    <CommandEmpty>Aucune action trouvée.</CommandEmpty>
+    <CommandInput placeholder="Search for an action…" />
+    <CommandEmpty>No action found.</CommandEmpty>
     <CommandList>
       {(group: Group) => (
         <CommandGroup key={group.value} items={group.items}>
@@ -465,14 +463,13 @@ const [open, setOpen] = useState(false); // ouvrez-la avec un bouton ou un racco
 </CommandDialog>
 ```
 
-- `items` reçoit toutes les entrées (ou des groupes `{ value, items }`) : c'est ce qui permet le filtrage. Les objets
-  sont filtrés sur leur propriété `label`.
-- Contrairement à `cmdk` (utilisé par shadcn/ui), les entrées ne sont pas déclarées en JSX statique mais rendues à
-  partir de `items`.
+- `items` takes every entry (or groups `{ value, items }`): this is what enables filtering. Objects are
+  filtered on their `label` property.
+- Unlike `cmdk` (used by shadcn/ui), entries are not declared as static JSX but rendered from `items`.
 
 ### Notifications (Toast)
 
-Placez `ToastProvider` une seule fois autour de l'application, puis utilisez `useToast` n'importe où dessous :
+Place `ToastProvider` once around the application, then use `useToast` anywhere below it:
 
 ```tsx
 <ToastProvider>
@@ -480,71 +477,75 @@ Placez `ToastProvider` une seule fois autour de l'application, puis utilisez `us
 </ToastProvider>
 
 const toast = useToast();
-toast.add({ type: 'success', title: 'Facture envoyée', description: 'F-2026-1045 a été envoyée.' });
-toast.add({ title: 'Projet archivé', actionProps: { children: 'Annuler', onClick: undo } });
+toast.add({ type: 'success', title: 'Invoice sent', description: 'F-2026-1045 has been sent.' });
+toast.add({ title: 'Project archived', actionProps: { children: 'Undo', onClick: undo } });
 toast.promise(save(), {
-  loading: { type: 'loading', title: 'Enregistrement…' },
-  success: { type: 'success', title: 'Enregistré' },
-  error: { type: 'error', title: 'Échec de l’enregistrement' },
+  loading: { type: 'loading', title: 'Saving…' },
+  success: { type: 'success', title: 'Saved' },
+  error: { type: 'error', title: 'Could not save' },
 });
 ```
 
-`type` : `success`, `error`, `warning`, `info`, `loading` (choisit l'icône). Les toasts disparaissent après 5 s
-(`timeout`, `0` pour les garder). Pour en créer hors de React (client API, store), utilisez `createToastManager()`
-et passez-le à `<ToastProvider toastManager={manager}>`.
+`type`: `success`, `error`, `warning`, `info`, `loading` (picks the icon). Toasts disappear after 5 s
+(`timeout`, `0` to keep them). To create them outside React (API client, store), use `createToastManager()`
+and pass it to `<ToastProvider toastManager={manager}>`.
 
-### Panneau latéral (Sheet)
+### Side panel (Sheet)
 
-`Sheet` affiche un panneau modal depuis un bord de l'écran. `side` accepte `top`, `right`, `bottom` ou `left`,
-et `size` accepte `sm`, `md`, `lg` ou `full`. Placez le contenu susceptible de défiler dans `SheetBody` : la surface
-en verre reste fixe et son bord éclairé n'est jamais rogné par un `overflow-auto`.
+`Sheet` shows a modal panel from an edge of the screen. `side` accepts `top`, `right`, `bottom` or `left`,
+and `size` accepts `sm`, `md`, `lg` or `full`. Put content that may scroll in `SheetBody`: the glass surface
+stays fixed and its lit edge is never clipped by an `overflow-auto`.
 
 ```tsx
 <Sheet>
-  <SheetTrigger render={<Button variant="secondary" />}>Voir le client</SheetTrigger>
+  <SheetTrigger render={<Button variant="secondary" />}>View client</SheetTrigger>
   <SheetContent side="right" size="md">
     <SheetHeader>
       <SheetTitle>Léman Immobilier SA</SheetTitle>
-      <SheetDescription>Coordonnées et activité récente.</SheetDescription>
-      <SheetCloseButton aria-label="Fermer le panneau" />
+      <SheetDescription>Contact details and recent activity.</SheetDescription>
+      <SheetCloseButton aria-label="Close panel" />
     </SheetHeader>
     <SheetBody>…</SheetBody>
     <SheetFooter>
-      <SheetClose render={<Button variant="ghost" />}>Fermer</SheetClose>
-      <Button>Modifier</Button>
+      <SheetClose render={<Button variant="ghost" />}>Close</SheetClose>
+      <Button>Edit</Button>
     </SheetFooter>
   </SheetContent>
 </Sheet>
 ```
 
-Pour rendre un trigger avec le style d'un bouton, utilisez la prop `render` de Base UI :
+To render a trigger with a button's style, use Base UI's `render` prop:
 
 ```tsx
-<DialogTrigger render={<Button variant="secondary" />}>Ouvrir</DialogTrigger>
+<DialogTrigger render={<Button variant="secondary" />}>Open</DialogTrigger>
 ```
 
-## Développement
+## Development
 
 ```bash
-npm run dev              # Storybook sur http://localhost:6006
-npm run build            # Build de la librairie dans dist/ (ESM + .d.ts + hexui.css)
+npm run dev              # Storybook at http://localhost:6006
+npm run build            # Library build in dist/ (ESM + .d.ts + hexui.css)
 npm run typecheck
-npm run build-storybook  # Storybook statique dans storybook-static/
+npm run build-storybook  # Static Storybook in storybook-static/
 ```
 
 ### Structure
 
 ```
 src/
-  styles/index.css         # tokens, utilitaires glass, replis d'accessibilité
-  lib/cn.ts                # fusion de classes (tailwind-merge configuré pour le préfixe hx)
-  components/<nom>/        # composant + stories
-  index.ts                 # exports publics
-.storybook/                # config Storybook (son propre vite.config, distinct du build lib)
+  styles/index.css         # tokens, glass utilities, accessibility fallbacks
+  lib/cn.ts                # class merging (tailwind-merge configured for the hx prefix)
+  components/<name>/       # component + stories
+  index.ts                 # public exports
+.storybook/                # Storybook config (its own vite.config, separate from the library build)
 ```
 
-### Ajouter un composant
+### Adding a component
 
-1. Créer `src/components/<nom>/<Nom>.tsx` en enveloppant la primitive Base UI correspondante.
-2. Préfixer toutes les classes Tailwind par `hx:` et utiliser `mergeClassName` pour la prop `className`.
-3. Ajouter `<Nom>.stories.tsx` à côté, puis exporter depuis `src/index.ts`.
+1. Create `src/components/<name>/<Name>.tsx` by wrapping the matching Base UI primitive.
+2. Prefix every Tailwind class with `hx:` and use `mergeClassName` for the `className` prop.
+3. Add `<Name>.stories.tsx` next to it, then export it from `src/index.ts`.
+
+## License
+
+[MIT](./LICENSE)
