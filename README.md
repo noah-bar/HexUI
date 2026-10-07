@@ -142,16 +142,19 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | Backdrop | `Backdrop` — variantes `mesh`, `aurora`, `plain` ; textures `grain`, `grid` |
 | Badge | `Badge`, `badgeVariants` — statuts `neutral`, `info`, `success`, `warning`, `danger` ; `dot` pour une pastille ; icônes acceptées |
 | Button | `Button`, `buttonVariants` — variantes `primary`, `secondary`, `outline`, `ghost`, `danger` ; tailles `sm`, `md`, `lg`, `icon` |
+| DropdownMenu | `DropdownMenu`, `DropdownMenuTrigger`, `DropdownMenuContent`, `DropdownMenuItem`, `DropdownMenuCheckboxItem`, `DropdownMenuRadioGroup`, `DropdownMenuRadioItem`, `DropdownMenuGroup`, `DropdownMenuLabel`, `DropdownMenuSeparator`, `DropdownMenuShortcut`, `DropdownMenuSub`, `DropdownMenuSubTrigger`, `DropdownMenuSubContent` — les noms de shadcn/ui pour `Menu` (mêmes composants, même rendu) |
 | Field | `Field`, `FieldLabel`, `FieldDescription`, `FieldError`, `FieldItem` — relie automatiquement libellé, aide et erreur au champ ; `<Field invalid>` ou la validation native (`required`, `validationMode`) passent le champ en rouge |
 | FieldRow | `FieldRow` — plusieurs `Field` sur une ligne, en colonne quand la ligne devient trop étroite (container query : marche aussi dans un dialogue ou un panneau latéral) ; `columns` (`3` ou `"1fr 3fr"`), `stackBelow` (`sm`, `md`, `lg` par défaut, `xl`) |
 | Input | `Input` — état d'erreur avec `aria-invalid` (ou automatiquement dans un `Field` Base UI invalide) ; même comportement sur `SelectTrigger` |
 | Card | `Card` (un `Panel` avec mise en page verticale ; accepte `variant`, `padding` et `render`), `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
 | Checkbox | `Checkbox` — états coché, `indeterminate`, invalide (`aria-invalid` ou dans un `Field` invalide) |
 | Combobox | `Combobox`, `ComboboxInput` (`clearable`), `ComboboxChips` (sélection multiple), `ComboboxTrigger` + `ComboboxSearch` (liste déroulante avec recherche), `ComboboxValue`, `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), `ComboboxGroup`, `ComboboxGroupLabel`, `ComboboxCollection`, `ComboboxSeparator`, `useComboboxFilter`, `createComboboxItems` — voir ci-dessous |
+| Command | `Command` (`items`), `CommandInput`, `CommandList`, `CommandEmpty`, `CommandGroup`, `CommandGroupLabel`, `CommandCollection`, `CommandItem` (`onClick`), `CommandShortcut`, `CommandSeparator`, `CommandDialog` — palette de commandes filtrable ; voir ci-dessous |
 | DataTable | `DataTable`, `DataTableHeader`, `DataTableSortableHead`, `DataTableBody`, `nextOrdering` — voir ci-dessous (pagination intégrée) |
 | Dialog | `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose` |
 | Toast | `ToastProvider`, `useToast`, `createToastManager` — voir ci-dessous |
 | Tooltip | `TooltipProvider`, `Tooltip`, `TooltipTrigger`, `TooltipContent` |
+| Label | `Label` — libellé d'un contrôle hors `Field` (switch, case à cocher dans une ligne) ; s'atténue avec le contrôle désactivé qu'il entoure |
 | Menu | `Menu`, `MenuTrigger`, `MenuContent`, `MenuItem` (`variant="danger"`), `MenuShortcut`, `MenuSeparator`, `MenuGroup`, `MenuGroupLabel`, `MenuCheckboxItem`, `MenuRadioGroup`, `MenuRadioItem`, `MenuSub`, `MenuSubTrigger`, `MenuSubContent` |
 | Menubar | `Menubar`, `MenubarMenu`, `MenubarTrigger`, `MenubarContent`, `MenubarItem` (`variant="danger"`), `MenubarShortcut`, `MenubarSeparator`, `MenubarGroup`, `MenubarLabel`, `MenubarCheckboxItem`, `MenubarRadioGroup`, `MenubarRadioItem`, `MenubarSub`, `MenubarSubTrigger`, `MenubarSubContent` — barre de menus (Fichier, Édition…) en verre fin ; les éléments sont ceux de `Menu` |
 | Pagination | `Pagination` (`page`, `totalPages`, `onPageChange`, `maxVisible`, libellés), `getVisiblePages` — utilisable seule, hors tableau |
@@ -353,6 +356,41 @@ const [open, setOpen] = useState(() => localStorage.getItem('sidebar') !== 'clos
   }}
 >
 ```
+
+### Palette de commandes (Command)
+
+`Command` est une liste d'actions filtrable : on tape pour filtrer, les flèches déplacent la sélection, Entrée lance
+l'action en surbrillance. Elle est toujours ouverte : placez-la dans un `CommandDialog`, un `Popover` ou un panneau.
+
+```tsx
+const [open, setOpen] = useState(false); // ouvrez-la avec un bouton ou un raccourci ⌘K
+
+<CommandDialog open={open} onOpenChange={setOpen}>
+  <Command items={groups}>
+    <CommandInput placeholder="Rechercher une action…" />
+    <CommandEmpty>Aucune action trouvée.</CommandEmpty>
+    <CommandList>
+      {(group: Group) => (
+        <CommandGroup key={group.value} items={group.items}>
+          <CommandGroupLabel>{group.value}</CommandGroupLabel>
+          <CommandCollection>
+            {(action: Action) => (
+              <CommandItem key={action.value} value={action} onClick={() => run(action)}>
+                {action.label}
+              </CommandItem>
+            )}
+          </CommandCollection>
+        </CommandGroup>
+      )}
+    </CommandList>
+  </Command>
+</CommandDialog>
+```
+
+- `items` reçoit toutes les entrées (ou des groupes `{ value, items }`) : c'est ce qui permet le filtrage. Les objets
+  sont filtrés sur leur propriété `label`.
+- Contrairement à `cmdk` (utilisé par shadcn/ui), les entrées ne sont pas déclarées en JSX statique mais rendues à
+  partir de `items`.
 
 ### Notifications (Toast)
 
