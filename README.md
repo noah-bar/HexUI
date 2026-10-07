@@ -114,9 +114,13 @@ placed in `<head>`:
 ```tsx
 import { themeScript } from '@hxtc/hexui';
 
-<head>
-  <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-</head>
+export function Head() {
+  return (
+    <head>
+      <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+    </head>
+  );
+}
 ```
 
 With a static `index.html` (Vite without SSR), paste the contents of `themeScript` into a `<script>` in `<head>`.
@@ -126,11 +130,11 @@ With a static `index.html` (Vite without SSR), paste the contents of `themeScrip
 The default palette is indigo on neutral grays: cool hues stay luminous once blurred, which suits glass.
 Three color roles:
 
-| Token | Value | Usage |
-| --- | --- | --- |
-| `--hx-brand` | `#6366f1` | Decorative: background glows, list hover. |
-| `--hx-primary` | `#4f46e5` | Filled surfaces with white text (buttons, switch): 6.3:1. |
-| `--hx-accent` | `#4f46e5` light / `#818cf8` dark | Brand color on top of a surface: icons, focus borders, check marks. |
+| Token          | Value                            | Usage                                                               |
+| -------------- | -------------------------------- | ------------------------------------------------------------------- |
+| `--hx-brand`   | `#6366f1`                        | Decorative: background glows, list hover.                           |
+| `--hx-primary` | `#4f46e5`                        | Filled surfaces with white text (buttons, switch): 6.3:1.           |
+| `--hx-accent`  | `#4f46e5` light / `#818cf8` dark | Brand color on top of a surface: icons, focus borders, check marks. |
 
 Override the CSS variables after importing the styles:
 
@@ -151,7 +155,7 @@ The material details can be tuned, and each one is turned off with `none`:
 :root {
   --hx-glass-grain: none; /* frosted glass grain */
   --hx-glass-sheen: none; /* highlight at the top of surfaces */
-  --hx-glass-edge: none;  /* lit edge */
+  --hx-glass-edge: none; /* lit edge */
 }
 ```
 
@@ -210,47 +214,47 @@ Available tokens: `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`, `-
 
 ## Components
 
-| Component | Exports |
-| --- | --- |
-| Autocomplete | `Autocomplete`, `AutocompleteInput` (`clearable`), `AutocompleteContent`, `AutocompleteList`, `AutocompleteItem`, `AutocompleteEmpty`, `AutocompleteStatus` (`loading`), `AutocompleteGroup`, `AutocompleteGroupLabel`, `AutocompleteCollection`, `AutocompleteSeparator`, `useAutocompleteFilter` — free text with suggestions, see below |
-| Avatar | `Avatar` (`size`: `xs`, `sm`, `md`, `lg`; `shape`: `circle`, `square`), `AvatarImage`, `AvatarFallback` (initials or icon, shown until the image has loaded), `AvatarGroup` (overlapping avatars), `avatarVariants` |
-| Backdrop | `Backdrop` — variants `mesh`, `aurora`, `plain`; textures `grain`, `grid`; `image`, `imageBlur`, `overlay` |
-| Badge | `Badge`, `badgeVariants` — statuses `neutral`, `info`, `success`, `warning`, `danger`; `dot` for a status dot; icons accepted |
-| Button | `Button`, `buttonVariants` — variants `primary`, `secondary`, `outline`, `ghost`, `danger`; sizes `sm`, `md`, `lg`, `icon` |
-| DropdownMenu | `DropdownMenu`, `DropdownMenuTrigger`, `DropdownMenuContent`, `DropdownMenuItem`, `DropdownMenuCheckboxItem`, `DropdownMenuRadioGroup`, `DropdownMenuRadioItem`, `DropdownMenuGroup`, `DropdownMenuLabel`, `DropdownMenuSeparator`, `DropdownMenuShortcut`, `DropdownMenuSub`, `DropdownMenuSubTrigger`, `DropdownMenuSubContent` — the shadcn/ui names for `Menu` (same components, same rendering) |
-| Field | `Field`, `FieldLabel`, `FieldDescription`, `FieldError`, `FieldItem` — automatically links label, help text and error to the control; `<Field invalid>` or native validation (`required`, `validationMode`) turns the field red |
-| FieldRow | `FieldRow` — several `Field`s on one row, stacked when the row gets too narrow (container query: also works in a dialog or a side panel); `columns` (`3` or `"1fr 3fr"`), `stackBelow` (`sm`, `md`, `lg` by default, `xl`) |
-| Input | `Input` — error state with `aria-invalid` (or automatically inside an invalid Base UI `Field`); same behavior on `SelectTrigger` |
-| InputNumber | `InputNumber` (`min`, `max`, `step`, `decimalPlaces` — `0` by default, `required`, `format`, `locale`, `showSteppers`, `align`) — left-aligned and without −/+ buttons by default; an emptied `required` field goes back to `0` on blur; arrow keys, Shift for `largeStep`; CHF amounts and percentages via `format` |
-| Card | `Card` (a `Panel` with a vertical layout and `p-6` by default; accepts `variant` and `render`, use Tailwind classes to change the padding), `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
-| Checkbox | `Checkbox` — checked, `indeterminate` and invalid states (`aria-invalid` or inside an invalid `Field`) |
-| Collapsible | `Collapsible`, `CollapsibleTrigger` (style it with `render={<Button variant="ghost" />}`), `CollapsibleChevron` (rotates when open), `CollapsibleContent` (animated height; `hiddenUntilFound` for the browser's find-in-page) — collapsible section |
-| Combobox | `Combobox`, `ComboboxInput` (`clearable`), `ComboboxChips` (multiple selection), `ComboboxTrigger` + `ComboboxSearch` (dropdown with search), `ComboboxValue`, `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), `ComboboxGroup`, `ComboboxGroupLabel`, `ComboboxCollection`, `ComboboxSeparator`, `useComboboxFilter`, `createComboboxItems` — see below |
-| Command | `Command` (`items`), `CommandInput`, `CommandList`, `CommandEmpty`, `CommandGroup`, `CommandGroupLabel`, `CommandCollection`, `CommandItem` (`onClick`), `CommandShortcut`, `CommandSeparator`, `CommandDialog` — filterable command palette; see below |
-| DataTable | `DataTable`, `DataTableHeader`, `DataTableSortableHead`, `DataTableBody`, `nextOrdering` — see below (built-in pagination) |
-| Dialog | `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose` |
-| Toast | `ToastProvider`, `useToast`, `createToastManager` — see below |
-| Tooltip | `TooltipProvider`, `Tooltip`, `TooltipTrigger`, `TooltipContent` |
-| Label | `Label` — label for a control outside a `Field` (switch, inline checkbox); dims with the disabled control it wraps |
-| Menu | `Menu`, `MenuTrigger`, `MenuContent`, `MenuItem` (`variant="danger"`), `MenuShortcut`, `MenuSeparator`, `MenuGroup`, `MenuGroupLabel`, `MenuCheckboxItem`, `MenuRadioGroup`, `MenuRadioItem`, `MenuSub`, `MenuSubTrigger`, `MenuSubContent` |
-| Menubar | `Menubar`, `MenubarMenu`, `MenubarTrigger`, `MenubarContent`, `MenubarItem` (`variant="danger"`), `MenubarShortcut`, `MenubarSeparator`, `MenubarGroup`, `MenubarLabel`, `MenubarCheckboxItem`, `MenubarRadioGroup`, `MenubarRadioItem`, `MenubarSub`, `MenubarSubTrigger`, `MenubarSubContent` — menu bar (File, Edit…) in thin glass; its items are those of `Menu` |
-| Pagination | `Pagination` (`page`, `totalPages`, `onPageChange`, `maxVisible`, labels), `getVisiblePages` — usable on its own, outside a table |
-| Panel | `Panel`, `panelVariants` — glass surface with `p-2` by default; variants `thin`, `default`, `strong`; use Tailwind classes to change the padding; `render` prop to change the element (`<aside />`, `<section />`…) |
-| Popover | `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverTitle`, `PopoverDescription`, `PopoverClose` — free-form floating panel (filters, details, small forms) |
-| Progress | `Progress` (`value`, `null` for an unknown duration; `label`, `showValue`, `format`, `locale`) — progress bar that turns green once complete |
-| Radio | `RadioGroup`, `Radio` |
-| Sidebar | `SidebarProvider`, `Sidebar` (`variant`, `collapsible`, `side`), `SidebarTrigger`, `SidebarRail`, `SidebarInset`, `SidebarInsetHeader` (`variant`), `SidebarHeader`, `SidebarContent`, `SidebarFooter`, `SidebarSeparator`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarGroupAction`, `SidebarGroupContent`, `SidebarMenu`, `SidebarMenuItem`, `SidebarMenuButton` (`isActive`, `tooltip`, `size`), `SidebarMenuAction`, `SidebarMenuBadge`, `SidebarMenuSkeleton`, `SidebarMenuSub`, `SidebarMenuSubItem`, `SidebarMenuSubButton`, `SidebarMenuCollapsible`, `SidebarMenuCollapsibleTrigger`, `SidebarMenuCollapsibleContent`, `useSidebar` — see below |
-| Separator | `Separator` (`orientation`) — thin line between two groups of content |
-| Skeleton | `Skeleton` — animated loading placeholder |
-| Select | `Select`, `SelectTrigger`, `SelectValue`, `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator` |
-| Sheet | `Sheet`, `SheetTrigger`, `SheetContent` (`side`, `size`), `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetCloseButton`, `SheetBody`, `SheetFooter`, `SheetClose` |
-| Slider | `Slider` (`label`, `showValue`, `format`, `locale`, `min`, `max`, `step`; an array value gives a two-thumb range, named by `thumbLabels`; `orientation`) |
-| Spinner | `Spinner` (`size`: `xs`, `sm`, `md`, `lg`; `tone`: `current`, `muted`, `accent`; `label` for screen readers when it stands alone), `spinnerVariants` — keeps spinning, more slowly, when the user reduces motion |
-| Switch | `Switch` |
-| Table | `Table` (`density`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow` (`selected`), `TableHead` (`align`, `sortDirection`, `onSort`), `TableCell` (`align`), `TableCaption`, `TableEmpty` — place it in a `Panel`; built-in horizontal scrolling for wide tables |
-| Tabs | `Tabs`, `TabsList`, `TabsTab`, `TabsPanel` |
-| Toggle | `Toggle` (`variant`: `default`, `outline`; `size`: `sm`, `md`, `lg`), `ToggleGroup` (single choice, or `multiple`), `toggleVariants` — two-state button, pressed with the same glass as the sidebar's active item |
-| Textarea | `Textarea` — same states as `Input`, vertically resizable |
+| Component    | Exports                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Autocomplete | `Autocomplete`, `AutocompleteInput` (`clearable`), `AutocompleteContent`, `AutocompleteList`, `AutocompleteItem`, `AutocompleteEmpty`, `AutocompleteStatus` (`loading`), `AutocompleteGroup`, `AutocompleteGroupLabel`, `AutocompleteCollection`, `AutocompleteSeparator`, `useAutocompleteFilter` — free text with suggestions, see below                                                                                                                                                                                                                                                                                                                |
+| Avatar       | `Avatar` (`size`: `xs`, `sm`, `md`, `lg`; `shape`: `circle`, `square`), `AvatarImage`, `AvatarFallback` (initials or icon, shown until the image has loaded), `AvatarGroup` (overlapping avatars), `avatarVariants`                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Backdrop     | `Backdrop` — variants `mesh`, `aurora`, `plain`; textures `grain`, `grid`; `image`, `imageBlur`, `overlay`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Badge        | `Badge`, `badgeVariants` — statuses `neutral`, `info`, `success`, `warning`, `danger`; `dot` for a status dot; icons accepted                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Button       | `Button`, `buttonVariants` — variants `primary`, `secondary`, `outline`, `ghost`, `danger`; sizes `sm`, `md`, `lg`, `icon`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| DropdownMenu | `DropdownMenu`, `DropdownMenuTrigger`, `DropdownMenuContent`, `DropdownMenuItem`, `DropdownMenuCheckboxItem`, `DropdownMenuRadioGroup`, `DropdownMenuRadioItem`, `DropdownMenuGroup`, `DropdownMenuLabel`, `DropdownMenuSeparator`, `DropdownMenuShortcut`, `DropdownMenuSub`, `DropdownMenuSubTrigger`, `DropdownMenuSubContent` — the shadcn/ui names for `Menu` (same components, same rendering)                                                                                                                                                                                                                                                      |
+| Field        | `Field`, `FieldLabel`, `FieldDescription`, `FieldError`, `FieldItem` — automatically links label, help text and error to the control; `<Field invalid>` or native validation (`required`, `validationMode`) turns the field red                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| FieldRow     | `FieldRow` — several `Field`s on one row, stacked when the row gets too narrow (container query: also works in a dialog or a side panel); `columns` (`3` or `"1fr 3fr"`), `stackBelow` (`sm`, `md`, `lg` by default, `xl`)                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Input        | `Input` — error state with `aria-invalid` (or automatically inside an invalid Base UI `Field`); same behavior on `SelectTrigger`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| InputNumber  | `InputNumber` (`min`, `max`, `step`, `decimalPlaces` — `0` by default, `required`, `format`, `locale`, `showSteppers`, `align`) — left-aligned and without −/+ buttons by default; an emptied `required` field goes back to `0` on blur; arrow keys, Shift for `largeStep`; CHF amounts and percentages via `format`                                                                                                                                                                                                                                                                                                                                      |
+| Card         | `Card` (a `Panel` with a vertical layout and `p-6` by default; accepts `variant` and `render`, use Tailwind classes to change the padding), `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Checkbox     | `Checkbox` — checked, `indeterminate` and invalid states (`aria-invalid` or inside an invalid `Field`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Collapsible  | `Collapsible`, `CollapsibleTrigger` (style it with `render={<Button variant="ghost" />}`), `CollapsibleChevron` (rotates when open), `CollapsibleContent` (animated height; `hiddenUntilFound` for the browser's find-in-page) — collapsible section                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Combobox     | `Combobox`, `ComboboxInput` (`clearable`), `ComboboxChips` (multiple selection), `ComboboxTrigger` + `ComboboxSearch` (dropdown with search), `ComboboxValue`, `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), `ComboboxGroup`, `ComboboxGroupLabel`, `ComboboxCollection`, `ComboboxSeparator`, `useComboboxFilter`, `createComboboxItems` — see below                                                                                                                                                                                                                                                 |
+| Command      | `Command` (`items`), `CommandInput`, `CommandList`, `CommandEmpty`, `CommandGroup`, `CommandGroupLabel`, `CommandCollection`, `CommandItem` (`onClick`), `CommandShortcut`, `CommandSeparator`, `CommandDialog` — filterable command palette; see below                                                                                                                                                                                                                                                                                                                                                                                                   |
+| DataTable    | `DataTable`, `DataTableHeader`, `DataTableSortableHead`, `DataTableBody`, `nextOrdering` — see below (built-in pagination)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Dialog       | `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Toast        | `ToastProvider`, `useToast`, `createToastManager` — see below                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Tooltip      | `TooltipProvider`, `Tooltip`, `TooltipTrigger`, `TooltipContent`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Label        | `Label` — label for a control outside a `Field` (switch, inline checkbox); dims with the disabled control it wraps                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Menu         | `Menu`, `MenuTrigger`, `MenuContent`, `MenuItem` (`variant="danger"`), `MenuShortcut`, `MenuSeparator`, `MenuGroup`, `MenuGroupLabel`, `MenuCheckboxItem`, `MenuRadioGroup`, `MenuRadioItem`, `MenuSub`, `MenuSubTrigger`, `MenuSubContent`                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Menubar      | `Menubar`, `MenubarMenu`, `MenubarTrigger`, `MenubarContent`, `MenubarItem` (`variant="danger"`), `MenubarShortcut`, `MenubarSeparator`, `MenubarGroup`, `MenubarLabel`, `MenubarCheckboxItem`, `MenubarRadioGroup`, `MenubarRadioItem`, `MenubarSub`, `MenubarSubTrigger`, `MenubarSubContent` — menu bar (File, Edit…) in thin glass; its items are those of `Menu`                                                                                                                                                                                                                                                                                     |
+| Pagination   | `Pagination` (`page`, `totalPages`, `onPageChange`, `maxVisible`, labels), `getVisiblePages` — usable on its own, outside a table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Panel        | `Panel`, `panelVariants` — glass surface with `p-2` by default; variants `thin`, `default`, `strong`; use Tailwind classes to change the padding; `render` prop to change the element (`<aside />`, `<section />`…)                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Popover      | `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverTitle`, `PopoverDescription`, `PopoverClose` — free-form floating panel (filters, details, small forms)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Progress     | `Progress` (`value`, `null` for an unknown duration; `label`, `showValue`, `format`, `locale`) — progress bar that turns green once complete                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Radio        | `RadioGroup`, `Radio`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Sidebar      | `SidebarProvider`, `Sidebar` (`variant`, `collapsible`, `side`), `SidebarTrigger`, `SidebarRail`, `SidebarInset`, `SidebarInsetHeader` (`variant`), `SidebarHeader`, `SidebarContent`, `SidebarFooter`, `SidebarSeparator`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarGroupAction`, `SidebarGroupContent`, `SidebarMenu`, `SidebarMenuItem`, `SidebarMenuButton` (`isActive`, `tooltip`, `size`), `SidebarMenuAction`, `SidebarMenuBadge`, `SidebarMenuSkeleton`, `SidebarMenuSub`, `SidebarMenuSubItem`, `SidebarMenuSubButton`, `SidebarMenuCollapsible`, `SidebarMenuCollapsibleTrigger`, `SidebarMenuCollapsibleContent`, `useSidebar` — see below |
+| Separator    | `Separator` (`orientation`) — thin line between two groups of content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Skeleton     | `Skeleton` — animated loading placeholder                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Select       | `Select`, `SelectTrigger`, `SelectValue`, `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Sheet        | `Sheet`, `SheetTrigger`, `SheetContent` (`side`, `size`), `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetCloseButton`, `SheetBody`, `SheetFooter`, `SheetClose`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Slider       | `Slider` (`label`, `showValue`, `format`, `locale`, `min`, `max`, `step`; an array value gives a two-thumb range, named by `thumbLabels`; `orientation`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Spinner      | `Spinner` (`size`: `xs`, `sm`, `md`, `lg`; `tone`: `current`, `muted`, `accent`; `label` for screen readers when it stands alone), `spinnerVariants` — keeps spinning, more slowly, when the user reduces motion                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Switch       | `Switch`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Table        | `Table` (`density`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow` (`selected`), `TableHead` (`align`, `sortDirection`, `onSort`), `TableCell` (`align`), `TableCaption`, `TableEmpty` — place it in a `Panel`; built-in horizontal scrolling for wide tables                                                                                                                                                                                                                                                                                                                                                                                     |
+| Tabs         | `Tabs`, `TabsList`, `TabsTab`, `TabsPanel`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Toggle       | `Toggle` (`variant`: `default`, `outline`; `size`: `sm`, `md`, `lg`), `ToggleGroup` (single choice, or `multiple`), `toggleVariants` — two-state button, pressed with the same glass as the sidebar's active item                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Textarea     | `Textarea` — same states as `Input`, vertically resizable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 ### Data table (DataTable)
 
@@ -264,12 +268,16 @@ It is **controlled** and does not depend on any router.
     <DataTableHeader>
       <TableRow>
         <DataTableSortableHead field="full_name">Name</DataTableSortableHead>
-        <DataTableSortableHead field="total" align="right">Total</DataTableSortableHead>
+        <DataTableSortableHead field="total" align="right">
+          Total
+        </DataTableSortableHead>
       </TableRow>
     </DataTableHeader>
     <DataTableBody colSpan={2} isPending={isPending} isEmpty={rows.length === 0} emptyText="No clients.">
       {rows.map((row) => (
-        <TableRow key={row.id} onClick={() => open(row)}>…</TableRow>
+        <TableRow key={row.id} onClick={() => open(row)}>
+          …
+        </TableRow>
       ))}
     </DataTableBody>
   </DataTable>
@@ -304,13 +312,13 @@ const update = (key: string, value: string | number) =>
 
 Pick the component that fits the need:
 
-| Need | Component |
-| --- | --- |
-| Few options (fewer than 10), no typing | `Select` |
-| Pick from a long list by typing to filter (client, employee) | `Combobox` + `ComboboxInput` |
-| Several choices, shown as chips | `<Combobox multiple>` + `ComboboxChips` |
+| Need                                                                | Component                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------- |
+| Few options (fewer than 10), no typing                              | `Select`                                          |
+| Pick from a long list by typing to filter (client, employee)        | `Combobox` + `ComboboxInput`                      |
+| Several choices, shown as chips                                     | `<Combobox multiple>` + `ComboboxChips`           |
 | A field that looks like a Select, with a search inside the dropdown | `Combobox` + `ComboboxTrigger` + `ComboboxSearch` |
-| Free text with suggestions (city, description, address) | `Autocomplete` |
+| Free text with suggestions (city, description, address)             | `Autocomplete`                                    |
 
 ```tsx
 <Field>
@@ -338,14 +346,15 @@ Pick the component that fits the need:
 - **Dropdown with search**: replace `ComboboxInput` with
   `<ComboboxTrigger><ComboboxValue placeholder="Choose…" /></ComboboxTrigger>` and add
   `<ComboboxSearch placeholder="Search…" />` at the top of `ComboboxContent`.
-- **Groups**: `items={[{ value: 'Consulting', items: [...] }]}`, then `ComboboxGroup` + `ComboboxGroupLabel`
-  + `ComboboxCollection` inside `ComboboxList`.
+- **Groups**: `items={[{ value: 'Consulting', items: [...] }]}`, then `ComboboxGroup`, `ComboboxGroupLabel` and
+  `ComboboxCollection` inside `ComboboxList`.
 - **Store IDs** rather than objects: `createComboboxItems(clients, { getValue: (c) => c.id, getLabel: (c) => c.name })`.
 - `ComboboxEmpty` and `ComboboxStatus` stay mounted so screen readers announce them. Make their **content**
   conditional, not the component.
 
 **Results from an API**: turn off local filtering and query the API on each keystroke.
 
+<!-- prettier-ignore -->
 ```tsx
 const [query, setQuery] = useState('');
 const debounced = useDebouncedValue(query, 300);
@@ -356,7 +365,13 @@ const { data = [], isPending } = useClients(debounced); // keep the selected cli
   <ComboboxContent>
     <ComboboxStatus loading={isPending}>{isPending ? 'Searching…' : null}</ComboboxStatus>
     <ComboboxEmpty>{!isPending && query ? 'No client found.' : null}</ComboboxEmpty>
-    <ComboboxList>{(c: Client) => <ComboboxItem key={c.id} value={c}>{c.label}</ComboboxItem>}</ComboboxList>
+    <ComboboxList>
+      {(c: Client) => (
+        <ComboboxItem key={c.id} value={c}>
+          {c.label}
+        </ComboboxItem>
+      )}
+    </ComboboxList>
   </ComboboxContent>
 </Combobox>
 ```
@@ -438,6 +453,7 @@ const [open, setOpen] = useState(() => localStorage.getItem('sidebar') !== 'clos
 `Command` is a filterable list of actions: type to filter, the arrow keys move the selection, Enter runs the
 highlighted action. It is always open: place it in a `CommandDialog`, a `Popover` or a panel.
 
+<!-- prettier-ignore -->
 ```tsx
 const [open, setOpen] = useState(false); // open it with a button or a ⌘K shortcut
 
@@ -471,6 +487,7 @@ const [open, setOpen] = useState(false); // open it with a button or a ⌘K shor
 
 Place `ToastProvider` once around the application, then use `useToast` anywhere below it:
 
+<!-- prettier-ignore -->
 ```tsx
 <ToastProvider>
   <App />
@@ -526,6 +543,8 @@ To render a trigger with a button's style, use Base UI's `render` prop:
 npm run dev              # Storybook at http://localhost:6006
 npm run build            # Library build in dist/ (ESM + .d.ts + hexui.css)
 npm run typecheck
+npm run lint             # ESLint (typescript-eslint, React hooks, Storybook)
+npm run format           # Prettier: format every file (format:check only checks)
 npm run build-storybook  # Static Storybook in storybook-static/
 ```
 
