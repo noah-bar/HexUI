@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Hex-Tech React component library — Base UI + Tailwind CSS, professional glassmorphism.",
   "type": "module",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "sideEffects": [
     "**/*.css"
   ],
