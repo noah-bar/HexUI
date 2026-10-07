@@ -231,7 +231,7 @@ Available tokens: `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`, `-
 | Collapsible  | `Collapsible`, `CollapsibleTrigger` (style it with `render={<Button variant="ghost" />}`), `CollapsibleChevron` (rotates when open), `CollapsibleContent` (animated height; `hiddenUntilFound` for the browser's find-in-page) — collapsible section                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Combobox     | `Combobox`, `ComboboxInput` (`clearable`), `ComboboxChips` (multiple selection), `ComboboxTrigger` + `ComboboxSearch` (dropdown with search), `ComboboxValue`, `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), `ComboboxGroup`, `ComboboxGroupLabel`, `ComboboxCollection`, `ComboboxSeparator`, `useComboboxFilter`, `createComboboxItems` — see below                                                                                                                                                                                                                                                 |
 | Command      | `Command` (`items`), `CommandInput`, `CommandList`, `CommandEmpty`, `CommandGroup`, `CommandGroupLabel`, `CommandCollection`, `CommandItem` (`onClick`), `CommandShortcut`, `CommandSeparator`, `CommandDialog` — filterable command palette; see below                                                                                                                                                                                                                                                                                                                                                                                                   |
-| DataTable    | `DataTable`, `DataTableHeader`, `DataTableSortableHead`, `DataTableBody`, `nextOrdering` — see below (built-in pagination)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| DataTable    | `DataTable`, `DataTableHeader`, `DataTableSortableHead`, `DataTableBody`, `nextOrdering` — see below (built-in pagination); `DataTableRow`, `DataTableHead`, `DataTableCell`, `DataTableFooter`, `DataTableCaption`, `DataTableEmpty` (same as their `Table*` counterparts)                                                                                                                                                                                                                                                                                                                                                                               |
 | Dialog       | `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Toast        | `ToastProvider`, `useToast`, `createToastManager` — see below                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Tooltip      | `TooltipProvider`, `Tooltip`, `TooltipTrigger`, `TooltipContent`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -266,18 +266,18 @@ It is **controlled** and does not depend on any router.
 <Panel className="h-[600px] p-0">
   <DataTable ordering={ordering} onOrderingChange={setOrdering} pagination={data} onSkipChange={setSkip}>
     <DataTableHeader>
-      <TableRow>
+      <DataTableRow>
         <DataTableSortableHead field="full_name">Name</DataTableSortableHead>
         <DataTableSortableHead field="total" align="right">
           Total
         </DataTableSortableHead>
-      </TableRow>
+      </DataTableRow>
     </DataTableHeader>
     <DataTableBody colSpan={2} isPending={isPending} isEmpty={rows.length === 0} emptyText="No clients.">
       {rows.map((row) => (
-        <TableRow key={row.id} onClick={() => open(row)}>
+        <DataTableRow key={row.id} onClick={() => open(row)}>
           …
-        </TableRow>
+        </DataTableRow>
       ))}
     </DataTableBody>
   </DataTable>
