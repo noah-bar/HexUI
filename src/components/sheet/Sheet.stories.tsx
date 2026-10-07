@@ -67,7 +67,10 @@ export const Default: Story = {
                 </div>
                 <div className="hx:mt-3 hx:flex hx:flex-col hx:divide-y hx:divide-glass-border">
                   {invoices.map((invoice) => (
-                    <div key={invoice.id} className="hx:flex hx:items-center hx:justify-between hx:gap-4 hx:py-3 hx:text-sm">
+                    <div
+                      key={invoice.id}
+                      className="hx:flex hx:items-center hx:justify-between hx:gap-4 hx:py-3 hx:text-sm"
+                    >
                       <div>
                         <p className="hx:font-medium hx:text-fg">{invoice.id}</p>
                         <p className="hx:text-fg-muted">{invoice.date}</p>
@@ -173,7 +176,9 @@ export const OverDenseContent: Story = {
                     <p className="hx:text-sm hx:font-medium hx:text-fg">{invoice.id}</p>
                     <p className="hx:mt-1 hx:text-sm hx:text-fg-muted">{invoice.client}</p>
                   </div>
-                  <Badge variant={index % 3 === 0 ? 'warning' : 'neutral'}>{index % 3 === 0 ? 'Discrepancy found' : 'To review'}</Badge>
+                  <Badge variant={index % 3 === 0 ? 'warning' : 'neutral'}>
+                    {index % 3 === 0 ? 'Discrepancy found' : 'To review'}
+                  </Badge>
                 </div>
                 <p className="hx:mt-4 hx:text-right hx:text-sm hx:font-semibold hx:text-fg">{invoice.amount}</p>
               </Panel>

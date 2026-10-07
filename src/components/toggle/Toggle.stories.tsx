@@ -1,5 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { AlignCenter, AlignLeft, AlignRight, Archive, Bold, Italic, LayoutGrid, List, Star, Underline } from 'lucide-react';
+import {
+  AlignCenter,
+  AlignLeft,
+  AlignRight,
+  Archive,
+  Bold,
+  Italic,
+  LayoutGrid,
+  List,
+  Star,
+  Underline,
+} from 'lucide-react';
 import { Panel } from '../panel/Panel';
 import { Toggle, ToggleGroup } from './Toggle';
 

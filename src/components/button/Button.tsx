@@ -25,7 +25,8 @@ export const buttonVariants = cva(
           'hx:border hx:border-accent/50 hx:text-accent',
           'hx:hover:border-accent hx:hover:bg-accent/8 hx:active:bg-accent/12',
         ],
-        danger: 'hx:glass-stained hx:[--hx-stain:var(--hx-danger-stain)] hx:[--hx-stain-text:var(--hx-danger-stain-text)] hx:[--hx-stain-extra:var(--hx-danger-stain-extra)]',
+        danger:
+          'hx:glass-stained hx:[--hx-stain:var(--hx-danger-stain)] hx:[--hx-stain-text:var(--hx-danger-stain-text)] hx:[--hx-stain-extra:var(--hx-danger-stain-extra)]',
       },
       size: {
         sm: 'hx:h-8 hx:px-3 hx:text-sm',

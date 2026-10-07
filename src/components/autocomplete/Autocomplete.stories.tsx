@@ -151,7 +151,14 @@ export const Grouped: Story = {
 };
 
 // Fake address API with network latency.
-const streets = ['Avenue de la Gare', 'Rue du Lac', 'Chemin des Vignes', 'Rue de Bourg', 'Avenue de Rumine', 'Place de la Palud'];
+const streets = [
+  'Avenue de la Gare',
+  'Rue du Lac',
+  'Chemin des Vignes',
+  'Rue de Bourg',
+  'Avenue de Rumine',
+  'Place de la Palud',
+];
 const addresses = streets.flatMap((street, i) =>
   [1, 4, 12, 27].map((n) => `${street} ${n}, ${1000 + i * 3} ${cities[(i * 5) % cities.length]}`),
 );
@@ -202,9 +209,7 @@ export const AsyncSearch: Story = {
           <AutocompleteInput placeholder="Rue du Lac" />
           <AutocompleteContent>
             <AutocompleteStatus loading={searching}>{searching ? 'Searching addresses…' : null}</AutocompleteStatus>
-            <AutocompleteEmpty>
-              {!searching && value.trim().length >= 2 ? 'No address found.' : null}
-            </AutocompleteEmpty>
+            <AutocompleteEmpty>{!searching && value.trim().length >= 2 ? 'No address found.' : null}</AutocompleteEmpty>
             <AutocompleteList>
               {(address: string) => (
                 <AutocompleteItem key={address} value={address}>

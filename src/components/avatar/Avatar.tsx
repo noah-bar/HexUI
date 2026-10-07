@@ -36,14 +36,19 @@ export function Avatar({ size, shape, className, ...props }: AvatarProps) {
 
 /** The picture; hidden until it has loaded, so the fallback shows meanwhile or if it fails. */
 export function AvatarImage({ className, alt = '', ...props }: ComponentProps<typeof BaseAvatar.Image>) {
-  return <BaseAvatar.Image alt={alt} className={mergeClassName('hx:size-full hx:object-cover', className)} {...props} />;
+  return (
+    <BaseAvatar.Image alt={alt} className={mergeClassName('hx:size-full hx:object-cover', className)} {...props} />
+  );
 }
 
 /** Initials or an icon, shown when there is no picture. `delay` avoids a flash while a fast image loads. */
 export function AvatarFallback({ className, ...props }: ComponentProps<typeof BaseAvatar.Fallback>) {
   return (
     <BaseAvatar.Fallback
-      className={mergeClassName('hx:flex hx:size-full hx:items-center hx:justify-center hx:leading-none hx:[&_svg]:size-1/2', className)}
+      className={mergeClassName(
+        'hx:flex hx:size-full hx:items-center hx:justify-center hx:leading-none hx:[&_svg]:size-1/2',
+        className,
+      )}
       {...props}
     />
   );

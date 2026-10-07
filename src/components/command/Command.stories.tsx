@@ -1,5 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { FilePlus, FileText, LayoutDashboard, ReceiptText, Settings, UserPlus, Users, type LucideIcon } from 'lucide-react';
+import {
+  FilePlus,
+  FileText,
+  LayoutDashboard,
+  ReceiptText,
+  Settings,
+  UserPlus,
+  Users,
+  type LucideIcon,
+} from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Button } from '../button/Button';
 import { Panel } from '../panel/Panel';

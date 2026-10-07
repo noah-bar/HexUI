@@ -68,7 +68,10 @@ export const InContext: Story = {
 /** Loading state of a panel. With a visible text, the container is the live region and the spinner stays silent. */
 export const PanelLoading: Story = {
   render: () => (
-    <div role="status" className="hx:flex hx:h-40 hx:flex-col hx:items-center hx:justify-center hx:gap-3 hx:text-sm hx:text-fg-muted">
+    <div
+      role="status"
+      className="hx:flex hx:h-40 hx:flex-col hx:items-center hx:justify-center hx:gap-3 hx:text-sm hx:text-fg-muted"
+    >
       <Spinner size="lg" tone="accent" />
       Loading invoices…
     </div>

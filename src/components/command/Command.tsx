@@ -28,12 +28,26 @@ export function Command({ className, children, ...props }: CommandProps) {
 }
 
 /** Search field at the top of a Command. */
-export function CommandInput({ className, ...props }: Omit<ComponentProps<typeof BaseAutocomplete.Input>, 'className'> & { className?: string }) {
+export function CommandInput({
+  className,
+  ...props
+}: Omit<ComponentProps<typeof BaseAutocomplete.Input>, 'className'> & { className?: string }) {
   return (
     <BaseAutocomplete.InputGroup
-      className={cn('hx:flex hx:shrink-0 hx:items-center hx:gap-2 hx:border-b hx:border-glass-border hx:px-3', className)}
+      className={cn(
+        'hx:flex hx:shrink-0 hx:items-center hx:gap-2 hx:border-b hx:border-glass-border hx:px-3',
+        className,
+      )}
     >
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true" className="hx:size-4 hx:shrink-0 hx:text-fg-muted">
+      <svg
+        viewBox="0 0 16 16"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        aria-hidden="true"
+        className="hx:size-4 hx:shrink-0 hx:text-fg-muted"
+      >
         <circle cx="7" cy="7" r="4.5" />
         <path d="m10.5 10.5 3 3" />
       </svg>
@@ -49,7 +63,10 @@ export function CommandInput({ className, ...props }: Omit<ComponentProps<typeof
 export function CommandList({ className, ...props }: ComponentProps<typeof BaseAutocomplete.List>) {
   return (
     <BaseAutocomplete.List
-      className={mergeClassName('hx:max-h-80 hx:min-h-0 hx:overflow-y-auto hx:overscroll-contain hx:p-1 hx:scroll-py-1 hx:outline-none hx:data-empty:p-0', className)}
+      className={mergeClassName(
+        'hx:max-h-80 hx:min-h-0 hx:overflow-y-auto hx:overscroll-contain hx:p-1 hx:scroll-py-1 hx:outline-none hx:data-empty:p-0',
+        className,
+      )}
       {...props}
     />
   );
@@ -57,7 +74,12 @@ export function CommandList({ className, ...props }: ComponentProps<typeof BaseA
 
 /** Shown when nothing matches. Stays mounted so screen readers announce it. */
 export function CommandEmpty({ className, ...props }: ComponentProps<typeof BaseAutocomplete.Empty>) {
-  return <BaseAutocomplete.Empty className={mergeClassName(cn(messageClassName, 'hx:not-empty:py-8'), className)} {...props} />;
+  return (
+    <BaseAutocomplete.Empty
+      className={mergeClassName(cn(messageClassName, 'hx:not-empty:py-8'), className)}
+      {...props}
+    />
+  );
 }
 
 export function CommandGroupLabel({ className, ...props }: ComponentProps<typeof BaseAutocomplete.GroupLabel>) {
@@ -68,7 +90,10 @@ export function CommandGroupLabel({ className, ...props }: ComponentProps<typeof
 export function CommandItem({ className, ...props }: ComponentProps<typeof BaseAutocomplete.Item>) {
   return (
     <BaseAutocomplete.Item
-      className={mergeClassName(cn(itemClassName, 'hx:cursor-pointer hx:[&_svg]:text-fg-muted hx:data-highlighted:[&_svg]:text-accent'), className)}
+      className={mergeClassName(
+        cn(itemClassName, 'hx:cursor-pointer hx:[&_svg]:text-fg-muted hx:data-highlighted:[&_svg]:text-accent'),
+        className,
+      )}
       {...props}
     />
   );
@@ -80,7 +105,12 @@ export function CommandSeparator({ className, ...props }: ComponentProps<typeof 
 
 /** Keyboard shortcut hint at the right of a CommandItem. */
 export function CommandShortcut({ className, ...props }: ComponentProps<'kbd'>) {
-  return <kbd className={cn('hx:ml-auto hx:pl-4 hx:font-sans hx:text-xs hx:tracking-wide hx:text-fg-muted', className)} {...props} />;
+  return (
+    <kbd
+      className={cn('hx:ml-auto hx:pl-4 hx:font-sans hx:text-xs hx:tracking-wide hx:text-fg-muted', className)}
+      {...props}
+    />
+  );
 }
 
 export type CommandDialogProps = ComponentProps<typeof BaseDialog.Root> & {

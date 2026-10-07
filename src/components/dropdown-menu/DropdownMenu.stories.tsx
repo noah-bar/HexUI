@@ -85,7 +85,10 @@ export const CheckboxesAndRadios: Story = {
         <DropdownMenuContent>
           <DropdownMenuGroup>
             <DropdownMenuLabel>Columns</DropdownMenuLabel>
-            <DropdownMenuCheckboxItem checked={columns.client} onCheckedChange={(v) => setColumns({ ...columns, client: v })}>
+            <DropdownMenuCheckboxItem
+              checked={columns.client}
+              onCheckedChange={(v) => setColumns({ ...columns, client: v })}
+            >
               Client
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem checked={columns.due} onCheckedChange={(v) => setColumns({ ...columns, due: v })}>

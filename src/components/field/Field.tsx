@@ -30,7 +30,10 @@ export function FieldDescription({ className, ...props }: ComponentProps<typeof 
  */
 export function FieldError({ className, ...props }: ComponentProps<typeof BaseField.Error>) {
   return (
-    <BaseField.Error className={mergeClassName('hx:text-xs hx:font-medium hx:text-danger-text', className)} {...props} />
+    <BaseField.Error
+      className={mergeClassName('hx:text-xs hx:font-medium hx:text-danger-text', className)}
+      {...props}
+    />
   );
 }
 
@@ -62,8 +65,7 @@ export type FieldRowProps = ComponentProps<'div'> & {
 /** Lays out several Fields on one line, stacking them when the row gets too narrow. */
 export function FieldRow({ columns, stackBelow = 'lg', className, style, children, ...props }: FieldRowProps) {
   const count = Children.toArray(children).length;
-  const template =
-    typeof columns === 'string' ? columns : `repeat(${columns ?? Math.max(count, 1)}, minmax(0, 1fr))`;
+  const template = typeof columns === 'string' ? columns : `repeat(${columns ?? Math.max(count, 1)}, minmax(0, 1fr))`;
 
   return (
     <div className="hx:@container">

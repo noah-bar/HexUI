@@ -23,11 +23,21 @@ export const Primary: Story = {};
 export const Variants: Story = {
   render: (args) => (
     <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-3">
-      <Button {...args} variant="primary">Primary</Button>
-      <Button {...args} variant="secondary">Secondary</Button>
-      <Button {...args} variant="outline">Outline</Button>
-      <Button {...args} variant="ghost">Ghost</Button>
-      <Button {...args} variant="danger">Delete</Button>
+      <Button {...args} variant="primary">
+        Primary
+      </Button>
+      <Button {...args} variant="secondary">
+        Secondary
+      </Button>
+      <Button {...args} variant="outline">
+        Outline
+      </Button>
+      <Button {...args} variant="ghost">
+        Ghost
+      </Button>
+      <Button {...args} variant="danger">
+        Delete
+      </Button>
     </div>
   ),
 };
@@ -35,9 +45,15 @@ export const Variants: Story = {
 export const Sizes: Story = {
   render: (args) => (
     <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-3">
-      <Button {...args} size="sm">Small</Button>
-      <Button {...args} size="md">Medium</Button>
-      <Button {...args} size="lg">Large</Button>
+      <Button {...args} size="sm">
+        Small
+      </Button>
+      <Button {...args} size="md">
+        Medium
+      </Button>
+      <Button {...args} size="lg">
+        Large
+      </Button>
       <Button {...args} size="icon" variant="secondary" aria-label="Add">
         <Plus />
       </Button>
@@ -62,11 +78,15 @@ export const Outline: Story = {
   args: { variant: 'outline' },
   render: (args) => (
     <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-3">
-      <Button {...args} size="sm">Small</Button>
+      <Button {...args} size="sm">
+        Small
+      </Button>
       <Button {...args}>
         <Download /> Export
       </Button>
-      <Button {...args} size="lg">Large</Button>
+      <Button {...args} size="lg">
+        Large
+      </Button>
       <Button {...args} size="icon" aria-label="Add">
         <Plus />
       </Button>

@@ -8,7 +8,9 @@ export function Separator({ className, orientation = 'horizontal', ...props }: C
     <BaseSeparator
       orientation={orientation}
       className={mergeClassName(
-        orientation === 'vertical' ? 'hx:w-px hx:self-stretch hx:shrink-0 hx:bg-glass-border' : 'hx:h-px hx:w-full hx:shrink-0 hx:bg-glass-border',
+        orientation === 'vertical'
+          ? 'hx:w-px hx:self-stretch hx:shrink-0 hx:bg-glass-border'
+          : 'hx:h-px hx:w-full hx:shrink-0 hx:bg-glass-border',
         className,
       )}
       {...props}

@@ -144,7 +144,10 @@ export function Sidebar({
     'hx:glass-thin hx:flex hx:size-full hx:flex-col',
     floating
       ? 'hx:rounded-xl'
-      : cn('hx:rounded-none hx:border-y-0! hx:shadow-none hx:before:hidden hx:after:shadow-none', side === 'left' ? 'hx:border-l-0!' : 'hx:border-r-0!'),
+      : cn(
+          'hx:rounded-none hx:border-y-0! hx:shadow-none hx:before:hidden hx:after:shadow-none',
+          side === 'left' ? 'hx:border-l-0!' : 'hx:border-r-0!',
+        ),
     className,
   );
 
@@ -169,7 +172,12 @@ export function Sidebar({
       <Sheet open={openMobile} onOpenChange={setOpenMobile}>
         <SheetContent side={side} className="hx:w-(--hx-sidebar-width-mobile)">
           <SheetTitle className="hx:sr-only">{mobileTitle}</SheetTitle>
-          <div data-sidebar="sidebar" data-mobile="true" className="hx:group/sidebar hx:flex hx:h-full hx:flex-col" {...props}>
+          <div
+            data-sidebar="sidebar"
+            data-mobile="true"
+            className="hx:group/sidebar hx:flex hx:h-full hx:flex-col"
+            {...props}
+          >
             {children}
           </div>
         </SheetContent>
@@ -246,7 +254,11 @@ export function SidebarTrigger({ label = 'Toggle navigation', onClick, children,
 }
 
 /** Thin hit area along the sidebar's inner edge: click to collapse or expand. Place it inside Sidebar. */
-export function SidebarRail({ className, label = 'Toggle navigation', ...props }: ComponentProps<'button'> & { label?: string }) {
+export function SidebarRail({
+  className,
+  label = 'Toggle navigation',
+  ...props
+}: ComponentProps<'button'> & { label?: string }) {
   const { toggleSidebar } = useSidebar();
   return (
     <button
@@ -302,7 +314,9 @@ export function SidebarInsetHeader({ variant = 'floating', className, children, 
           'hx:glass-thin hx:flex hx:h-12 hx:items-center hx:gap-2 hx:px-2',
           // Attached: only the bottom border; the lit edge ring and top highlight would draw lines on the open sides.
           // `!` because the glass utility's `border` shorthand is emitted after border-side utilities.
-          floating ? 'hx:rounded-xl' : 'hx:rounded-none hx:border-x-0! hx:border-t-0! hx:shadow-(--hx-glass-shadow) hx:before:hidden hx:after:shadow-none',
+          floating
+            ? 'hx:rounded-xl'
+            : 'hx:rounded-none hx:border-x-0! hx:border-t-0! hx:shadow-(--hx-glass-shadow) hx:before:hidden hx:after:shadow-none',
           className,
         )}
       >
@@ -323,7 +337,9 @@ export function SidebarFooter({ className, ...props }: ComponentProps<'div'>) {
 }
 
 export function SidebarSeparator({ className, ...props }: ComponentProps<'div'>) {
-  return <div role="separator" className={cn('hx:mx-2 hx:h-px hx:shrink-0 hx:bg-glass-border', className)} {...props} />;
+  return (
+    <div role="separator" className={cn('hx:mx-2 hx:h-px hx:shrink-0 hx:bg-glass-border', className)} {...props} />
+  );
 }
 
 /** Scrollable middle part holding the groups. The glass panel itself never scrolls. */
@@ -342,7 +358,13 @@ export function SidebarContent({ className, ...props }: ComponentProps<'div'>) {
 }
 
 export function SidebarGroup({ className, ...props }: ComponentProps<'div'>) {
-  return <div data-sidebar="group" className={cn('hx:relative hx:flex hx:w-full hx:min-w-0 hx:flex-col hx:p-2', className)} {...props} />;
+  return (
+    <div
+      data-sidebar="group"
+      className={cn('hx:relative hx:flex hx:w-full hx:min-w-0 hx:flex-col hx:p-2', className)}
+      {...props}
+    />
+  );
 }
 
 export function SidebarGroupLabel({ className, render, ...props }: useRender.ComponentProps<'div'>) {
@@ -382,7 +404,13 @@ export function SidebarGroupContent({ className, ...props }: ComponentProps<'div
 }
 
 export function SidebarMenu({ className, ...props }: ComponentProps<'ul'>) {
-  return <ul data-sidebar="menu" className={cn('hx:flex hx:w-full hx:min-w-0 hx:list-none hx:flex-col hx:gap-1', className)} {...props} />;
+  return (
+    <ul
+      data-sidebar="menu"
+      className={cn('hx:flex hx:w-full hx:min-w-0 hx:list-none hx:flex-col hx:gap-1', className)}
+      {...props}
+    />
+  );
 }
 
 export function SidebarMenuItem({ className, ...props }: ComponentProps<'li'>) {
@@ -429,7 +457,14 @@ export type SidebarMenuButtonProps = useRender.ComponentProps<'button'> &
  * Navigation entry: an icon and a label. Use `render` for links:
  * `<SidebarMenuButton render={<a href="/factures" />}>` or your router's Link.
  */
-export function SidebarMenuButton({ isActive = false, tooltip, size, className, render, ...props }: SidebarMenuButtonProps) {
+export function SidebarMenuButton({
+  isActive = false,
+  tooltip,
+  size,
+  className,
+  render,
+  ...props
+}: SidebarMenuButtonProps) {
   const { state, isMobile } = useSidebar();
   const button = useRender({
     defaultTagName: 'button',
@@ -508,11 +543,19 @@ export function SidebarMenuBadge({ className, ...props }: ComponentProps<'span'>
 }
 
 /** Loading placeholder for a menu item. */
-export function SidebarMenuSkeleton({ showIcon = false, className, ...props }: ComponentProps<'div'> & { showIcon?: boolean }) {
+export function SidebarMenuSkeleton({
+  showIcon = false,
+  className,
+  ...props
+}: ComponentProps<'div'> & { showIcon?: boolean }) {
   // Stable across server and client rendering while still varying between sibling placeholders.
   const width = skeletonWidth(useId());
   return (
-    <div data-sidebar="menu-skeleton" className={cn('hx:flex hx:h-8 hx:items-center hx:gap-2 hx:rounded-md hx:px-2', className)} {...props}>
+    <div
+      data-sidebar="menu-skeleton"
+      className={cn('hx:flex hx:h-8 hx:items-center hx:gap-2 hx:rounded-md hx:px-2', className)}
+      {...props}
+    >
       {showIcon && <Skeleton className="hx:size-4 hx:rounded-md" />}
       <Skeleton className="hx:h-4 hx:flex-1" style={{ maxWidth: width }} />
     </div>
@@ -550,7 +593,13 @@ export type SidebarMenuSubButtonProps = useRender.ComponentProps<'a'> & {
 };
 
 /** Entry of a nested list. Renders a link by default: pass `href`, or `render` for a router Link. */
-export function SidebarMenuSubButton({ isActive = false, size = 'md', className, render, ...props }: SidebarMenuSubButtonProps) {
+export function SidebarMenuSubButton({
+  isActive = false,
+  size = 'md',
+  className,
+  render,
+  ...props
+}: SidebarMenuSubButtonProps) {
   return useRender({
     defaultTagName: 'a',
     render,
@@ -633,7 +682,14 @@ function ChevronIcon() {
 
 function PanelIcon() {
   return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <rect x="2" y="2.5" width="12" height="11" rx="2" />
       <path d="M6 2.5v11" />
     </svg>

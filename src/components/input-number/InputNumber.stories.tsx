@@ -90,11 +90,27 @@ export const InvoiceLine: Story = {
       </Field>
       <Field>
         <FieldLabel>Hourly rate</FieldLabel>
-        <InputNumber defaultValue={140} min={0} showSteppers={false} align="right" locale="en-CH" format={{ style: 'currency', currency: 'CHF' }} />
+        <InputNumber
+          defaultValue={140}
+          min={0}
+          showSteppers={false}
+          align="right"
+          locale="en-CH"
+          format={{ style: 'currency', currency: 'CHF' }}
+        />
       </Field>
       <Field>
         <FieldLabel>Discount</FieldLabel>
-        <InputNumber defaultValue={0.1} min={0} max={1} step={0.05} showSteppers={false} align="right" locale="en-CH" format={{ style: 'percent' }} />
+        <InputNumber
+          defaultValue={0.1}
+          min={0}
+          max={1}
+          step={0.05}
+          showSteppers={false}
+          align="right"
+          locale="en-CH"
+          format={{ style: 'percent' }}
+        />
       </Field>
     </FieldRow>
   ),

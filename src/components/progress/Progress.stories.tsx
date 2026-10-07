@@ -32,7 +32,14 @@ export const Running: Story = {
       const timer = setInterval(() => setValue((v) => (v >= 100 ? 10 : Math.min(100, v + 15))), 900);
       return () => clearInterval(timer);
     }, []);
-    return <Progress label={value === 100 ? 'Sending complete' : 'Sending reminders'} showValue value={value} locale="en-CH" />;
+    return (
+      <Progress
+        label={value === 100 ? 'Sending complete' : 'Sending reminders'}
+        showValue
+        value={value}
+        locale="en-CH"
+      />
+    );
   },
 };
 

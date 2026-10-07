@@ -122,10 +122,7 @@ export function useTheme(): UseThemeResult {
   useEffect(() => applyTheme(theme), [theme]);
 
   const setTheme = useCallback((value: Theme) => updateTheme(value), []);
-  const toggleTheme = useCallback(
-    () => updateTheme(resolvedTheme === 'dark' ? 'light' : 'dark'),
-    [resolvedTheme],
-  );
+  const toggleTheme = useCallback(() => updateTheme(resolvedTheme === 'dark' ? 'light' : 'dark'), [resolvedTheme]);
 
   return { theme, resolvedTheme, setTheme, toggleTheme };
 }

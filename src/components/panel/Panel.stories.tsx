@@ -62,7 +62,10 @@ export const Table: Story = {
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row.name} className="hx:border-t hx:border-glass-border hx:transition-colors hx:hover:bg-tint-hover">
+            <tr
+              key={row.name}
+              className="hx:border-t hx:border-glass-border hx:transition-colors hx:hover:bg-tint-hover"
+            >
               <td className="hx:px-4 hx:py-3 hx:font-medium">{row.name}</td>
               <td className="hx:px-4 hx:py-3">{row.owner}</td>
               <td className="hx:px-4 hx:py-3">{row.progress}</td>

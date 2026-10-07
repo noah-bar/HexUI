@@ -47,5 +47,7 @@ export function TabsTab({ className, ...props }: ComponentProps<typeof BaseTabs.
 }
 
 export function TabsPanel({ className, ...props }: ComponentProps<typeof BaseTabs.Panel>) {
-  return <BaseTabs.Panel className={mergeClassName('hx:text-fg hx:outline-none hx:focus-ring', className)} {...props} />;
+  return (
+    <BaseTabs.Panel className={mergeClassName('hx:text-fg hx:outline-none hx:focus-ring', className)} {...props} />
+  );
 }

@@ -31,7 +31,9 @@ export function TableBody({ className, ...props }: ComponentProps<'tbody'>) {
 }
 
 export function TableFooter({ className, ...props }: ComponentProps<'tfoot'>) {
-  return <tfoot className={cn('hx:border-t hx:border-glass-border hx:bg-tint-hover hx:font-medium', className)} {...props} />;
+  return (
+    <tfoot className={cn('hx:border-t hx:border-glass-border hx:bg-tint-hover hx:font-medium', className)} {...props} />
+  );
 }
 
 export type TableRowProps = ComponentProps<'tr'> & {

@@ -29,7 +29,12 @@ export type AutocompleteInputProps = Omit<ComponentProps<typeof BaseAutocomplete
 };
 
 /** Free text field that suggests completions as the user types. */
-export function AutocompleteInput({ className, clearable = true, clearLabel = 'Clear', ...props }: AutocompleteInputProps) {
+export function AutocompleteInput({
+  className,
+  clearable = true,
+  clearLabel = 'Clear',
+  ...props
+}: AutocompleteInputProps) {
   return (
     <BaseAutocomplete.InputGroup className={cn(inputGroupClassName, 'hx:h-9 hx:pr-1', className)}>
       <BaseAutocomplete.Input className={cn(inputGroupInputClassName, 'hx:pl-3')} {...props} />
@@ -117,7 +122,14 @@ export function AutocompleteSeparator({ className, ...props }: ComponentProps<ty
 
 function XIcon() {
   return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
       <path d="m4 4 8 8M12 4l-8 8" />
     </svg>
   );

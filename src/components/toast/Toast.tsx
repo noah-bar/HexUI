@@ -43,7 +43,9 @@ function ToastList({ closeLabel }: { closeLabel: string }) {
         <div className="hx:flex hx:min-w-0 hx:flex-1 hx:flex-col hx:gap-0.5">
           <BaseToast.Title className="hx:text-sm hx:font-medium hx:text-fg" />
           <BaseToast.Description className="hx:text-sm hx:text-fg-muted" />
-          <BaseToast.Action className={buttonVariants({ variant: 'secondary', size: 'sm', className: 'hx:mt-2 hx:w-fit' })} />
+          <BaseToast.Action
+            className={buttonVariants({ variant: 'secondary', size: 'sm', className: 'hx:mt-2 hx:w-fit' })}
+          />
         </div>
         <BaseToast.Close
           aria-label={closeLabel}

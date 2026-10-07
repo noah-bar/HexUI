@@ -45,7 +45,9 @@ export function InputNumber({
   ...props
 }: InputNumberProps) {
   const isControlled = valueProp !== undefined;
-  const [uncontrolledValue, setUncontrolledValue] = useState<number | null>(() => defaultValue ?? (required ? 0 : null));
+  const [uncontrolledValue, setUncontrolledValue] = useState<number | null>(
+    () => defaultValue ?? (required ? 0 : null),
+  );
   const value = isControlled ? valueProp : uncontrolledValue;
   const fractionDigits = Number.isFinite(decimalPlaces) ? Math.max(0, Math.trunc(decimalPlaces)) : 0;
   const stepperClassName = [
@@ -82,8 +84,18 @@ export function InputNumber({
     >
       <BaseNumberField.Group className={cn(inputGroupClassName, 'hx:h-9 hx:min-w-0 hx:overflow-hidden', className)}>
         {showSteppers && (
-          <BaseNumberField.Decrement aria-label={decrementLabel} className={cn(stepperClassName, 'hx:border-r hx:border-field-border')}>
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+          <BaseNumberField.Decrement
+            aria-label={decrementLabel}
+            className={cn(stepperClassName, 'hx:border-r hx:border-field-border')}
+          >
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              aria-hidden="true"
+            >
               <path d="M3.5 8h9" />
             </svg>
           </BaseNumberField.Decrement>
@@ -97,8 +109,18 @@ export function InputNumber({
           )}
         />
         {showSteppers && (
-          <BaseNumberField.Increment aria-label={incrementLabel} className={cn(stepperClassName, 'hx:border-l hx:border-field-border')}>
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+          <BaseNumberField.Increment
+            aria-label={incrementLabel}
+            className={cn(stepperClassName, 'hx:border-l hx:border-field-border')}
+          >
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              aria-hidden="true"
+            >
               <path d="M3.5 8h9M8 3.5v9" />
             </svg>
           </BaseNumberField.Increment>

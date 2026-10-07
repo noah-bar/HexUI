@@ -43,11 +43,21 @@ export function DialogHeader({ className, ...props }: ComponentProps<'div'>) {
 }
 
 export function DialogFooter({ className, ...props }: ComponentProps<'div'>) {
-  return <div className={cn('hx:flex hx:flex-col-reverse hx:gap-2 hx:sm:flex-row hx:sm:justify-end', className)} {...props} />;
+  return (
+    <div
+      className={cn('hx:flex hx:flex-col-reverse hx:gap-2 hx:sm:flex-row hx:sm:justify-end', className)}
+      {...props}
+    />
+  );
 }
 
 export function DialogTitle({ className, ...props }: ComponentProps<typeof BaseDialog.Title>) {
-  return <BaseDialog.Title className={mergeClassName('hx:text-lg hx:leading-tight hx:font-semibold', className)} {...props} />;
+  return (
+    <BaseDialog.Title
+      className={mergeClassName('hx:text-lg hx:leading-tight hx:font-semibold', className)}
+      {...props}
+    />
+  );
 }
 
 export function DialogDescription({ className, ...props }: ComponentProps<typeof BaseDialog.Description>) {

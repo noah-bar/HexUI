@@ -27,7 +27,10 @@ import {
 export function Menubar({ className, ...props }: ComponentProps<typeof BaseMenubar>) {
   return (
     <BaseMenubar
-      className={mergeClassName('hx:glass-thin hx:flex hx:h-10 hx:w-fit hx:items-center hx:gap-1 hx:rounded-lg hx:p-1', className)}
+      className={mergeClassName(
+        'hx:glass-thin hx:flex hx:h-10 hx:w-fit hx:items-center hx:gap-1 hx:rounded-lg hx:p-1',
+        className,
+      )}
       {...props}
     />
   );

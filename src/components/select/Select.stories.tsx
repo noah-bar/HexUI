@@ -1,6 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Panel } from '../panel/Panel';
-import { Select, SelectContent, SelectGroup, SelectGroupLabel, SelectItem, SelectSeparator, SelectTrigger, SelectValue } from './Select';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectGroupLabel,
+  SelectItem,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from './Select';
 
 const roles = [
   { label: 'Administrator', value: 'admin' },

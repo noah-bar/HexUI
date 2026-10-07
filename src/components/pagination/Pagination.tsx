@@ -91,7 +91,15 @@ export function Pagination({
 
 function Chevron({ direction }: { direction: 'left' | 'right' }) {
   return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d={direction === 'left' ? 'm10 4-4 4 4 4' : 'm6 4 4 4-4 4'} />
     </svg>
   );

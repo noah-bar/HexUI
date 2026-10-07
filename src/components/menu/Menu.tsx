@@ -73,8 +73,7 @@ export function MenuItem({ className, variant = 'default', ...props }: MenuItemP
       className={mergeClassName(
         cn(
           itemClassName,
-          variant === 'danger' &&
-            'hx:text-danger-text hx:[&_svg]:text-danger-text hx:data-highlighted:bg-danger/12',
+          variant === 'danger' && 'hx:text-danger-text hx:[&_svg]:text-danger-text hx:data-highlighted:bg-danger/12',
         ),
         className,
       )}
@@ -125,17 +124,32 @@ export function MenuGroupLabel({ className, ...props }: ComponentProps<typeof Ba
 }
 
 export function MenuSeparator({ className, ...props }: ComponentProps<typeof BaseMenu.Separator>) {
-  return <BaseMenu.Separator className={mergeClassName('hx:mx-1 hx:my-1 hx:h-px hx:bg-glass-border', className)} {...props} />;
+  return (
+    <BaseMenu.Separator
+      className={mergeClassName('hx:mx-1 hx:my-1 hx:h-px hx:bg-glass-border', className)}
+      {...props}
+    />
+  );
 }
 
 /** Keyboard shortcut hint, aligned to the right of a MenuItem. */
 export function MenuShortcut({ className, ...props }: ComponentProps<'span'>) {
-  return <span className={cn('hx:ml-auto hx:pl-4 hx:text-xs hx:tracking-wide hx:text-fg-muted', className)} {...props} />;
+  return (
+    <span className={cn('hx:ml-auto hx:pl-4 hx:text-xs hx:tracking-wide hx:text-fg-muted', className)} {...props} />
+  );
 }
 
 function CheckIcon() {
   return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="m3.5 8.5 3 3 6-7" />
     </svg>
   );

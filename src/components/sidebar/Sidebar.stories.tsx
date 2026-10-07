@@ -250,7 +250,9 @@ export const Default: Story = {
                     <TableCell>{invoice.due}</TableCell>
                     <TableCell align="right">{invoice.total}</TableCell>
                     <TableCell>
-                      <Badge variant={statusVariant[invoice.status as keyof typeof statusVariant]}>{invoice.status}</Badge>
+                      <Badge variant={statusVariant[invoice.status as keyof typeof statusVariant]}>
+                        {invoice.status}
+                      </Badge>
                     </TableCell>
                   </TableRow>
                 ))}

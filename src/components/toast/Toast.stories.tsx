@@ -8,7 +8,13 @@ const meta = {
   title: 'Components/Toast',
   component: ToastProvider,
   tags: ['autodocs'],
-  decorators: [(Story) => <ToastProvider><Story /></ToastProvider>],
+  decorators: [
+    (Story) => (
+      <ToastProvider>
+        <Story />
+      </ToastProvider>
+    ),
+  ],
   parameters: { docs: { story: { inline: false, iframeHeight: 420 } } },
 } satisfies Meta<typeof ToastProvider>;
 
@@ -21,19 +27,37 @@ function TypeButtons() {
     <div className="hx:flex hx:flex-wrap hx:gap-3">
       <Button
         variant="secondary"
-        onClick={() => toast.add({ type: 'success', title: 'Invoice sent', description: 'F-2026-1045 has been sent to Romandie Santé.' })}
+        onClick={() =>
+          toast.add({
+            type: 'success',
+            title: 'Invoice sent',
+            description: 'F-2026-1045 has been sent to Romandie Santé.',
+          })
+        }
       >
         Success
       </Button>
       <Button
         variant="secondary"
-        onClick={() => toast.add({ type: 'error', title: 'Export failed', description: 'The server did not respond. Try again in a moment.' })}
+        onClick={() =>
+          toast.add({
+            type: 'error',
+            title: 'Export failed',
+            description: 'The server did not respond. Try again in a moment.',
+          })
+        }
       >
         Error
       </Button>
       <Button
         variant="secondary"
-        onClick={() => toast.add({ type: 'warning', title: 'Quota almost reached', description: '92% of the storage space is used.' })}
+        onClick={() =>
+          toast.add({
+            type: 'warning',
+            title: 'Quota almost reached',
+            description: '92% of the storage space is used.',
+          })
+        }
       >
         Warning
       </Button>
@@ -105,7 +129,12 @@ function AddOnMount() {
     if (added.current) return;
     added.current = true;
     toast.add({ type: 'info', title: 'Sync complete', timeout: 0 });
-    toast.add({ type: 'warning', title: 'Quota almost reached', description: '92% of the storage space is used.', timeout: 0 });
+    toast.add({
+      type: 'warning',
+      title: 'Quota almost reached',
+      description: '92% of the storage space is used.',
+      timeout: 0,
+    });
     toast.add({
       type: 'success',
       title: 'Invoice sent',
@@ -122,7 +151,9 @@ function AddOnMount() {
           {Array.from({ length: 9 }, (_, i) => (
             <tr key={i} className="hx:border-t hx:border-glass-border hx:first:border-t-0">
               <td className="hx:px-4 hx:py-2.5 hx:font-medium">F-2026-{1042 + i}</td>
-              <td className="hx:px-4 hx:py-2.5">{['Banque Cantonale', 'Helvetia Services', 'Alpina Logistique'][i % 3]}</td>
+              <td className="hx:px-4 hx:py-2.5">
+                {['Banque Cantonale', 'Helvetia Services', 'Alpina Logistique'][i % 3]}
+              </td>
               <td className="hx:px-4 hx:py-2.5">{(1830 + i * 947.35).toFixed(2)} CHF</td>
               <td className="hx:px-4 hx:py-2.5">{['Paid', 'Sent', 'Overdue'][i % 3]}</td>
               <td className="hx:px-4 hx:py-2.5">{`${String((i % 28) + 1).padStart(2, '0')}.09.2026`}</td>

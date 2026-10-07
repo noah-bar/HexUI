@@ -53,7 +53,9 @@ export function DataTable({
     <DataTableContext value={{ ordering, onOrderingChange }}>
       {/* Clips the sticky header's background inside the container's border and rounded corners,
           so it never paints over the Panel's border or lit edge. */}
-      <div className={cn('hx:flex hx:size-full hx:min-h-0 hx:flex-col hx:overflow-hidden hx:rounded-[inherit]', className)}>
+      <div
+        className={cn('hx:flex hx:size-full hx:min-h-0 hx:flex-col hx:overflow-hidden hx:rounded-[inherit]', className)}
+      >
         <div className="hx:min-h-0 hx:flex-1 hx:overflow-auto hx:overscroll-contain">
           <table data-density={density} className={tableClassName}>
             {children}
@@ -97,8 +99,7 @@ export type DataTableSortableHeadProps = Omit<TableHeadProps, 'sortDirection' | 
 /** Column header that sorts the table by `field`. */
 export function DataTableSortableHead({ field, ...props }: DataTableSortableHeadProps) {
   const { ordering, onOrderingChange } = use(DataTableContext);
-  const direction: SortDirection =
-    ordering === field ? 'ascending' : ordering === `-${field}` ? 'descending' : 'none';
+  const direction: SortDirection = ordering === field ? 'ascending' : ordering === `-${field}` ? 'descending' : 'none';
   return (
     <TableHead {...props} sortDirection={direction} onSort={() => onOrderingChange?.(nextOrdering(ordering, field))} />
   );

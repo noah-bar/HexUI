@@ -45,7 +45,9 @@ export function Slider({
     >
       {(label != null || showValue) && (
         <div className="hx:flex hx:items-baseline hx:justify-between hx:gap-3">
-          {label != null && <BaseSlider.Label className="hx:text-sm hx:font-medium hx:text-fg">{label}</BaseSlider.Label>}
+          {label != null && (
+            <BaseSlider.Label className="hx:text-sm hx:font-medium hx:text-fg">{label}</BaseSlider.Label>
+          )}
           {showValue && (
             <BaseSlider.Value className="hx:ml-auto hx:text-sm hx:tabular-nums hx:text-fg-muted">
               {(formatted) => formatted.join(' – ')}

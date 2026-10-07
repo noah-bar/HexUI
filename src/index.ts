@@ -22,13 +22,25 @@ export {
   type AutocompleteInputProps,
   type AutocompleteStatusProps,
 } from './components/autocomplete/Autocomplete';
-export { Avatar, AvatarFallback, AvatarGroup, AvatarImage, avatarVariants, type AvatarProps } from './components/avatar/Avatar';
+export {
+  Avatar,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarImage,
+  avatarVariants,
+  type AvatarProps,
+} from './components/avatar/Avatar';
 export { Backdrop, type BackdropProps, type BackdropThemed } from './components/backdrop/Backdrop';
 export { Badge, badgeVariants, type BadgeProps } from './components/badge/Badge';
 export { Button, buttonVariants, type ButtonProps } from './components/button/Button';
 export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './components/card/Card';
 export { Checkbox, type CheckboxProps } from './components/checkbox/Checkbox';
-export { Collapsible, CollapsibleChevron, CollapsibleContent, CollapsibleTrigger } from './components/collapsible/Collapsible';
+export {
+  Collapsible,
+  CollapsibleChevron,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from './components/collapsible/Collapsible';
 export {
   Combobox,
   ComboboxChips,
@@ -258,4 +270,10 @@ export {
   type ToastProviderProps,
   type ToastType,
 } from './components/toast/Toast';
-export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, type TooltipContentProps } from './components/tooltip/Tooltip';
+export {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+  type TooltipContentProps,
+} from './components/tooltip/Tooltip';

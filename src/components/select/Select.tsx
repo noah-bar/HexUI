@@ -28,7 +28,12 @@ export function SelectTrigger({ className, children, ...props }: ComponentProps<
 }
 
 export function SelectValue({ className, ...props }: ComponentProps<typeof BaseSelect.Value>) {
-  return <BaseSelect.Value className={mergeClassName('hx:truncate hx:data-placeholder:text-fg-subtle', className)} {...props} />;
+  return (
+    <BaseSelect.Value
+      className={mergeClassName('hx:truncate hx:data-placeholder:text-fg-subtle', className)}
+      {...props}
+    />
+  );
 }
 
 type PositionerProps = ComponentProps<typeof BaseSelect.Positioner>;
@@ -70,7 +75,9 @@ export function SelectContent({
           )}
           {...props}
         >
-          <BaseSelect.List className="hx:max-h-(--available-height) hx:overflow-y-auto hx:scroll-py-1">{children}</BaseSelect.List>
+          <BaseSelect.List className="hx:max-h-(--available-height) hx:overflow-y-auto hx:scroll-py-1">
+            {children}
+          </BaseSelect.List>
         </BaseSelect.Popup>
       </BaseSelect.Positioner>
     </BaseSelect.Portal>
@@ -109,7 +116,12 @@ export function SelectGroupLabel({ className, ...props }: ComponentProps<typeof 
 }
 
 export function SelectSeparator({ className, ...props }: ComponentProps<typeof BaseSelect.Separator>) {
-  return <BaseSelect.Separator className={mergeClassName('hx:mx-1 hx:my-1 hx:h-px hx:bg-glass-border', className)} {...props} />;
+  return (
+    <BaseSelect.Separator
+      className={mergeClassName('hx:mx-1 hx:my-1 hx:h-px hx:bg-glass-border', className)}
+      {...props}
+    />
+  );
 }
 
 function ChevronUpDownIcon({ className, ...props }: ComponentProps<'svg'>) {

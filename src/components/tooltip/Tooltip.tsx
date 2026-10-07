@@ -11,10 +11,23 @@ type PositionerProps = ComponentProps<typeof BaseTooltip.Positioner>;
 export type TooltipContentProps = ComponentProps<typeof BaseTooltip.Popup> &
   Pick<PositionerProps, 'side' | 'sideOffset' | 'align' | 'alignOffset'>;
 
-export function TooltipContent({ className, side = 'top', sideOffset = 6, align, alignOffset, ...props }: TooltipContentProps) {
+export function TooltipContent({
+  className,
+  side = 'top',
+  sideOffset = 6,
+  align,
+  alignOffset,
+  ...props
+}: TooltipContentProps) {
   return (
     <BaseTooltip.Portal>
-      <BaseTooltip.Positioner className="hx:z-50" side={side} sideOffset={sideOffset} align={align} alignOffset={alignOffset}>
+      <BaseTooltip.Positioner
+        className="hx:z-50"
+        side={side}
+        sideOffset={sideOffset}
+        align={align}
+        alignOffset={alignOffset}
+      >
         <BaseTooltip.Popup
           className={mergeClassName(
             [

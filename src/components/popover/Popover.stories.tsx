@@ -12,7 +12,13 @@ const meta = {
   component: Popover,
   tags: ['autodocs'],
   argTypes: { defaultOpen: { control: 'boolean' } },
-  decorators: [(Story) => <div className="hx:min-h-96"><Story /></div>],
+  decorators: [
+    (Story) => (
+      <div className="hx:min-h-96">
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof Popover>;
 
 export default meta;
@@ -54,7 +60,10 @@ export const Details: Story = {
     <div className="hx:flex hx:items-center hx:gap-2 hx:text-sm hx:text-fg">
       Romandie Santé
       <Popover {...args}>
-        <PopoverTrigger render={<Button variant="ghost" size="icon" className="hx:size-7" />} aria-label="Client details">
+        <PopoverTrigger
+          render={<Button variant="ghost" size="icon" className="hx:size-7" />}
+          aria-label="Client details"
+        >
           <Info />
         </PopoverTrigger>
         <PopoverContent side="right" align="start">

@@ -157,9 +157,17 @@ export function ComboboxTrigger({ className, children, ...props }: ComponentProp
 }
 
 /** Search field at the top of a dropdown opened by `ComboboxTrigger`. */
-export function ComboboxSearch({ className, ...props }: Omit<ComponentProps<typeof BaseCombobox.Input>, 'className'> & { className?: string }) {
+export function ComboboxSearch({
+  className,
+  ...props
+}: Omit<ComponentProps<typeof BaseCombobox.Input>, 'className'> & { className?: string }) {
   return (
-    <div className={cn('hx:flex hx:shrink-0 hx:items-center hx:gap-2 hx:border-b hx:border-glass-border hx:px-3', className)}>
+    <div
+      className={cn(
+        'hx:flex hx:shrink-0 hx:items-center hx:gap-2 hx:border-b hx:border-glass-border hx:px-3',
+        className,
+      )}
+    >
       <SearchIcon className="hx:text-fg-muted" />
       <BaseCombobox.Input className={cn(inputGroupInputClassName, 'hx:h-10')} {...props} />
     </div>
@@ -172,7 +180,14 @@ export type ComboboxContentProps = ComponentProps<typeof BaseCombobox.Popup> &
   Pick<PositionerProps, 'side' | 'sideOffset' | 'align' | 'alignOffset'>;
 
 /** Glass popup holding the list (and the search field of a dropdown). As wide as its field. */
-export function ComboboxContent({ className, side, sideOffset = 6, align = 'start', alignOffset, ...props }: ComboboxContentProps) {
+export function ComboboxContent({
+  className,
+  side,
+  sideOffset = 6,
+  align = 'start',
+  alignOffset,
+  ...props
+}: ComboboxContentProps) {
   return (
     <BaseCombobox.Portal>
       <BaseCombobox.Positioner
@@ -249,7 +264,16 @@ function defaultLabel(item: unknown): string {
 
 function ChevronUpDownIcon() {
   return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="hx:size-4">
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="hx:size-4"
+    >
       <path d="m5 6 3-3 3 3M5 10l3 3 3-3" />
     </svg>
   );
@@ -257,7 +281,16 @@ function ChevronUpDownIcon() {
 
 function CheckIcon() {
   return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="hx:size-4">
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="hx:size-4"
+    >
       <path d="m3.5 8.5 3 3 6-7" />
     </svg>
   );
@@ -265,7 +298,14 @@ function CheckIcon() {
 
 function XIcon() {
   return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
       <path d="m4 4 8 8M12 4l-8 8" />
     </svg>
   );
@@ -273,7 +313,15 @@ function XIcon() {
 
 function SearchIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true" className={cn('hx:size-4 hx:shrink-0', className)}>
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      aria-hidden="true"
+      className={cn('hx:size-4 hx:shrink-0', className)}
+    >
       <circle cx="7" cy="7" r="4.5" />
       <path d="m10.5 10.5 3 3" />
     </svg>

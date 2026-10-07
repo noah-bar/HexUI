@@ -329,9 +329,13 @@
 @utility glass-thin {
   background-color: var(--hx-glass-thin);
   background-image: var(--hx-glass-grain), var(--hx-glass-sheen);
-  background-size: 160px 160px, 100% 100%;
+  background-size:
+    160px 160px,
+    100% 100%;
   border: 1px solid var(--hx-glass-border);
-  box-shadow: inset 0 1px 0 0 var(--hx-glass-highlight), var(--hx-glass-shadow);
+  box-shadow:
+    inset 0 1px 0 0 var(--hx-glass-highlight),
+    var(--hx-glass-shadow);
   --hx-glass-filter: blur(calc(var(--hx-glass-blur) * 1.25)) saturate(180%);
 }
 
@@ -339,9 +343,13 @@
 @utility glass {
   background-color: var(--hx-glass);
   background-image: var(--hx-glass-grain), var(--hx-glass-sheen);
-  background-size: 160px 160px, 100% 100%;
+  background-size:
+    160px 160px,
+    100% 100%;
   border: 1px solid var(--hx-glass-border);
-  box-shadow: inset 0 1px 0 0 var(--hx-glass-highlight), var(--hx-glass-shadow);
+  box-shadow:
+    inset 0 1px 0 0 var(--hx-glass-highlight),
+    var(--hx-glass-shadow);
   --hx-glass-filter: blur(var(--hx-glass-blur)) saturate(170%);
 }
 
@@ -349,9 +357,13 @@
 @utility glass-strong {
   background-color: var(--hx-glass-strong);
   background-image: var(--hx-glass-grain), var(--hx-glass-sheen);
-  background-size: 160px 160px, 100% 100%;
+  background-size:
+    160px 160px,
+    100% 100%;
   border: 1px solid var(--hx-glass-border);
-  box-shadow: inset 0 1px 0 0 var(--hx-glass-highlight), var(--hx-glass-shadow-lg);
+  box-shadow:
+    inset 0 1px 0 0 var(--hx-glass-highlight),
+    var(--hx-glass-shadow-lg);
   --hx-glass-filter: blur(calc(var(--hx-glass-blur) * 1.5)) saturate(180%);
 }
 
@@ -360,9 +372,13 @@
 @utility glass-dialog {
   background-color: var(--hx-glass-dialog);
   background-image: var(--hx-glass-grain), var(--hx-glass-sheen);
-  background-size: 160px 160px, 100% 100%;
+  background-size:
+    160px 160px,
+    100% 100%;
   border: 1px solid var(--hx-glass-border);
-  box-shadow: inset 0 1px 0 0 var(--hx-glass-highlight), var(--hx-glass-shadow-lg);
+  box-shadow:
+    inset 0 1px 0 0 var(--hx-glass-highlight),
+    var(--hx-glass-shadow-lg);
   --hx-glass-filter: blur(calc(var(--hx-glass-blur) * 2.5)) saturate(180%);
 }
 
@@ -371,12 +387,14 @@
    Do not go below 85% fill: white text must stay ≥ 4.5:1 on any backdrop. */
 @utility glass-tint {
   background-color: color-mix(in oklch, var(--hx-tint-fill, var(--hx-primary)) 85%, transparent);
-  background-image:
-    var(--hx-glass-grain),
-    linear-gradient(180deg, rgb(255 255 255 / 0.2), rgb(255 255 255 / 0) 55%);
-  background-size: 160px 160px, 100% 100%;
+  background-image: var(--hx-glass-grain), linear-gradient(180deg, rgb(255 255 255 / 0.2), rgb(255 255 255 / 0) 55%);
+  background-size:
+    160px 160px,
+    100% 100%;
   border: 1px solid rgb(255 255 255 / 0.12);
-  box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.25), var(--hx-glass-shadow);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.25),
+    var(--hx-glass-shadow);
   backdrop-filter: blur(var(--hx-glass-blur)) saturate(170%);
 
   &:hover {
@@ -409,10 +427,21 @@
     ),
     linear-gradient(
       180deg,
-      color-mix(in oklch, var(--hx-stain, var(--hx-primary-stain)) min(100%, calc(var(--hx-stain-top) + var(--hx-stain-lift))), transparent),
-      color-mix(in oklch, var(--hx-stain, var(--hx-primary-stain)) min(100%, calc(var(--hx-stain-bottom) + var(--hx-stain-lift))), transparent)
+      color-mix(
+        in oklch,
+        var(--hx-stain, var(--hx-primary-stain)) min(100%, calc(var(--hx-stain-top) + var(--hx-stain-lift))),
+        transparent
+      ),
+      color-mix(
+        in oklch,
+        var(--hx-stain, var(--hx-primary-stain)) min(100%, calc(var(--hx-stain-bottom) + var(--hx-stain-lift))),
+        transparent
+      )
     );
-  background-size: 160px 160px, 100% 100%, 100% 100%;
+  background-size:
+    160px 160px,
+    100% 100%,
+    100% 100%;
   border: 1px solid color-mix(in oklch, var(--hx-stain, var(--hx-primary-stain)) var(--hx-stain-frame), transparent);
   box-shadow:
     inset 0 1px 0 0 rgb(255 255 255 / var(--hx-stain-rim)),
@@ -467,7 +496,14 @@
     position: relative;
   }
 
-  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog, .hx\:glass-tint, .hx\:glass-stained)::before {
+  :where(
+    .hx\:glass-thin,
+    .hx\:glass,
+    .hx\:glass-strong,
+    .hx\:glass-dialog,
+    .hx\:glass-tint,
+    .hx\:glass-stained
+  )::before {
     content: '';
     position: absolute;
     inset: -1px;
@@ -637,7 +673,9 @@
     --scale: calc(max(0, 1 - (var(--toast-index) * 0.1)));
     --shrink: calc(1 - var(--scale));
     --height: var(--toast-frontmost-height, var(--toast-height));
-    --offset-y: calc(var(--toast-offset-y) * -1 + (var(--toast-index) * var(--gap) * -1) + var(--toast-swipe-movement-y));
+    --offset-y: calc(
+      var(--toast-offset-y) * -1 + (var(--toast-index) * var(--gap) * -1) + var(--toast-swipe-movement-y)
+    );
 
     position: absolute;
     right: 0;
@@ -647,7 +685,9 @@
     height: var(--height);
     transform-origin: bottom center;
     transform: translateX(var(--toast-swipe-movement-x))
-      translateY(calc(var(--toast-swipe-movement-y) - (var(--toast-index) * var(--peek)) - (var(--shrink) * var(--height))))
+      translateY(
+        calc(var(--toast-swipe-movement-y) - (var(--toast-index) * var(--peek)) - (var(--shrink) * var(--height)))
+      )
       scale(var(--scale));
     user-select: none;
     transition:
@@ -783,7 +823,14 @@
     backdrop-filter: none;
   }
 
-  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog, .hx\:glass-tint, .hx\:glass-stained)::before,
+  :where(
+    .hx\:glass-thin,
+    .hx\:glass,
+    .hx\:glass-strong,
+    .hx\:glass-dialog,
+    .hx\:glass-tint,
+    .hx\:glass-stained
+  )::before,
   :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog):not(.hx-toast)::after {
     display: none;
   }

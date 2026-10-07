@@ -83,10 +83,7 @@ export function SheetContent({ className, side, size, portalProps, ...props }: S
           'hx:motion-reduce:transition-none hx:supports-[-webkit-touch-callout:none]:absolute',
         )}
       />
-      <BaseDialog.Popup
-        className={mergeClassName(sheetContentVariants({ side, size }), className)}
-        {...props}
-      />
+      <BaseDialog.Popup className={mergeClassName(sheetContentVariants({ side, size }), className)} {...props} />
     </BaseDialog.Portal>
   );
 }
@@ -94,7 +91,10 @@ export function SheetContent({ className, side, size, portalProps, ...props }: S
 export function SheetHeader({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
-      className={cn('hx:relative hx:flex hx:shrink-0 hx:flex-col hx:gap-1.5 hx:border-b hx:border-glass-border hx:p-5 hx:pr-14', className)}
+      className={cn(
+        'hx:relative hx:flex hx:shrink-0 hx:flex-col hx:gap-1.5 hx:border-b hx:border-glass-border hx:p-5 hx:pr-14',
+        className,
+      )}
       {...props}
     />
   );
@@ -119,14 +119,23 @@ export function SheetFooter({ className, ...props }: ComponentProps<'div'>) {
 }
 
 export function SheetTitle({ className, ...props }: ComponentProps<typeof BaseDialog.Title>) {
-  return <BaseDialog.Title className={mergeClassName('hx:text-lg hx:leading-tight hx:font-semibold', className)} {...props} />;
+  return (
+    <BaseDialog.Title
+      className={mergeClassName('hx:text-lg hx:leading-tight hx:font-semibold', className)}
+      {...props}
+    />
+  );
 }
 
 export function SheetDescription({ className, ...props }: ComponentProps<typeof BaseDialog.Description>) {
   return <BaseDialog.Description className={mergeClassName('hx:text-sm hx:text-fg-muted', className)} {...props} />;
 }
 
-export function SheetCloseButton({ className, children = <CloseIcon />, ...props }: ComponentProps<typeof BaseDialog.Close>) {
+export function SheetCloseButton({
+  className,
+  children = <CloseIcon />,
+  ...props
+}: ComponentProps<typeof BaseDialog.Close>) {
   return (
     <BaseDialog.Close
       aria-label="Close"
@@ -148,7 +157,14 @@ export function SheetCloseButton({ className, children = <CloseIcon />, ...props
 
 function CloseIcon() {
   return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
       <path d="m4 4 8 8M12 4l-8 8" />
     </svg>
   );

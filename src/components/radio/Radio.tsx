@@ -13,7 +13,10 @@ export type RadioProps = ComponentProps<typeof BaseRadio.Root>;
 export function Radio({ className, ...props }: RadioProps) {
   return (
     <BaseRadio.Root
-      className={mergeClassName([checkControlClassName, 'hx:rounded-full hx:data-checked:glass-tint'].join(' '), className)}
+      className={mergeClassName(
+        [checkControlClassName, 'hx:rounded-full hx:data-checked:glass-tint'].join(' '),
+        className,
+      )}
       {...props}
     >
       <BaseRadio.Indicator className="hx:glass-bead hx:size-2 hx:rounded-full hx:data-unchecked:hidden" />

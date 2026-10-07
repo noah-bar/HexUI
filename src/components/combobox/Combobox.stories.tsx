@@ -256,7 +256,11 @@ export const Grouped: Story = {
 // Fake API: searches a large client base with network latency.
 const clientBase: Client[] = Array.from({ length: 400 }, (_, i) => {
   const base = clients[i % clients.length];
-  return { id: 100 + i, label: i < clients.length ? base.label : `${base.label} (${Math.floor(i / clients.length) + 1})`, city: base.city };
+  return {
+    id: 100 + i,
+    label: i < clients.length ? base.label : `${base.label} (${Math.floor(i / clients.length) + 1})`,
+    city: base.city,
+  };
 });
 
 function searchClients(query: string, signal: AbortSignal) {
@@ -327,7 +331,9 @@ export const AsyncSearch: Story = {
                   ? 'Start typing to search 400 clients.'
                   : null}
             </ComboboxStatus>
-            <ComboboxEmpty>{!searching && query.trim() !== '' ? `No client for “${query.trim()}”.` : null}</ComboboxEmpty>
+            <ComboboxEmpty>
+              {!searching && query.trim() !== '' ? `No client for “${query.trim()}”.` : null}
+            </ComboboxEmpty>
             <ComboboxList>
               {(client: Client) => (
                 <ComboboxItem key={client.id} value={client}>

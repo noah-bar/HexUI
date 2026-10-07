@@ -7,7 +7,13 @@ const meta = {
   title: 'Components/Tooltip',
   component: Tooltip,
   tags: ['autodocs'],
-  decorators: [(Story) => <TooltipProvider><Story /></TooltipProvider>],
+  decorators: [
+    (Story) => (
+      <TooltipProvider>
+        <Story />
+      </TooltipProvider>
+    ),
+  ],
 } satisfies Meta<typeof Tooltip>;
 
 export default meta;

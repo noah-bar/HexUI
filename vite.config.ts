@@ -4,11 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import pkg from './package.json' with { type: 'json' };
 
-const externals = [
-  ...Object.keys(pkg.peerDependencies),
-  ...Object.keys(pkg.dependencies),
-  'react/jsx-runtime',
-];
+const externals = [...Object.keys(pkg.peerDependencies), ...Object.keys(pkg.dependencies), 'react/jsx-runtime'];
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
