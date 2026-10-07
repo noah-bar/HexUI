@@ -23,7 +23,7 @@ export {
   type AutocompleteStatusProps,
 } from './components/autocomplete/Autocomplete';
 export { Avatar, AvatarFallback, AvatarGroup, AvatarImage, avatarVariants, type AvatarProps } from './components/avatar/Avatar';
-export { Backdrop, type BackdropProps } from './components/backdrop/Backdrop';
+export { Backdrop, type BackdropProps, type BackdropThemed } from './components/backdrop/Backdrop';
 export { Badge, badgeVariants, type BadgeProps } from './components/badge/Badge';
 export { Button, buttonVariants, type ButtonProps } from './components/button/Button';
 export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './components/card/Card';

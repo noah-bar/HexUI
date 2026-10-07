@@ -15,6 +15,7 @@ const meta = {
     intensity: { control: 'inline-radio', options: ['subtle', 'medium'] },
     texture: { control: 'inline-radio', options: ['none', 'grain', 'grid'] },
     position: { control: 'inline-radio', options: ['fixed', 'absolute'] },
+    imageBlur: { control: { type: 'range', min: 0, max: 40, step: 1 } },
   },
   render: (args) => (
     <div className="hx:relative hx:isolate hx:flex hx:min-h-96 hx:overflow-hidden hx:rounded-2xl hx:border hx:border-glass-border hx:items-center hx:justify-center hx:p-10">
@@ -53,4 +54,22 @@ export const WithGrain: Story = {
 
 export const WithGrid: Story = {
   args: { variant: 'plain', texture: 'grid' },
+};
+
+const dayImage = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1600&q=80';
+const nightImage = 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&q=80';
+
+/** An image replaces the colored glows. */
+export const WithImage: Story = {
+  args: { image: dayImage, imageBlur: 0, overlay: 0.2 },
+  argTypes: { overlay: { control: { type: 'range', min: 0, max: 1, step: 0.05 } } },
+};
+
+/** One image per theme, blurred, with a darker veil in dark mode. Switch the theme in the toolbar. */
+export const ThemedImage: Story = {
+  args: {
+    image: { light: dayImage, dark: nightImage },
+    imageBlur: 12,
+    overlay: { light: 0.05, dark: 0.45 },
+  },
 };

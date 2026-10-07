@@ -509,7 +509,8 @@
 
 /* ---------------------------------------------------------------------------
  * Backdrop — decorative page background that gives glass surfaces something to blur.
- * Pure CSS gradients, no images, no animation (keeps backdrop-filter cheap).
+ * CSS gradients by default, or an image (one per theme) with optional blur and black veil.
+ * No animation (keeps backdrop-filter cheap).
  * ------------------------------------------------------------------------- */
 @layer components {
   .hx-backdrop {
@@ -529,9 +530,33 @@
   }
 
   .hx-backdrop-glow,
+  .hx-backdrop-overlay,
   .hx-backdrop-texture {
     position: absolute;
     inset: 0;
+  }
+
+  /* Set as a CSS background, so only the current theme's image is downloaded. */
+  .hx-backdrop-image {
+    position: absolute;
+    /* Overscan by twice the blur radius: a blurred edge fades to transparent and would let the base color show. */
+    inset: calc(var(--hx-backdrop-image-blur, 0px) * -2);
+    background-image: var(--hx-backdrop-image);
+    background-size: cover;
+    background-position: var(--hx-backdrop-image-position, center);
+    filter: blur(var(--hx-backdrop-image-blur, 0px));
+  }
+
+  :where(.dark, [data-theme='dark']) .hx-backdrop-image {
+    background-image: var(--hx-backdrop-image-dark, var(--hx-backdrop-image));
+  }
+
+  .hx-backdrop-overlay {
+    background-color: rgb(0 0 0 / var(--hx-backdrop-overlay, 0));
+  }
+
+  :where(.dark, [data-theme='dark']) .hx-backdrop-overlay {
+    background-color: rgb(0 0 0 / var(--hx-backdrop-overlay-dark, var(--hx-backdrop-overlay, 0)));
   }
 
   .hx-backdrop[data-intensity='subtle'] .hx-backdrop-glow {
