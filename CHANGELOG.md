@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-10-07
+
+### Added
+
+- Menubar `ghost` variant, without its own glass strip, for menu bars inside a glass header; `menubarVariants` export.
+- DataTable cell text no longer wraps: wide tables scroll horizontally, and `whitespace-normal` opts a cell out.
+
+### Changed
+
+- **Breaking:** `SidebarTrigger` takes its icon as required children, from any icon library; the built-in icon is removed.
+
+### Chore
+
+- Document the Menubar `ghost` variant, non-wrapping DataTable cells and `SidebarTrigger` icons.
+
 ## [0.2.0] - 2026-10-07
 
 ### Added
