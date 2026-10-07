@@ -61,7 +61,8 @@ export function Slider({
       >
         <BaseSlider.Track
           className={cn(
-            'hx:relative hx:rounded-full hx:border hx:border-glass-border hx:bg-switch-track',
+            // Inset ring rather than a border: Base UI sizes the indicator with `inherit`, which would overflow a border.
+            'hx:relative hx:rounded-full hx:bg-switch-track hx:shadow-[inset_0_0_0_1px_var(--hx-glass-border)]',
             vertical ? 'hx:h-full hx:w-1.5' : 'hx:h-1.5 hx:w-full',
           )}
         >
