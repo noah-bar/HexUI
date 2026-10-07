@@ -62,7 +62,7 @@ export function DataTable({
         className={cn('hx:flex hx:size-full hx:min-h-0 hx:flex-col hx:overflow-hidden hx:rounded-[inherit]', className)}
       >
         <div className="hx:min-h-0 hx:flex-1 hx:overflow-auto hx:overscroll-contain">
-          <table data-density={density} className={tableClassName}>
+          <table data-density={density} className={cn(tableClassName, 'hx:whitespace-nowrap')}>
             {children}
           </table>
         </div>

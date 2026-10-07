@@ -48,6 +48,7 @@ const subjects = [
   'Cloud migration',
   'Team training',
   'Mobile app',
+  'Accounting platform migration to the cloud with staff onboarding and support',
 ];
 
 const allQuotes: Quote[] = Array.from({ length: 87 }, (_, i) => ({
