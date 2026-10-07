@@ -18,17 +18,18 @@ const meta = {
   },
   render: (args) => (
     <div className="hx:relative hx:isolate hx:flex hx:min-h-96 hx:overflow-hidden hx:rounded-2xl hx:border hx:border-glass-border hx:items-center hx:justify-center hx:p-10">
-      <Backdrop {...args} />
-      <Card className="hx:w-full hx:max-w-sm">
-        <CardHeader>
-          <CardTitle>Bienvenue sur Hex-Tech</CardTitle>
-          <CardDescription>Le fond donne de la profondeur aux surfaces en verre.</CardDescription>
-        </CardHeader>
-        <CardFooter className="hx:justify-end">
-          <Button variant="secondary">Plus tard</Button>
-          <Button>Commencer</Button>
-        </CardFooter>
-      </Card>
+      <Backdrop {...args}>
+        <Card className="hx:w-full hx:max-w-sm">
+          <CardHeader>
+            <CardTitle>Bienvenue sur Hex-Tech</CardTitle>
+            <CardDescription>Le fond donne de la profondeur aux surfaces en verre.</CardDescription>
+          </CardHeader>
+          <CardFooter className="hx:justify-end">
+            <Button variant="secondary">Plus tard</Button>
+            <Button>Commencer</Button>
+          </CardFooter>
+        </Card>
+      </Backdrop>
     </div>
   ),
 } satisfies Meta<typeof Backdrop>;

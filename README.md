@@ -36,6 +36,19 @@ fixé derrière toute l'application, qui suit les couleurs du thème :
 <Backdrop variant="plain" texture="grid" />      {/* écrans denses : tableaux, back-office */}
 ```
 
+Il peut aussi envelopper l'application à la racine, à la manière d'un provider :
+
+```tsx
+createRoot(document.getElementById('root')!).render(
+  <Backdrop>
+    <App />
+  </Backdrop>,
+);
+```
+
+Les enfants sont rendus à côté de la couche décorative, sans wrapper DOM supplémentaire : `Backdrop` ne modifie
+donc pas la mise en page de l'application.
+
 - `variant` : `mesh` · `aurora` · `plain` — `intensity` : `subtle` · `medium` — `texture` : `none` · `grain` · `grid`
 - `position="absolute"` le limite à un conteneur positionné (ajoutez `isolation: isolate` sur ce conteneur).
 - Placé avec un `z-index` négatif : si un wrapper de votre application a déjà une couleur de fond, il le masquera.

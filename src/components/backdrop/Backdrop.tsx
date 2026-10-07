@@ -1,7 +1,7 @@
 import type { ComponentProps } from 'react';
 import { cn } from '../../lib/cn';
 
-export type BackdropProps = Omit<ComponentProps<'div'>, 'children'> & {
+export type BackdropProps = ComponentProps<'div'> & {
   /** `mesh`: soft glows (default) · `aurora`: more color, for login or landing screens · `plain`: near-solid, for dense screens. */
   variant?: 'mesh' | 'aurora' | 'plain';
   /** How strong the colored glows are. */
@@ -18,6 +18,8 @@ export type BackdropProps = Omit<ComponentProps<'div'>, 'children'> & {
 /**
  * Decorative page background that gives glass surfaces something to blur.
  * Colors follow the theme tokens (`--hx-backdrop-*`, `--hx-brand`).
+ * When children are provided, they are rendered next to the decorative layer
+ * without an extra layout wrapper, so Backdrop can sit at the application root.
  */
 export function Backdrop({
   variant = 'mesh',
@@ -25,19 +27,23 @@ export function Backdrop({
   texture = 'none',
   position = 'fixed',
   className,
+  children,
   ...props
 }: BackdropProps) {
   return (
-    <div
-      aria-hidden="true"
-      data-variant={variant}
-      data-intensity={intensity}
-      data-position={position}
-      className={cn('hx-backdrop', className)}
-      {...props}
-    >
-      <div className="hx-backdrop-glow" />
-      {texture !== 'none' && <div className="hx-backdrop-texture" data-texture={texture} />}
-    </div>
+    <>
+      <div
+        aria-hidden="true"
+        data-variant={variant}
+        data-intensity={intensity}
+        data-position={position}
+        className={cn('hx-backdrop', className)}
+        {...props}
+      >
+        <div className="hx-backdrop-glow" />
+        {texture !== 'none' && <div className="hx-backdrop-texture" data-texture={texture} />}
+      </div>
+      {children}
+    </>
   );
 }
