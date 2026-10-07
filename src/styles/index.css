@@ -63,16 +63,21 @@
 
   --hx-ring: color-mix(in oklch, var(--hx-accent) 55%, transparent);
 
-  /* Stained glass (primary and danger buttons), light theme: a pale tinted pane the page shows
-     through, with dark colored text (≥ 5.4:1 on hover, measured). The dark theme keeps a denser pane with white text. */
+  /* Stained glass (primary and danger buttons), light theme: a tinted pane the page shows through,
+     lighter at the top and denser at the bottom so it reads as volume, with dark colored text
+     (≥ 5.5:1 at rest, ≥ 4.5:1 at the bottom on hover). */
   --hx-primary-stain: #4f46e5;
   --hx-danger-stain: #dc2626;
-  --hx-primary-stain-text: #312e81;
+  --hx-primary-stain-text: #3730a3;
   --hx-danger-stain-text: #691616;
-  --hx-stain-top: 20%;
-  --hx-stain-bottom: 26%;
+  --hx-stain-top: 12%;
+  --hx-stain-bottom: 30%;
   --hx-stain-hover: 12%;
-  --hx-stain-frame: 42%;
+  --hx-stain-frame: 68%;
+  /* Light comes through the pane and tints the surface below: a colored shadow instead of a gray one. */
+  --hx-stain-shadow-near: 22%;
+  --hx-stain-shadow-far: 45%;
+  --hx-stain-shadow-neutral: 0 0 #0000;
   /* Red is complementary to the cyan backdrop glow and turns gray when too thin: danger gets more. */
   --hx-danger-stain-extra: 8%;
   /* One colored lit border (see glass-stained): no separate white rim or gloss on a pale pane. */
@@ -193,6 +198,9 @@
   --hx-stain-bottom: 32%;
   --hx-stain-hover: 10%;
   --hx-stain-frame: 75%;
+  --hx-stain-shadow-near: 0%;
+  --hx-stain-shadow-far: 0%;
+  --hx-stain-shadow-neutral: var(--hx-glass-shadow);
   --hx-stain-rim: 0;
   --hx-stain-gloss: 0;
   --hx-stain-caustic: 0;
@@ -447,7 +455,10 @@
     inset 0 1px 0 0 rgb(255 255 255 / var(--hx-stain-rim)),
     inset 0 -8px 12px -8px rgb(255 255 255 / var(--hx-stain-caustic)),
     inset 0 -1px 0 0 var(--hx-stain-floor),
-    var(--hx-glass-shadow);
+    0 1px 2px color-mix(in oklch, var(--hx-stain, var(--hx-primary-stain)) var(--hx-stain-shadow-near), transparent),
+    0 6px 16px -6px
+      color-mix(in oklch, var(--hx-stain, var(--hx-primary-stain)) var(--hx-stain-shadow-far), transparent),
+    var(--hx-stain-shadow-neutral);
   backdrop-filter: blur(calc(var(--hx-glass-blur) * 1.5)) saturate(180%);
 
   &:hover {
