@@ -306,7 +306,7 @@ export const AttachedOffcanvas: Story = {
         </SidebarInsetHeader>
         <div className="hx:grid hx:gap-4 hx:p-4 hx:sm:grid-cols-3">
           {['Clients actifs', 'Nouveaux ce mois', 'Chiffre d’affaires'].map((title, i) => (
-            <Panel key={title} padding="md">
+            <Panel key={title} className="hx:p-5">
               <p className="hx:text-sm hx:text-fg-muted">{title}</p>
               <p className="hx:mt-1 hx:text-2xl hx:font-semibold">{['128', '7', 'CHF 84 210'][i]}</p>
             </Panel>

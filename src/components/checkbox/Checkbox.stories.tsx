@@ -10,7 +10,7 @@ const meta = {
   args: { 'aria-label': 'Sélectionner' },
   decorators: [
     (Story) => (
-      <Panel padding="md" className="hx:w-fit hx:min-w-20 hx:text-sm hx:text-fg">
+      <Panel className="hx:w-fit hx:min-w-20 hx:p-5 hx:text-sm hx:text-fg">
         <Story />
       </Panel>
     ),

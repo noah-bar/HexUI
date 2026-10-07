@@ -45,7 +45,7 @@ const meta = {
   // Comboboxes live inside glass surfaces in real screens, so they are shown in a Panel.
   decorators: [
     (Story) => (
-      <Panel padding="lg" className="hx:max-w-md">
+      <Panel className="hx:max-w-md hx:p-6">
         <Story />
       </Panel>
     ),

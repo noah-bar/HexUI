@@ -10,7 +10,7 @@ const meta = {
   // Inputs live inside glass surfaces in real screens, so they are shown in a Panel.
   decorators: [
     (Story) => (
-      <Panel padding="md" className="hx:max-w-sm">
+      <Panel className="hx:max-w-sm hx:p-5">
         <Story />
       </Panel>
     ),

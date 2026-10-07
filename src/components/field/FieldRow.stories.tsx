@@ -69,7 +69,7 @@ function AddressForm() {
 /** Equal columns by default; `columns="1fr 2fr 1.5fr"` sizes the postcode / city / canton row. */
 export const Default: Story = {
   render: () => (
-    <Panel padding="lg" className="hx:max-w-2xl">
+    <Panel className="hx:max-w-2xl hx:p-6">
       <AddressForm />
     </Panel>
   ),
@@ -78,7 +78,7 @@ export const Default: Story = {
 /** Only one field shows a hint or an error: labels and inputs stay aligned, only the messages differ. */
 export const Alignment: Story = {
   render: () => (
-    <Panel padding="lg" className="hx:max-w-2xl">
+    <Panel className="hx:max-w-2xl hx:p-6">
       <FieldRow>
         <Field invalid>
           <FieldLabel>Date de début</FieldLabel>
@@ -106,10 +106,10 @@ export const Alignment: Story = {
 export const NarrowContainer: Story = {
   render: () => (
     <div className="hx:flex hx:flex-wrap hx:items-start hx:gap-6">
-      <Panel padding="lg" className="hx:w-xl">
+      <Panel className="hx:w-xl hx:p-6">
         <AddressForm />
       </Panel>
-      <Panel padding="lg" className="hx:w-80">
+      <Panel className="hx:w-80 hx:p-6">
         <AddressForm />
       </Panel>
     </div>

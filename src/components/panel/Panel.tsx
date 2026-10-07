@@ -5,7 +5,7 @@ import { mergeClassName } from '../../lib/cn';
 export const panelVariants = cva(
   // overflow-clip keeps content inside the rounded corners (tables, lists, images);
   // the 1px clip margin leaves room for the lit edge drawn over the border.
-  'hx:rounded-xl hx:text-fg hx:overflow-clip hx:[overflow-clip-margin:1px]',
+  'hx:rounded-xl hx:p-2 hx:text-fg hx:overflow-clip hx:[overflow-clip-margin:1px]',
   {
     variants: {
       variant: {
@@ -13,16 +13,9 @@ export const panelVariants = cva(
         default: 'hx:glass',
         strong: 'hx:glass-strong',
       },
-      padding: {
-        none: '',
-        sm: 'hx:p-3',
-        md: 'hx:p-5',
-        lg: 'hx:p-6',
-      },
     },
     defaultVariants: {
       variant: 'default',
-      padding: 'none',
     },
   },
 );
@@ -34,10 +27,10 @@ export type PanelProps = useRender.ComponentProps<'div'> & VariantProps<typeof p
  * containers (tables, lists, sidebars). Use `render` to change the element,
  * e.g. `<Panel render={<section />} />`.
  */
-export function Panel({ variant, padding, className, render, ...props }: PanelProps) {
+export function Panel({ variant, className, render, ...props }: PanelProps) {
   return useRender({
     defaultTagName: 'div',
     render,
-    props: { ...props, className: mergeClassName(panelVariants({ variant, padding }), className) },
+    props: { ...props, className: mergeClassName(panelVariants({ variant }), className) },
   });
 }

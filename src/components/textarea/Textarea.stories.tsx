@@ -9,7 +9,7 @@ const meta = {
   args: { placeholder: 'Décrivez le besoin du client…' },
   decorators: [
     (Story) => (
-      <Panel padding="md" className="hx:max-w-md">
+      <Panel className="hx:max-w-md hx:p-5">
         <Story />
       </Panel>
     ),

@@ -5,10 +5,9 @@ const meta = {
   title: 'Components/Panel',
   component: Panel,
   tags: ['autodocs'],
-  args: { variant: 'default', padding: 'md' },
+  args: { variant: 'default' },
   argTypes: {
     variant: { control: 'inline-radio', options: ['thin', 'default', 'strong'] },
-    padding: { control: 'inline-radio', options: ['none', 'sm', 'md', 'lg'] },
   },
 } satisfies Meta<typeof Panel>;
 
@@ -47,11 +46,10 @@ const rows = [
   { name: 'Refonte facturation', owner: 'Équipe Finance', progress: '100 %', due: '01.09.2026' },
 ];
 
-/** With `padding="none"` the content runs edge to edge and is clipped to the rounded corners. */
+/** Tailwind padding utilities override the default `p-2`; here the table runs edge to edge. */
 export const Table: Story = {
-  args: { padding: 'none' },
   render: (args) => (
-    <Panel {...args} className="hx:max-w-2xl">
+    <Panel {...args} className="hx:max-w-2xl hx:p-0">
       <table className="hx:w-full hx:border-collapse hx:text-left hx:text-sm hx:tabular-nums">
         <thead className="hx:text-fg-muted">
           <tr>
@@ -79,9 +77,9 @@ export const Table: Story = {
 
 /** `render` changes the element while keeping the styles, here a semantic `<aside>`. */
 export const AsAside: Story = {
-  args: { variant: 'thin', padding: 'sm' },
+  args: { variant: 'thin' },
   render: (args) => (
-    <Panel {...args} render={<aside aria-label="Navigation" />} className="hx:w-56">
+    <Panel {...args} render={<aside aria-label="Navigation" />} className="hx:w-56 hx:p-3">
       <nav className="hx:flex hx:flex-col hx:gap-1 hx:text-sm">
         {['Tableau de bord', 'Projets', 'Clients', 'Facturation', 'Paramètres'].map((item, i) => (
           <a

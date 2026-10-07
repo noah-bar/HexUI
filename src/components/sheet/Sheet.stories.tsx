@@ -32,7 +32,7 @@ const invoices = [
 
 export const Default: Story = {
   render: (args) => (
-    <Panel padding="lg" className="hx:max-w-2xl">
+    <Panel className="hx:max-w-2xl hx:p-6">
       <div className="hx:flex hx:items-center hx:justify-between hx:gap-5">
         <div>
           <p className="hx:text-sm hx:font-semibold hx:text-fg">Léman Immobilier SA</p>
@@ -167,7 +167,7 @@ export const OverDenseContent: Story = {
           </SheetHeader>
           <SheetBody className="hx:flex hx:flex-col hx:gap-3">
             {denseInvoices.map((invoice, index) => (
-              <Panel key={invoice.id} padding="md">
+              <Panel key={invoice.id} className="hx:p-5">
                 <div className="hx:flex hx:items-start hx:justify-between hx:gap-4">
                   <div>
                     <p className="hx:text-sm hx:font-medium hx:text-fg">{invoice.id}</p>

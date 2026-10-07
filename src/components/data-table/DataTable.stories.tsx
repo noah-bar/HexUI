@@ -95,7 +95,7 @@ export const ServerSide: Story = {
 
     return (
       <div className="hx:flex hx:h-[640px] hx:max-w-5xl hx:flex-col hx:gap-3">
-        <Panel padding="sm" variant="thin">
+        <Panel variant="thin" className="hx:p-3">
           <Input
             placeholder="Rechercher un devis ou un client…"
             className="hx:max-w-sm"
@@ -106,7 +106,7 @@ export const ServerSide: Story = {
             }}
           />
         </Panel>
-        <Panel className="hx:min-h-0 hx:flex-1">
+        <Panel className="hx:min-h-0 hx:flex-1 hx:p-0">
           <DataTable
             ordering={ordering}
             onOrderingChange={(o) => {
@@ -178,7 +178,7 @@ export const ServerSide: Story = {
 export const Loading: Story = {
   args: { children: null },
   render: () => (
-    <Panel className="hx:h-80 hx:max-w-3xl">
+    <Panel className="hx:h-80 hx:max-w-3xl hx:p-0">
       <DataTable>
         <DataTableHeader>
           <TableRow>

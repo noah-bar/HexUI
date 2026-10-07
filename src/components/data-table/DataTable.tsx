@@ -38,7 +38,7 @@ export type DataTableProps = {
 /**
  * Data table wired for server-side data: sorting, pagination, loading and empty states,
  * sticky header. It fills its parent's height and scrolls inside, so give the parent a height
- * (e.g. a Panel in a flex layout): `<Panel className="h-[600px]"><DataTable …/></Panel>`.
+ * (e.g. a Panel in a flex layout): `<Panel className="h-[600px] p-0"><DataTable …/></Panel>`.
  */
 export function DataTable({
   children,

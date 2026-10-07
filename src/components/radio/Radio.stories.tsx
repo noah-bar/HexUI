@@ -8,7 +8,7 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <Panel padding="md" className="hx:w-fit hx:text-sm hx:text-fg">
+      <Panel className="hx:w-fit hx:p-5 hx:text-sm hx:text-fg">
         <Story />
       </Panel>
     ),

@@ -148,7 +148,7 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | FieldRow | `FieldRow` — plusieurs `Field` sur une ligne, en colonne quand la ligne devient trop étroite (container query : marche aussi dans un dialogue ou un panneau latéral) ; `columns` (`3` ou `"1fr 3fr"`), `stackBelow` (`sm`, `md`, `lg` par défaut, `xl`) |
 | Input | `Input` — état d'erreur avec `aria-invalid` (ou automatiquement dans un `Field` Base UI invalide) ; même comportement sur `SelectTrigger` |
 | InputNumber | `InputNumber` (`min`, `max`, `step`, `decimalPlaces` — `0` par défaut, `required`, `format`, `locale`, `showSteppers`, `align`) — aligné à gauche et sans boutons −/+ par défaut ; un champ `required` vidé revient à `0` au blur ; flèches du clavier, Maj pour `largeStep` ; montants en CHF et pourcentages via `format` |
-| Card | `Card` (un `Panel` avec mise en page verticale ; accepte `variant`, `padding` et `render`), `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
+| Card | `Card` (un `Panel` avec mise en page verticale et `p-6` par défaut ; accepte `variant` et `render`, utilisez les classes Tailwind pour modifier la marge interne), `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
 | Checkbox | `Checkbox` — états coché, `indeterminate`, invalide (`aria-invalid` ou dans un `Field` invalide) |
 | Collapsible | `Collapsible`, `CollapsibleTrigger` (à styler avec `render={<Button variant="ghost" />}`), `CollapsibleChevron` (tourne à l'ouverture), `CollapsibleContent` (hauteur animée ; `hiddenUntilFound` pour la recherche du navigateur) — section repliable |
 | Combobox | `Combobox`, `ComboboxInput` (`clearable`), `ComboboxChips` (sélection multiple), `ComboboxTrigger` + `ComboboxSearch` (liste déroulante avec recherche), `ComboboxValue`, `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), `ComboboxGroup`, `ComboboxGroupLabel`, `ComboboxCollection`, `ComboboxSeparator`, `useComboboxFilter`, `createComboboxItems` — voir ci-dessous |
@@ -161,7 +161,7 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | Menu | `Menu`, `MenuTrigger`, `MenuContent`, `MenuItem` (`variant="danger"`), `MenuShortcut`, `MenuSeparator`, `MenuGroup`, `MenuGroupLabel`, `MenuCheckboxItem`, `MenuRadioGroup`, `MenuRadioItem`, `MenuSub`, `MenuSubTrigger`, `MenuSubContent` |
 | Menubar | `Menubar`, `MenubarMenu`, `MenubarTrigger`, `MenubarContent`, `MenubarItem` (`variant="danger"`), `MenubarShortcut`, `MenubarSeparator`, `MenubarGroup`, `MenubarLabel`, `MenubarCheckboxItem`, `MenubarRadioGroup`, `MenubarRadioItem`, `MenubarSub`, `MenubarSubTrigger`, `MenubarSubContent` — barre de menus (Fichier, Édition…) en verre fin ; les éléments sont ceux de `Menu` |
 | Pagination | `Pagination` (`page`, `totalPages`, `onPageChange`, `maxVisible`, libellés), `getVisiblePages` — utilisable seule, hors tableau |
-| Panel | `Panel`, `panelVariants` — surface en verre sans mise en page ; variantes `thin`, `default`, `strong` ; marge interne `none`, `sm`, `md`, `lg` ; prop `render` pour changer l'élément (`<aside />`, `<section />`…) |
+| Panel | `Panel`, `panelVariants` — surface en verre avec `p-2` par défaut ; variantes `thin`, `default`, `strong` ; utilisez les classes Tailwind pour modifier la marge interne ; prop `render` pour changer l'élément (`<aside />`, `<section />`…) |
 | Popover | `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverTitle`, `PopoverDescription`, `PopoverClose` — panneau flottant libre (filtres, détails, mini-formulaires) |
 | Progress | `Progress` (`value`, `null` pour une durée inconnue ; `label`, `showValue`, `format`, `locale`) — barre d'avancement qui passe au vert une fois terminée |
 | Radio | `RadioGroup`, `Radio` |
@@ -185,7 +185,7 @@ Il remplit la hauteur de son parent et défile à l'intérieur : donnez une haut
 Il est **contrôlé** et ne dépend d'aucun routeur.
 
 ```tsx
-<Panel className="h-[600px]">
+<Panel className="h-[600px] p-0">
   <DataTable ordering={ordering} onOrderingChange={setOrdering} pagination={data} onSkipChange={setSkip}>
     <DataTableHeader>
       <TableRow>
