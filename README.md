@@ -1,18 +1,18 @@
-# @hex-tech/hexui
+# @hxtc/hexui
 
 Librairie de composants React de Hex-Tech — [Base UI](https://base-ui.com) + Tailwind CSS v4, avec un glassmorphisme pensé pour des interfaces professionnelles.
 
 ## Installation
 
 ```bash
-npm install @hex-tech/hexui
+npm install @hxtc/hexui
 ```
 
 ```tsx
 // Point d'entrée de l'application, une seule fois
-import '@hex-tech/hexui/styles.css';
+import '@hxtc/hexui/styles.css';
 
-import { Button, Card, CardHeader, CardTitle } from '@hex-tech/hexui';
+import { Button, Card, CardHeader, CardTitle } from '@hxtc/hexui';
 ```
 
 Prérequis : React 19. **Tailwind n'est pas requis** côté application : le CSS est précompilé.
