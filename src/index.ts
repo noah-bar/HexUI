@@ -99,6 +99,23 @@ export {
   type MenuContentProps,
   type MenuItemProps,
 } from './components/menu/Menu';
+export {
+  Menubar,
+  MenubarCheckboxItem,
+  MenubarContent,
+  MenubarGroup,
+  MenubarItem,
+  MenubarLabel,
+  MenubarMenu,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarSub,
+  MenubarSubContent,
+  MenubarSubTrigger,
+  MenubarTrigger,
+} from './components/menubar/Menubar';
 export { Pagination, getVisiblePages, type PaginationProps } from './components/pagination/Pagination';
 export { Panel, panelVariants, type PanelProps } from './components/panel/Panel';
 export { Radio, RadioGroup, type RadioProps } from './components/radio/Radio';
