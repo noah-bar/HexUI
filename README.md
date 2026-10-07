@@ -139,6 +139,7 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | Composant | Exports |
 | --- | --- |
 | Autocomplete | `Autocomplete`, `AutocompleteInput` (`clearable`), `AutocompleteContent`, `AutocompleteList`, `AutocompleteItem`, `AutocompleteEmpty`, `AutocompleteStatus` (`loading`), `AutocompleteGroup`, `AutocompleteGroupLabel`, `AutocompleteCollection`, `AutocompleteSeparator`, `useAutocompleteFilter` — texte libre avec suggestions, voir ci-dessous |
+| Avatar | `Avatar` (`size` : `xs`, `sm`, `md`, `lg` ; `shape` : `circle`, `square`), `AvatarImage`, `AvatarFallback` (initiales ou icône, affichées tant que l'image n'est pas chargée), `AvatarGroup` (avatars superposés), `avatarVariants` |
 | Backdrop | `Backdrop` — variantes `mesh`, `aurora`, `plain` ; textures `grain`, `grid` |
 | Badge | `Badge`, `badgeVariants` — statuts `neutral`, `info`, `success`, `warning`, `danger` ; `dot` pour une pastille ; icônes acceptées |
 | Button | `Button`, `buttonVariants` — variantes `primary`, `secondary`, `outline`, `ghost`, `danger` ; tailles `sm`, `md`, `lg`, `icon` |
@@ -146,6 +147,7 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | Field | `Field`, `FieldLabel`, `FieldDescription`, `FieldError`, `FieldItem` — relie automatiquement libellé, aide et erreur au champ ; `<Field invalid>` ou la validation native (`required`, `validationMode`) passent le champ en rouge |
 | FieldRow | `FieldRow` — plusieurs `Field` sur une ligne, en colonne quand la ligne devient trop étroite (container query : marche aussi dans un dialogue ou un panneau latéral) ; `columns` (`3` ou `"1fr 3fr"`), `stackBelow` (`sm`, `md`, `lg` par défaut, `xl`) |
 | Input | `Input` — état d'erreur avec `aria-invalid` (ou automatiquement dans un `Field` Base UI invalide) ; même comportement sur `SelectTrigger` |
+| InputNumber | `InputNumber` (`min`, `max`, `step`, `format`, `locale`, `showSteppers`, `align`) — champ numérique avec boutons − et + ; flèches du clavier, Maj pour `largeStep` ; montants en CHF et pourcentages via `format` |
 | Card | `Card` (un `Panel` avec mise en page verticale ; accepte `variant`, `padding` et `render`), `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
 | Checkbox | `Checkbox` — états coché, `indeterminate`, invalide (`aria-invalid` ou dans un `Field` invalide) |
 | Collapsible | `Collapsible`, `CollapsibleTrigger` (à styler avec `render={<Button variant="ghost" />}`), `CollapsibleChevron` (tourne à l'ouverture), `CollapsibleContent` (hauteur animée ; `hiddenUntilFound` pour la recherche du navigateur) — section repliable |
