@@ -7,18 +7,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-07
+
+### Added
+
+- `useTheme` hook: persisted light, dark or system preference, synchronized across tabs, with `themeScript` to apply the theme before the first paint.
+- Backdrop: root-level children, and a themed background image with `image`, `imageBlur` and `overlay`.
+- Stylesheet importable from CSS with `@import '@hxtc/hexui'` (`style` export condition).
+- `DataTableRow`, `DataTableHead`, `DataTableCell`, `DataTableFooter`, `DataTableCaption` and `DataTableEmpty` aliases.
+
+### Changed
+
+- **Breaking:** default accessible labels are now in English.
+- **Breaking:** remove the Sidebar keyboard shortcut and the `keyboardShortcut` prop.
+- **Breaking:** replace the Panel `padding` prop with utility classes.
+- License the package under MIT.
+- Remove redundant code comments.
+
+### Fixed
+
+- Tighten the gap around the floating Sidebar content.
+
+### Chore
+
+- ESLint and Prettier, with TypeScript 6.
+- English README, stories and Storybook introduction.
+- Storybook background toolbar with sharp and blurred image backgrounds.
+
 ## [0.1.0] - 2026-10-07
 
 ### Added
 
 - Glass design system: `--hx-*` design tokens, `hx:`-prefixed Tailwind utilities, layered glass materials (thin, default, strong, dialog, field, tint and stained glass), indigo palette, light and dark themes, and accessible fallbacks for unsupported blur, reduced transparency and high contrast.
-- Precompiled stylesheet, importable from CSS (`@import '@hxtc/hexui'`) or from JavaScript (`@hxtc/hexui/styles.css`).
-- Layout and surfaces: Panel, Card, Separator, Sheet, Sidebar with inset header, and Backdrop with mesh, aurora and plain variants, grain and grid textures, a themed background image with blur and overlay, and root-level children.
+- Precompiled stylesheet (`@hxtc/hexui/styles.css`).
+- Layout and surfaces: Panel, Card, Separator, Sheet, Sidebar with inset header, and Backdrop with mesh, aurora and plain variants and grain and grid textures.
 - Actions: Button with primary, secondary, outline, ghost and danger variants, Toggle and ToggleGroup, Menu, DropdownMenu, Menubar, and Command palette with CommandDialog.
 - Forms: Field, FieldRow, Label, Input, InputNumber, Textarea, Select, Checkbox, Radio, Switch, Slider with range support, Combobox with multiple selection and searchable dropdown, and Autocomplete.
-- Data display: Table with sorting, selection and density, DataTable with server-side sorting and pagination and `DataTable*` aliases for rows, heads and cells, Pagination, Badge, Avatar and AvatarGroup, Tabs, and Collapsible.
+- Data display: Table with sorting, selection and density, DataTable with server-side sorting and pagination, Pagination, Badge, Avatar and AvatarGroup, Tabs, and Collapsible.
 - Feedback and overlays: Dialog, Popover, Tooltip, Toast, Progress, Spinner and Skeleton.
-- Hooks: `useTheme` with persisted preference and `themeScript` to apply the theme before the first paint, `useMediaQuery` and `useDebouncedValue`.
+- Hooks: `useMediaQuery` and `useDebouncedValue`.
 - `cn` and `mergeClassName` class name helpers.
 
 ### Changed
@@ -26,9 +53,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reduce the border radius by one step across components.
 - Build Card on Panel and DataTable pagination on Pagination.
 - Share field control styles across Input, Textarea and Select.
-- Replace the Panel `padding` prop with utility classes.
-- Use English default accessible labels.
-- Remove the Sidebar keyboard shortcut.
 
 ### Fixed
 
@@ -37,12 +61,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Align the Slider and Progress indicators with their track.
 - Vertically align Checkbox and Radio controls.
 - Stabilize Sidebar skeleton widths during hydration.
-- Guard theme storage access when localStorage is unavailable.
 
 ### Chore
 
 - Library build with Vite, TypeScript and Tailwind CSS: ES modules, type declarations and `'use client'` directives.
-- ESLint and Prettier, with TypeScript 6.
-- Storybook with docs, accessibility and theme addons, and a background toolbar including image backgrounds.
-- MIT license and `@hxtc` npm scope.
-- English README and stories.
+- Storybook with docs, accessibility and theme addons, and a background toolbar.
