@@ -18,7 +18,9 @@ export function TabsList({ className, children, ...props }: ComponentProps<typeo
       {children}
       <BaseTabs.Indicator
         className={[
-          'hx:glass-strong hx:[--hx-glass-strong:var(--hx-nav-active)] hx:border-(--hx-nav-active-border) hx:absolute hx:top-(--active-tab-top) hx:left-0 hx:z-0 hx:rounded-md',
+          // Clear glass chip: the list already blurs what is behind, so no second, saturating blur
+          // that would pull the backdrop glow (indigo) through.
+          'hx:glass-strong hx:[--hx-glass-strong:var(--hx-nav-active)] hx:[--hx-glass-filter:none] hx:border-(--hx-nav-active-border) hx:absolute hx:top-(--active-tab-top) hx:left-0 hx:z-0 hx:rounded-md',
           'hx:h-(--active-tab-height) hx:w-(--active-tab-width) hx:translate-x-(--active-tab-left)',
           'hx:transition-[translate,width] hx:duration-200 hx:ease-out',
         ].join(' ')}
