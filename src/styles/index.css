@@ -289,6 +289,11 @@
  * Glass surfaces share the same material: translucent fill + top sheen + fine grain,
  * a lit edge (::before, masked to a 1px ring) and a soft shadow.
  * Elements need a positioning context for the edge; see the components layer below.
+ *
+ * Surfaces (thin, default, strong, dialog) do not blur themselves: they set --hx-glass-filter
+ * and a ::after layer behind their content applies it. An element with backdrop-filter
+ * becomes a "backdrop root" in Chrome, and nothing inside it (sticky table header, floating
+ * bar, secondary button) could blur the surface's own content any more.
  */
 
 /* Thin surface: chrome with little text (nav bars, sidebars, toolbars, tab lists). */
@@ -298,7 +303,7 @@
   background-size: 160px 160px, 100% 100%;
   border: 1px solid var(--hx-glass-border);
   box-shadow: inset 0 1px 0 0 var(--hx-glass-highlight), var(--hx-glass-shadow);
-  backdrop-filter: blur(calc(var(--hx-glass-blur) * 1.25)) saturate(180%);
+  --hx-glass-filter: blur(calc(var(--hx-glass-blur) * 1.25)) saturate(180%);
 }
 
 /* Standard surface: cards, panels, secondary buttons. */
@@ -308,7 +313,7 @@
   background-size: 160px 160px, 100% 100%;
   border: 1px solid var(--hx-glass-border);
   box-shadow: inset 0 1px 0 0 var(--hx-glass-highlight), var(--hx-glass-shadow);
-  backdrop-filter: blur(var(--hx-glass-blur)) saturate(170%);
+  --hx-glass-filter: blur(var(--hx-glass-blur)) saturate(170%);
 }
 
 /* Elevated surface: dialogs, popovers, menus — more opaque for long-form reading. */
@@ -318,7 +323,7 @@
   background-size: 160px 160px, 100% 100%;
   border: 1px solid var(--hx-glass-border);
   box-shadow: inset 0 1px 0 0 var(--hx-glass-highlight), var(--hx-glass-shadow-lg);
-  backdrop-filter: blur(calc(var(--hx-glass-blur) * 1.5)) saturate(180%);
+  --hx-glass-filter: blur(calc(var(--hx-glass-blur) * 1.5)) saturate(180%);
 }
 
 /* Dialog surface: lighter than glass-strong, compensated by a much stronger blur
@@ -329,7 +334,7 @@
   background-size: 160px 160px, 100% 100%;
   border: 1px solid var(--hx-glass-border);
   box-shadow: inset 0 1px 0 0 var(--hx-glass-highlight), var(--hx-glass-shadow-lg);
-  backdrop-filter: blur(calc(var(--hx-glass-blur) * 2.5)) saturate(180%);
+  --hx-glass-filter: blur(calc(var(--hx-glass-blur) * 2.5)) saturate(180%);
 }
 
 /* Tinted glass: colored glass for filled actions (primary by default).
@@ -433,6 +438,32 @@
       linear-gradient(#000 0 0) content-box exclude,
       linear-gradient(#000 0 0);
     pointer-events: none;
+  }
+
+  /* Blur layer of glass surfaces, behind their content (see the note on glass utilities).
+     It redraws the grain and top highlight, which the blur would otherwise smear. */
+  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog) {
+    isolation: isolate;
+  }
+
+  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog):not(.hx-toast)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-image: var(--hx-glass-grain);
+    background-size: 160px 160px;
+    box-shadow: inset 0 1px 0 0 var(--hx-glass-highlight);
+    -webkit-backdrop-filter: var(--hx-glass-filter);
+    backdrop-filter: var(--hx-glass-filter);
+    pointer-events: none;
+  }
+
+  /* Toasts use ::after to bridge the gap between them, and nothing inside them needs to blur. */
+  .hx-toast {
+    -webkit-backdrop-filter: var(--hx-glass-filter);
+    backdrop-filter: var(--hx-glass-filter);
   }
 }
 
@@ -677,7 +708,12 @@
     backdrop-filter: none;
   }
 
-  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog, .hx\:glass-tint, .hx\:glass-stained)::before {
+  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog, .hx\:glass-tint, .hx\:glass-stained)::before,
+  :where(.hx\:glass-thin, .hx\:glass, .hx\:glass-strong, .hx\:glass-dialog):not(.hx-toast)::after {
     display: none;
+  }
+
+  .hx-toast {
+    backdrop-filter: none;
   }
 }
