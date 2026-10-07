@@ -1,5 +1,6 @@
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 import { Menubar as BaseMenubar } from '@base-ui/react/menubar';
+import { cva, type VariantProps } from 'class-variance-authority';
 import type { ComponentProps } from 'react';
 import { mergeClassName } from '../../lib/cn';
 import {
@@ -20,16 +21,22 @@ import {
   type MenuItemProps,
 } from '../menu/Menu';
 
-export function Menubar({ className, ...props }: ComponentProps<typeof BaseMenubar>) {
-  return (
-    <BaseMenubar
-      className={mergeClassName(
-        'hx:glass-thin hx:flex hx:h-10 hx:w-fit hx:items-center hx:gap-1 hx:rounded-lg hx:p-1',
-        className,
-      )}
-      {...props}
-    />
-  );
+export const menubarVariants = cva('hx:flex hx:w-fit hx:items-center hx:gap-1 hx:rounded-lg', {
+  variants: {
+    variant: {
+      default: 'hx:glass-thin hx:h-10 hx:p-1',
+      ghost: 'hx:h-8',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+});
+
+export type MenubarProps = ComponentProps<typeof BaseMenubar> & VariantProps<typeof menubarVariants>;
+
+export function Menubar({ variant, className, ...props }: MenubarProps) {
+  return <BaseMenubar className={mergeClassName(menubarVariants({ variant }), className)} {...props} />;
 }
 
 export function MenubarMenu(props: ComponentProps<typeof Menu>) {

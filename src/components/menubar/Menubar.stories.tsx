@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
+import { Panel } from '../panel/Panel';
+import { Separator } from '../separator/Separator';
 import {
   Menubar,
   MenubarCheckboxItem,
@@ -23,6 +25,9 @@ const meta = {
   component: Menubar,
   tags: ['autodocs'],
   parameters: { docs: { story: { inline: false, iframeHeight: 420 } } },
+  argTypes: {
+    variant: { control: 'inline-radio', options: ['default', 'ghost'] },
+  },
 } satisfies Meta<typeof Menubar>;
 
 export default meta;
@@ -33,13 +38,13 @@ type Story = StoryObj<typeof meta>;
  * hovering another trigger opens it.
  */
 export const Default: Story = {
-  render: function DefaultStory() {
+  render: function DefaultStory(args) {
     const [showVat, setShowVat] = useState(true);
     const [showNotes, setShowNotes] = useState(false);
     const [currency, setCurrency] = useState('CHF');
 
     return (
-      <Menubar>
+      <Menubar {...args}>
         <MenubarMenu>
           <MenubarTrigger>File</MenubarTrigger>
           <MenubarContent>
@@ -112,4 +117,16 @@ export const Default: Story = {
       </Menubar>
     );
   },
+};
+
+/** `variant="ghost"`: no glass strip of its own, for a menu bar inside a surface that is already glass (page header). */
+export const Ghost: Story = {
+  args: { variant: 'ghost' },
+  render: (args, context) => (
+    <Panel variant="thin" className="hx:flex hx:h-12 hx:w-fit hx:items-center hx:gap-3 hx:px-3">
+      <span className="hx:text-sm hx:font-medium">F-2026-1045</span>
+      <Separator orientation="vertical" className="hx:h-5" />
+      {Default.render!(args, context)}
+    </Panel>
+  ),
 };

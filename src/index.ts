@@ -159,6 +159,7 @@ export {
 } from './components/menu/Menu';
 export {
   Menubar,
+  menubarVariants,
   MenubarCheckboxItem,
   MenubarContent,
   MenubarGroup,
@@ -173,6 +174,7 @@ export {
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
+  type MenubarProps,
 } from './components/menubar/Menubar';
 export { Pagination, getVisiblePages, type PaginationProps } from './components/pagination/Pagination';
 export { Panel, panelVariants, type PanelProps } from './components/panel/Panel';
