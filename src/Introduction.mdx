@@ -4,42 +4,42 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # HexUI
 
-Librairie de composants React de Hex-Tech, construite sur **Base UI** (comportement & accessibilité)
-et **Tailwind CSS v4** (style), avec une signature visuelle : le **glassmorphisme professionnel**.
+Hex-Tech's React component library, built on **Base UI** (behavior & accessibility)
+and **Tailwind CSS v4** (styling), with a visual signature: **professional glassmorphism**.
 
-## Principes du verre
+## Glass principles
 
-- **Lisibilité d'abord** : les surfaces restent opaques à 70–85 %, le flou sert la profondeur, pas la décoration.
-- **Six niveaux** :
-  - `glass-thin` : navigation, barres d'outils, onglets (peu de texte) ;
-  - `glass` : cartes, panneaux ;
-  - `glass-strong` : menus, tooltips ;
-  - `glass-dialog` : dialogues et toasts, plus transparents mais très floutés ;
-  - `glass-field` : champs de formulaire ;
-  - `glass-tint` : verre teinté pour les actions (boutons primary et danger, switch activé), rempli à 85 % minimum
-    pour que le texte blanc reste lisible.
-- **Un vrai matériau** : bord éclairé en haut à gauche, léger reflet en haut, grain très fin de verre dépoli.
-  Aucun élément n'est un aplat opaque, et il n'y a pas de halo lumineux.
-- **Survol et sélection** : *à l'intérieur* d'une surface en verre (lignes, éléments de liste, bouton ghost), on utilise
-  un voile léger `tint-hover` / `tint-active`. *Sur* un élément en verre (bouton secondary), on utilise `glass-hover`.
-  Un élément sélectionné posé sur du verre (indicateur d'onglet) est toujours plus clair que son conteneur.
-- **Replis accessibles** : surfaces opaques automatiquement si le navigateur ne gère pas `backdrop-filter`,
-  si l'utilisateur active « Réduire la transparence », ou en mode contraste élevé.
+- **Readability first**: surfaces stay 70–85% opaque, and blur serves depth, not decoration.
+- **Six levels**:
+  - `glass-thin`: navigation, toolbars, tabs (little text);
+  - `glass`: cards, panels;
+  - `glass-strong`: menus, tooltips;
+  - `glass-dialog`: dialogs and toasts, more transparent but heavily blurred;
+  - `glass-field`: form fields;
+  - `glass-tint`: tinted glass for actions (primary and danger buttons, checked switch), filled at 85% minimum
+    so white text stays readable.
+- **A real material**: lit edge at the top left, a light sheen at the top, a very fine frosted-glass grain.
+  No element is a flat opaque fill, and there is no glow.
+- **Hover and selection**: *inside* a glass surface (rows, list items, ghost button), use a light
+  `tint-hover` / `tint-active` veil. *On* a glass element (secondary button), use `glass-hover`.
+  A selected element sitting on glass (tab indicator) is always lighter than its container.
+- **Accessible fallbacks**: surfaces become opaque automatically when the browser does not support `backdrop-filter`,
+  when the user turns on "Reduce transparency", or in high-contrast mode.
 
-## Fond
+## Background
 
-Le composant `Backdrop` fournit le fond sur lequel le verre prend tout son sens. Changez-le depuis l'outil
-**Fond** de la barre d'outils pour vérifier qu'un composant reste lisible sur chaque variante, y compris sans fond.
+The `Backdrop` component provides the background that gives glass its meaning. Change it from the **Background**
+tool in the toolbar to check that a component stays readable on each variant, including with no background.
 
-## Thèmes
+## Themes
 
-Ajoutez la classe `dark` (ou `data-theme="dark"`) sur `<html>`. Utilisez la barre d'outils Storybook pour basculer.
+Add the `dark` class (or `data-theme="dark"`) to `<html>`. Use the Storybook toolbar to switch.
 
-## Personnalisation
+## Customization
 
-La palette est un indigo (`#4f46e5`) sur des gris neutres. Les halos du fond combinent indigo, cyan et violet clair.
+The palette is indigo (`#4f46e5`) on neutral grays. The background glows combine indigo, cyan and light violet.
 
-Toutes les couleurs sont des variables CSS `--hx-*` surchargeables :
+Every color is an overridable `--hx-*` CSS variable:
 
 ```css
 :root {

@@ -13,15 +13,15 @@ const preview: Preview = {
   },
   globalTypes: {
     backdrop: {
-      description: 'Fond derrière les composants',
+      description: 'Background behind the components',
       toolbar: {
-        title: 'Fond',
+        title: 'Background',
         icon: 'photo',
         items: [
           { value: 'mesh', title: 'Mesh' },
           { value: 'aurora', title: 'Aurora' },
           { value: 'plain', title: 'Plain' },
-          { value: 'none', title: 'Aucun (fond uni)' },
+          { value: 'none', title: 'None (solid color)' },
         ],
         dynamicTitle: true,
       },
