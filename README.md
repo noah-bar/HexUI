@@ -157,15 +157,19 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | Pagination | `Pagination` (`page`, `totalPages`, `onPageChange`, `maxVisible`, libellés), `getVisiblePages` — utilisable seule, hors tableau |
 | Panel | `Panel`, `panelVariants` — surface en verre sans mise en page ; variantes `thin`, `default`, `strong` ; marge interne `none`, `sm`, `md`, `lg` ; prop `render` pour changer l'élément (`<aside />`, `<section />`…) |
 | Popover | `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverTitle`, `PopoverDescription`, `PopoverClose` — panneau flottant libre (filtres, détails, mini-formulaires) |
+| Progress | `Progress` (`value`, `null` pour une durée inconnue ; `label`, `showValue`, `format`, `locale`) — barre d'avancement qui passe au vert une fois terminée |
 | Radio | `RadioGroup`, `Radio` |
 | Sidebar | `SidebarProvider`, `Sidebar` (`variant`, `collapsible`, `side`), `SidebarTrigger`, `SidebarRail`, `SidebarInset`, `SidebarInsetHeader` (`variant`), `SidebarHeader`, `SidebarContent`, `SidebarFooter`, `SidebarSeparator`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarGroupAction`, `SidebarGroupContent`, `SidebarMenu`, `SidebarMenuItem`, `SidebarMenuButton` (`isActive`, `tooltip`, `size`), `SidebarMenuAction`, `SidebarMenuBadge`, `SidebarMenuSkeleton`, `SidebarMenuSub`, `SidebarMenuSubItem`, `SidebarMenuSubButton`, `SidebarMenuCollapsible`, `SidebarMenuCollapsibleTrigger`, `SidebarMenuCollapsibleContent`, `useSidebar` — voir ci-dessous |
+| Separator | `Separator` (`orientation`) — ligne fine entre deux groupes de contenu |
 | Skeleton | `Skeleton` — forme de chargement animée |
 | Select | `Select`, `SelectTrigger`, `SelectValue`, `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator` |
 | Sheet | `Sheet`, `SheetTrigger`, `SheetContent` (`side`, `size`), `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetCloseButton`, `SheetBody`, `SheetFooter`, `SheetClose` |
+| Slider | `Slider` (`label`, `showValue`, `format`, `locale`, `min`, `max`, `step` ; une valeur tableau donne une plage à deux poignées, nommées par `thumbLabels` ; `orientation`) |
 | Spinner | `Spinner` (`size` : `xs`, `sm`, `md`, `lg` ; `tone` : `current`, `muted`, `accent` ; `label` pour les lecteurs d'écran quand il est seul), `spinnerVariants` — continue de tourner, plus lentement, si l'utilisateur réduit les animations |
 | Switch | `Switch` |
 | Table | `Table` (`density`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow` (`selected`), `TableHead` (`align`, `sortDirection`, `onSort`), `TableCell` (`align`), `TableCaption`, `TableEmpty` — à placer dans un `Panel` ; défilement horizontal intégré pour les tableaux larges |
 | Tabs | `Tabs`, `TabsList`, `TabsTab`, `TabsPanel` |
+| Toggle | `Toggle` (`variant` : `default`, `outline` ; `size` : `sm`, `md`, `lg`), `ToggleGroup` (choix unique, ou `multiple`), `toggleVariants` — bouton à deux états, enfoncé avec le même verre que l'élément actif de la sidebar |
 | Textarea | `Textarea` — mêmes états que `Input`, redimensionnable verticalement |
 
 ### Tableau de données (DataTable)
