@@ -50,6 +50,21 @@ export {
   type ComboboxStatusProps,
 } from './components/combobox/Combobox';
 export {
+  Command,
+  CommandCollection,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandGroupLabel,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+  type CommandDialogProps,
+  type CommandProps,
+} from './components/command/Command';
+export {
   DataTable,
   DataTableBody,
   DataTableHeader,
@@ -72,6 +87,22 @@ export {
   type DialogContentProps,
 } from './components/dialog/Dialog';
 export {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from './components/dropdown-menu/DropdownMenu';
+export {
   Field,
   FieldDescription,
   FieldError,
@@ -81,6 +112,7 @@ export {
   type FieldRowProps,
 } from './components/field/Field';
 export { Input, type InputProps } from './components/input/Input';
+export { Label } from './components/label/Label';
 export {
   Menu,
   MenuCheckboxItem,
