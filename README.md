@@ -113,6 +113,7 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 
 | Composant | Exports |
 | --- | --- |
+| Autocomplete | `Autocomplete`, `AutocompleteInput` (`clearable`), `AutocompleteContent`, `AutocompleteList`, `AutocompleteItem`, `AutocompleteEmpty`, `AutocompleteStatus` (`loading`), `AutocompleteGroup`, `AutocompleteGroupLabel`, `AutocompleteCollection`, `AutocompleteSeparator`, `useAutocompleteFilter` — texte libre avec suggestions, voir ci-dessous |
 | Backdrop | `Backdrop` — variantes `mesh`, `aurora`, `plain` ; textures `grain`, `grid` |
 | Badge | `Badge`, `badgeVariants` — statuts `neutral`, `info`, `success`, `warning`, `danger` ; `dot` pour une pastille ; icônes acceptées |
 | Button | `Button`, `buttonVariants` — variantes `primary`, `secondary`, `outline`, `ghost`, `danger` ; tailles `sm`, `md`, `lg`, `icon` |
@@ -121,6 +122,7 @@ Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`,
 | Input | `Input` — état d'erreur avec `aria-invalid` (ou automatiquement dans un `Field` Base UI invalide) ; même comportement sur `SelectTrigger` |
 | Card | `Card` (un `Panel` avec mise en page verticale ; accepte `variant`, `padding` et `render`), `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` |
 | Checkbox | `Checkbox` — états coché, `indeterminate`, invalide (`aria-invalid` ou dans un `Field` invalide) |
+| Combobox | `Combobox`, `ComboboxInput` (`clearable`), `ComboboxChips` (sélection multiple), `ComboboxTrigger` + `ComboboxSearch` (liste déroulante avec recherche), `ComboboxValue`, `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), `ComboboxGroup`, `ComboboxGroupLabel`, `ComboboxCollection`, `ComboboxSeparator`, `useComboboxFilter`, `createComboboxItems` — voir ci-dessous |
 | DataTable | `DataTable`, `DataTableHeader`, `DataTableSortableHead`, `DataTableBody`, `nextOrdering` — voir ci-dessous (pagination intégrée) |
 | Dialog | `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose` |
 | Toast | `ToastProvider`, `useToast`, `createToastManager` — voir ci-dessous |
@@ -185,6 +187,73 @@ const update = (key: string, value: string | number) =>
 <DataTable ordering={ordering} onOrderingChange={(o) => update('ordering', o)}
   pagination={data} onSkipChange={(s) => update('skip', s)}>
 ```
+
+### Recherche dans une liste (Combobox, Autocomplete)
+
+Trois composants selon le besoin :
+
+| Besoin | Composant |
+| --- | --- |
+| Peu d'options (moins de 10), pas de saisie | `Select` |
+| Choisir parmi une longue liste en tapant pour filtrer (client, collaborateur) | `Combobox` + `ComboboxInput` |
+| Plusieurs choix, affichés en puces | `<Combobox multiple>` + `ComboboxChips` |
+| Un champ qui ressemble à un Select, avec une recherche dans la liste déroulante | `Combobox` + `ComboboxTrigger` + `ComboboxSearch` |
+| Texte libre avec suggestions (localité, désignation, adresse) | `Autocomplete` |
+
+```tsx
+<Field>
+  <FieldLabel>Client</FieldLabel>
+  <Combobox items={clients}>
+    <ComboboxInput placeholder="Rechercher un client" />
+    <ComboboxContent>
+      <ComboboxEmpty>Aucun client trouvé.</ComboboxEmpty>
+      <ComboboxList>
+        {(client: Client) => (
+          <ComboboxItem key={client.id} value={client}>
+            {client.label}
+          </ComboboxItem>
+        )}
+      </ComboboxList>
+    </ComboboxContent>
+  </Combobox>
+</Field>
+```
+
+- `items` reçoit la liste complète, que `ComboboxList` affiche une fois filtrée. Les objets sont filtrés
+  et affichés via leur propriété `label`. Sinon, passez `itemToStringLabel` au `Combobox`.
+- **Plusieurs choix** : `<Combobox multiple>` avec `<ComboboxChips placeholder="…" />`. Retour arrière retire la
+  dernière puce. `chipLabel` choisit le texte des puces.
+- **Liste déroulante avec recherche** : remplacez `ComboboxInput` par
+  `<ComboboxTrigger><ComboboxValue placeholder="Choisir…" /></ComboboxTrigger>` et ajoutez
+  `<ComboboxSearch placeholder="Rechercher…" />` en tête de `ComboboxContent`.
+- **Groupes** : `items={[{ value: 'Conseil', items: [...] }]}`, puis `ComboboxGroup` + `ComboboxGroupLabel`
+  + `ComboboxCollection` dans `ComboboxList`.
+- **Stocker des identifiants** plutôt que des objets : `createComboboxItems(clients, { getValue: (c) => c.id, getLabel: (c) => c.name })`.
+- `ComboboxEmpty` et `ComboboxStatus` restent montés pour être annoncés aux lecteurs d'écran. Rendez leur
+  **contenu** conditionnel, pas le composant.
+
+**Résultats venant d'une API** : désactivez le filtrage local et interrogez l'API à chaque frappe.
+
+```tsx
+const [query, setQuery] = useState('');
+const debounced = useDebouncedValue(query, 300);
+const { data = [], isPending } = useClients(debounced); // gardez le client sélectionné dans la liste
+
+<Combobox items={data} filter={null} onInputValueChange={setQuery} value={client} onValueChange={setClient}>
+  <ComboboxInput placeholder="Rechercher un client" />
+  <ComboboxContent>
+    <ComboboxStatus loading={isPending}>{isPending ? 'Recherche…' : null}</ComboboxStatus>
+    <ComboboxEmpty>{!isPending && query ? 'Aucun client trouvé.' : null}</ComboboxEmpty>
+    <ComboboxList>{(c: Client) => <ComboboxItem key={c.id} value={c}>{c.label}</ComboboxItem>}</ComboboxList>
+  </ComboboxContent>
+</Combobox>
+```
+
+`Autocomplete` s'utilise de la même façon (`AutocompleteInput`, `AutocompleteContent`, `AutocompleteList`,
+`AutocompleteItem`…). Sa valeur est le **texte saisi**, une chaîne qu'on lit avec `value` / `onValueChange` :
+une suggestion ne fait que compléter ce texte. `autoHighlight` permet de valider la première suggestion avec Entrée.
+
+Les libellés accessibles des boutons (`clearLabel`, `triggerLabel`, `removeLabel`) sont en français par défaut.
 
 ### Notifications (Toast)
 
