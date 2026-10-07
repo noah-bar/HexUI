@@ -289,6 +289,7 @@ It is **controlled** and does not depend on any router.
 - `pagination` takes the API response directly (`{ total, skip, limit }`); `onSkipChange` receives the new `skip`.
 - Remember to reset `skip` to 0 when the search or the sort changes.
 - `useDebouncedValue(search, 300)` avoids a request on every keystroke.
+- Cell text does not wrap: wide tables scroll horizontally. Add `whitespace-normal` to a cell to let it wrap.
 
 **Keeping the state in the URL (react-router)** — shared links and the back button keep the page and the sort:
 
