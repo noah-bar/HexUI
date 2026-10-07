@@ -16,7 +16,10 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         primary: 'hx:glass-stained',
-        secondary: 'hx:glass hx:text-fg hx:hover:bg-glass-hover hx:active:bg-glass-active',
+        secondary: [
+          'hx:glass hx:text-fg hx:[--hx-glass-edge:var(--hx-secondary-button-edge)]',
+          'hx:hover:bg-glass-hover hx:active:bg-glass-active',
+        ],
         ghost: 'hx:text-fg hx:hover:bg-tint-hover hx:active:bg-tint-active',
         outline: [
           'hx:border hx:border-accent/50 hx:text-accent',

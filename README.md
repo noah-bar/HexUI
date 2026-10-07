@@ -109,8 +109,8 @@ de 1 px et la ferait défiler en largeur et en hauteur. Faites défiler un conte
 ### Vitrail (boutons primary et danger)
 
 `glass-stained` est un verre coloré translucide et dépoli, comme un bloc de vitrail : dégradé vertical, grain fin,
-aucun halo, et une bordure éclairée dans la couleur du verre (plus lumineuse en haut à gauche, plus dense en bas à
-droite). Le contenu derrière le bouton est flouté.
+aucun halo, et une bordure éclairée dans la couleur du verre (éclat principal en haut à gauche et second reflet en bas
+à droite). Le contenu derrière le bouton est flouté.
 
 - **Mode clair** : un verre indigo (ou rouge) pâle, à travers lequel la page reste visible, avec un texte coloré foncé
   (`--hx-primary-stain-text`, `--hx-danger-stain-text`, au moins 5,4:1 au survol). Le danger a un verre un peu plus
