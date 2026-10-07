@@ -55,6 +55,22 @@ donc pas la mise en page de l'application.
 - Il est optionnel : les composants restent lisibles sans lui.
 - Couleurs personnalisables avec `--hx-backdrop-base` et `--hx-backdrop-accent-1` à `-3`. Le premier accent suit `--hx-brand`.
 
+Une image peut remplacer les halos colorés, éventuellement différente selon le thème. Seule l'image du thème courant
+est téléchargée :
+
+```tsx
+<Backdrop image="/fond.jpg" />
+<Backdrop
+  image={{ light: '/jour.jpg', dark: '/nuit.jpg' }}
+  imageBlur={12}                      {/* flou en px, 0 par défaut */}
+  overlay={{ light: 0.1, dark: 0.5 }} {/* voile noir, de 0 à 1 */}
+/>
+```
+
+- `image` et `overlay` acceptent une valeur unique ou `{ light, dark }` (sans `dark`, la valeur `light` sert aux deux thèmes).
+- Le voile noir et le flou aident à garder le texte lisible sur une photo chargée. `texture` reste disponible par-dessus.
+- Le cadrage se règle avec `--hx-backdrop-image-position` (`center` par défaut).
+
 ## Thème clair / sombre
 
 Ajoutez `class="dark"` (ou `data-theme="dark"`) sur `<html>`. Il faut que ce soit sur `<html>` (et pas sur un
