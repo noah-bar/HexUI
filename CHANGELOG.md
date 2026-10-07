@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-10-07
+
+### Fixed
+
+- Publish the compiled 0.4.0 changes: the 0.4.0 package shipped the 0.3.1 build, without `SafeArea` or the new glass styles.
+
+### Chore
+
+- Compile the library automatically before publishing (`prepublishOnly`).
+
 ## [0.4.0] - 2026-10-07
 
 ### Added
