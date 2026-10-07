@@ -22,7 +22,8 @@ export function Progress({ className, label, showValue = false, ...props }: Prog
       {showValue && (
         <BaseProgress.Value className={cn('hx:col-start-2 hx:text-sm hx:tabular-nums hx:text-fg-muted', label == null && 'hx:row-start-1')} />
       )}
-      <BaseProgress.Track className="hx:col-span-2 hx:h-2 hx:overflow-hidden hx:rounded-full hx:border hx:border-glass-border hx:bg-switch-track">
+      {/* Inset ring rather than a border: Base UI sizes the indicator with `height: inherit`, which would overflow a border. */}
+      <BaseProgress.Track className="hx:col-span-2 hx:h-2 hx:overflow-hidden hx:rounded-full hx:bg-switch-track hx:shadow-[inset_0_0_0_1px_var(--hx-glass-border)]">
         <BaseProgress.Indicator
           className={[
             'hx:h-full hx:rounded-full hx:bg-accent',
