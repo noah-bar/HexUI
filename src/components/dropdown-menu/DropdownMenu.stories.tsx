@@ -46,20 +46,20 @@ export const Default: Story = {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuGroup>
-          <DropdownMenuLabel>Mon compte</DropdownMenuLabel>
+          <DropdownMenuLabel>My account</DropdownMenuLabel>
           <DropdownMenuItem>
-            <User /> Profil <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+            <User /> Profile <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <CreditCard /> Abonnement
+            <CreditCard /> Subscription
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Settings /> Paramètres <DropdownMenuShortcut>⌘,</DropdownMenuShortcut>
+            <Settings /> Settings <DropdownMenuShortcut>⌘,</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Espace de travail</DropdownMenuSubTrigger>
+          <DropdownMenuSubTrigger>Workspace</DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
             <DropdownMenuItem>Hex-Tech Sàrl</DropdownMenuItem>
             <DropdownMenuItem>Atelier Favre</DropdownMenuItem>
@@ -67,7 +67,7 @@ export const Default: Story = {
         </DropdownMenuSub>
         <DropdownMenuSeparator />
         <DropdownMenuItem variant="danger">
-          <LogOut /> Se déconnecter
+          <LogOut /> Log out
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -81,26 +81,26 @@ export const CheckboxesAndRadios: Story = {
     const [order, setOrder] = useState('date');
     return (
       <DropdownMenu>
-        <DropdownMenuTrigger render={<Button variant="secondary" />}>Affichage</DropdownMenuTrigger>
+        <DropdownMenuTrigger render={<Button variant="secondary" />}>View</DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuGroup>
-            <DropdownMenuLabel>Colonnes</DropdownMenuLabel>
+            <DropdownMenuLabel>Columns</DropdownMenuLabel>
             <DropdownMenuCheckboxItem checked={columns.client} onCheckedChange={(v) => setColumns({ ...columns, client: v })}>
               Client
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem checked={columns.due} onCheckedChange={(v) => setColumns({ ...columns, due: v })}>
-              Échéance
+              Due date
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem checked={columns.vat} onCheckedChange={(v) => setColumns({ ...columns, vat: v })}>
-              TVA
+              VAT
             </DropdownMenuCheckboxItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuLabel>Trier par</DropdownMenuLabel>
+            <DropdownMenuLabel>Sort by</DropdownMenuLabel>
             <DropdownMenuRadioGroup value={order} onValueChange={setOrder}>
               <DropdownMenuRadioItem value="date">Date</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="amount">Montant</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="amount">Amount</DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="client">Client</DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
           </DropdownMenuGroup>

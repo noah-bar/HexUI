@@ -61,15 +61,15 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const projects = ['Refonte portail client', 'Migration cloud Alpina', 'Application Romandie Santé'];
+const projects = ['Client portal redesign', 'Alpina cloud migration', 'Romandie Santé app'];
 
 const invoiceRows = [
-  { id: 'F-2026-1042', client: 'Banque Cantonale du Léman', due: '30.09.2026', total: '1 830.00', status: 'Payée' },
-  { id: 'F-2026-1043', client: 'Helvetia Services SA', due: '02.10.2026', total: '2 777.35', status: 'En retard' },
-  { id: 'F-2026-1044', client: 'Alpina Logistique SA', due: '15.10.2026', total: '3 724.70', status: 'Envoyée' },
-  { id: 'F-2026-1045', client: 'Romandie Santé', due: '18.10.2026', total: '4 672.05', status: 'Envoyée' },
-  { id: 'F-2026-1046', client: 'Léman Immobilier SA', due: '21.10.2026', total: '5 619.40', status: 'Brouillon' },
-  { id: 'F-2026-1047', client: 'Jura Énergie SA', due: '28.10.2026', total: '6 566.75', status: 'Brouillon' },
+  { id: 'F-2026-1042', client: 'Banque Cantonale du Léman', due: '30.09.2026', total: '1,830.00', status: 'Paid' },
+  { id: 'F-2026-1043', client: 'Helvetia Services SA', due: '02.10.2026', total: '2,777.35', status: 'Overdue' },
+  { id: 'F-2026-1044', client: 'Alpina Logistique SA', due: '15.10.2026', total: '3,724.70', status: 'Sent' },
+  { id: 'F-2026-1045', client: 'Romandie Santé', due: '18.10.2026', total: '4,672.05', status: 'Sent' },
+  { id: 'F-2026-1046', client: 'Léman Immobilier SA', due: '21.10.2026', total: '5,619.40', status: 'Draft' },
+  { id: 'F-2026-1047', client: 'Jura Énergie SA', due: '28.10.2026', total: '6,566.75', status: 'Draft' },
 ];
 
 // Enough rows to scroll the table under its sticky header.
@@ -77,7 +77,7 @@ const invoices = Array.from({ length: 4 }, (_, round) =>
   invoiceRows.map((invoice, i) => ({ ...invoice, id: `F-2026-${1042 + round * invoiceRows.length + i}` })),
 ).flat();
 
-const statusVariant = { Payée: 'success', 'En retard': 'danger', Envoyée: 'info', Brouillon: 'neutral' } as const;
+const statusVariant = { Paid: 'success', Overdue: 'danger', Sent: 'info', Draft: 'neutral' } as const;
 
 /**
  * Floating glass sidebar that collapses to icons (`collapsible="icon"`): use the button in the
@@ -97,7 +97,7 @@ export const Default: Story = {
                 </span>
                 <span className="hx:flex hx:flex-col hx:leading-tight">
                   <span className="hx:font-semibold">Hex-Tech</span>
-                  <span className="hx:text-xs hx:text-fg-muted">Facturation</span>
+                  <span className="hx:text-xs hx:text-fg-muted">Billing</span>
                 </span>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -106,44 +106,44 @@ export const Default: Story = {
 
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel>Gestion</SidebarGroupLabel>
+            <SidebarGroupLabel>Management</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
                 <SidebarMenuItem>
-                  <SidebarMenuButton tooltip="Tableau de bord">
+                  <SidebarMenuButton tooltip="Dashboard">
                     <LayoutDashboard />
-                    <span>Tableau de bord</span>
+                    <span>Dashboard</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
                 <SidebarMenuCollapsible defaultOpen>
-                  <SidebarMenuCollapsibleTrigger isActive tooltip="Factures">
+                  <SidebarMenuCollapsibleTrigger isActive tooltip="Invoices">
                     <ReceiptText />
-                    <span>Factures</span>
+                    <span>Invoices</span>
                   </SidebarMenuCollapsibleTrigger>
                   <SidebarMenuCollapsibleContent>
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton href="#" isActive>
-                          <span>Toutes les factures</span>
+                          <span>All invoices</span>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton href="#">
-                          <span>Brouillons</span>
+                          <span>Drafts</span>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton href="#">
-                          <span>En retard</span>
+                          <span>Overdue</span>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     </SidebarMenuSub>
                   </SidebarMenuCollapsibleContent>
                 </SidebarMenuCollapsible>
                 <SidebarMenuItem>
-                  <SidebarMenuButton tooltip="Devis">
+                  <SidebarMenuButton tooltip="Quotes">
                     <FileText />
-                    <span>Devis</span>
+                    <span>Quotes</span>
                   </SidebarMenuButton>
                   <SidebarMenuBadge>4</SidebarMenuBadge>
                 </SidebarMenuItem>
@@ -154,9 +154,9 @@ export const Default: Story = {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
                 <SidebarMenuItem>
-                  <SidebarMenuButton tooltip="Produits et services">
+                  <SidebarMenuButton tooltip="Products and services">
                     <Package />
-                    <span>Produits et services</span>
+                    <span>Products and services</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               </SidebarMenu>
@@ -164,8 +164,8 @@ export const Default: Story = {
           </SidebarGroup>
 
           <SidebarGroup>
-            <SidebarGroupLabel>Projets</SidebarGroupLabel>
-            <SidebarGroupAction aria-label="Nouveau projet">
+            <SidebarGroupLabel>Projects</SidebarGroupLabel>
+            <SidebarGroupAction aria-label="New project">
               <Plus />
             </SidebarGroupAction>
             <SidebarGroupContent>
@@ -177,14 +177,14 @@ export const Default: Story = {
                       <span>{project}</span>
                     </SidebarMenuButton>
                     <Menu>
-                      <MenuTrigger render={<SidebarMenuAction showOnHover aria-label={`Actions pour ${project}`} />}>
+                      <MenuTrigger render={<SidebarMenuAction showOnHover aria-label={`Actions for ${project}`} />}>
                         <Ellipsis />
                       </MenuTrigger>
                       <MenuContent side="right" align="start">
-                        <MenuItem>Ouvrir</MenuItem>
-                        <MenuItem>Renommer</MenuItem>
+                        <MenuItem>Open</MenuItem>
+                        <MenuItem>Rename</MenuItem>
                         <MenuSeparator />
-                        <MenuItem variant="danger">Archiver</MenuItem>
+                        <MenuItem variant="danger">Archive</MenuItem>
                       </MenuContent>
                     </Menu>
                   </SidebarMenuItem>
@@ -198,9 +198,9 @@ export const Default: Story = {
         <SidebarFooter>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton tooltip="Paramètres">
+              <SidebarMenuButton tooltip="Settings">
                 <Settings />
-                <span>Paramètres</span>
+                <span>Settings</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
@@ -225,9 +225,9 @@ export const Default: Story = {
         <SidebarInsetHeader>
           <SidebarTrigger />
           <div className="hx:h-4 hx:w-px hx:bg-glass-border" />
-          <h1 className="hx:text-sm hx:font-medium">Factures</h1>
+          <h1 className="hx:text-sm hx:font-medium">Invoices</h1>
           <Button className="hx:ml-auto" size="sm">
-            <Plus /> Nouvelle facture
+            <Plus /> New invoice
           </Button>
         </SidebarInsetHeader>
         <div className="hx:flex hx:min-h-0 hx:flex-1 hx:flex-col hx:p-2">
@@ -235,11 +235,11 @@ export const Default: Story = {
             <DataTable>
               <DataTableHeader>
                 <TableRow>
-                  <TableHead>N°</TableHead>
+                  <TableHead>No.</TableHead>
                   <TableHead>Client</TableHead>
-                  <TableHead>Échéance</TableHead>
+                  <TableHead>Due date</TableHead>
                   <TableHead align="right">Total CHF</TableHead>
-                  <TableHead>Statut</TableHead>
+                  <TableHead>Status</TableHead>
                 </TableRow>
               </DataTableHeader>
               <TableBody>
@@ -269,7 +269,7 @@ export const AttachedOffcanvas: Story = {
     <SidebarProvider>
       <Sidebar variant="sidebar" collapsible="offcanvas">
         <SidebarHeader>
-          <div className="hx:flex hx:h-10 hx:items-center hx:px-2 hx:text-sm hx:font-semibold">Hex-Tech Facturation</div>
+          <div className="hx:flex hx:h-10 hx:items-center hx:px-2 hx:text-sm hx:font-semibold">Hex-Tech Billing</div>
         </SidebarHeader>
         <SidebarContent>
           <SidebarGroup>
@@ -278,7 +278,7 @@ export const AttachedOffcanvas: Story = {
                 <SidebarMenuItem>
                   <SidebarMenuButton render={<a href="#" />}>
                     <LayoutDashboard />
-                    <span>Tableau de bord</span>
+                    <span>Dashboard</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
                 <SidebarMenuItem>
@@ -290,7 +290,7 @@ export const AttachedOffcanvas: Story = {
                 <SidebarMenuItem>
                   <SidebarMenuButton render={<a href="#" />}>
                     <ReceiptText />
-                    <span>Factures</span>
+                    <span>Invoices</span>
                   </SidebarMenuButton>
                   <SidebarMenuBadge>12</SidebarMenuBadge>
                 </SidebarMenuItem>
@@ -305,10 +305,10 @@ export const AttachedOffcanvas: Story = {
           <h1 className="hx:text-sm hx:font-medium">Clients</h1>
         </SidebarInsetHeader>
         <div className="hx:grid hx:gap-4 hx:p-4 hx:sm:grid-cols-3">
-          {['Clients actifs', 'Nouveaux ce mois', 'Chiffre d’affaires'].map((title, i) => (
+          {['Active clients', 'New this month', 'Revenue'].map((title, i) => (
             <Panel key={title} className="hx:p-5">
               <p className="hx:text-sm hx:text-fg-muted">{title}</p>
-              <p className="hx:mt-1 hx:text-2xl hx:font-semibold">{['128', '7', 'CHF 84 210'][i]}</p>
+              <p className="hx:mt-1 hx:text-2xl hx:font-semibold">{['128', '7', 'CHF 84,210'][i]}</p>
             </Panel>
           ))}
         </div>
@@ -324,7 +324,7 @@ export const Loading: Story = {
       <Sidebar>
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel>Projets</SidebarGroupLabel>
+            <SidebarGroupLabel>Projects</SidebarGroupLabel>
             <SidebarMenu>
               {Array.from({ length: 5 }, (_, i) => (
                 <SidebarMenuItem key={i}>

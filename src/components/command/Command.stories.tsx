@@ -21,20 +21,20 @@ type ActionGroup = { value: string; items: Action[] };
 
 const actions: ActionGroup[] = [
   {
-    value: 'Créer',
+    value: 'Create',
     items: [
-      { value: 'new-invoice', label: 'Nouvelle facture', icon: FilePlus, shortcut: '⌘N' },
-      { value: 'new-quote', label: 'Nouveau devis', icon: FileText },
-      { value: 'new-client', label: 'Nouveau client', icon: UserPlus },
+      { value: 'new-invoice', label: 'New invoice', icon: FilePlus, shortcut: '⌘N' },
+      { value: 'new-quote', label: 'New quote', icon: FileText },
+      { value: 'new-client', label: 'New client', icon: UserPlus },
     ],
   },
   {
-    value: 'Aller à',
+    value: 'Go to',
     items: [
-      { value: 'dashboard', label: 'Tableau de bord', icon: LayoutDashboard },
-      { value: 'invoices', label: 'Factures', icon: ReceiptText, shortcut: 'G F' },
+      { value: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+      { value: 'invoices', label: 'Invoices', icon: ReceiptText, shortcut: 'G I' },
       { value: 'clients', label: 'Clients', icon: Users, shortcut: 'G C' },
-      { value: 'settings', label: 'Paramètres', icon: Settings, shortcut: '⌘,' },
+      { value: 'settings', label: 'Settings', icon: Settings, shortcut: '⌘,' },
     ],
   },
 ];
@@ -74,13 +74,13 @@ export const Default: Story = {
       <div className="hx:flex hx:max-w-md hx:flex-col hx:gap-3">
         <Panel variant="strong">
           <Command items={actions}>
-            <CommandInput placeholder="Rechercher une action…" />
-            <CommandEmpty>Aucune action trouvée.</CommandEmpty>
+            <CommandInput placeholder="Search for an action…" />
+            <CommandEmpty>No action found.</CommandEmpty>
             <CommandList>{renderGroups((action) => setLast(action.label))}</CommandList>
           </Command>
         </Panel>
         <p className="hx:text-sm hx:text-fg-muted" aria-live="polite">
-          {last ? `Action lancée : ${last}` : 'Aucune action lancée.'}
+          {last ? `Action run: ${last}` : 'No action run yet.'}
         </p>
       </div>
     );
@@ -105,12 +105,12 @@ export const Dialog: Story = {
     return (
       <>
         <Button variant="secondary" onClick={() => setOpen(true)}>
-          Rechercher… <kbd className="hx:font-sans hx:text-xs hx:text-fg-muted">⌘K</kbd>
+          Search… <kbd className="hx:font-sans hx:text-xs hx:text-fg-muted">⌘K</kbd>
         </Button>
         <CommandDialog open={open} onOpenChange={setOpen}>
           <Command items={actions}>
-            <CommandInput placeholder="Rechercher une action ou une page…" />
-            <CommandEmpty>Aucune action trouvée.</CommandEmpty>
+            <CommandInput placeholder="Search for an action or a page…" />
+            <CommandEmpty>No action found.</CommandEmpty>
             <CommandList>{renderGroups(() => setOpen(false))}</CommandList>
           </Command>
         </CommandDialog>

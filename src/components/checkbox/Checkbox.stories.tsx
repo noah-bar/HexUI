@@ -7,7 +7,7 @@ const meta = {
   title: 'Components/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
-  args: { 'aria-label': 'Sélectionner' },
+  args: { 'aria-label': 'Select' },
   decorators: [
     (Story) => (
       <Panel className="hx:w-fit hx:min-w-20 hx:p-5 hx:text-sm hx:text-fg">
@@ -30,25 +30,25 @@ export const States: Story = {
   render: () => (
     <div className="hx:flex hx:flex-col hx:gap-3">
       <label className="hx:flex hx:items-center hx:gap-2">
-        <Checkbox /> Non coché
+        <Checkbox /> Unchecked
       </label>
       <label className="hx:flex hx:items-center hx:gap-2">
-        <Checkbox defaultChecked /> Coché
+        <Checkbox defaultChecked /> Checked
       </label>
       <label className="hx:flex hx:items-center hx:gap-2">
-        <Checkbox indeterminate /> Indéterminé
+        <Checkbox indeterminate /> Indeterminate
       </label>
       <label className="hx:flex hx:items-center hx:gap-2">
-        <Checkbox aria-invalid /> Invalide
+        <Checkbox aria-invalid /> Invalid
       </label>
       <label className="hx:flex hx:items-center hx:gap-2 hx:opacity-50">
-        <Checkbox disabled defaultChecked /> Désactivé
+        <Checkbox disabled defaultChecked /> Disabled
       </label>
     </div>
   ),
 };
 
-const items = ['Portail client', 'Application mobile', 'Migration ERP'];
+const items = ['Client portal', 'Mobile app', 'ERP migration'];
 
 /** "Select all" pattern with the indeterminate state. */
 export const SelectAll: Story = {
@@ -63,7 +63,7 @@ export const SelectAll: Story = {
             indeterminate={selected.length > 0 && !all}
             onCheckedChange={(checked) => setSelected(checked ? items : [])}
           />
-          Tous les projets
+          All projects
         </label>
         <div className="hx:flex hx:flex-col hx:gap-3 hx:pl-6">
           {items.map((item) => (

@@ -8,7 +8,7 @@ const meta = {
   title: 'Components/Spinner',
   component: Spinner,
   tags: ['autodocs'],
-  args: { label: 'Chargement' },
+  args: { label: 'Loading' },
   argTypes: {
     size: { control: 'inline-radio', options: ['xs', 'sm', 'md', 'lg'] },
     tone: { control: 'inline-radio', options: ['current', 'muted', 'accent'] },
@@ -53,13 +53,13 @@ export const InContext: Story = {
   render: () => (
     <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-3">
       <Button disabled>
-        <Spinner /> Enregistrement…
+        <Spinner /> Saving…
       </Button>
       <Button variant="secondary" disabled>
-        <Spinner /> Génération du PDF…
+        <Spinner /> Generating PDF…
       </Button>
       <Badge variant="info">
-        <Spinner size="xs" /> Envoi en cours
+        <Spinner size="xs" /> Sending
       </Badge>
     </div>
   ),
@@ -70,7 +70,7 @@ export const PanelLoading: Story = {
   render: () => (
     <div role="status" className="hx:flex hx:h-40 hx:flex-col hx:items-center hx:justify-center hx:gap-3 hx:text-sm hx:text-fg-muted">
       <Spinner size="lg" tone="accent" />
-      Chargement des factures…
+      Loading invoices…
     </div>
   ),
 };

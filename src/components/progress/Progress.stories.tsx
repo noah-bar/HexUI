@@ -21,7 +21,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: { label: 'Export des factures', showValue: true, value: 45, locale: 'fr-CH' },
+  args: { label: 'Exporting invoices', showValue: true, value: 45, locale: 'en-CH' },
 };
 
 /** The bar animates its width and turns green once complete. */
@@ -32,20 +32,20 @@ export const Running: Story = {
       const timer = setInterval(() => setValue((v) => (v >= 100 ? 10 : Math.min(100, v + 15))), 900);
       return () => clearInterval(timer);
     }, []);
-    return <Progress label={value === 100 ? 'Envoi terminé' : 'Envoi des rappels'} showValue value={value} locale="fr-CH" />;
+    return <Progress label={value === 100 ? 'Sending complete' : 'Sending reminders'} showValue value={value} locale="en-CH" />;
   },
 };
 
 /** `value={null}`: unknown duration. */
 export const Indeterminate: Story = {
-  args: { label: 'Synchronisation avec la banque', value: null },
+  args: { label: 'Syncing with the bank', value: null },
 };
 
 /** Without a visible label, give it an `aria-label`. */
 export const WithoutLabel: Story = {
-  args: { value: 70, 'aria-label': 'Quota de stockage utilisé' },
+  args: { value: 70, 'aria-label': 'Storage quota used' },
 };
 
 export const Complete: Story = {
-  args: { label: 'Import des clients', showValue: true, value: 100, locale: 'fr-CH' },
+  args: { label: 'Importing clients', showValue: true, value: 100, locale: 'en-CH' },
 };

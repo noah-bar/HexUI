@@ -26,13 +26,13 @@ export const WithControls: Story = {
   render: () => (
     <div className="hx:flex hx:flex-col hx:gap-4">
       <Label>
-        <Checkbox defaultChecked /> Joindre le bulletin QR à la facture
+        <Checkbox defaultChecked /> Attach the QR-bill to the invoice
       </Label>
       <Label>
-        <Switch /> Envoyer un rappel automatique
+        <Switch /> Send an automatic reminder
       </Label>
       <Label>
-        <Checkbox disabled /> Facturation en EUR (bientôt)
+        <Checkbox disabled /> Billing in EUR (coming soon)
       </Label>
     </div>
   ),

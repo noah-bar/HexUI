@@ -61,9 +61,9 @@ export const Default: Story = {
     <Field>
       <FieldLabel>Client</FieldLabel>
       <Combobox items={clients}>
-        <ComboboxInput placeholder="Rechercher un client" />
+        <ComboboxInput placeholder="Search for a client" />
         <ComboboxContent>
-          <ComboboxEmpty>Aucun client trouvé.</ComboboxEmpty>
+          <ComboboxEmpty>No client found.</ComboboxEmpty>
           <ComboboxList>
             {(client: Client) => (
               <ComboboxItem key={client.id} value={client}>
@@ -73,7 +73,7 @@ export const Default: Story = {
           </ComboboxList>
         </ComboboxContent>
       </Combobox>
-      <FieldDescription>La facture reprend l’adresse de facturation du client.</FieldDescription>
+      <FieldDescription>The invoice uses the client's billing address.</FieldDescription>
     </Field>
   ),
 };
@@ -84,9 +84,9 @@ export const WithDetails: Story = {
     <Field>
       <FieldLabel>Client</FieldLabel>
       <Combobox items={clients} defaultValue={clients[6]}>
-        <ComboboxInput placeholder="Rechercher un client" />
+        <ComboboxInput placeholder="Search for a client" />
         <ComboboxContent>
-          <ComboboxEmpty>Aucun client trouvé.</ComboboxEmpty>
+          <ComboboxEmpty>No client found.</ComboboxEmpty>
           <ComboboxList>
             {(client: Client) => (
               <ComboboxItem key={client.id} value={client}>
@@ -104,11 +104,11 @@ export const WithDetails: Story = {
 type Member = { id: string; label: string; role: string };
 
 const members: Member[] = [
-  { id: 'cm', label: 'Camille Martin', role: 'Cheffe de projet' },
-  { id: 'lb', label: 'Luca Bianchi', role: 'Développeur' },
+  { id: 'cm', label: 'Camille Martin', role: 'Project manager' },
+  { id: 'lb', label: 'Luca Bianchi', role: 'Developer' },
   { id: 'sr', label: 'Sophie Rey', role: 'Designer' },
-  { id: 'ng', label: 'Nicolas Girard', role: 'Développeur' },
-  { id: 'em', label: 'Elena Müller', role: 'Comptable' },
+  { id: 'ng', label: 'Nicolas Girard', role: 'Developer' },
+  { id: 'em', label: 'Elena Müller', role: 'Accountant' },
   { id: 'tp', label: 'Thomas Pittet', role: 'Consultant' },
   { id: 'ad', label: 'Aline Dubois', role: 'Support' },
 ];
@@ -117,11 +117,11 @@ const members: Member[] = [
 export const Multiple: Story = {
   render: () => (
     <Field>
-      <FieldLabel>Équipe du projet</FieldLabel>
+      <FieldLabel>Project team</FieldLabel>
       <Combobox items={members} multiple defaultValue={[members[0], members[2]]}>
-        <ComboboxChips placeholder="Ajouter un collaborateur" />
+        <ComboboxChips placeholder="Add a team member" />
         <ComboboxContent>
-          <ComboboxEmpty>Personne ne correspond.</ComboboxEmpty>
+          <ComboboxEmpty>No one matches.</ComboboxEmpty>
           <ComboboxList>
             {(member: Member) => (
               <ComboboxItem key={member.id} value={member}>
@@ -132,37 +132,37 @@ export const Multiple: Story = {
           </ComboboxList>
         </ComboboxContent>
       </Combobox>
-      <FieldDescription>Les collaborateurs reçoivent une notification.</FieldDescription>
+      <FieldDescription>Team members receive a notification.</FieldDescription>
     </Field>
   ),
 };
 
 const cantons = [
-  'Appenzell Rhodes-Extérieures',
-  'Appenzell Rhodes-Intérieures',
-  'Argovie',
-  'Bâle-Campagne',
-  'Bâle-Ville',
-  'Berne',
+  'Aargau',
+  'Appenzell Ausserrhoden',
+  'Appenzell Innerrhoden',
+  'Basel-Landschaft',
+  'Basel-Stadt',
+  'Bern',
   'Fribourg',
-  'Genève',
-  'Glaris',
-  'Grisons',
+  'Geneva',
+  'Glarus',
+  'Graubünden',
   'Jura',
   'Lucerne',
   'Neuchâtel',
-  'Nidwald',
-  'Obwald',
-  'Saint-Gall',
-  'Schaffhouse',
-  'Schwytz',
-  'Soleure',
-  'Tessin',
-  'Thurgovie',
+  'Nidwalden',
+  'Obwalden',
+  'Schaffhausen',
+  'Schwyz',
+  'Solothurn',
+  'St. Gallen',
+  'Thurgau',
+  'Ticino',
   'Uri',
   'Valais',
   'Vaud',
-  'Zoug',
+  'Zug',
   'Zurich',
 ];
 
@@ -176,11 +176,11 @@ export const Dropdown: Story = {
       <FieldLabel>Canton</FieldLabel>
       <Combobox items={cantons}>
         <ComboboxTrigger>
-          <ComboboxValue placeholder="Choisir un canton" />
+          <ComboboxValue placeholder="Choose a canton" />
         </ComboboxTrigger>
-        <ComboboxContent aria-label="Choisir un canton">
-          <ComboboxSearch placeholder="Rechercher…" />
-          <ComboboxEmpty>Aucun canton trouvé.</ComboboxEmpty>
+        <ComboboxContent aria-label="Choose a canton">
+          <ComboboxSearch placeholder="Search…" />
+          <ComboboxEmpty>No canton found.</ComboboxEmpty>
           <ComboboxList>
             {(canton: string) => (
               <ComboboxItem key={canton} value={canton}>
@@ -190,7 +190,7 @@ export const Dropdown: Story = {
           </ComboboxList>
         </ComboboxContent>
       </Combobox>
-      <FieldDescription>Détermine le taux d’imposition appliqué.</FieldDescription>
+      <FieldDescription>Sets the applied tax rate.</FieldDescription>
     </Field>
   ),
 };
@@ -200,25 +200,25 @@ type ServiceGroup = { value: string; items: Service[] };
 
 const services: ServiceGroup[] = [
   {
-    value: 'Développement',
+    value: 'Development',
     items: [
-      { id: 'web', label: 'Site web' },
-      { id: 'app', label: 'Application mobile' },
-      { id: 'api', label: 'Intégration API' },
+      { id: 'web', label: 'Website' },
+      { id: 'app', label: 'Mobile app' },
+      { id: 'api', label: 'API integration' },
     ],
   },
   {
-    value: 'Conseil',
+    value: 'Consulting',
     items: [
-      { id: 'audit', label: 'Audit de sécurité' },
-      { id: 'cloud', label: 'Migration cloud' },
+      { id: 'audit', label: 'Security audit' },
+      { id: 'cloud', label: 'Cloud migration' },
     ],
   },
   {
     value: 'Support',
     items: [
-      { id: 'maint', label: 'Maintenance annuelle' },
-      { id: 'train', label: 'Formation d’équipe' },
+      { id: 'maint', label: 'Annual maintenance' },
+      { id: 'train', label: 'Team training' },
     ],
   },
 ];
@@ -227,11 +227,11 @@ const services: ServiceGroup[] = [
 export const Grouped: Story = {
   render: () => (
     <Field>
-      <FieldLabel>Prestation</FieldLabel>
+      <FieldLabel>Service</FieldLabel>
       <Combobox items={services}>
-        <ComboboxInput placeholder="Rechercher une prestation" />
+        <ComboboxInput placeholder="Search for a service" />
         <ComboboxContent>
-          <ComboboxEmpty>Aucune prestation trouvée.</ComboboxEmpty>
+          <ComboboxEmpty>No service found.</ComboboxEmpty>
           <ComboboxList>
             {(group: ServiceGroup, index: number) => (
               <ComboboxGroup key={group.value} items={group.items}>
@@ -318,16 +318,16 @@ export const AsyncSearch: Story = {
           onInputValueChange={setQuery}
           isItemEqualToValue={(a: Client, b: Client) => a.id === b.id}
         >
-          <ComboboxInput placeholder="Tapez au moins une lettre" />
+          <ComboboxInput placeholder="Type at least one letter" />
           <ComboboxContent>
             <ComboboxStatus loading={searching}>
               {searching
-                ? 'Recherche en cours…'
+                ? 'Searching…'
                 : query.trim() === '' && !selected
-                  ? 'Commencez à taper pour chercher parmi 400 clients.'
+                  ? 'Start typing to search 400 clients.'
                   : null}
             </ComboboxStatus>
-            <ComboboxEmpty>{!searching && query.trim() !== '' ? `Aucun client pour « ${query.trim()} ».` : null}</ComboboxEmpty>
+            <ComboboxEmpty>{!searching && query.trim() !== '' ? `No client for “${query.trim()}”.` : null}</ComboboxEmpty>
             <ComboboxList>
               {(client: Client) => (
                 <ComboboxItem key={client.id} value={client}>
@@ -349,9 +349,9 @@ export const Invalid: Story = {
     <Field invalid>
       <FieldLabel>Client</FieldLabel>
       <Combobox items={clients}>
-        <ComboboxInput placeholder="Rechercher un client" />
+        <ComboboxInput placeholder="Search for a client" />
         <ComboboxContent>
-          <ComboboxEmpty>Aucun client trouvé.</ComboboxEmpty>
+          <ComboboxEmpty>No client found.</ComboboxEmpty>
           <ComboboxList>
             {(client: Client) => (
               <ComboboxItem key={client.id} value={client}>
@@ -361,7 +361,7 @@ export const Invalid: Story = {
           </ComboboxList>
         </ComboboxContent>
       </Combobox>
-      <FieldError match>Choisissez le client à facturer.</FieldError>
+      <FieldError match>Choose the client to invoice.</FieldError>
     </Field>
   ),
 };
@@ -371,7 +371,7 @@ export const Disabled: Story = {
     <Field disabled>
       <FieldLabel>Client</FieldLabel>
       <Combobox items={clients} defaultValue={clients[4]} disabled>
-        <ComboboxInput placeholder="Rechercher un client" />
+        <ComboboxInput placeholder="Search for a client" />
         <ComboboxContent>
           <ComboboxList>
             {(client: Client) => (
@@ -382,7 +382,7 @@ export const Disabled: Story = {
           </ComboboxList>
         </ComboboxContent>
       </Combobox>
-      <FieldDescription>Le client ne peut plus changer une fois la facture envoyée.</FieldDescription>
+      <FieldDescription>The client can no longer change once the invoice is sent.</FieldDescription>
     </Field>
   ),
 };

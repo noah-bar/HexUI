@@ -12,9 +12,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const panels = [
-  { value: 'overview', label: 'Vue d’ensemble', text: 'Statistiques et activité récente de l’espace de travail.' },
-  { value: 'projects', label: 'Projets', text: 'Jalons, échéances et responsables.' },
-  { value: 'billing', label: 'Facturation', text: 'Abonnement, factures et moyens de paiement.' },
+  { value: 'overview', label: 'Overview', text: 'Workspace statistics and recent activity.' },
+  { value: 'projects', label: 'Projects', text: 'Milestones, deadlines and owners.' },
+  { value: 'billing', label: 'Billing', text: 'Subscription, invoices and payment methods.' },
 ];
 
 export const Default: Story = {
@@ -27,7 +27,7 @@ export const Default: Story = {
           </TabsTab>
         ))}
         <TabsTab value="disabled" disabled>
-          Désactivé
+          Disabled
         </TabsTab>
       </TabsList>
       {panels.map((p) => (

@@ -27,8 +27,8 @@ export const Horizontal: Story = {
       </div>
       <Separator />
       <div className="hx:flex hx:justify-between">
-        <span className="hx:text-fg-muted">Total TTC</span>
-        <span className="hx:font-medium hx:tabular-nums">CHF 5 619.40</span>
+        <span className="hx:text-fg-muted">Total incl. VAT</span>
+        <span className="hx:font-medium hx:tabular-nums">CHF 5,619.40</span>
       </div>
     </div>
   ),
@@ -38,9 +38,9 @@ export const Horizontal: Story = {
 export const Vertical: Story = {
   render: () => (
     <div className="hx:flex hx:h-5 hx:items-center hx:gap-3 hx:text-sm">
-      <span>Factures</span>
+      <span>Invoices</span>
       <Separator orientation="vertical" />
-      <span>Devis</span>
+      <span>Quotes</span>
       <Separator orientation="vertical" />
       <span>Clients</span>
     </div>

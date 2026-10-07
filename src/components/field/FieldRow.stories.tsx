@@ -14,7 +14,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const cantons = [
-  { label: 'Genève', value: 'GE' },
+  { label: 'Geneva', value: 'GE' },
   { label: 'Vaud', value: 'VD' },
   { label: 'Valais', value: 'VS' },
   { label: 'Fribourg', value: 'FR' },
@@ -25,32 +25,32 @@ function AddressForm() {
     <div className="hx:flex hx:flex-col hx:gap-5">
       <FieldRow>
         <Field>
-          <FieldLabel>Prénom</FieldLabel>
+          <FieldLabel>First name</FieldLabel>
           <Input placeholder="Camille" />
         </Field>
         <Field>
-          <FieldLabel>Nom</FieldLabel>
+          <FieldLabel>Last name</FieldLabel>
           <Input placeholder="Martin" />
         </Field>
       </FieldRow>
       <Field>
-        <FieldLabel>Rue et numéro</FieldLabel>
+        <FieldLabel>Street and number</FieldLabel>
         <Input placeholder="Rue du Rhône 42" />
       </Field>
       <FieldRow columns="1fr 2fr 1.5fr">
         <Field>
-          <FieldLabel>NPA</FieldLabel>
+          <FieldLabel>Postcode</FieldLabel>
           <Input placeholder="1204" inputMode="numeric" />
         </Field>
         <Field>
-          <FieldLabel>Localité</FieldLabel>
-          <Input placeholder="Genève" />
+          <FieldLabel>City</FieldLabel>
+          <Input placeholder="Geneva" />
         </Field>
         <Field>
           <FieldLabel>Canton</FieldLabel>
           <Select items={cantons}>
             <SelectTrigger className="hx:min-w-0">
-              <SelectValue placeholder="Choisir" />
+              <SelectValue placeholder="Choose" />
             </SelectTrigger>
             <SelectContent>
               {cantons.map((c) => (
@@ -81,18 +81,18 @@ export const Alignment: Story = {
     <Panel className="hx:max-w-2xl hx:p-6">
       <FieldRow>
         <Field invalid>
-          <FieldLabel>Date de début</FieldLabel>
+          <FieldLabel>Start date</FieldLabel>
           <Input type="date" defaultValue="2026-12-01" />
-          <FieldError match>La date de début doit précéder la date de fin.</FieldError>
+          <FieldError match>The start date must be before the end date.</FieldError>
         </Field>
         <Field>
-          <FieldLabel>Date de fin</FieldLabel>
+          <FieldLabel>End date</FieldLabel>
           <Input type="date" defaultValue="2026-11-15" />
         </Field>
         <Field>
-          <FieldLabel>Jours ouvrés</FieldLabel>
+          <FieldLabel>Working days</FieldLabel>
           <Input defaultValue="—" disabled />
-          <FieldDescription>Calculé automatiquement.</FieldDescription>
+          <FieldDescription>Calculated automatically.</FieldDescription>
         </Field>
       </FieldRow>
     </Panel>

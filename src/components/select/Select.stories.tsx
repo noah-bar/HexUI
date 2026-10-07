@@ -3,9 +3,9 @@ import { Panel } from '../panel/Panel';
 import { Select, SelectContent, SelectGroup, SelectGroupLabel, SelectItem, SelectSeparator, SelectTrigger, SelectValue } from './Select';
 
 const roles = [
-  { label: 'Administrateur', value: 'admin' },
-  { label: 'Éditeur', value: 'editor' },
-  { label: 'Lecteur', value: 'viewer' },
+  { label: 'Administrator', value: 'admin' },
+  { label: 'Editor', value: 'editor' },
+  { label: 'Viewer', value: 'viewer' },
 ];
 
 const meta = {
@@ -28,8 +28,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => (
     <Select items={roles}>
-      <SelectTrigger aria-label="Rôle">
-        <SelectValue placeholder="Choisir un rôle" />
+      <SelectTrigger aria-label="Role">
+        <SelectValue placeholder="Choose a role" />
       </SelectTrigger>
       <SelectContent>
         {roles.map((role) => (
@@ -45,7 +45,7 @@ export const Default: Story = {
 export const Grouped: Story = {
   render: () => (
     <Select defaultValue="paris">
-      <SelectTrigger aria-label="Bureau">
+      <SelectTrigger aria-label="Office">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
@@ -56,10 +56,10 @@ export const Grouped: Story = {
         </SelectGroup>
         <SelectSeparator />
         <SelectGroup>
-          <SelectGroupLabel>Suisse</SelectGroupLabel>
-          <SelectItem value="geneve">Genève</SelectItem>
+          <SelectGroupLabel>Switzerland</SelectGroupLabel>
+          <SelectItem value="geneve">Geneva</SelectItem>
           <SelectItem value="lausanne" disabled>
-            Lausanne (bientôt)
+            Lausanne (coming soon)
           </SelectItem>
         </SelectGroup>
       </SelectContent>
@@ -70,8 +70,8 @@ export const Grouped: Story = {
 export const Invalid: Story = {
   render: () => (
     <Select items={roles}>
-      <SelectTrigger aria-label="Rôle" aria-invalid>
-        <SelectValue placeholder="Choisir un rôle" />
+      <SelectTrigger aria-label="Role" aria-invalid>
+        <SelectValue placeholder="Choose a role" />
       </SelectTrigger>
       <SelectContent>
         {roles.map((role) => (
@@ -87,8 +87,8 @@ export const Invalid: Story = {
 export const Disabled: Story = {
   render: () => (
     <Select disabled>
-      <SelectTrigger aria-label="Rôle">
-        <SelectValue placeholder="Indisponible" />
+      <SelectTrigger aria-label="Role">
+        <SelectValue placeholder="Unavailable" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="x">—</SelectItem>

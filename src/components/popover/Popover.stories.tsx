@@ -23,12 +23,12 @@ export const Filters: Story = {
   render: (args) => (
     <Popover {...args}>
       <PopoverTrigger render={<Button variant="secondary" />}>
-        <ListFilter /> Filtres
+        <ListFilter /> Filters
       </PopoverTrigger>
       <PopoverContent align="start" className="hx:w-80 hx:gap-4">
-        <PopoverTitle>Filtrer les factures</PopoverTitle>
+        <PopoverTitle>Filter invoices</PopoverTitle>
         <div className="hx:flex hx:flex-col hx:gap-2.5">
-          {['Payée', 'Envoyée', 'En attente', 'En retard'].map((status, i) => (
+          {['Paid', 'Sent', 'Pending', 'Overdue'].map((status, i) => (
             <label key={status} className="hx:flex hx:items-center hx:gap-2">
               <Checkbox defaultChecked={i > 1} />
               {status}
@@ -36,12 +36,12 @@ export const Filters: Story = {
           ))}
         </div>
         <Field>
-          <FieldLabel>Montant minimum (CHF)</FieldLabel>
+          <FieldLabel>Minimum amount (CHF)</FieldLabel>
           <Input type="number" placeholder="0" />
         </Field>
         <div className="hx:flex hx:justify-end hx:gap-2">
-          <PopoverClose render={<Button variant="ghost" size="sm" />}>Réinitialiser</PopoverClose>
-          <PopoverClose render={<Button size="sm" />}>Appliquer</PopoverClose>
+          <PopoverClose render={<Button variant="ghost" size="sm" />}>Reset</PopoverClose>
+          <PopoverClose render={<Button size="sm" />}>Apply</PopoverClose>
         </div>
       </PopoverContent>
     </Popover>
@@ -54,20 +54,20 @@ export const Details: Story = {
     <div className="hx:flex hx:items-center hx:gap-2 hx:text-sm hx:text-fg">
       Romandie Santé
       <Popover {...args}>
-        <PopoverTrigger render={<Button variant="ghost" size="icon" className="hx:size-7" />} aria-label="Détails du client">
+        <PopoverTrigger render={<Button variant="ghost" size="icon" className="hx:size-7" />} aria-label="Client details">
           <Info />
         </PopoverTrigger>
         <PopoverContent side="right" align="start">
           <div className="hx:flex hx:items-center hx:justify-between hx:gap-2">
             <PopoverTitle>Romandie Santé SA</PopoverTitle>
-            <Badge variant="danger">En retard</Badge>
+            <Badge variant="danger">Overdue</Badge>
           </div>
-          <PopoverDescription>Client depuis 2021 · 14 factures · Contact : Léa Rochat</PopoverDescription>
+          <PopoverDescription>Client since 2021 · 14 invoices · Contact: Léa Rochat</PopoverDescription>
           <dl className="hx:grid hx:grid-cols-2 hx:gap-x-4 hx:gap-y-1 hx:text-sm">
-            <dt className="hx:text-fg-muted">Encours</dt>
-            <dd className="hx:text-right hx:tabular-nums">CHF 18 452,90</dd>
-            <dt className="hx:text-fg-muted">Délai moyen</dt>
-            <dd className="hx:text-right hx:tabular-nums">38 jours</dd>
+            <dt className="hx:text-fg-muted">Outstanding</dt>
+            <dd className="hx:text-right hx:tabular-nums">CHF 18,452.90</dd>
+            <dt className="hx:text-fg-muted">Average delay</dt>
+            <dd className="hx:text-right hx:tabular-nums">38 days</dd>
           </dl>
         </PopoverContent>
       </Popover>

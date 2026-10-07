@@ -7,7 +7,7 @@ const meta = {
   title: 'Components/Badge',
   component: Badge,
   tags: ['autodocs'],
-  args: { children: 'Brouillon', variant: 'neutral' },
+  args: { children: 'Draft', variant: 'neutral' },
   argTypes: {
     variant: { control: 'inline-radio', options: ['neutral', 'info', 'success', 'warning', 'danger'] },
     dot: { control: 'boolean' },
@@ -29,11 +29,11 @@ export const Default: Story = {};
 export const Variants: Story = {
   render: () => (
     <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-2">
-      <Badge variant="neutral">Brouillon</Badge>
-      <Badge variant="info">Envoyée</Badge>
-      <Badge variant="success">Payée</Badge>
-      <Badge variant="warning">En attente</Badge>
-      <Badge variant="danger">En retard</Badge>
+      <Badge variant="neutral">Draft</Badge>
+      <Badge variant="info">Sent</Badge>
+      <Badge variant="success">Paid</Badge>
+      <Badge variant="warning">Pending</Badge>
+      <Badge variant="danger">Overdue</Badge>
     </div>
   ),
 };
@@ -42,13 +42,13 @@ export const WithDot: Story = {
   render: () => (
     <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-2">
       <Badge variant="success" dot>
-        En ligne
+        Online
       </Badge>
       <Badge variant="warning" dot>
         Maintenance
       </Badge>
       <Badge variant="danger" dot>
-        Hors ligne
+        Offline
       </Badge>
     </div>
   ),
@@ -58,13 +58,13 @@ export const WithIcon: Story = {
   render: () => (
     <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-2">
       <Badge variant="success">
-        <CircleCheck /> Validé
+        <CircleCheck /> Approved
       </Badge>
       <Badge variant="warning">
-        <Clock /> À relire
+        <Clock /> To review
       </Badge>
       <Badge variant="danger">
-        <TriangleAlert /> Bloqué
+        <TriangleAlert /> Blocked
       </Badge>
     </div>
   ),

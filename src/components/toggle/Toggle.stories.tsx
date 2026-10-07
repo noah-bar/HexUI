@@ -24,17 +24,17 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: { 'aria-label': 'Favori', children: <Star /> },
+  args: { 'aria-label': 'Favorite', children: <Star /> },
 };
 
 export const WithText: Story = {
   render: (args) => (
     <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-2">
       <Toggle {...args} defaultPressed>
-        <Archive /> Afficher les archivées
+        <Archive /> Show archived
       </Toggle>
       <Toggle {...args} variant="outline">
-        <Star /> Favoris uniquement
+        <Star /> Favorites only
       </Toggle>
     </div>
   ),
@@ -43,13 +43,13 @@ export const WithText: Story = {
 export const Sizes: Story = {
   render: (args) => (
     <div className="hx:flex hx:items-center hx:gap-2">
-      <Toggle {...args} size="sm" aria-label="Gras">
+      <Toggle {...args} size="sm" aria-label="Bold">
         <Bold />
       </Toggle>
-      <Toggle {...args} size="md" aria-label="Gras" defaultPressed>
+      <Toggle {...args} size="md" aria-label="Bold" defaultPressed>
         <Bold />
       </Toggle>
-      <Toggle {...args} size="lg" aria-label="Gras">
+      <Toggle {...args} size="lg" aria-label="Bold">
         <Bold />
       </Toggle>
     </div>
@@ -60,23 +60,23 @@ export const Sizes: Story = {
 export const Group: Story = {
   render: () => (
     <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-3">
-      <ToggleGroup defaultValue={['left']} aria-label="Alignement du texte">
-        <Toggle value="left" size="sm" aria-label="Aligner à gauche">
+      <ToggleGroup defaultValue={['left']} aria-label="Text alignment">
+        <Toggle value="left" size="sm" aria-label="Align left">
           <AlignLeft />
         </Toggle>
-        <Toggle value="center" size="sm" aria-label="Centrer">
+        <Toggle value="center" size="sm" aria-label="Center">
           <AlignCenter />
         </Toggle>
-        <Toggle value="right" size="sm" aria-label="Aligner à droite">
+        <Toggle value="right" size="sm" aria-label="Align right">
           <AlignRight />
         </Toggle>
       </ToggleGroup>
-      <ToggleGroup defaultValue={['list']} aria-label="Affichage">
+      <ToggleGroup defaultValue={['list']} aria-label="View">
         <Toggle value="list" size="sm">
-          <List /> Liste
+          <List /> List
         </Toggle>
         <Toggle value="grid" size="sm">
-          <LayoutGrid /> Grille
+          <LayoutGrid /> Grid
         </Toggle>
       </ToggleGroup>
     </div>
@@ -86,14 +86,14 @@ export const Group: Story = {
 /** `multiple`: several toggles can be pressed at once. */
 export const GroupMultiple: Story = {
   render: () => (
-    <ToggleGroup multiple defaultValue={['bold']} aria-label="Mise en forme">
-      <Toggle value="bold" size="sm" aria-label="Gras">
+    <ToggleGroup multiple defaultValue={['bold']} aria-label="Formatting">
+      <Toggle value="bold" size="sm" aria-label="Bold">
         <Bold />
       </Toggle>
-      <Toggle value="italic" size="sm" aria-label="Italique">
+      <Toggle value="italic" size="sm" aria-label="Italic">
         <Italic />
       </Toggle>
-      <Toggle value="underline" size="sm" aria-label="Souligné">
+      <Toggle value="underline" size="sm" aria-label="Underline">
         <Underline />
       </Toggle>
     </ToggleGroup>
@@ -101,5 +101,5 @@ export const GroupMultiple: Story = {
 };
 
 export const Disabled: Story = {
-  args: { 'aria-label': 'Favori', children: <Star />, disabled: true },
+  args: { 'aria-label': 'Favorite', children: <Star />, disabled: true },
 };

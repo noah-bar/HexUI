@@ -20,19 +20,19 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: 'Rabais',
+    label: 'Discount',
     showValue: true,
     defaultValue: 10,
     max: 50,
     format: { style: 'unit', unit: 'percent' },
-    locale: 'fr-CH',
+    locale: 'en-CH',
   },
 };
 
 /** An array value gives a range with two thumbs; name each one with `thumbLabels`. */
 export const Range: Story = {
   args: {
-    label: 'Montant des factures',
+    label: 'Invoice amount',
     showValue: true,
     defaultValue: [1000, 8000],
     min: 0,
@@ -40,28 +40,28 @@ export const Range: Story = {
     step: 500,
     minStepsBetweenValues: 2,
     format: { style: 'currency', currency: 'CHF', maximumFractionDigits: 0 },
-    locale: 'fr-CH',
-    thumbLabels: ['Montant minimum', 'Montant maximum'],
+    locale: 'en-CH',
+    thumbLabels: ['Minimum amount', 'Maximum amount'],
   },
 };
 
 export const Steps: Story = {
   args: {
-    label: 'Délai de paiement',
+    label: 'Payment terms',
     showValue: true,
     defaultValue: 30,
     min: 0,
     max: 90,
     step: 15,
     format: { style: 'unit', unit: 'day', unitDisplay: 'long' },
-    locale: 'fr-CH',
+    locale: 'en-CH',
   },
 };
 
 export const Vertical: Story = {
-  args: { orientation: 'vertical', defaultValue: 60, 'aria-label': 'Volume des notifications' },
+  args: { orientation: 'vertical', defaultValue: 60, 'aria-label': 'Notification volume' },
 };
 
 export const Disabled: Story = {
-  args: { label: 'Rabais', showValue: true, defaultValue: 20, disabled: true },
+  args: { label: 'Discount', showValue: true, defaultValue: 20, disabled: true },
 };

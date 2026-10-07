@@ -7,7 +7,7 @@ const meta = {
   title: 'Components/Button',
   component: Button,
   tags: ['autodocs'],
-  args: { children: 'Enregistrer' },
+  args: { children: 'Save' },
   argTypes: {
     variant: { control: 'inline-radio', options: ['primary', 'secondary', 'outline', 'ghost', 'danger'] },
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg', 'icon'] },
@@ -23,11 +23,11 @@ export const Primary: Story = {};
 export const Variants: Story = {
   render: (args) => (
     <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-3">
-      <Button {...args} variant="primary">Primaire</Button>
-      <Button {...args} variant="secondary">Secondaire</Button>
+      <Button {...args} variant="primary">Primary</Button>
+      <Button {...args} variant="secondary">Secondary</Button>
       <Button {...args} variant="outline">Outline</Button>
       <Button {...args} variant="ghost">Ghost</Button>
-      <Button {...args} variant="danger">Supprimer</Button>
+      <Button {...args} variant="danger">Delete</Button>
     </div>
   ),
 };
@@ -38,7 +38,7 @@ export const Sizes: Story = {
       <Button {...args} size="sm">Small</Button>
       <Button {...args} size="md">Medium</Button>
       <Button {...args} size="lg">Large</Button>
-      <Button {...args} size="icon" variant="secondary" aria-label="Ajouter">
+      <Button {...args} size="icon" variant="secondary" aria-label="Add">
         <Plus />
       </Button>
     </div>
@@ -49,10 +49,10 @@ export const WithIcons: Story = {
   render: (args) => (
     <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-3">
       <Button {...args}>
-        <Download /> Exporter
+        <Download /> Export
       </Button>
       <Button {...args} variant="danger">
-        <Trash2 /> Supprimer
+        <Trash2 /> Delete
       </Button>
     </div>
   ),
@@ -64,14 +64,14 @@ export const Outline: Story = {
     <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-3">
       <Button {...args} size="sm">Small</Button>
       <Button {...args}>
-        <Download /> Exporter
+        <Download /> Export
       </Button>
       <Button {...args} size="lg">Large</Button>
-      <Button {...args} size="icon" aria-label="Ajouter">
+      <Button {...args} size="icon" aria-label="Add">
         <Plus />
       </Button>
       <Button {...args} disabled>
-        Désactivé
+        Disabled
       </Button>
     </div>
   ),
@@ -107,10 +107,10 @@ export const OverContent: Story = {
       </Panel>
       <div className="hx:absolute hx:inset-x-0 hx:bottom-24 hx:flex hx:justify-center hx:gap-3">
         <Button {...args} variant="danger">
-          <Trash2 /> Supprimer
+          <Trash2 /> Delete
         </Button>
         <Button {...args}>
-          <Send /> Envoyer 3 factures
+          <Send /> Send 3 invoices
         </Button>
       </div>
     </div>

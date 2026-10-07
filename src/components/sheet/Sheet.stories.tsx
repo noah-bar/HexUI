@@ -25,9 +25,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const invoices = [
-  { id: 'F-2026-1084', date: '04.10.2026', amount: 'CHF 8 420,00', status: 'Payée' },
-  { id: 'F-2026-1041', date: '12.09.2026', amount: 'CHF 3 760,00', status: 'Payée' },
-  { id: 'F-2026-0998', date: '28.08.2026', amount: 'CHF 6 195,50', status: 'En attente' },
+  { id: 'F-2026-1084', date: '04.10.2026', amount: 'CHF 8,420.00', status: 'Paid' },
+  { id: 'F-2026-1041', date: '12.09.2026', amount: 'CHF 3,760.00', status: 'Paid' },
+  { id: 'F-2026-0998', date: '28.08.2026', amount: 'CHF 6,195.50', status: 'Pending' },
 ];
 
 export const Default: Story = {
@@ -36,33 +36,33 @@ export const Default: Story = {
       <div className="hx:flex hx:items-center hx:justify-between hx:gap-5">
         <div>
           <p className="hx:text-sm hx:font-semibold hx:text-fg">Léman Immobilier SA</p>
-          <p className="hx:mt-1 hx:text-sm hx:text-fg-muted">Lausanne · Client depuis 2022</p>
+          <p className="hx:mt-1 hx:text-sm hx:text-fg-muted">Lausanne · Client since 2022</p>
         </div>
         <Sheet {...args}>
-          <SheetTrigger render={<Button variant="secondary" />}>Voir le client</SheetTrigger>
+          <SheetTrigger render={<Button variant="secondary" />}>View client</SheetTrigger>
           <SheetContent>
             <SheetHeader>
               <SheetTitle>Léman Immobilier SA</SheetTitle>
-              <SheetDescription>Coordonnées, facturation et activité récente.</SheetDescription>
-              <SheetCloseButton aria-label="Fermer le panneau" />
+              <SheetDescription>Contact details, billing and recent activity.</SheetDescription>
+              <SheetCloseButton aria-label="Close panel" />
             </SheetHeader>
             <SheetBody className="hx:flex hx:flex-col hx:gap-5">
               <section>
-                <h3 className="hx:text-sm hx:font-semibold hx:text-fg">Contact principal</h3>
+                <h3 className="hx:text-sm hx:font-semibold hx:text-fg">Main contact</h3>
                 <dl className="hx:mt-3 hx:grid hx:grid-cols-[auto_1fr] hx:gap-x-5 hx:gap-y-2 hx:text-sm">
-                  <dt className="hx:text-fg-muted">Nom</dt>
+                  <dt className="hx:text-fg-muted">Name</dt>
                   <dd className="hx:text-right hx:text-fg">Sophie Rochat</dd>
-                  <dt className="hx:text-fg-muted">E-mail</dt>
+                  <dt className="hx:text-fg-muted">Email</dt>
                   <dd className="hx:text-right hx:text-fg">s.rochat@leman-immo.ch</dd>
-                  <dt className="hx:text-fg-muted">Téléphone</dt>
+                  <dt className="hx:text-fg-muted">Phone</dt>
                   <dd className="hx:text-right hx:text-fg">+41 21 555 01 84</dd>
                 </dl>
               </section>
               <section>
                 <div className="hx:flex hx:items-center hx:justify-between hx:gap-3">
-                  <h3 className="hx:text-sm hx:font-semibold hx:text-fg">Dernières factures</h3>
+                  <h3 className="hx:text-sm hx:font-semibold hx:text-fg">Latest invoices</h3>
                   <Badge variant="success" dot>
-                    À jour
+                    Up to date
                   </Badge>
                 </div>
                 <div className="hx:mt-3 hx:flex hx:flex-col hx:divide-y hx:divide-glass-border">
@@ -82,8 +82,8 @@ export const Default: Story = {
               </section>
             </SheetBody>
             <SheetFooter>
-              <SheetClose render={<Button variant="ghost" />}>Fermer</SheetClose>
-              <Button>Modifier le client</Button>
+              <SheetClose render={<Button variant="ghost" />}>Close</SheetClose>
+              <Button>Edit client</Button>
             </SheetFooter>
           </SheetContent>
         </Sheet>
@@ -95,16 +95,16 @@ export const Default: Story = {
 export const FromLeft: Story = {
   render: (args) => (
     <Sheet {...args}>
-      <SheetTrigger render={<Button variant="secondary" />}>Ouvrir la navigation</SheetTrigger>
+      <SheetTrigger render={<Button variant="secondary" />}>Open navigation</SheetTrigger>
       <SheetContent side="left" size="sm">
         <SheetHeader>
           <SheetTitle>Hex Finance</SheetTitle>
-          <SheetDescription>Navigation de l’espace de travail.</SheetDescription>
-          <SheetCloseButton aria-label="Fermer la navigation" />
+          <SheetDescription>Workspace navigation.</SheetDescription>
+          <SheetCloseButton aria-label="Close navigation" />
         </SheetHeader>
         <SheetBody>
-          <nav aria-label="Navigation principale" className="hx:flex hx:flex-col hx:gap-1">
-            {['Tableau de bord', 'Clients', 'Devis', 'Factures', 'Rapports'].map((item, index) => (
+          <nav aria-label="Main navigation" className="hx:flex hx:flex-col hx:gap-1">
+            {['Dashboard', 'Clients', 'Quotes', 'Invoices', 'Reports'].map((item, index) => (
               <a
                 key={item}
                 href="#"
@@ -128,7 +128,7 @@ export const FromLeft: Story = {
 const denseInvoices = Array.from({ length: 18 }, (_, index) => ({
   id: `F-2026-${String(1102 - index).padStart(4, '0')}`,
   client: ['Atelier Nord', 'Alpina Logistique', 'Cabinet du Rhône', 'Montreux Conseil'][index % 4],
-  amount: (1250 + index * 684.75).toLocaleString('fr-CH', { style: 'currency', currency: 'CHF' }),
+  amount: (1250 + index * 684.75).toLocaleString('en-CH', { style: 'currency', currency: 'CHF' }),
 }));
 
 /** Worst case: a translucent Sheet over dense, high-contrast content with a long scrolling body. */
@@ -140,7 +140,7 @@ export const OverDenseContent: Story = {
         <table className="hx:w-full hx:border-collapse hx:text-left hx:text-sm hx:tabular-nums">
           <thead className="hx:text-fg-muted">
             <tr>
-              {['N°', 'Client', 'Montant'].map((heading) => (
+              {['No.', 'Client', 'Amount'].map((heading) => (
                 <th key={heading} className="hx:px-4 hx:py-3 hx:font-medium">
                   {heading}
                 </th>
@@ -161,9 +161,9 @@ export const OverDenseContent: Story = {
       <Sheet defaultOpen {...args}>
         <SheetContent size="lg">
           <SheetHeader>
-            <SheetTitle>Factures à vérifier</SheetTitle>
-            <SheetDescription>18 documents importés nécessitent une validation avant comptabilisation.</SheetDescription>
-            <SheetCloseButton aria-label="Fermer le panneau" />
+            <SheetTitle>Invoices to review</SheetTitle>
+            <SheetDescription>18 imported documents need approval before posting.</SheetDescription>
+            <SheetCloseButton aria-label="Close panel" />
           </SheetHeader>
           <SheetBody className="hx:flex hx:flex-col hx:gap-3">
             {denseInvoices.map((invoice, index) => (
@@ -173,15 +173,15 @@ export const OverDenseContent: Story = {
                     <p className="hx:text-sm hx:font-medium hx:text-fg">{invoice.id}</p>
                     <p className="hx:mt-1 hx:text-sm hx:text-fg-muted">{invoice.client}</p>
                   </div>
-                  <Badge variant={index % 3 === 0 ? 'warning' : 'neutral'}>{index % 3 === 0 ? 'Écart détecté' : 'À vérifier'}</Badge>
+                  <Badge variant={index % 3 === 0 ? 'warning' : 'neutral'}>{index % 3 === 0 ? 'Discrepancy found' : 'To review'}</Badge>
                 </div>
                 <p className="hx:mt-4 hx:text-right hx:text-sm hx:font-semibold hx:text-fg">{invoice.amount}</p>
               </Panel>
             ))}
           </SheetBody>
           <SheetFooter>
-            <SheetClose render={<Button variant="ghost" />}>Plus tard</SheetClose>
-            <Button>Valider la sélection</Button>
+            <SheetClose render={<Button variant="ghost" />}>Later</SheetClose>
+            <Button>Approve selection</Button>
           </SheetFooter>
         </SheetContent>
       </Sheet>

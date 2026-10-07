@@ -21,23 +21,23 @@ function TypeButtons() {
     <div className="hx:flex hx:flex-wrap hx:gap-3">
       <Button
         variant="secondary"
-        onClick={() => toast.add({ type: 'success', title: 'Facture envoyée', description: 'F-2026-1045 a été envoyée à Romandie Santé.' })}
+        onClick={() => toast.add({ type: 'success', title: 'Invoice sent', description: 'F-2026-1045 has been sent to Romandie Santé.' })}
       >
-        Succès
+        Success
       </Button>
       <Button
         variant="secondary"
-        onClick={() => toast.add({ type: 'error', title: 'Échec de l’export', description: 'Le serveur n’a pas répondu. Réessayez dans un instant.' })}
+        onClick={() => toast.add({ type: 'error', title: 'Export failed', description: 'The server did not respond. Try again in a moment.' })}
       >
-        Erreur
+        Error
       </Button>
       <Button
         variant="secondary"
-        onClick={() => toast.add({ type: 'warning', title: 'Quota presque atteint', description: '92 % de l’espace de stockage est utilisé.' })}
+        onClick={() => toast.add({ type: 'warning', title: 'Quota almost reached', description: '92% of the storage space is used.' })}
       >
-        Avertissement
+        Warning
       </Button>
-      <Button variant="secondary" onClick={() => toast.add({ type: 'info', title: 'Nouvelle version disponible' })}>
+      <Button variant="secondary" onClick={() => toast.add({ type: 'info', title: 'New version available' })}>
         Info
       </Button>
     </div>
@@ -59,19 +59,19 @@ export const WithAction: Story = {
         variant="danger"
         onClick={() => {
           const id = toast.add({
-            title: 'Projet archivé',
-            description: 'Refonte du portail client a été déplacé dans les archives.',
+            title: 'Project archived',
+            description: 'Client portal redesign has been moved to the archive.',
             actionProps: {
-              children: 'Annuler',
+              children: 'Undo',
               onClick: () => {
                 toast.close(id);
-                toast.add({ type: 'success', title: 'Archivage annulé' });
+                toast.add({ type: 'success', title: 'Archiving undone' });
               },
             },
           });
         }}
       >
-        Archiver le projet
+        Archive project
       </Button>
     );
   },
@@ -86,13 +86,13 @@ export const Promise: Story = {
       <Button
         onClick={() =>
           toast.promise(new globalThis.Promise((resolve) => setTimeout(resolve, 2000)), {
-            loading: { type: 'loading', title: 'Génération du rapport…' },
-            success: { type: 'success', title: 'Rapport prêt', description: 'Rapport_T3_2026.pdf a été téléchargé.' },
-            error: { type: 'error', title: 'La génération a échoué' },
+            loading: { type: 'loading', title: 'Generating report…' },
+            success: { type: 'success', title: 'Report ready', description: 'Report_Q3_2026.pdf has been downloaded.' },
+            error: { type: 'error', title: 'Generation failed' },
           })
         }
       >
-        Générer le rapport
+        Generate report
       </Button>
     );
   },
@@ -104,14 +104,14 @@ function AddOnMount() {
   useEffect(() => {
     if (added.current) return;
     added.current = true;
-    toast.add({ type: 'info', title: 'Synchronisation terminée', timeout: 0 });
-    toast.add({ type: 'warning', title: 'Quota presque atteint', description: '92 % de l’espace de stockage est utilisé.', timeout: 0 });
+    toast.add({ type: 'info', title: 'Sync complete', timeout: 0 });
+    toast.add({ type: 'warning', title: 'Quota almost reached', description: '92% of the storage space is used.', timeout: 0 });
     toast.add({
       type: 'success',
-      title: 'Facture envoyée',
-      description: 'F-2026-1045 a été envoyée à Romandie Santé.',
+      title: 'Invoice sent',
+      description: 'F-2026-1045 has been sent to Romandie Santé.',
       timeout: 0,
-      actionProps: { children: 'Voir la facture' },
+      actionProps: { children: 'View invoice' },
     });
   }, [toast]);
   // Dense content behind the stack: the worst case for a translucent toast.
@@ -124,7 +124,7 @@ function AddOnMount() {
               <td className="hx:px-4 hx:py-2.5 hx:font-medium">F-2026-{1042 + i}</td>
               <td className="hx:px-4 hx:py-2.5">{['Banque Cantonale', 'Helvetia Services', 'Alpina Logistique'][i % 3]}</td>
               <td className="hx:px-4 hx:py-2.5">{(1830 + i * 947.35).toFixed(2)} CHF</td>
-              <td className="hx:px-4 hx:py-2.5">{['Payée', 'Envoyée', 'En retard'][i % 3]}</td>
+              <td className="hx:px-4 hx:py-2.5">{['Paid', 'Sent', 'Overdue'][i % 3]}</td>
               <td className="hx:px-4 hx:py-2.5">{`${String((i % 28) + 1).padStart(2, '0')}.09.2026`}</td>
             </tr>
           ))}

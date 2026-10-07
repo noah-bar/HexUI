@@ -41,61 +41,61 @@ export const Default: Story = {
     return (
       <Menubar>
         <MenubarMenu>
-          <MenubarTrigger>Fichier</MenubarTrigger>
+          <MenubarTrigger>File</MenubarTrigger>
           <MenubarContent>
             <MenubarItem>
-              Nouvelle facture <MenubarShortcut>⌘N</MenubarShortcut>
+              New invoice <MenubarShortcut>⌘N</MenubarShortcut>
             </MenubarItem>
             <MenubarItem>
-              Dupliquer <MenubarShortcut>⌘D</MenubarShortcut>
+              Duplicate <MenubarShortcut>⌘D</MenubarShortcut>
             </MenubarItem>
             <MenubarSeparator />
             <MenubarSub>
-              <MenubarSubTrigger>Exporter</MenubarSubTrigger>
+              <MenubarSubTrigger>Export</MenubarSubTrigger>
               <MenubarSubContent>
                 <MenubarItem>PDF</MenubarItem>
-                <MenubarItem>QR-facture</MenubarItem>
+                <MenubarItem>QR-bill</MenubarItem>
                 <MenubarItem>Excel (CSV)</MenubarItem>
               </MenubarSubContent>
             </MenubarSub>
             <MenubarItem>
-              Imprimer <MenubarShortcut>⌘P</MenubarShortcut>
+              Print <MenubarShortcut>⌘P</MenubarShortcut>
             </MenubarItem>
             <MenubarSeparator />
-            <MenubarItem variant="danger">Supprimer la facture</MenubarItem>
+            <MenubarItem variant="danger">Delete invoice</MenubarItem>
           </MenubarContent>
         </MenubarMenu>
 
         <MenubarMenu>
-          <MenubarTrigger>Édition</MenubarTrigger>
+          <MenubarTrigger>Edit</MenubarTrigger>
           <MenubarContent>
             <MenubarItem>
-              Annuler <MenubarShortcut>⌘Z</MenubarShortcut>
+              Undo <MenubarShortcut>⌘Z</MenubarShortcut>
             </MenubarItem>
             <MenubarItem>
-              Rétablir <MenubarShortcut>⇧⌘Z</MenubarShortcut>
+              Redo <MenubarShortcut>⇧⌘Z</MenubarShortcut>
             </MenubarItem>
             <MenubarSeparator />
-            <MenubarItem>Ajouter une ligne</MenubarItem>
-            <MenubarItem>Ajouter un rabais</MenubarItem>
-            <MenubarItem disabled>Ajouter un acompte</MenubarItem>
+            <MenubarItem>Add a line</MenubarItem>
+            <MenubarItem>Add a discount</MenubarItem>
+            <MenubarItem disabled>Add a deposit</MenubarItem>
           </MenubarContent>
         </MenubarMenu>
 
         <MenubarMenu>
-          <MenubarTrigger>Affichage</MenubarTrigger>
+          <MenubarTrigger>View</MenubarTrigger>
           <MenubarContent>
             <MenubarCheckboxItem checked={showVat} onCheckedChange={setShowVat}>
-              Afficher la TVA
+              Show VAT
             </MenubarCheckboxItem>
             <MenubarCheckboxItem checked={showNotes} onCheckedChange={setShowNotes}>
-              Afficher les notes internes
+              Show internal notes
             </MenubarCheckboxItem>
             <MenubarSeparator />
             <MenubarGroup>
-              <MenubarLabel>Devise</MenubarLabel>
+              <MenubarLabel>Currency</MenubarLabel>
               <MenubarRadioGroup value={currency} onValueChange={setCurrency}>
-                <MenubarRadioItem value="CHF">Franc suisse (CHF)</MenubarRadioItem>
+                <MenubarRadioItem value="CHF">Swiss franc (CHF)</MenubarRadioItem>
                 <MenubarRadioItem value="EUR">Euro (EUR)</MenubarRadioItem>
               </MenubarRadioGroup>
             </MenubarGroup>
@@ -103,10 +103,10 @@ export const Default: Story = {
         </MenubarMenu>
 
         <MenubarMenu>
-          <MenubarTrigger>Aide</MenubarTrigger>
+          <MenubarTrigger>Help</MenubarTrigger>
           <MenubarContent>
-            <MenubarItem>Raccourcis clavier</MenubarItem>
-            <MenubarItem>Guide de la QR-facture</MenubarItem>
+            <MenubarItem>Keyboard shortcuts</MenubarItem>
+            <MenubarItem>QR-bill guide</MenubarItem>
           </MenubarContent>
         </MenubarMenu>
       </Menubar>

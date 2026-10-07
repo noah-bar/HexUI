@@ -48,7 +48,7 @@ export const Default: Story = {
         <AvatarFallback>SR</AvatarFallback>
       </Avatar>
       <Avatar {...args}>
-        <AvatarImage src="/introuvable.png" alt="Lien cassé" />
+        <AvatarImage src="/missing.png" alt="Broken link" />
         <AvatarFallback>LB</AvatarFallback>
       </Avatar>
     </div>
@@ -79,7 +79,7 @@ export const Organization: Story = {
       </Avatar>
       <div>
         <p className="hx:font-medium">Léman Immobilier SA</p>
-        <p className="hx:text-fg-muted">Nyon · 12 factures</p>
+        <p className="hx:text-fg-muted">Nyon · 12 invoices</p>
       </div>
     </div>
   ),
@@ -95,7 +95,7 @@ export const Group: Story = {
           <AvatarFallback>{person.initials}</AvatarFallback>
         </Avatar>
       ))}
-      <Avatar size="sm" aria-label="3 autres personnes">
+      <Avatar size="sm" aria-label="3 more people">
         <AvatarFallback className="hx:bg-tint-active hx:text-fg-muted">+3</AvatarFallback>
       </Avatar>
     </AvatarGroup>

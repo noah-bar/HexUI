@@ -6,7 +6,7 @@ const meta = {
   title: 'Components/Textarea',
   component: Textarea,
   tags: ['autodocs'],
-  args: { placeholder: 'Décrivez le besoin du client…' },
+  args: { placeholder: 'Describe the client’s needs…' },
   decorators: [
     (Story) => (
       <Panel className="hx:max-w-md hx:p-5">
@@ -22,7 +22,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 export const Invalid: Story = {
-  args: { 'aria-invalid': true, defaultValue: 'Trop court' },
+  args: { 'aria-invalid': true, defaultValue: 'Too short' },
 };
 
 export const Disabled: Story = {

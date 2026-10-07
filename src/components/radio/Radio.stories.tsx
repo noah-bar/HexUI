@@ -19,14 +19,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const plans = [
-  { value: 'monthly', label: 'Mensuel', hint: 'CHF 29 / mois' },
-  { value: 'yearly', label: 'Annuel', hint: 'CHF 290 / an, 2 mois offerts' },
-  { value: 'enterprise', label: 'Entreprise', hint: 'Sur devis', disabled: true },
+  { value: 'monthly', label: 'Monthly', hint: 'CHF 29 / month' },
+  { value: 'yearly', label: 'Yearly', hint: 'CHF 290 / year, 2 months free' },
+  { value: 'enterprise', label: 'Enterprise', hint: 'On quote', disabled: true },
 ];
 
 export const Default: Story = {
   render: (args) => (
-    <RadioGroup defaultValue="yearly" aria-label="Formule" {...args}>
+    <RadioGroup defaultValue="yearly" aria-label="Plan" {...args}>
       {plans.map((plan) => (
         <label key={plan.value} className="hx:flex hx:items-start hx:gap-2.5 hx:has-data-disabled:opacity-50">
           <Radio value={plan.value} disabled={plan.disabled} className="hx:mt-0.5" />
@@ -42,8 +42,8 @@ export const Default: Story = {
 
 export const Horizontal: Story = {
   render: (args) => (
-    <RadioGroup defaultValue="week" aria-label="Période" className="hx:flex-row hx:gap-5" {...args}>
-      {['Jour', 'Semaine', 'Mois'].map((label, i) => (
+    <RadioGroup defaultValue="week" aria-label="Period" className="hx:flex-row hx:gap-5" {...args}>
+      {['Day', 'Week', 'Month'].map((label, i) => (
         <label key={label} className="hx:flex hx:items-center hx:gap-2">
           <Radio value={['day', 'week', 'month'][i]} />
           {label}

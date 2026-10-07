@@ -6,7 +6,7 @@ const meta = {
   title: 'Components/Input',
   component: Input,
   tags: ['autodocs'],
-  args: { placeholder: 'nom@entreprise.com' },
+  args: { placeholder: 'name@company.com' },
   // Inputs live inside glass surfaces in real screens, so they are shown in a Panel.
   decorators: [
     (Story) => (
@@ -25,14 +25,14 @@ export const Default: Story = {};
 export const WithLabel: Story = {
   render: (args) => (
     <label className="hx:flex hx:flex-col hx:gap-1.5 hx:text-sm hx:font-medium hx:text-fg">
-      Adresse e-mail
+      Email address
       <Input {...args} type="email" />
     </label>
   ),
 };
 
 export const Invalid: Story = {
-  args: { 'aria-invalid': true, defaultValue: 'adresse-invalide' },
+  args: { 'aria-invalid': true, defaultValue: 'invalid-address' },
 };
 
 export const Disabled: Story = {

@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (args) => (
     <Panel {...args} className="hx:max-w-md hx:text-sm">
-      Une surface en verre sans mise en page imposée : à vous d’y placer ce que vous voulez.
+      A glass surface with no imposed layout: put whatever you want in it.
     </Panel>
   ),
 };
@@ -29,9 +29,9 @@ export const Variants: Story = {
         <Panel key={variant} {...args} variant={variant} className="hx:text-sm">
           <p className="hx:font-semibold">{variant}</p>
           <p className="hx:mt-1 hx:text-fg-muted">
-            {variant === 'thin' && 'Navigation, barres d’outils : peu de texte.'}
-            {variant === 'default' && 'Conteneurs, tableaux, listes.'}
-            {variant === 'strong' && 'Contenu long ou à lire attentivement.'}
+            {variant === 'thin' && 'Navigation, toolbars: little text.'}
+            {variant === 'default' && 'Containers, tables, lists.'}
+            {variant === 'strong' && 'Long content or content to read carefully.'}
           </p>
         </Panel>
       ))}
@@ -40,10 +40,10 @@ export const Variants: Story = {
 };
 
 const rows = [
-  { name: 'Portail client', owner: 'Équipe Web', progress: '82 %', due: '15.10.2026' },
-  { name: 'Application mobile', owner: 'Équipe Mobile', progress: '46 %', due: '30.11.2026' },
-  { name: 'Migration ERP', owner: 'Équipe Data', progress: '23 %', due: '20.01.2027' },
-  { name: 'Refonte facturation', owner: 'Équipe Finance', progress: '100 %', due: '01.09.2026' },
+  { name: 'Client portal', owner: 'Web team', progress: '82%', due: '15.10.2026' },
+  { name: 'Mobile app', owner: 'Mobile team', progress: '46%', due: '30.11.2026' },
+  { name: 'ERP migration', owner: 'Data team', progress: '23%', due: '20.01.2027' },
+  { name: 'Billing redesign', owner: 'Finance team', progress: '100%', due: '01.09.2026' },
 ];
 
 /** Tailwind padding utilities override the default `p-2`; here the table runs edge to edge. */
@@ -53,7 +53,7 @@ export const Table: Story = {
       <table className="hx:w-full hx:border-collapse hx:text-left hx:text-sm hx:tabular-nums">
         <thead className="hx:text-fg-muted">
           <tr>
-            {['Projet', 'Responsable', 'Avancement', 'Échéance'].map((h) => (
+            {['Project', 'Owner', 'Progress', 'Due date'].map((h) => (
               <th key={h} className="hx:px-4 hx:py-3 hx:font-medium">
                 {h}
               </th>
@@ -81,7 +81,7 @@ export const AsAside: Story = {
   render: (args) => (
     <Panel {...args} render={<aside aria-label="Navigation" />} className="hx:w-56 hx:p-3">
       <nav className="hx:flex hx:flex-col hx:gap-1 hx:text-sm">
-        {['Tableau de bord', 'Projets', 'Clients', 'Facturation', 'Paramètres'].map((item, i) => (
+        {['Dashboard', 'Projects', 'Clients', 'Billing', 'Settings'].map((item, i) => (
           <a
             key={item}
             href="#"

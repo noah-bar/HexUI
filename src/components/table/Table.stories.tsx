@@ -31,24 +31,24 @@ type Story = StoryObj<typeof meta>;
 type Invoice = { id: string; client: string; date: string; amount: number; status: string };
 
 const invoices: Invoice[] = [
-  { id: 'F-2026-1042', client: 'Banque Cantonale', date: '2026-09-02', amount: 12480, status: 'Payée' },
-  { id: 'F-2026-1043', client: 'Helvetia Services', date: '2026-09-05', amount: 3950.5, status: 'Envoyée' },
-  { id: 'F-2026-1044', client: 'Alpina Logistique', date: '2026-09-11', amount: 7210, status: 'En attente' },
-  { id: 'F-2026-1045', client: 'Romandie Santé', date: '2026-09-14', amount: 18452.9, status: 'En retard' },
-  { id: 'F-2026-1046', client: 'Léman Immobilier', date: '2026-09-20', amount: 1200, status: 'Brouillon' },
-  { id: 'F-2026-1047', client: 'Jura Énergie', date: '2026-09-27', amount: 5640.25, status: 'Payée' },
+  { id: 'F-2026-1042', client: 'Banque Cantonale', date: '2026-09-02', amount: 12480, status: 'Paid' },
+  { id: 'F-2026-1043', client: 'Helvetia Services', date: '2026-09-05', amount: 3950.5, status: 'Sent' },
+  { id: 'F-2026-1044', client: 'Alpina Logistique', date: '2026-09-11', amount: 7210, status: 'Pending' },
+  { id: 'F-2026-1045', client: 'Romandie Santé', date: '2026-09-14', amount: 18452.9, status: 'Overdue' },
+  { id: 'F-2026-1046', client: 'Léman Immobilier', date: '2026-09-20', amount: 1200, status: 'Draft' },
+  { id: 'F-2026-1047', client: 'Jura Énergie', date: '2026-09-27', amount: 5640.25, status: 'Paid' },
 ];
 
 const statusVariant: Record<string, BadgeProps['variant']> = {
-  Payée: 'success',
-  Envoyée: 'info',
-  'En attente': 'warning',
-  'En retard': 'danger',
-  Brouillon: 'neutral',
+  Paid: 'success',
+  Sent: 'info',
+  Pending: 'warning',
+  Overdue: 'danger',
+  Draft: 'neutral',
 };
 
-const chf = (n: number) => n.toLocaleString('fr-CH', { style: 'currency', currency: 'CHF' });
-const date = (iso: string) => new Date(iso).toLocaleDateString('fr-CH');
+const chf = (n: number) => n.toLocaleString('en-CH', { style: 'currency', currency: 'CHF' });
+const date = (iso: string) => new Date(iso).toLocaleDateString('en-CH');
 
 export const Default: Story = {
   render: (args) => (
@@ -56,10 +56,10 @@ export const Default: Story = {
       <Table {...args}>
         <TableHeader>
           <TableRow>
-            <TableHead>N°</TableHead>
+            <TableHead>No.</TableHead>
             <TableHead>Client</TableHead>
             <TableHead>Date</TableHead>
-            <TableHead align="right">Montant</TableHead>
+            <TableHead align="right">Amount</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -104,13 +104,13 @@ export const Complete: Story = {
             <TableRow>
               <TableHead className="hx:w-10 hx:pr-0">
                 <Checkbox
-                  aria-label="Tout sélectionner"
+                  aria-label="Select all"
                   checked={all}
                   indeterminate={selected.length > 0 && !all}
                   onCheckedChange={(checked) => setSelected(checked ? rows.map((r) => r.id) : [])}
                 />
               </TableHead>
-              <TableHead>N°</TableHead>
+              <TableHead>No.</TableHead>
               <TableHead sortDirection={dirFor('client')} onSort={() => toggleSort('client')}>
                 Client
               </TableHead>
@@ -118,9 +118,9 @@ export const Complete: Story = {
                 Date
               </TableHead>
               <TableHead align="right" sortDirection={dirFor('amount')} onSort={() => toggleSort('amount')}>
-                Montant
+                Amount
               </TableHead>
-              <TableHead>Statut</TableHead>
+              <TableHead>Status</TableHead>
               <TableHead className="hx:w-12">
                 <span className="hx:sr-only">Actions</span>
               </TableHead>
@@ -133,7 +133,7 @@ export const Complete: Story = {
                 <TableRow key={inv.id} selected={isSelected}>
                   <TableCell className="hx:pr-0">
                     <Checkbox
-                      aria-label={`Sélectionner ${inv.id}`}
+                      aria-label={`Select ${inv.id}`}
                       checked={isSelected}
                       onCheckedChange={(checked) =>
                         setSelected((s) => (checked ? [...s, inv.id] : s.filter((id) => id !== inv.id)))
@@ -151,23 +151,23 @@ export const Complete: Story = {
                     <Menu>
                       <MenuTrigger
                         render={<Button variant="ghost" size="icon" className="hx:size-8" />}
-                        aria-label={`Actions pour ${inv.id}`}
+                        aria-label={`Actions for ${inv.id}`}
                       >
                         <Ellipsis />
                       </MenuTrigger>
                       <MenuContent align="end">
                         <MenuItem>
-                          <Pencil /> Modifier
+                          <Pencil /> Edit
                         </MenuItem>
                         <MenuItem>
-                          <Mail /> Envoyer un rappel
+                          <Mail /> Send a reminder
                         </MenuItem>
                         <MenuItem>
-                          <Download /> Télécharger
+                          <Download /> Download
                         </MenuItem>
                         <MenuSeparator />
                         <MenuItem variant="danger">
-                          <Trash2 /> Supprimer
+                          <Trash2 /> Delete
                         </MenuItem>
                       </MenuContent>
                     </Menu>
@@ -179,7 +179,7 @@ export const Complete: Story = {
           <TableFooter>
             <TableRow>
               <TableCell colSpan={4}>
-                {selected.length > 0 ? `${selected.length} facture(s) sélectionnée(s)` : `${rows.length} factures`}
+                {selected.length > 0 ? `${selected.length} invoice(s) selected` : `${rows.length} invoices`}
               </TableCell>
               <TableCell align="right">{chf(total)}</TableCell>
               <TableCell colSpan={2} />
@@ -203,13 +203,13 @@ export const Empty: Story = {
       <Table {...args}>
         <TableHeader>
           <TableRow>
-            <TableHead>N°</TableHead>
+            <TableHead>No.</TableHead>
             <TableHead>Client</TableHead>
-            <TableHead align="right">Montant</TableHead>
+            <TableHead align="right">Amount</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableEmpty colSpan={3}>Aucune facture ne correspond à vos filtres.</TableEmpty>
+          <TableEmpty colSpan={3}>No invoice matches your filters.</TableEmpty>
         </TableBody>
       </Table>
     </Panel>
@@ -221,11 +221,11 @@ export const WideWithCaption: Story = {
   render: (args) => (
     <Panel className="hx:max-w-xl">
       <Table {...args}>
-        <TableCaption>Chiffre d’affaires mensuel par client, en CHF.</TableCaption>
+        <TableCaption>Monthly revenue per client, in CHF.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Client</TableHead>
-            {['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep'].map((m) => (
+            {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'].map((m) => (
               <TableHead key={m} align="right">
                 {m}
               </TableHead>
@@ -238,7 +238,7 @@ export const WideWithCaption: Story = {
               <TableCell className="hx:font-medium hx:whitespace-nowrap">{inv.client}</TableCell>
               {Array.from({ length: 9 }, (_, i) => (
                 <TableCell key={i} align="right">
-                  {((r + 2) * 1137 + i * 412).toLocaleString('fr-CH')}
+                  {((r + 2) * 1137 + i * 412).toLocaleString('en-CH')}
                 </TableCell>
               ))}
             </TableRow>

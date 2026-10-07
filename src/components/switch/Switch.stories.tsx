@@ -6,7 +6,7 @@ const meta = {
   title: 'Components/Switch',
   component: Switch,
   tags: ['autodocs'],
-  args: { 'aria-label': 'Activer' },
+  args: { 'aria-label': 'Enable' },
   // Switches live inside glass surfaces in real screens, so they are shown in a Panel.
   decorators: [
     (Story) => (
@@ -29,7 +29,7 @@ export const Checked: Story = {
 export const WithLabel: Story = {
   render: () => (
     <div className="hx:flex hx:w-80 hx:flex-col hx:gap-4">
-      {['Notifications par e-mail', 'Rapport hebdomadaire', 'Authentification à deux facteurs'].map((label, i) => (
+      {['Email notifications', 'Weekly report', 'Two-factor authentication'].map((label, i) => (
         <label key={label} className="hx:flex hx:items-center hx:justify-between hx:gap-4">
           {label}
           <Switch defaultChecked={i !== 1} />

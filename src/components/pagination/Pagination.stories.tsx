@@ -53,12 +53,12 @@ export const MoreVisiblePages: Story = {
   args: { page: 21, totalPages: 50, maxVisible: 9 },
 };
 
-/** English labels for the arrow buttons and page numbers (screen readers). */
+/** Localized labels for the arrow buttons and page numbers (screen readers), here in French. */
 export const CustomLabels: Story = {
   args: {
     page: 3,
-    previousLabel: 'Previous page',
-    nextLabel: 'Next page',
-    pageLabel: (page: number) => `Go to page ${page}`,
+    previousLabel: 'Page précédente',
+    nextLabel: 'Page suivante',
+    pageLabel: (page: number) => `Aller à la page ${page}`,
   },
 };

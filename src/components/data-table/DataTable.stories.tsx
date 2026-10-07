@@ -25,8 +25,8 @@ type Story = StoryObj<typeof meta>;
 type Quote = { id: number; title: string; client: string; date: string; total: number; status: string };
 
 const clients = ['Banque Cantonale', 'Helvetia Services', 'Alpina Logistique', 'Romandie Santé', 'Léman Immobilier', 'Jura Énergie'];
-const statuses = ['Brouillon', 'Envoyé', 'Accepté', 'Refusé'];
-const subjects = ['Refonte site web', 'Maintenance annuelle', 'Audit sécurité', 'Migration cloud', 'Formation équipe', 'Application mobile'];
+const statuses = ['Draft', 'Sent', 'Accepted', 'Declined'];
+const subjects = ['Website redesign', 'Annual maintenance', 'Security audit', 'Cloud migration', 'Team training', 'Mobile app'];
 
 const allQuotes: Quote[] = Array.from({ length: 87 }, (_, i) => ({
   id: 1000 + i,
@@ -71,13 +71,13 @@ function useQuotes(query: Query) {
 }
 
 const statusVariant: Record<string, BadgeProps['variant']> = {
-  Brouillon: 'neutral',
-  Envoyé: 'info',
-  Accepté: 'success',
-  Refusé: 'danger',
+  Draft: 'neutral',
+  Sent: 'info',
+  Accepted: 'success',
+  Declined: 'danger',
 };
 
-const chf = (n: number) => n.toLocaleString('fr-CH', { style: 'currency', currency: 'CHF' });
+const chf = (n: number) => n.toLocaleString('en-CH', { style: 'currency', currency: 'CHF' });
 
 /**
  * Server-side search, sorting and pagination, with loading skeletons and an empty state.
@@ -97,7 +97,7 @@ export const ServerSide: Story = {
       <div className="hx:flex hx:h-[640px] hx:max-w-5xl hx:flex-col hx:gap-3">
         <Panel variant="thin" className="hx:p-3">
           <Input
-            placeholder="Rechercher un devis ou un client…"
+            placeholder="Search for a quote or a client…"
             className="hx:max-w-sm"
             value={search}
             onChange={(e) => {
@@ -118,13 +118,13 @@ export const ServerSide: Story = {
           >
             <DataTableHeader>
               <TableRow>
-                <DataTableSortableHead field="title">Titre</DataTableSortableHead>
+                <DataTableSortableHead field="title">Title</DataTableSortableHead>
                 <DataTableSortableHead field="client">Client</DataTableSortableHead>
                 <DataTableSortableHead field="date">Date</DataTableSortableHead>
                 <DataTableSortableHead field="total" align="right">
-                  Total TTC
+                  Total incl. VAT
                 </DataTableSortableHead>
-                <DataTableSortableHead field="status">Statut</DataTableSortableHead>
+                <DataTableSortableHead field="status">Status</DataTableSortableHead>
                 <TableHead className="hx:w-12">
                   <span className="hx:sr-only">Actions</span>
                 </TableHead>
@@ -134,13 +134,13 @@ export const ServerSide: Story = {
               colSpan={6}
               isPending={isPending}
               isEmpty={quotes.length === 0}
-              emptyText={`Aucun devis ne correspond à « ${debouncedSearch} ».`}
+              emptyText={`No quote matches “${debouncedSearch}”.`}
             >
               {quotes.map((q) => (
-                <TableRow key={q.id} onClick={() => console.log('Ouvrir le devis', q.id)}>
+                <TableRow key={q.id} onClick={() => console.log('Open quote', q.id)}>
                   <TableCell className="hx:font-medium">{q.title}</TableCell>
                   <TableCell>{q.client}</TableCell>
-                  <TableCell>{new Date(q.date).toLocaleDateString('fr-CH')}</TableCell>
+                  <TableCell>{new Date(q.date).toLocaleDateString('en-CH')}</TableCell>
                   <TableCell align="right">{chf(q.total)}</TableCell>
                   <TableCell>
                     <Badge variant={statusVariant[q.status]}>{q.status}</Badge>
@@ -149,17 +149,17 @@ export const ServerSide: Story = {
                     <Menu>
                       <MenuTrigger
                         render={<Button variant="ghost" size="icon" className="hx:size-8" />}
-                        aria-label={`Actions pour ${q.title}`}
+                        aria-label={`Actions for ${q.title}`}
                       >
                         <Ellipsis />
                       </MenuTrigger>
                       <MenuContent align="end">
                         <MenuItem>
-                          <Pencil /> Modifier
+                          <Pencil /> Edit
                         </MenuItem>
                         <MenuSeparator />
                         <MenuItem variant="danger">
-                          <Trash2 /> Supprimer
+                          <Trash2 /> Delete
                         </MenuItem>
                       </MenuContent>
                     </Menu>
@@ -182,9 +182,9 @@ export const Loading: Story = {
       <DataTable>
         <DataTableHeader>
           <TableRow>
-            <TableHead>Titre</TableHead>
+            <TableHead>Title</TableHead>
             <TableHead>Client</TableHead>
-            <TableHead align="right">Total TTC</TableHead>
+            <TableHead align="right">Total incl. VAT</TableHead>
           </TableRow>
         </DataTableHeader>
         <DataTableBody colSpan={3} isPending />

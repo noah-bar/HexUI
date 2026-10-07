@@ -17,8 +17,8 @@ export const Default: Story = {
   render: (args) => (
     <div className="hx:pt-12">
       <Tooltip {...args}>
-        <TooltipTrigger render={<Button variant="secondary" />}>Survolez-moi</TooltipTrigger>
-        <TooltipContent>Raccourci : ⌘ S</TooltipContent>
+        <TooltipTrigger render={<Button variant="secondary" />}>Hover me</TooltipTrigger>
+        <TooltipContent>Shortcut: ⌘ S</TooltipContent>
       </Tooltip>
     </div>
   ),
@@ -29,9 +29,9 @@ export const Toolbar: Story = {
     <div className="hx:pt-12">
       <div className="hx:glass hx:inline-flex hx:gap-1 hx:rounded-lg hx:p-1">
         {[
-          { label: 'Gras', icon: Bold },
-          { label: 'Italique', icon: Italic },
-          { label: 'Souligné', icon: Underline },
+          { label: 'Bold', icon: Bold },
+          { label: 'Italic', icon: Italic },
+          { label: 'Underline', icon: Underline },
         ].map(({ label, icon: Icon }) => (
           <Tooltip key={label}>
             <TooltipTrigger render={<Button variant="ghost" size="icon" aria-label={label} />}>

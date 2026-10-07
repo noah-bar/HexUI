@@ -27,9 +27,9 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => (
     <Field>
-      <FieldLabel>Adresse e-mail</FieldLabel>
-      <Input type="email" placeholder="nom@entreprise.com" />
-      <FieldDescription>Utilisée pour les notifications et la facturation.</FieldDescription>
+      <FieldLabel>Email address</FieldLabel>
+      <Input type="email" placeholder="name@company.com" />
+      <FieldDescription>Used for notifications and billing.</FieldDescription>
     </Field>
   ),
 };
@@ -38,9 +38,9 @@ export const Default: Story = {
 export const Invalid: Story = {
   render: () => (
     <Field invalid>
-      <FieldLabel>Adresse e-mail</FieldLabel>
-      <Input type="email" defaultValue="adresse-invalide" />
-      <FieldError match>Saisissez une adresse e-mail valide.</FieldError>
+      <FieldLabel>Email address</FieldLabel>
+      <Input type="email" defaultValue="invalid-address" />
+      <FieldError match>Enter a valid email address.</FieldError>
     </Field>
   ),
 };
@@ -49,17 +49,17 @@ export const Invalid: Story = {
 export const RequiredOnBlur: Story = {
   render: () => (
     <Field validationMode="onBlur">
-      <FieldLabel>Nom du projet</FieldLabel>
-      <Input required placeholder="Refonte du portail client" />
-      <FieldError match="valueMissing">Le nom du projet est obligatoire.</FieldError>
+      <FieldLabel>Project name</FieldLabel>
+      <Input required placeholder="Client portal redesign" />
+      <FieldError match="valueMissing">The project name is required.</FieldError>
     </Field>
   ),
 };
 
 const roles = [
-  { label: 'Administrateur', value: 'admin' },
-  { label: 'Éditeur', value: 'editor' },
-  { label: 'Lecteur', value: 'viewer' },
+  { label: 'Administrator', value: 'admin' },
+  { label: 'Editor', value: 'editor' },
+  { label: 'Viewer', value: 'viewer' },
 ];
 
 /** A realistic form combining every form control. */
@@ -67,14 +67,14 @@ export const Form: Story = {
   render: () => (
     <form className="hx:flex hx:flex-col hx:gap-5" onSubmit={(e) => e.preventDefault()}>
       <Field>
-        <FieldLabel>Nom complet</FieldLabel>
+        <FieldLabel>Full name</FieldLabel>
         <Input placeholder="Camille Martin" />
       </Field>
       <Field>
-        <FieldLabel>Rôle</FieldLabel>
+        <FieldLabel>Role</FieldLabel>
         <Select items={roles}>
           <SelectTrigger>
-            <SelectValue placeholder="Choisir un rôle" />
+            <SelectValue placeholder="Choose a role" />
           </SelectTrigger>
           <SelectContent>
             {roles.map((role) => (
@@ -86,36 +86,36 @@ export const Form: Story = {
         </Select>
       </Field>
       <Field>
-        <FieldLabel>Message d’invitation</FieldLabel>
-        <Textarea placeholder="Bienvenue dans l’équipe !" />
-        <FieldDescription>Facultatif. Ajouté à l’e-mail d’invitation.</FieldDescription>
+        <FieldLabel>Invitation message</FieldLabel>
+        <Textarea placeholder="Welcome to the team!" />
+        <FieldDescription>Optional. Added to the invitation email.</FieldDescription>
       </Field>
       <Field>
-        <FieldLabel render={<div />}>Accès</FieldLabel>
+        <FieldLabel render={<div />}>Access</FieldLabel>
         <RadioGroup defaultValue="all" className="hx:mt-1">
           <FieldItem>
             <Radio value="all" id="access-all" />
             <label htmlFor="access-all" className="hx:text-sm hx:text-fg">
-              Tous les projets
+              All projects
             </label>
           </FieldItem>
           <FieldItem>
             <Radio value="selected" id="access-selected" />
             <label htmlFor="access-selected" className="hx:text-sm hx:text-fg">
-              Projets sélectionnés uniquement
+              Selected projects only
             </label>
           </FieldItem>
         </RadioGroup>
       </Field>
       <label className="hx:flex hx:items-center hx:gap-2 hx:text-sm hx:text-fg">
         <Checkbox defaultChecked />
-        Envoyer l’invitation par e-mail
+        Send the invitation by email
       </label>
       <div className="hx:flex hx:justify-end hx:gap-2">
         <Button variant="ghost" type="button">
-          Annuler
+          Cancel
         </Button>
-        <Button type="submit">Inviter</Button>
+        <Button type="submit">Invite</Button>
       </div>
     </form>
   ),

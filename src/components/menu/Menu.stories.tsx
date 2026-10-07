@@ -38,33 +38,33 @@ export const Default: Story = {
       <MenuTrigger render={<Button variant="secondary" />}>Actions</MenuTrigger>
       <MenuContent>
         <MenuItem>
-          <Pencil /> Modifier <MenuShortcut>⌘E</MenuShortcut>
+          <Pencil /> Edit <MenuShortcut>⌘E</MenuShortcut>
         </MenuItem>
         <MenuItem>
-          <Copy /> Dupliquer <MenuShortcut>⌘D</MenuShortcut>
+          <Copy /> Duplicate <MenuShortcut>⌘D</MenuShortcut>
         </MenuItem>
         <MenuItem>
-          <Download /> Exporter en PDF
+          <Download /> Export as PDF
         </MenuItem>
         <MenuSub>
           <MenuSubTrigger>
-            <UserPlus /> Partager
+            <UserPlus /> Share
           </MenuSubTrigger>
           <MenuSubContent>
             <MenuItem>
-              <Mail /> Par e-mail
+              <Mail /> By email
             </MenuItem>
             <MenuItem>
-              <Copy /> Copier le lien
+              <Copy /> Copy link
             </MenuItem>
           </MenuSubContent>
         </MenuSub>
         <MenuSeparator />
         <MenuItem disabled>
-          <Archive /> Archiver
+          <Archive /> Archive
         </MenuItem>
         <MenuItem variant="danger">
-          <Trash2 /> Supprimer <MenuShortcut>⌫</MenuShortcut>
+          <Trash2 /> Delete <MenuShortcut>⌫</MenuShortcut>
         </MenuItem>
       </MenuContent>
     </Menu>
@@ -77,16 +77,16 @@ export const CheckboxAndRadio: Story = {
     const [density, setDensity] = useState('comfortable');
     return (
       <Menu>
-        <MenuTrigger render={<Button variant="secondary" />}>Affichage</MenuTrigger>
+        <MenuTrigger render={<Button variant="secondary" />}>View</MenuTrigger>
         <MenuContent>
           <MenuGroup>
-            <MenuGroupLabel>Colonnes</MenuGroupLabel>
+            <MenuGroupLabel>Columns</MenuGroupLabel>
             {(
               [
                 ['client', 'Client'],
                 ['date', 'Date'],
-                ['amount', 'Montant'],
-                ['owner', 'Responsable'],
+                ['amount', 'Amount'],
+                ['owner', 'Owner'],
               ] as const
             ).map(([key, label]) => (
               <MenuCheckboxItem
@@ -101,13 +101,13 @@ export const CheckboxAndRadio: Story = {
           </MenuGroup>
           <MenuSeparator />
           <MenuGroup>
-            <MenuGroupLabel>Densité</MenuGroupLabel>
+            <MenuGroupLabel>Density</MenuGroupLabel>
             <MenuRadioGroup value={density} onValueChange={setDensity}>
               <MenuRadioItem value="comfortable" closeOnClick={false}>
-                Confortable
+                Comfortable
               </MenuRadioItem>
               <MenuRadioItem value="compact" closeOnClick={false}>
-                Compacte
+                Compact
               </MenuRadioItem>
             </MenuRadioGroup>
           </MenuGroup>
@@ -118,19 +118,19 @@ export const CheckboxAndRadio: Story = {
 };
 
 const statusVariant: Record<string, BadgeProps['variant']> = {
-  Payée: 'success',
-  Envoyée: 'info',
-  'En attente': 'warning',
-  'En retard': 'danger',
-  Brouillon: 'neutral',
+  Paid: 'success',
+  Sent: 'info',
+  Pending: 'warning',
+  Overdue: 'danger',
+  Draft: 'neutral',
 };
 
 const invoices = [
-  { id: 'F-2026-1042', client: 'Banque Cantonale', amount: 'CHF 12 480,00', status: 'Payée' },
-  { id: 'F-2026-1043', client: 'Helvetia Services', amount: 'CHF 3 950,50', status: 'Envoyée' },
-  { id: 'F-2026-1044', client: 'Alpina Logistique', amount: 'CHF 7 210,00', status: 'En attente' },
-  { id: 'F-2026-1045', client: 'Romandie Santé', amount: 'CHF 18 452,90', status: 'En retard' },
-  { id: 'F-2026-1046', client: 'Léman Immobilier', amount: 'CHF 1 200,00', status: 'Brouillon' },
+  { id: 'F-2026-1042', client: 'Banque Cantonale', amount: 'CHF 12,480.00', status: 'Paid' },
+  { id: 'F-2026-1043', client: 'Helvetia Services', amount: 'CHF 3,950.50', status: 'Sent' },
+  { id: 'F-2026-1044', client: 'Alpina Logistique', amount: 'CHF 7,210.00', status: 'Pending' },
+  { id: 'F-2026-1045', client: 'Romandie Santé', amount: 'CHF 18,452.90', status: 'Overdue' },
+  { id: 'F-2026-1046', client: 'Léman Immobilier', amount: 'CHF 1,200.00', status: 'Draft' },
 ];
 
 /** Data table with status badges and a row actions menu: Badge + Menu working together. */
@@ -140,7 +140,7 @@ export const RowActions: Story = {
       <table className="hx:w-full hx:border-collapse hx:text-left hx:text-sm hx:tabular-nums">
         <thead className="hx:text-fg-muted">
           <tr>
-            {['N°', 'Client', 'Montant', 'Statut', ''].map((h, i) => (
+            {['No.', 'Client', 'Amount', 'Status', ''].map((h, i) => (
               <th key={i} className="hx:px-4 hx:py-3 hx:font-medium">
                 {h}
               </th>
@@ -160,23 +160,23 @@ export const RowActions: Story = {
                 <Menu>
                   <MenuTrigger
                     render={<Button variant="ghost" size="icon" className="hx:size-8" />}
-                    aria-label={`Actions pour ${row.id}`}
+                    aria-label={`Actions for ${row.id}`}
                   >
                     <Ellipsis />
                   </MenuTrigger>
                   <MenuContent align="end">
                     <MenuItem>
-                      <Pencil /> Modifier
+                      <Pencil /> Edit
                     </MenuItem>
                     <MenuItem>
-                      <Mail /> Envoyer un rappel
+                      <Mail /> Send a reminder
                     </MenuItem>
                     <MenuItem>
-                      <Download /> Télécharger
+                      <Download /> Download
                     </MenuItem>
                     <MenuSeparator />
                     <MenuItem variant="danger">
-                      <Trash2 /> Supprimer
+                      <Trash2 /> Delete
                     </MenuItem>
                   </MenuContent>
                 </Menu>

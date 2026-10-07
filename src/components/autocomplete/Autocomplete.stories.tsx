@@ -60,7 +60,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: () => (
     <Field>
-      <FieldLabel>Localité</FieldLabel>
+      <FieldLabel>City</FieldLabel>
       <Autocomplete items={cities}>
         <AutocompleteInput placeholder="Lausanne" />
         <AutocompleteContent>
@@ -73,7 +73,7 @@ export const Default: Story = {
           </AutocompleteList>
         </AutocompleteContent>
       </Autocomplete>
-      <FieldDescription>Une localité absente de la liste est acceptée.</FieldDescription>
+      <FieldDescription>A city that is not in the list is accepted.</FieldDescription>
     </Field>
   ),
 };
@@ -83,16 +83,16 @@ export const InAForm: Story = {
   render: () => (
     <form className="hx:flex hx:flex-col hx:gap-5" onSubmit={(e) => e.preventDefault()}>
       <Field>
-        <FieldLabel>Rue et numéro</FieldLabel>
+        <FieldLabel>Street and number</FieldLabel>
         <Input placeholder="Avenue de la Gare 12" />
       </Field>
       <FieldRow columns="1fr 3fr" stackBelow="sm">
         <Field>
-          <FieldLabel>NPA</FieldLabel>
+          <FieldLabel>Postcode</FieldLabel>
           <Input inputMode="numeric" placeholder="1003" />
         </Field>
         <Field>
-          <FieldLabel>Localité</FieldLabel>
+          <FieldLabel>City</FieldLabel>
           <Autocomplete items={cities} autoHighlight>
             <AutocompleteInput placeholder="Lausanne" />
             <AutocompleteContent>
@@ -114,10 +114,10 @@ export const InAForm: Story = {
 type Suggestion = { value: string; items: string[] };
 
 const libraryLines: Suggestion[] = [
-  { value: 'Récents', items: ['Développement sur mesure', 'Hébergement annuel'] },
+  { value: 'Recent', items: ['Custom development', 'Annual hosting'] },
   {
     value: 'Catalogue',
-    items: ['Audit de sécurité', 'Formation d’équipe (demi-journée)', 'Maintenance annuelle', 'Migration cloud', 'Support prioritaire'],
+    items: ['Security audit', 'Team training (half day)', 'Annual maintenance', 'Cloud migration', 'Priority support'],
   },
 ];
 
@@ -125,11 +125,11 @@ const libraryLines: Suggestion[] = [
 export const Grouped: Story = {
   render: () => (
     <Field>
-      <FieldLabel>Désignation de la ligne</FieldLabel>
+      <FieldLabel>Line description</FieldLabel>
       <Autocomplete items={libraryLines} openOnInputClick>
-        <AutocompleteInput placeholder="Décrivez la prestation" />
+        <AutocompleteInput placeholder="Describe the service" />
         <AutocompleteContent>
-          <AutocompleteEmpty>Aucune suggestion : le texte saisi sera utilisé.</AutocompleteEmpty>
+          <AutocompleteEmpty>No suggestions: the typed text will be used.</AutocompleteEmpty>
           <AutocompleteList>
             {(group: Suggestion) => (
               <AutocompleteGroup key={group.value} items={group.items}>
@@ -197,13 +197,13 @@ export const AsyncSearch: Story = {
 
     return (
       <Field>
-        <FieldLabel>Adresse de livraison</FieldLabel>
+        <FieldLabel>Delivery address</FieldLabel>
         <Autocomplete items={results} filter={null} value={value} onValueChange={setValue}>
           <AutocompleteInput placeholder="Rue du Lac" />
           <AutocompleteContent>
-            <AutocompleteStatus loading={searching}>{searching ? 'Recherche d’adresses…' : null}</AutocompleteStatus>
+            <AutocompleteStatus loading={searching}>{searching ? 'Searching addresses…' : null}</AutocompleteStatus>
             <AutocompleteEmpty>
-              {!searching && value.trim().length >= 2 ? 'Aucune adresse trouvée.' : null}
+              {!searching && value.trim().length >= 2 ? 'No address found.' : null}
             </AutocompleteEmpty>
             <AutocompleteList>
               {(address: string) => (
@@ -214,7 +214,7 @@ export const AsyncSearch: Story = {
             </AutocompleteList>
           </AutocompleteContent>
         </Autocomplete>
-        <FieldDescription>Saisissez au moins deux caractères.</FieldDescription>
+        <FieldDescription>Type at least two characters.</FieldDescription>
       </Field>
     );
   },
@@ -223,7 +223,7 @@ export const AsyncSearch: Story = {
 export const Invalid: Story = {
   render: () => (
     <Field invalid>
-      <FieldLabel>Localité</FieldLabel>
+      <FieldLabel>City</FieldLabel>
       <Autocomplete items={cities} defaultValue="Lausane">
         <AutocompleteInput placeholder="Lausanne" />
         <AutocompleteContent>
@@ -236,7 +236,7 @@ export const Invalid: Story = {
           </AutocompleteList>
         </AutocompleteContent>
       </Autocomplete>
-      <FieldError match>Cette localité ne correspond à aucun NPA.</FieldError>
+      <FieldError match>This city does not match any postcode.</FieldError>
     </Field>
   ),
 };

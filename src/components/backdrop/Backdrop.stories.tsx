@@ -22,12 +22,12 @@ const meta = {
       <Backdrop {...args}>
         <Card className="hx:w-full hx:max-w-sm">
           <CardHeader>
-            <CardTitle>Bienvenue sur Hex-Tech</CardTitle>
-            <CardDescription>Le fond donne de la profondeur aux surfaces en verre.</CardDescription>
+            <CardTitle>Welcome to Hex-Tech</CardTitle>
+            <CardDescription>The background gives depth to glass surfaces.</CardDescription>
           </CardHeader>
           <CardFooter className="hx:justify-end">
-            <Button variant="secondary">Plus tard</Button>
-            <Button>Commencer</Button>
+            <Button variant="secondary">Later</Button>
+            <Button>Get started</Button>
           </CardFooter>
         </Card>
       </Backdrop>

@@ -22,9 +22,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const lines = [
-  { label: 'Développement sur mesure (32 h)', amount: '4 480.00' },
-  { label: 'Hébergement annuel', amount: '360.00' },
-  { label: 'TVA 8,1 %', amount: '392.05' },
+  { label: 'Custom development (32 h)', amount: '4,480.00' },
+  { label: 'Annual hosting', amount: '360.00' },
+  { label: 'VAT 8.1%', amount: '392.05' },
 ];
 
 /** Invoice summary whose line details fold away. */
@@ -33,11 +33,11 @@ export const Default: Story = {
     <div className="hx:flex hx:flex-col hx:gap-3 hx:text-sm">
       <div className="hx:flex hx:items-baseline hx:justify-between">
         <span className="hx:font-medium">F-2026-1044 · Alpina Logistique SA</span>
-        <span className="hx:font-semibold hx:tabular-nums">CHF 5 232.05</span>
+        <span className="hx:font-semibold hx:tabular-nums">CHF 5,232.05</span>
       </div>
       <Collapsible>
         <CollapsibleTrigger render={<Button variant="ghost" size="sm" className="hx:-ml-3 hx:w-fit" />}>
-          Détail des lignes <CollapsibleChevron />
+          Line details <CollapsibleChevron />
         </CollapsibleTrigger>
         <CollapsibleContent>
           <ul className="hx:mt-2 hx:flex hx:flex-col hx:gap-2 hx:border-t hx:border-glass-border hx:pt-3">
@@ -64,18 +64,18 @@ export const FormOptions: Story = {
       </Field>
       <Collapsible>
         <CollapsibleTrigger render={<Button variant="secondary" size="sm" className="hx:w-fit" />}>
-          Options avancées <CollapsibleChevron />
+          Advanced options <CollapsibleChevron />
         </CollapsibleTrigger>
         <CollapsibleContent>
           <div className="hx:flex hx:flex-col hx:gap-4 hx:pt-4">
             <Field>
-              <FieldLabel>Référence interne</FieldLabel>
+              <FieldLabel>Internal reference</FieldLabel>
               <Input placeholder="PRJ-2026-018" />
             </Field>
             <Field>
-              <FieldLabel>Délai de paiement (jours)</FieldLabel>
+              <FieldLabel>Payment terms (days)</FieldLabel>
               <Input type="number" defaultValue={30} />
-              <FieldDescription>Remplace le délai défini pour ce client.</FieldDescription>
+              <FieldDescription>Overrides the terms set for this client.</FieldDescription>
             </Field>
           </div>
         </CollapsibleContent>
