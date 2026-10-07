@@ -90,9 +90,6 @@ const invoices = Array.from({ length: 9 }, (_, i) => ({
 /**
  * Worst case: a bulk actions bar floating over a dense list. The stained glass frosts
  * what is behind it, so the label stays readable.
- *
- * Keep floating bars outside the glass surface they cover (here a sibling of the Panel):
- * in Chrome, an element nested in a blurred surface cannot blur that surface's content.
  */
 export const OverContent: Story = {
   render: (args) => (

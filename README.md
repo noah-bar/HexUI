@@ -87,6 +87,14 @@ Les détails du matériau sont réglables, et chacun se désactive avec `none` :
   `hx:bg-tint-hover` / `hx:bg-tint-active`. Ne jamais y poser un gris opaque, qui efface l'effet de verre.
 - **Sur un élément qui est lui-même en verre** (bouton secondary) : `hx:bg-glass-hover` / `hx:bg-glass-active`.
 
+### Éléments flous dans une surface en verre
+
+Les surfaces (`glass-thin`, `glass`, `glass-strong`, `glass-dialog`) ne floutent pas elles-mêmes : leur flou est
+porté par un pseudo-élément `::after` placé derrière leur contenu, réglé par `--hx-glass-filter`. Ainsi, un élément
+flou placé à l'intérieur (en-tête collant, barre flottante, bouton) floute bien le contenu de la surface. Dans
+Chrome, un élément qui a lui-même un `backdrop-filter` empêche ses enfants de flouter ce qu'il contient.
+N'utilisez donc pas `::after` sur une surface en verre, ni de `z-index` négatif à l'intérieur : le flou le recouvrirait.
+
 ### Défilement dans une surface en verre
 
 Ne mettez pas `overflow: auto` directement sur une surface en verre (Panel, Card…) : son bord éclairé dépasse
@@ -112,9 +120,6 @@ donc un reflet sur le haut (au-dessus du texte) et de la lumière captée par le
   est l'indigo-700 en clair et l'indigo-600 en sombre. Gardez une teinte vive et assez foncée pour le texte blanc.
 - Densité : `--hx-stain-top` et `--hx-stain-bottom` (haut et bas du dégradé), `--hx-stain-hover` (ajouté au survol),
   à régler par thème. Si vous baissez la densité, revérifiez le contraste du texte.
-- Une barre d'actions flottante doit être placée **hors** de la surface en verre qu'elle recouvre (par exemple
-  en position fixe sur la page). Dans Chrome, un élément placé dans une surface floutée ne peut pas flouter
-  le contenu de cette surface.
 
 ### Verre teinté (switch, checkbox, radio)
 
