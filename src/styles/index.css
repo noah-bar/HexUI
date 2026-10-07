@@ -212,8 +212,11 @@
   --hx-glass-strong: rgb(22 22 26 / 0.84);
   --hx-glass-raised: rgb(64 64 72 / 0.6);
   --hx-avatar-ring: rgb(30 30 34 / 0.9);
-  --hx-nav-active: var(--hx-glass-raised);
-  --hx-nav-active-border: var(--hx-glass-border);
+  /* Clear glass chip, like the light theme. Any flat veil reads as solid gray over a dark surface, so the
+     fill is almost nothing and the chip is drawn by light: a lit border and a bright top rim. */
+  --hx-nav-active: rgb(255 255 255 / 0.03);
+  --hx-nav-active-border: rgb(255 255 255 / 0.12);
+  --hx-nav-active-highlight: rgb(255 255 255 / 0.22);
   --hx-glass-dialog: rgb(22 22 26 / 0.56);
   --hx-glass-hover: rgb(38 38 38 / 0.78);
   --hx-glass-active: rgb(46 46 46 / 0.82);
