@@ -121,7 +121,7 @@ export function DataTableBody({
   colSpan,
   isPending,
   isEmpty,
-  emptyText = 'Aucun résultat.',
+  emptyText = 'No results.',
   pendingRows = 5,
   children,
   ...props

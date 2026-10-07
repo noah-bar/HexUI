@@ -29,7 +29,7 @@ export type AutocompleteInputProps = Omit<ComponentProps<typeof BaseAutocomplete
 };
 
 /** Free text field that suggests completions as the user types. */
-export function AutocompleteInput({ className, clearable = true, clearLabel = 'Effacer', ...props }: AutocompleteInputProps) {
+export function AutocompleteInput({ className, clearable = true, clearLabel = 'Clear', ...props }: AutocompleteInputProps) {
   return (
     <BaseAutocomplete.InputGroup className={cn(inputGroupClassName, 'hx:h-9 hx:pr-1', className)}>
       <BaseAutocomplete.Input className={cn(inputGroupInputClassName, 'hx:pl-3')} {...props} />

@@ -41,8 +41,8 @@ export type ComboboxInputProps = Omit<ComponentProps<typeof BaseCombobox.Input>,
 export function ComboboxInput({
   className,
   clearable = true,
-  clearLabel = 'Effacer',
-  triggerLabel = 'Afficher les options',
+  clearLabel = 'Clear',
+  triggerLabel = 'Show options',
   ...props
 }: ComboboxInputProps) {
   return (
@@ -68,10 +68,10 @@ export function ComboboxChips<Item>({
   className,
   placeholder,
   clearable = true,
-  clearLabel = 'Tout effacer',
-  triggerLabel = 'Afficher les options',
+  clearLabel = 'Clear all',
+  triggerLabel = 'Show options',
   chipLabel = defaultLabel,
-  removeLabel = (label) => `Retirer ${label}`,
+  removeLabel = (label) => `Remove ${label}`,
   ...props
 }: ComboboxChipsProps<Item>) {
   return (

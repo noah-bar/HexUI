@@ -91,7 +91,7 @@ export type CommandDialogProps = ComponentProps<typeof BaseDialog.Root> & {
 };
 
 /** Command palette in a dialog near the top of the screen. Open it from a button or a shortcut (e.g. ⌘K). */
-export function CommandDialog({ title = 'Palette de commandes', className, children, ...props }: CommandDialogProps) {
+export function CommandDialog({ title = 'Command palette', className, children, ...props }: CommandDialogProps) {
   return (
     <BaseDialog.Root {...props}>
       <BaseDialog.Portal>

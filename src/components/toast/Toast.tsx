@@ -21,7 +21,7 @@ export type ToastProviderProps = ComponentProps<typeof BaseToast.Provider> & {
 };
 
 /** Wrap the app once: holds the toast queue and renders the toast stack (bottom-right). */
-export function ToastProvider({ children, closeLabel = 'Fermer', ...props }: ToastProviderProps) {
+export function ToastProvider({ children, closeLabel = 'Close', ...props }: ToastProviderProps) {
   return (
     <BaseToast.Provider {...props}>
       {children}

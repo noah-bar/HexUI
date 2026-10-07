@@ -37,8 +37,8 @@ export function Pagination({
   totalPages,
   onPageChange,
   maxVisible = 5,
-  previousLabel = 'Page précédente',
-  nextLabel = 'Page suivante',
+  previousLabel = 'Previous page',
+  nextLabel = 'Next page',
   pageLabel = (p) => `Page ${p}`,
   className,
 }: PaginationProps) {

@@ -242,7 +242,7 @@ export type SidebarTriggerProps = ComponentProps<typeof Button> & {
 };
 
 /** Button that opens or collapses the sidebar (and opens the mobile sheet). */
-export function SidebarTrigger({ label = 'Afficher ou masquer la navigation', onClick, children, ...props }: SidebarTriggerProps) {
+export function SidebarTrigger({ label = 'Toggle navigation', onClick, children, ...props }: SidebarTriggerProps) {
   const { toggleSidebar, open, openMobile, isMobile } = useSidebar();
   return (
     <Button
@@ -262,7 +262,7 @@ export function SidebarTrigger({ label = 'Afficher ou masquer la navigation', on
 }
 
 /** Thin hit area along the sidebar's inner edge: click to collapse or expand. Place it inside Sidebar. */
-export function SidebarRail({ className, label = 'Afficher ou masquer la navigation', ...props }: ComponentProps<'button'> & { label?: string }) {
+export function SidebarRail({ className, label = 'Toggle navigation', ...props }: ComponentProps<'button'> & { label?: string }) {
   const { toggleSidebar } = useSidebar();
   return (
     <button
