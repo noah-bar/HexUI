@@ -180,6 +180,7 @@ export { Pagination, getVisiblePages, type PaginationProps } from './components/
 export { Panel, panelVariants, type PanelProps } from './components/panel/Panel';
 export { Progress, type ProgressProps } from './components/progress/Progress';
 export { Radio, RadioGroup, type RadioProps } from './components/radio/Radio';
+export { SafeArea, type SafeAreaProps } from './components/safe-area/SafeArea';
 export {
   Popover,
   PopoverClose,
