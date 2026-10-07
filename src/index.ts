@@ -21,6 +21,7 @@ export {
   type AutocompleteInputProps,
   type AutocompleteStatusProps,
 } from './components/autocomplete/Autocomplete';
+export { Avatar, AvatarFallback, AvatarGroup, AvatarImage, avatarVariants, type AvatarProps } from './components/avatar/Avatar';
 export { Backdrop, type BackdropProps } from './components/backdrop/Backdrop';
 export { Badge, badgeVariants, type BadgeProps } from './components/badge/Badge';
 export { Button, buttonVariants, type ButtonProps } from './components/button/Button';
@@ -113,6 +114,7 @@ export {
   type FieldRowProps,
 } from './components/field/Field';
 export { Input, type InputProps } from './components/input/Input';
+export { InputNumber, type InputNumberProps } from './components/input-number/InputNumber';
 export { Label } from './components/label/Label';
 export {
   Menu,
