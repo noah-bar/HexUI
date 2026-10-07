@@ -426,7 +426,7 @@ open/collapsed state, `Sidebar` contains the navigation, `SidebarInset` the main
 - `collapsible`: `offcanvas` (slides off screen, default), `icon` (keeps only the icons, with labels shown as
   tooltips via `tooltip`) or `none`. `side`: `left` or `right`.
 - Below 768 px, it opens in a `Sheet`; `useSidebar().setOpenMobile(false)` closes it after navigating.
-- Widths: `--hx-sidebar-width` (16rem), `--hx-sidebar-width-icon` (3rem), `--hx-sidebar-width-mobile` (18rem),
+- Widths: `--hx-sidebar-width` (16rem), `--hx-sidebar-width-icon` (3rem), `--hx-sidebar-width-mobile` (the screen width minus 3rem, up to 24rem),
   to override through `style` on `SidebarProvider`.
 - Links: `render={<a href="…" />}` or your router's `Link` on `SidebarMenuButton`; `SidebarMenuSubButton`
   renders a link by default.
