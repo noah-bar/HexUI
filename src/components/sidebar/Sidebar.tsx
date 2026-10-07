@@ -32,6 +32,8 @@ type SidebarContextValue = {
 };
 
 const SidebarContext = createContext<SidebarContextValue | null>(null);
+// The mobile Sheet portals into the provider, so it inherits the width variables set on it.
+const SidebarPortalContext = createContext<HTMLDivElement | null>(null);
 
 export function useSidebar() {
   const context = useContext(SidebarContext);
@@ -51,10 +53,20 @@ export function SidebarProvider({
   onOpenChange,
   className,
   style,
+  ref,
   children,
   ...props
 }: SidebarProviderProps) {
   const isMobile = useMediaQuery(MOBILE_QUERY);
+  const [portalContainer, setPortalContainer] = useState<HTMLDivElement | null>(null);
+  const providerRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      setPortalContainer(node);
+      if (typeof ref === 'function') ref(node);
+      else if (ref) ref.current = node;
+    },
+    [ref],
+  );
   const [openMobile, setOpenMobile] = useState(false);
   const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
   const open = openProp ?? uncontrolledOpen;
@@ -87,22 +99,25 @@ export function SidebarProvider({
 
   return (
     <SidebarContext value={value}>
-      <TooltipProvider delay={0}>
-        <div
-          className={cn('hx:flex hx:min-h-svh hx:w-full hx:overflow-x-clip hx:text-fg', className)}
-          style={
-            {
-              '--hx-sidebar-width': '16rem',
-              '--hx-sidebar-width-icon': '3rem',
-              '--hx-sidebar-width-mobile': '18rem',
-              ...style,
-            } as CSSProperties
-          }
-          {...props}
-        >
-          {children}
-        </div>
-      </TooltipProvider>
+      <SidebarPortalContext value={portalContainer}>
+        <TooltipProvider delay={0}>
+          <div
+            ref={providerRef}
+            className={cn('hx:flex hx:min-h-svh hx:w-full hx:overflow-x-clip hx:text-fg', className)}
+            style={
+              {
+                '--hx-sidebar-width': '16rem',
+                '--hx-sidebar-width-icon': '3rem',
+                '--hx-sidebar-width-mobile': '18rem',
+                ...style,
+              } as CSSProperties
+            }
+            {...props}
+          >
+            {children}
+          </div>
+        </TooltipProvider>
+      </SidebarPortalContext>
     </SidebarContext>
   );
 }
@@ -124,6 +139,7 @@ export function Sidebar({
   ...props
 }: SidebarProps) {
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
+  const portalContainer = useContext(SidebarPortalContext);
   const floating = variant === 'floating';
 
   const panelClassName = cn(
@@ -156,7 +172,12 @@ export function Sidebar({
   if (isMobile) {
     return (
       <Sheet open={openMobile} onOpenChange={setOpenMobile}>
-        <SheetContent side={side} className="hx:w-(--hx-sidebar-width-mobile)">
+        <SheetContent
+          side={side}
+          size="full"
+          portalProps={{ container: portalContainer }}
+          className="hx:w-(--hx-sidebar-width-mobile)"
+        >
           <SheetTitle className="hx:sr-only">{mobileTitle}</SheetTitle>
           <div
             data-sidebar="sidebar"
