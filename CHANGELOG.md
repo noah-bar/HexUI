@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-10-07
+
+### Changed
+
+- Wider default mobile Sidebar: the screen width minus 3rem, up to 24rem (was 18rem).
+
+### Fixed
+
+- Apply `--hx-sidebar-width-mobile` to the mobile Sidebar sheet, which ignored it and shrank to its content.
+
+### Chore
+
+- Document the default mobile Sidebar width.
+
 ## [0.3.0] - 2026-10-07
 
 ### Added
