@@ -118,6 +118,7 @@ export {
 } from './components/menubar/Menubar';
 export { Pagination, getVisiblePages, type PaginationProps } from './components/pagination/Pagination';
 export { Panel, panelVariants, type PanelProps } from './components/panel/Panel';
+export { Progress, type ProgressProps } from './components/progress/Progress';
 export { Radio, RadioGroup, type RadioProps } from './components/radio/Radio';
 export {
   Popover,
@@ -165,6 +166,7 @@ export {
   type SidebarProviderProps,
   type SidebarTriggerProps,
 } from './components/sidebar/Sidebar';
+export { Separator } from './components/separator/Separator';
 export { Skeleton } from './components/skeleton/Skeleton';
 export {
   Sheet,
@@ -191,6 +193,7 @@ export {
   SelectValue,
   type SelectContentProps,
 } from './components/select/Select';
+export { Slider, type SliderProps } from './components/slider/Slider';
 export { Spinner, spinnerVariants, type SpinnerProps } from './components/spinner/Spinner';
 export { Switch, type SwitchProps } from './components/switch/Switch';
 export { Textarea, type TextareaProps } from './components/textarea/Textarea';
@@ -211,6 +214,7 @@ export {
   type TableRowProps,
 } from './components/table/Table';
 export { Tabs, TabsList, TabsPanel, TabsTab } from './components/tabs/Tabs';
+export { Toggle, ToggleGroup, toggleVariants, type ToggleProps } from './components/toggle/Toggle';
 export {
   ToastProvider,
   createToastManager,
