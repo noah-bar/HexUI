@@ -115,7 +115,8 @@ droite). Le contenu derrière le bouton est flouté.
 - **Mode clair** : un verre indigo (ou rouge) pâle, à travers lequel la page reste visible, avec un texte coloré foncé
   (`--hx-primary-stain-text`, `--hx-danger-stain-text`, au moins 5,4:1 au survol). Le danger a un verre un peu plus
   dense (`--hx-danger-stain-extra`) pour ne pas tirer vers le gris sur les halos cyan. Le verre fonce aussi à l'appui.
-- **Mode sombre** : un verre plus dense avec un texte blanc (au moins 9:1).
+- **Mode sombre** : le même principe, avec un verre teinté un peu plus dense et un texte clair coloré (indigo et rouge
+  pâles, au moins 7,2:1 au survol).
 
 - Couleur : `--hx-stain` (verre) et `--hx-stain-text` (texte), comme le fait le bouton danger avec `--hx-danger-stain`
   et `--hx-danger-stain-text`.
