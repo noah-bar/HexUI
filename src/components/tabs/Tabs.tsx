@@ -18,7 +18,8 @@ export function TabsList({ className, children, ...props }: ComponentProps<typeo
       {children}
       <BaseTabs.Indicator
         className={[
-          'hx:glass-strong hx:[--hx-glass-strong:var(--hx-glass-raised)] hx:absolute hx:top-(--active-tab-top) hx:left-0 hx:z-0 hx:rounded-md',
+          // Same selected look as the sidebar's active item: clear glass in light, raised glass in dark.
+          'hx:glass-strong hx:[--hx-glass-strong:var(--hx-nav-active)] hx:border-(--hx-nav-active-border) hx:absolute hx:top-(--active-tab-top) hx:left-0 hx:z-0 hx:rounded-md',
           'hx:h-(--active-tab-height) hx:w-(--active-tab-width) hx:translate-x-(--active-tab-left)',
           'hx:transition-[translate,width] hx:duration-200 hx:ease-out',
         ].join(' ')}
