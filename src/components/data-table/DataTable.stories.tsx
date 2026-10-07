@@ -7,8 +7,16 @@ import { Button } from '../button/Button';
 import { Input } from '../input/Input';
 import { Menu, MenuContent, MenuItem, MenuSeparator, MenuTrigger } from '../menu/Menu';
 import { Panel } from '../panel/Panel';
-import { TableCell, TableHead, TableRow } from '../table/Table';
-import { DataTable, DataTableBody, DataTableHeader, DataTableSortableHead, type DataTablePage } from './DataTable';
+import {
+  DataTable,
+  DataTableBody,
+  DataTableCell,
+  DataTableHead,
+  DataTableHeader,
+  DataTableRow,
+  DataTableSortableHead,
+  type DataTablePage,
+} from './DataTable';
 
 const meta = {
   title: 'Components/DataTable',
@@ -129,7 +137,7 @@ export const ServerSide: Story = {
             onSkipChange={setSkip}
           >
             <DataTableHeader>
-              <TableRow>
+              <DataTableRow>
                 <DataTableSortableHead field="title">Title</DataTableSortableHead>
                 <DataTableSortableHead field="client">Client</DataTableSortableHead>
                 <DataTableSortableHead field="date">Date</DataTableSortableHead>
@@ -137,10 +145,10 @@ export const ServerSide: Story = {
                   Total incl. VAT
                 </DataTableSortableHead>
                 <DataTableSortableHead field="status">Status</DataTableSortableHead>
-                <TableHead className="hx:w-12">
+                <DataTableHead className="hx:w-12">
                   <span className="hx:sr-only">Actions</span>
-                </TableHead>
-              </TableRow>
+                </DataTableHead>
+              </DataTableRow>
             </DataTableHeader>
             <DataTableBody
               colSpan={6}
@@ -149,15 +157,15 @@ export const ServerSide: Story = {
               emptyText={`No quote matches “${debouncedSearch}”.`}
             >
               {quotes.map((q) => (
-                <TableRow key={q.id} onClick={() => console.log('Open quote', q.id)}>
-                  <TableCell className="hx:font-medium">{q.title}</TableCell>
-                  <TableCell>{q.client}</TableCell>
-                  <TableCell>{new Date(q.date).toLocaleDateString('en-CH')}</TableCell>
-                  <TableCell align="right">{chf(q.total)}</TableCell>
-                  <TableCell>
+                <DataTableRow key={q.id} onClick={() => console.log('Open quote', q.id)}>
+                  <DataTableCell className="hx:font-medium">{q.title}</DataTableCell>
+                  <DataTableCell>{q.client}</DataTableCell>
+                  <DataTableCell>{new Date(q.date).toLocaleDateString('en-CH')}</DataTableCell>
+                  <DataTableCell align="right">{chf(q.total)}</DataTableCell>
+                  <DataTableCell>
                     <Badge variant={statusVariant[q.status]}>{q.status}</Badge>
-                  </TableCell>
-                  <TableCell className="hx:px-2 hx:py-1" onClick={(e) => e.stopPropagation()}>
+                  </DataTableCell>
+                  <DataTableCell className="hx:px-2 hx:py-1" onClick={(e) => e.stopPropagation()}>
                     <Menu>
                       <MenuTrigger
                         render={<Button variant="ghost" size="icon" className="hx:size-8" />}
@@ -175,8 +183,8 @@ export const ServerSide: Story = {
                         </MenuItem>
                       </MenuContent>
                     </Menu>
-                  </TableCell>
-                </TableRow>
+                  </DataTableCell>
+                </DataTableRow>
               ))}
             </DataTableBody>
           </DataTable>
@@ -193,11 +201,11 @@ export const Loading: Story = {
     <Panel className="hx:h-80 hx:max-w-3xl hx:p-0">
       <DataTable>
         <DataTableHeader>
-          <TableRow>
-            <TableHead>Title</TableHead>
-            <TableHead>Client</TableHead>
-            <TableHead align="right">Total incl. VAT</TableHead>
-          </TableRow>
+          <DataTableRow>
+            <DataTableHead>Title</DataTableHead>
+            <DataTableHead>Client</DataTableHead>
+            <DataTableHead align="right">Total incl. VAT</DataTableHead>
+          </DataTableRow>
         </DataTableHeader>
         <DataTableBody colSpan={3} isPending />
       </DataTable>

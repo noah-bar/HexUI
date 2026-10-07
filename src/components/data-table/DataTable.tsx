@@ -12,6 +12,19 @@ import {
   type TableHeadProps,
 } from '../table/Table';
 
+export {
+  TableCaption as DataTableCaption,
+  TableCell as DataTableCell,
+  TableEmpty as DataTableEmpty,
+  TableFooter as DataTableFooter,
+  TableHead as DataTableHead,
+  TableRow as DataTableRow,
+  type TableCellProps as DataTableCellProps,
+  type TableEmptyProps as DataTableEmptyProps,
+  type TableHeadProps as DataTableHeadProps,
+  type TableRowProps as DataTableRowProps,
+} from '../table/Table';
+
 export type DataTablePage = { total: number; skip: number; limit: number };
 
 type DataTableContextValue = {

@@ -82,12 +82,22 @@ export {
 export {
   DataTable,
   DataTableBody,
+  DataTableCaption,
+  DataTableCell,
+  DataTableEmpty,
+  DataTableFooter,
+  DataTableHead,
   DataTableHeader,
+  DataTableRow,
   DataTableSortableHead,
   nextOrdering,
   type DataTableBodyProps,
+  type DataTableCellProps,
+  type DataTableEmptyProps,
+  type DataTableHeadProps,
   type DataTablePage,
   type DataTableProps,
+  type DataTableRowProps,
   type DataTableSortableHeadProps,
 } from './components/data-table/DataTable';
 export {
