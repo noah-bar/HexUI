@@ -108,7 +108,7 @@ export function SidebarProvider({
               {
                 '--hx-sidebar-width': '16rem',
                 '--hx-sidebar-width-icon': '3rem',
-                '--hx-sidebar-width-mobile': '18rem',
+                '--hx-sidebar-width-mobile': 'min(calc(100vw - 3rem), 24rem)',
                 ...style,
               } as CSSProperties
             }
