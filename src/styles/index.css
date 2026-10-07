@@ -675,6 +675,16 @@
   }
 }
 
+/* Indeterminate Progress: a third of the bar sweeps from left to right. */
+@keyframes hx-progress-sweep {
+  from {
+    translate: -100% 0;
+  }
+  to {
+    translate: 300% 0;
+  }
+}
+
 /*
  * Accessibility fallbacks: no blur support, user asked for less transparency,
  * or Windows high-contrast mode → fall back to fully opaque surfaces.
