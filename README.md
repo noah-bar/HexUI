@@ -8,12 +8,19 @@ Librairie de composants React de Hex-Tech — [Base UI](https://base-ui.com) + T
 npm install @hxtc/hexui
 ```
 
-```tsx
-// Point d'entrée de l'application, une seule fois
-import '@hxtc/hexui/styles.css';
+Importez les styles une seule fois, dans la feuille CSS principale de l'application :
 
+```css
+/* app.css */
+@import 'tailwindcss'; /* si l'application utilise Tailwind */
+@import '@hxtc/hexui';
+```
+
+```tsx
 import { Button, Card, CardHeader, CardTitle } from '@hxtc/hexui';
 ```
+
+L'import depuis le JavaScript fonctionne aussi : `import '@hxtc/hexui/styles.css';` dans le point d'entrée.
 
 Prérequis : React 19. **Tailwind n'est pas requis** côté application : le CSS est précompilé.
 
