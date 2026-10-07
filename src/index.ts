@@ -191,6 +191,7 @@ export {
   SelectValue,
   type SelectContentProps,
 } from './components/select/Select';
+export { Spinner, spinnerVariants, type SpinnerProps } from './components/spinner/Spinner';
 export { Switch, type SwitchProps } from './components/switch/Switch';
 export { Textarea, type TextareaProps } from './components/textarea/Textarea';
 export {
