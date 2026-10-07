@@ -98,14 +98,32 @@ de 1 px et la ferait défiler en largeur et en hauteur. Faites défiler un conte
 </Panel>
 ```
 
-### Verre teinté
+### Vitrail (boutons primary et danger)
 
-`glass-tint` colore le verre pour les actions principales. Il utilise `--hx-primary` par défaut. On change la couleur
-avec `--hx-tint-fill` et `--hx-tint-fill-hover`, comme le fait le bouton danger avec `--hx-danger-solid`.
-Le remplissage reste à 85 % minimum et la couleur doit garder au moins 4,5:1 avec le texte blanc.
+`glass-stained` est un verre coloré translucide et dépoli, comme un bloc de vitrail. Un dégradé vertical le
+rend plus clair en haut, là où la lumière traverse, et plus dense en bas. Il a aussi un bord éclairé posé sur un
+cadre de la même couleur, un liseré brillant en haut et un grain fin, sans aucun halo. Le flou sature les
+couleurs derrière le bouton. En clair, un verre assez dense pour porter du texte blanc paraît plein : il gagne
+donc un reflet sur le haut (au-dessus du texte) et de la lumière captée par le bord inférieur
+(`--hx-stain-gloss`, `--hx-stain-caustic`, à `0` en sombre). Le texte est blanc dans les deux thèmes : au moins
+4,8:1 en clair et 9:1 en sombre, mesurés sur le rendu réel.
+
+- Couleur : `--hx-stain`, comme le fait le bouton danger avec `--hx-danger-stain`. Par défaut, `--hx-primary-stain`
+  est l'indigo-700 en clair et l'indigo-600 en sombre. Gardez une teinte vive et assez foncée pour le texte blanc.
+- Densité : `--hx-stain-top` et `--hx-stain-bottom` (haut et bas du dégradé), `--hx-stain-hover` (ajouté au survol),
+  à régler par thème. Si vous baissez la densité, revérifiez le contraste du texte.
+- Une barre d'actions flottante doit être placée **hors** de la surface en verre qu'elle recouvre (par exemple
+  en position fixe sur la page). Dans Chrome, un élément placé dans une surface floutée ne peut pas flouter
+  le contenu de cette surface.
+
+### Verre teinté (switch, checkbox, radio)
+
+`glass-tint` est un verre coloré presque plein, pour les contrôles cochés. Il utilise `--hx-primary` par défaut.
+On change la couleur avec `--hx-tint-fill` et `--hx-tint-fill-hover`. Le remplissage reste à 85 % minimum et
+la couleur doit garder au moins 4,5:1 avec le texte blanc.
 
 Tokens disponibles : `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`, `--hx-primary(-hover|-fg)`, `--hx-accent`,
-`--hx-danger(-hover|-fg)`, `--hx-danger-solid(-hover)`, `--hx-ring`, `--hx-glass-thin`, `--hx-glass`, `--hx-glass-strong`,
+`--hx-danger(-hover|-fg)`, `--hx-danger-solid(-hover)`, `--hx-stain-*`, `--hx-primary-stain`, `--hx-danger-stain`, `--hx-ring`, `--hx-glass-thin`, `--hx-glass`, `--hx-glass-strong`,
 `--hx-glass-raised`, `--hx-glass-dialog`, `--hx-glass-field`, `--hx-glass-border`, `--hx-glass-blur`, `--hx-tint-hover`,
 `--hx-tint-active`, `--hx-backdrop-*`… (voir `src/styles/index.css`).
 
