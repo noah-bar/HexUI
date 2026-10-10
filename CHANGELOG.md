@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-10-10
+
+### Chore
+
+- Restructure the README: dark theme screenshot, quick start, components by category, mobile safe area guide, browser support and a full API reference.
+- Recommend importing HexUI before Tailwind CSS so that classes passed through `className` override component defaults.
+- Add `repository`, `homepage`, `bugs` and `keywords` to the package metadata, with GitHub and npm links in the README.
+
 ## [0.4.1] - 2026-10-07
 
 ### Fixed
