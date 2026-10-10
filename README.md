@@ -1,6 +1,43 @@
-# @hxtc/hexui
+# HexUI
 
-Hex-Tech's React component library — [Base UI](https://base-ui.com) + Tailwind CSS v4, with glassmorphism designed for professional interfaces.
+**Glassmorphism React components for professional interfaces** — built on [Base UI](https://base-ui.com) and
+Tailwind CSS v4, shipped as precompiled CSS.
+
+[![npm version](https://img.shields.io/npm/v/@hxtc/hexui?color=4f46e5)](https://www.npmjs.com/package/@hxtc/hexui)
+[![npm downloads](https://img.shields.io/npm/dm/@hxtc/hexui?color=4f46e5)](https://www.npmjs.com/package/@hxtc/hexui)
+[![license](https://img.shields.io/npm/l/@hxtc/hexui?color=4f46e5)](https://github.com/noah-bar/HexUI/blob/main/LICENSE)
+
+[GitHub](https://github.com/noah-bar/HexUI) · [npm](https://www.npmjs.com/package/@hxtc/hexui) ·
+[Changelog](https://github.com/noah-bar/HexUI/blob/main/CHANGELOG.md) ·
+[Issues](https://github.com/noah-bar/HexUI/issues)
+
+![A billing screen built with HexUI: glass sidebar, sticky header and invoice table](https://raw.githubusercontent.com/noah-bar/HexUI/main/docs/screenshot.jpg)
+
+- **About 40 components**, from buttons and fields to a data table, a command palette and a full sidebar layout.
+- **Glass that stays readable**: frosted surfaces with a lit edge and a fine grain, text contrast checked in both
+  themes, opaque fallbacks when the browser or the user turns transparency off.
+- **Accessible behavior** from Base UI: keyboard navigation, focus management, ARIA.
+- **No Tailwind required**: the stylesheet is precompiled. If you do use Tailwind, nothing collides: every class is
+  prefixed with `hx:` and every variable with `--hx-*`, and no global reset is shipped.
+- **Light and dark themes**, with a `useTheme` hook and a no-flash script.
+- **Typed**: written in TypeScript, ESM only, tree-shakeable, marked `'use client'` for React Server Components.
+
+## Contents
+
+- [Installation](#installation)
+- [Quick start](#quick-start)
+- [Styling components](#styling-components)
+- [Page background](#page-background)
+- [Light / dark theme](#light--dark-theme)
+- [Components](#components)
+- [Guides](#guides): [DataTable](#data-table-datatable) · [Combobox, Autocomplete](#searching-a-list-combobox-autocomplete) ·
+  [Sidebar](#sidebar) · [Command](#command-palette-command) · [Toast](#notifications-toast) · [Sheet](#side-panel-sheet) ·
+  [SafeArea](#mobile-safe-areas-safearea)
+- [Customization](#customization)
+- [Working with glass](#working-with-glass)
+- [API reference](#api-reference)
+- [Browser support](#browser-support)
+- [Contributing](#contributing)
 
 ## Installation
 
@@ -8,28 +45,68 @@ Hex-Tech's React component library — [Base UI](https://base-ui.com) + Tailwind
 npm install @hxtc/hexui
 ```
 
-Import the styles once, in the application's main stylesheet:
+Requires React 19.
+
+Import the styles once. In an application that uses Tailwind CSS v4, put HexUI **before** Tailwind in the main
+stylesheet, so that the classes you pass through `className` win over the component defaults:
 
 ```css
 /* app.css */
-@import 'tailwindcss'; /* if the application uses Tailwind */
 @import '@hxtc/hexui';
+@import 'tailwindcss';
 ```
+
+Without Tailwind, import the stylesheet from your entry point instead:
 
 ```tsx
-import { Button, Card, CardHeader, CardTitle } from '@hxtc/hexui';
+import '@hxtc/hexui/styles.css';
 ```
 
-Importing from JavaScript works too: `import '@hxtc/hexui/styles.css';` in the entry point.
+## Quick start
 
-Requirements: React 19. **Tailwind is not required** in the application: the CSS is precompiled.
+```tsx
+import { Backdrop, Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@hxtc/hexui';
 
-### Coexisting with the application's Tailwind
+export function App() {
+  return (
+    <Backdrop>
+      <Card>
+        <CardHeader>
+          <CardTitle>Invoice F-2026-1045</CardTitle>
+          <CardDescription>Due on 18 October 2026</CardDescription>
+        </CardHeader>
+        <CardContent>CHF 4,672.05</CardContent>
+        <CardFooter>
+          <Button variant="ghost">Download</Button>
+          <Button>Send</Button>
+        </CardFooter>
+      </Card>
+    </Backdrop>
+  );
+}
+```
 
-Every internal class is prefixed with `hx:` and every variable with `--hx-*`: no collision with your own
-Tailwind setup. The library ships no global reset (preflight), so it never changes your application's styles.
+`Backdrop` paints the colored background that glass needs behind it. See [Page background](#page-background).
 
-You can pass your own classes through `className`; they are added to the component's classes.
+## Styling components
+
+Every component accepts `className`. Your classes are added to the component's own:
+
+```tsx
+<Panel className="h-[600px] p-0">…</Panel>
+```
+
+- The examples in this README use Tailwind classes from the application. Without Tailwind, pass your own CSS
+  classes or `style`.
+- HexUI's rules live in the `theme`, `base`, `components` and `utilities` cascade layers. Unlayered CSS always
+  wins over them. Tailwind utilities win when Tailwind is imported after HexUI, as shown in
+  [Installation](#installation).
+- To change the rendered element, or to give a trigger the look of a button, use Base UI's `render` prop:
+
+```tsx
+<DialogTrigger render={<Button variant="secondary" />}>Open</DialogTrigger>
+<Panel render={<aside />}>…</Panel>
+```
 
 ## Page background
 
@@ -125,137 +202,22 @@ export function Head() {
 
 With a static `index.html` (Vite without SSR), paste the contents of `themeScript` into a `<script>` in `<head>`.
 
-## Customization
-
-The default palette is indigo on neutral grays: cool hues stay luminous once blurred, which suits glass.
-Three color roles:
-
-| Token          | Value                            | Usage                                                               |
-| -------------- | -------------------------------- | ------------------------------------------------------------------- |
-| `--hx-brand`   | `#6366f1`                        | Decorative: background glows, list hover.                           |
-| `--hx-primary` | `#4f46e5`                        | Filled surfaces with white text (buttons, switch): 6.3:1.           |
-| `--hx-accent`  | `#4f46e5` light / `#818cf8` dark | Brand color on top of a surface: icons, focus borders, check marks. |
-
-Override the CSS variables after importing the styles:
-
-```css
-:root {
-  --hx-glass-blur: 12px;
-}
-.dark {
-  --hx-accent: #a5b4fc;
-}
-```
-
-If you change `--hx-primary`, check that the `--hx-primary-fg` text keeps a contrast of at least 4.5:1.
-
-The material details can be tuned, and each one is turned off with `none`:
-
-```css
-:root {
-  --hx-glass-grain: none; /* frosted glass grain */
-  --hx-glass-sheen: none; /* highlight at the top of surfaces */
-  --hx-glass-edge: none; /* lit edge */
-}
-```
-
-### Hover and selection
-
-- **Inside a glass surface** (table rows, list items, ghost button): a light veil,
-  `hx:bg-tint-hover` / `hx:bg-tint-active`. Never put an opaque gray there: it erases the glass effect.
-- **On an element that is itself glass** (secondary button): `hx:bg-glass-hover` / `hx:bg-glass-active`.
-
-### Blurred elements inside a glass surface
-
-Surfaces (`glass-thin`, `glass`, `glass-strong`, `glass-dialog`) do not blur by themselves: their blur is carried
-by an `::after` pseudo-element placed behind their content, set by `--hx-glass-filter`. This way, a blurred element
-placed inside (sticky header, floating bar, button) does blur the surface's content. In Chrome, an element that has
-a `backdrop-filter` itself prevents its children from blurring what it contains.
-So do not use `::after` on a glass surface, nor a negative `z-index` inside it: the blur would cover it.
-
-### Scrolling inside a glass surface
-
-Do not put `overflow: auto` directly on a glass surface (Panel, Card…): its lit edge overflows by 1 px and would
-make it scroll horizontally and vertically. Scroll an inner container instead:
-
-```tsx
-<Panel className="flex max-h-96 flex-col">
-  <div className="min-h-0 overflow-y-auto">…</div>
-</Panel>
-```
-
-### Stained glass (primary and danger buttons)
-
-`glass-stained` is a translucent, frosted colored glass, like a block of stained glass: vertical gradient, fine
-grain, no glow, and a lit border in the glass color (main highlight at the top left and a second reflection at the
-bottom right). The content behind the button is blurred.
-
-- **Light mode**: a pale indigo (or red) glass through which the page stays visible, with dark colored text
-  (`--hx-primary-stain-text`, `--hx-danger-stain-text`, at least 5.4:1 on hover). Danger has a slightly denser glass
-  (`--hx-danger-stain-extra`) so it does not turn gray over the cyan glows. The glass also darkens when pressed.
-- **Dark mode**: the same principle, with a slightly denser tinted glass and light colored text (pale indigo and
-  red, at least 7.2:1 on hover).
-
-- Color: `--hx-stain` (glass) and `--hx-stain-text` (text), as the danger button does with `--hx-danger-stain`
-  and `--hx-danger-stain-text`.
-- Density: `--hx-stain-top` and `--hx-stain-bottom` (top and bottom of the gradient), `--hx-stain-hover` (added on
-  hover), to be set per theme. If you lower the density, check the text contrast again.
-
-### Tinted glass (switch, checkbox, radio)
-
-`glass-tint` is an almost solid colored glass, for checked controls. It uses `--hx-primary` by default.
-Change the color with `--hx-tint-fill` and `--hx-tint-fill-hover`. The fill stays at 85% minimum and the color
-must keep at least 4.5:1 with white text.
-
-Available tokens: `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`, `--hx-primary(-hover|-fg)`, `--hx-accent`,
-`--hx-danger(-hover|-fg)`, `--hx-danger-solid(-hover)`, `--hx-stain-*`, `--hx-primary-stain(-text)`, `--hx-danger-stain(-text)`, `--hx-ring`, `--hx-glass-thin`, `--hx-glass`, `--hx-glass-strong`,
-`--hx-glass-raised`, `--hx-glass-dialog`, `--hx-glass-field`, `--hx-glass-border`, `--hx-glass-blur`, `--hx-tint-hover`,
-`--hx-tint-active`, `--hx-backdrop-*`… (see `src/styles/index.css`).
-
 ## Components
 
-| Component    | Exports                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Autocomplete | `Autocomplete`, `AutocompleteInput` (`clearable`), `AutocompleteContent`, `AutocompleteList`, `AutocompleteItem`, `AutocompleteEmpty`, `AutocompleteStatus` (`loading`), `AutocompleteGroup`, `AutocompleteGroupLabel`, `AutocompleteCollection`, `AutocompleteSeparator`, `useAutocompleteFilter` — free text with suggestions, see below                                                                                                                                                                                                                                                                                                                |
-| Avatar       | `Avatar` (`size`: `xs`, `sm`, `md`, `lg`; `shape`: `circle`, `square`), `AvatarImage`, `AvatarFallback` (initials or icon, shown until the image has loaded), `AvatarGroup` (overlapping avatars), `avatarVariants`                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| Backdrop     | `Backdrop` — variants `mesh`, `aurora`, `plain`; textures `grain`, `grid`; `image`, `imageBlur`, `overlay`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Badge        | `Badge`, `badgeVariants` — statuses `neutral`, `info`, `success`, `warning`, `danger`; `dot` for a status dot; icons accepted                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Button       | `Button`, `buttonVariants` — variants `primary`, `secondary`, `outline`, `ghost`, `danger`; sizes `sm`, `md`, `lg`, `icon`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| DropdownMenu | `DropdownMenu`, `DropdownMenuTrigger`, `DropdownMenuContent`, `DropdownMenuItem`, `DropdownMenuCheckboxItem`, `DropdownMenuRadioGroup`, `DropdownMenuRadioItem`, `DropdownMenuGroup`, `DropdownMenuLabel`, `DropdownMenuSeparator`, `DropdownMenuShortcut`, `DropdownMenuSub`, `DropdownMenuSubTrigger`, `DropdownMenuSubContent` — the shadcn/ui names for `Menu` (same components, same rendering)                                                                                                                                                                                                                                                      |
-| Field        | `Field`, `FieldLabel`, `FieldDescription`, `FieldError`, `FieldItem` — automatically links label, help text and error to the control; `<Field invalid>` or native validation (`required`, `validationMode`) turns the field red                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| FieldRow     | `FieldRow` — several `Field`s on one row, stacked when the row gets too narrow (container query: also works in a dialog or a side panel); `columns` (`3` or `"1fr 3fr"`), `stackBelow` (`sm`, `md`, `lg` by default, `xl`)                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Input        | `Input` — error state with `aria-invalid` (or automatically inside an invalid Base UI `Field`); same behavior on `SelectTrigger`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| InputNumber  | `InputNumber` (`min`, `max`, `step`, `decimalPlaces` — `0` by default, `required`, `format`, `locale`, `showSteppers`, `align`) — left-aligned and without −/+ buttons by default; an emptied `required` field goes back to `0` on blur; arrow keys, Shift for `largeStep`; CHF amounts and percentages via `format`                                                                                                                                                                                                                                                                                                                                      |
-| Card         | `Card` (a `Panel` with a vertical layout and `p-6` by default; accepts `variant` and `render`, use Tailwind classes to change the padding), `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| Checkbox     | `Checkbox` — checked, `indeterminate` and invalid states (`aria-invalid` or inside an invalid `Field`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Collapsible  | `Collapsible`, `CollapsibleTrigger` (style it with `render={<Button variant="ghost" />}`), `CollapsibleChevron` (rotates when open), `CollapsibleContent` (animated height; `hiddenUntilFound` for the browser's find-in-page) — collapsible section                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Combobox     | `Combobox`, `ComboboxInput` (`clearable`), `ComboboxChips` (multiple selection), `ComboboxTrigger` + `ComboboxSearch` (dropdown with search), `ComboboxValue`, `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), `ComboboxGroup`, `ComboboxGroupLabel`, `ComboboxCollection`, `ComboboxSeparator`, `useComboboxFilter`, `createComboboxItems` — see below                                                                                                                                                                                                                                                 |
-| Command      | `Command` (`items`), `CommandInput`, `CommandList`, `CommandEmpty`, `CommandGroup`, `CommandGroupLabel`, `CommandCollection`, `CommandItem` (`onClick`), `CommandShortcut`, `CommandSeparator`, `CommandDialog` — filterable command palette; see below                                                                                                                                                                                                                                                                                                                                                                                                   |
-| DataTable    | `DataTable`, `DataTableHeader`, `DataTableSortableHead`, `DataTableBody`, `nextOrdering` — see below (built-in pagination); `DataTableRow`, `DataTableHead`, `DataTableCell`, `DataTableFooter`, `DataTableCaption`, `DataTableEmpty` (same as their `Table*` counterparts)                                                                                                                                                                                                                                                                                                                                                                               |
-| Dialog       | `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Toast        | `ToastProvider`, `useToast`, `createToastManager` — see below                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Tooltip      | `TooltipProvider`, `Tooltip`, `TooltipTrigger`, `TooltipContent`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| Label        | `Label` — label for a control outside a `Field` (switch, inline checkbox); dims with the disabled control it wraps                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| Menu         | `Menu`, `MenuTrigger`, `MenuContent`, `MenuItem` (`variant="danger"`), `MenuShortcut`, `MenuSeparator`, `MenuGroup`, `MenuGroupLabel`, `MenuCheckboxItem`, `MenuRadioGroup`, `MenuRadioItem`, `MenuSub`, `MenuSubTrigger`, `MenuSubContent`                                                                                                                                                                                                                                                                                                                                                                                                               |
-| Menubar      | `Menubar`, `MenubarMenu`, `MenubarTrigger`, `MenubarContent`, `MenubarItem` (`variant="danger"`), `MenubarShortcut`, `MenubarSeparator`, `MenubarGroup`, `MenubarLabel`, `MenubarCheckboxItem`, `MenubarRadioGroup`, `MenubarRadioItem`, `MenubarSub`, `MenubarSubTrigger`, `MenubarSubContent` — menu bar (File, Edit…) in thin glass, or without background with `variant="ghost"` (inside a glass header); its items are those of `Menu`; `menubarVariants`                                                                                                                                                                                            |
-| Pagination   | `Pagination` (`page`, `totalPages`, `onPageChange`, `maxVisible`, labels), `getVisiblePages` — usable on its own, outside a table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Panel        | `Panel`, `panelVariants` — glass surface with `p-2` by default; variants `thin`, `default`, `strong`; use Tailwind classes to change the padding; `render` prop to change the element (`<aside />`, `<section />`…)                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| Popover      | `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverTitle`, `PopoverDescription`, `PopoverClose` — free-form floating panel (filters, details, small forms)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Progress     | `Progress` (`value`, `null` for an unknown duration; `label`, `showValue`, `format`, `locale`) — progress bar that turns green once complete                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| Radio        | `RadioGroup`, `Radio`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| SafeArea     | `SafeArea` (`topClassName`, `bottomClassName`) — keeps content clear of the notch, status bar and home indicator; wrap the application root and add `viewport-fit=cover` to the viewport meta tag                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Sidebar      | `SidebarProvider`, `Sidebar` (`variant`, `collapsible`, `side`), `SidebarTrigger`, `SidebarRail`, `SidebarInset`, `SidebarInsetHeader` (`variant`), `SidebarHeader`, `SidebarContent`, `SidebarFooter`, `SidebarSeparator`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarGroupAction`, `SidebarGroupContent`, `SidebarMenu`, `SidebarMenuItem`, `SidebarMenuButton` (`isActive`, `tooltip`, `size`), `SidebarMenuAction`, `SidebarMenuBadge`, `SidebarMenuSkeleton`, `SidebarMenuSub`, `SidebarMenuSubItem`, `SidebarMenuSubButton`, `SidebarMenuCollapsible`, `SidebarMenuCollapsibleTrigger`, `SidebarMenuCollapsibleContent`, `useSidebar` — see below |
-| Separator    | `Separator` (`orientation`) — thin line between two groups of content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| Skeleton     | `Skeleton` — animated loading placeholder                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| Select       | `Select`, `SelectTrigger`, `SelectValue`, `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Sheet        | `Sheet`, `SheetTrigger`, `SheetContent` (`side`, `size`), `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetCloseButton`, `SheetBody`, `SheetFooter`, `SheetClose`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| Slider       | `Slider` (`label`, `showValue`, `format`, `locale`, `min`, `max`, `step`; an array value gives a two-thumb range, named by `thumbLabels`; `orientation`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| Spinner      | `Spinner` (`size`: `xs`, `sm`, `md`, `lg`; `tone`: `current`, `muted`, `accent`; `label` for screen readers when it stands alone), `spinnerVariants` — keeps spinning, more slowly, when the user reduces motion                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| Switch       | `Switch`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| Table        | `Table` (`density`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow` (`selected`), `TableHead` (`align`, `sortDirection`, `onSort`), `TableCell` (`align`), `TableCaption`, `TableEmpty` — place it in a `Panel`; built-in horizontal scrolling for wide tables                                                                                                                                                                                                                                                                                                                                                                                     |
-| Tabs         | `Tabs`, `TabsList`, `TabsTab`, `TabsPanel`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Toggle       | `Toggle` (`variant`: `default`, `outline`; `size`: `sm`, `md`, `lg`), `ToggleGroup` (single choice, or `multiple`), `toggleVariants` — two-state button, pressed with the same glass as the sidebar's active item                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Textarea     | `Textarea` — same states as `Input`, vertically resizable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Category     | Components                                                                                                              |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| Layout       | `Backdrop`, `Panel`, `Card`, `Separator`, `SafeArea`, `Sidebar`                                                         |
+| Actions      | `Button`, `Toggle`, `ToggleGroup`                                                                                       |
+| Forms        | `Field`, `FieldRow`, `Label`, `Input`, `InputNumber`, `Textarea`, `Checkbox`, `Radio`, `Switch`, `Slider`               |
+| Selection    | `Select`, `Combobox`, `Autocomplete`                                                                                    |
+| Navigation   | `Tabs`, `Menu` (also exported as `DropdownMenu`), `Menubar`, `Command`, `Pagination`                                    |
+| Overlays     | `Dialog`, `Sheet`, `Popover`, `Tooltip`, `Toast`                                                                        |
+| Data display | `Table`, `DataTable`, `Avatar`, `Badge`, `Progress`, `Spinner`, `Skeleton`, `Collapsible`                               |
+| Hooks, utils | `useTheme`, `themeScript`, `useMediaQuery`, `useDebouncedValue`, `cn` (class merging that understands the `hx:` prefix) |
+
+The exports and options of each component are listed in the [API reference](#api-reference).
+
+## Guides
 
 ### Data table (DataTable)
 
@@ -536,15 +498,240 @@ stays fixed and its lit edge is never clipped by an `overflow-auto`.
 </Sheet>
 ```
 
-To render a trigger with a button's style, use Base UI's `render` prop:
+### Mobile safe areas (SafeArea)
+
+`SafeArea` keeps content clear of the notch, the status bar and the home indicator. Wrap the application root
+with it:
 
 ```tsx
-<DialogTrigger render={<Button variant="secondary" />}>Open</DialogTrigger>
+<SafeArea className="h-dvh" topClassName="bg-black/20">
+  <App />
+</SafeArea>
 ```
 
-## Development
+- The top and bottom insets are separate bands, styled with `topClassName` and `bottomClassName` (a background
+  matching the header, for example). Left and right insets are padding.
+- Insets stay at 0 unless the page opts in with `viewport-fit=cover`:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+```
+
+## Customization
+
+The default palette is indigo on neutral grays: cool hues stay luminous once blurred, which suits glass.
+Three color roles:
+
+| Token          | Value                            | Usage                                                               |
+| -------------- | -------------------------------- | ------------------------------------------------------------------- |
+| `--hx-brand`   | `#6366f1`                        | Decorative: background glows, list hover.                           |
+| `--hx-primary` | `#4f46e5`                        | Filled surfaces with white text (buttons, switch): 6.3:1.           |
+| `--hx-accent`  | `#4f46e5` light / `#818cf8` dark | Brand color on top of a surface: icons, focus borders, check marks. |
+
+Override the CSS variables after importing the styles:
+
+```css
+:root {
+  --hx-glass-blur: 12px;
+}
+.dark {
+  --hx-accent: #a5b4fc;
+}
+```
+
+If you change `--hx-primary`, check that the `--hx-primary-fg` text keeps a contrast of at least 4.5:1.
+
+The material details can be tuned, and each one is turned off with `none`:
+
+```css
+:root {
+  --hx-glass-grain: none; /* frosted glass grain */
+  --hx-glass-sheen: none; /* highlight at the top of surfaces */
+  --hx-glass-edge: none; /* lit edge */
+}
+```
+
+Available tokens: `--hx-fg`, `--hx-fg-muted`, `--hx-fg-subtle`, `--hx-brand`, `--hx-primary(-hover|-fg)`, `--hx-accent`,
+`--hx-danger(-hover|-fg)`, `--hx-danger-solid(-hover)`, `--hx-stain-*`, `--hx-primary-stain(-text)`, `--hx-danger-stain(-text)`, `--hx-ring`, `--hx-glass-thin`, `--hx-glass`, `--hx-glass-strong`,
+`--hx-glass-raised`, `--hx-glass-dialog`, `--hx-glass-field`, `--hx-glass-border`, `--hx-glass-blur`, `--hx-tint-hover`,
+`--hx-tint-active`, `--hx-backdrop-*`… The full list, with the light and dark values, is in
+[`src/styles/index.css`](https://github.com/noah-bar/HexUI/blob/main/src/styles/index.css).
+
+### Stained glass (primary and danger buttons)
+
+`glass-stained` is a translucent, frosted colored glass, like a block of stained glass: vertical gradient, fine
+grain, no glow, and a lit border in the glass color (main highlight at the top left and a second reflection at the
+bottom right). The content behind the button is blurred.
+
+- **Light mode**: a pale indigo (or red) glass through which the page stays visible, with dark colored text
+  (`--hx-primary-stain-text`, `--hx-danger-stain-text`, at least 5.4:1 on hover). Danger has a slightly denser glass
+  (`--hx-danger-stain-extra`) so it does not turn gray over the cyan glows. The glass also darkens when pressed.
+- **Dark mode**: the same principle, with a slightly denser tinted glass and light colored text (pale indigo and
+  red, at least 7.2:1 on hover).
+
+- Color: `--hx-stain` (glass) and `--hx-stain-text` (text), as the danger button does with `--hx-danger-stain`
+  and `--hx-danger-stain-text`.
+- Density: `--hx-stain-top` and `--hx-stain-bottom` (top and bottom of the gradient), `--hx-stain-hover` (added on
+  hover), to be set per theme. If you lower the density, check the text contrast again.
+
+### Tinted glass (switch, checkbox, radio)
+
+`glass-tint` is an almost solid colored glass, for checked controls. It uses `--hx-primary` by default.
+Change the color with `--hx-tint-fill` and `--hx-tint-fill-hover`. The fill stays at 85% minimum and the color
+must keep at least 4.5:1 with white text.
+
+## Working with glass
+
+A few rules to follow when you build your own elements on top of HexUI surfaces.
+
+### Hover and selection
+
+- **Inside a glass surface** (table rows, list items, ghost button): use a light veil, `--hx-tint-hover` /
+  `--hx-tint-active`. Never put an opaque gray there: it erases the glass effect.
+- **On an element that is itself glass** (secondary button): swap the glass itself, with `--hx-glass-hover` /
+  `--hx-glass-active`.
+
+### Blurred elements inside a glass surface
+
+Surfaces (`glass-thin`, `glass`, `glass-strong`, `glass-dialog`) do not blur by themselves: their blur is carried
+by an `::after` pseudo-element placed behind their content, set by `--hx-glass-filter`. This way, a blurred element
+placed inside (sticky header, floating bar, button) does blur the surface's content. In Chrome, an element that has
+a `backdrop-filter` itself prevents its children from blurring what it contains.
+So do not use `::after` on a glass surface, nor a negative `z-index` inside it: the blur would cover it.
+
+### Scrolling inside a glass surface
+
+Do not put `overflow: auto` directly on a glass surface (Panel, Card…): its lit edge overflows by 1 px and would
+make it scroll horizontally and vertically. Scroll an inner container instead:
+
+```tsx
+<Panel className="flex max-h-96 flex-col">
+  <div className="min-h-0 overflow-y-auto">…</div>
+</Panel>
+```
+
+## API reference
+
+Each entry lists the exports of a component and its main options. Props not listed here are those of the matching
+[Base UI](https://base-ui.com/react/components) primitive. Prop types are exported next to the components
+(`ButtonProps`, `DataTableProps`…).
+
+- **Autocomplete** — `Autocomplete`, `AutocompleteInput` (`clearable`), `AutocompleteContent`, `AutocompleteList`,
+  `AutocompleteItem`, `AutocompleteEmpty`, `AutocompleteStatus` (`loading`), `AutocompleteGroup`,
+  `AutocompleteGroupLabel`, `AutocompleteCollection`, `AutocompleteSeparator`, `useAutocompleteFilter`. Free text
+  with suggestions, see [the guide](#searching-a-list-combobox-autocomplete).
+- **Avatar** — `Avatar` (`size`: `xs`, `sm`, `md`, `lg`; `shape`: `circle`, `square`), `AvatarImage`,
+  `AvatarFallback` (initials or icon, shown until the image has loaded), `AvatarGroup` (overlapping avatars),
+  `avatarVariants`.
+- **Backdrop** — `Backdrop`. Variants `mesh`, `aurora`, `plain`; textures `grain`, `grid`; `image`, `imageBlur`,
+  `overlay`. See [Page background](#page-background).
+- **Badge** — `Badge`, `badgeVariants`. Statuses `neutral`, `info`, `success`, `warning`, `danger`; `dot` for a
+  status dot; icons accepted.
+- **Button** — `Button`, `buttonVariants`. Variants `primary`, `secondary`, `outline`, `ghost`, `danger`; sizes
+  `sm`, `md`, `lg`, `icon`.
+- **Card** — `Card` (a `Panel` with a vertical layout and `p-6` by default; accepts `variant` and `render`),
+  `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`.
+- **Checkbox** — `Checkbox`. Checked, `indeterminate` and invalid states (`aria-invalid` or inside an invalid
+  `Field`).
+- **Collapsible** — `Collapsible`, `CollapsibleTrigger` (style it with `render={<Button variant="ghost" />}`),
+  `CollapsibleChevron` (rotates when open), `CollapsibleContent` (animated height; `hiddenUntilFound` for the
+  browser's find-in-page).
+- **Combobox** — `Combobox`, `ComboboxInput` (`clearable`), `ComboboxChips` (multiple selection),
+  `ComboboxTrigger` + `ComboboxSearch` (dropdown with search), `ComboboxValue`, `ComboboxContent`, `ComboboxList`,
+  `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), `ComboboxGroup`, `ComboboxGroupLabel`,
+  `ComboboxCollection`, `ComboboxSeparator`, `useComboboxFilter`, `createComboboxItems`. See
+  [the guide](#searching-a-list-combobox-autocomplete).
+- **Command** — `Command` (`items`), `CommandInput`, `CommandList`, `CommandEmpty`, `CommandGroup`,
+  `CommandGroupLabel`, `CommandCollection`, `CommandItem` (`onClick`), `CommandShortcut`, `CommandSeparator`,
+  `CommandDialog`. See [the guide](#command-palette-command).
+- **DataTable** — `DataTable`, `DataTableHeader`, `DataTableSortableHead`, `DataTableBody`, `nextOrdering`, with
+  built-in pagination; `DataTableRow`, `DataTableHead`, `DataTableCell`, `DataTableFooter`, `DataTableCaption`,
+  `DataTableEmpty` (same as their `Table*` counterparts). See [the guide](#data-table-datatable).
+- **Dialog** — `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`,
+  `DialogFooter`, `DialogClose`.
+- **DropdownMenu** — `DropdownMenu`, `DropdownMenuTrigger`, `DropdownMenuContent`, `DropdownMenuItem`,
+  `DropdownMenuCheckboxItem`, `DropdownMenuRadioGroup`, `DropdownMenuRadioItem`, `DropdownMenuGroup`,
+  `DropdownMenuLabel`, `DropdownMenuSeparator`, `DropdownMenuShortcut`, `DropdownMenuSub`,
+  `DropdownMenuSubTrigger`, `DropdownMenuSubContent`. The shadcn/ui names for `Menu` (same components, same
+  rendering).
+- **Field** — `Field`, `FieldLabel`, `FieldDescription`, `FieldError`, `FieldItem`. Automatically links label,
+  help text and error to the control; `<Field invalid>` or native validation (`required`, `validationMode`) turns
+  the field red.
+- **FieldRow** — `FieldRow`. Several `Field`s on one row, stacked when the row gets too narrow (container query:
+  also works in a dialog or a side panel); `columns` (`3` or `"1fr 3fr"`), `stackBelow` (`sm`, `md`, `lg` by
+  default, `xl`).
+- **Input** — `Input`. Error state with `aria-invalid` (or automatically inside an invalid `Field`); same
+  behavior on `SelectTrigger`.
+- **InputNumber** — `InputNumber` (`min`, `max`, `step`, `decimalPlaces` — `0` by default, `required`, `format`,
+  `locale`, `showSteppers`, `align`). Left-aligned and without −/+ buttons by default; an emptied `required` field
+  goes back to `0` on blur; arrow keys, Shift for `largeStep`; CHF amounts and percentages via `format`.
+- **Label** — `Label`. Label for a control outside a `Field` (switch, inline checkbox); dims with the disabled
+  control it wraps.
+- **Menu** — `Menu`, `MenuTrigger`, `MenuContent`, `MenuItem` (`variant="danger"`), `MenuShortcut`,
+  `MenuSeparator`, `MenuGroup`, `MenuGroupLabel`, `MenuCheckboxItem`, `MenuRadioGroup`, `MenuRadioItem`, `MenuSub`,
+  `MenuSubTrigger`, `MenuSubContent`.
+- **Menubar** — `Menubar`, `MenubarMenu`, `MenubarTrigger`, `MenubarContent`, `MenubarItem`
+  (`variant="danger"`), `MenubarShortcut`, `MenubarSeparator`, `MenubarGroup`, `MenubarLabel`,
+  `MenubarCheckboxItem`, `MenubarRadioGroup`, `MenubarRadioItem`, `MenubarSub`, `MenubarSubTrigger`,
+  `MenubarSubContent`, `menubarVariants`. Menu bar (File, Edit…) in thin glass, or without background with
+  `variant="ghost"` (inside a glass header); its items are those of `Menu`.
+- **Pagination** — `Pagination` (`page`, `totalPages`, `onPageChange`, `maxVisible`, labels), `getVisiblePages`.
+  Usable on its own, outside a table.
+- **Panel** — `Panel`, `panelVariants`. Glass surface with `p-2` by default; variants `thin`, `default`,
+  `strong`; `render` prop to change the element (`<aside />`, `<section />`…).
+- **Popover** — `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverTitle`, `PopoverDescription`,
+  `PopoverClose`. Free-form floating panel (filters, details, small forms).
+- **Progress** — `Progress` (`value`, `null` for an unknown duration; `label`, `showValue`, `format`, `locale`).
+  Progress bar that turns green once complete.
+- **Radio** — `RadioGroup`, `Radio`.
+- **SafeArea** — `SafeArea` (`topClassName`, `bottomClassName`). See [the guide](#mobile-safe-areas-safearea).
+- **Select** — `Select`, `SelectTrigger`, `SelectValue`, `SelectContent`, `SelectItem`, `SelectGroup`,
+  `SelectGroupLabel`, `SelectSeparator`.
+- **Separator** — `Separator` (`orientation`). Thin line between two groups of content.
+- **Sheet** — `Sheet`, `SheetTrigger`, `SheetContent` (`side`, `size`), `SheetHeader`, `SheetTitle`,
+  `SheetDescription`, `SheetCloseButton`, `SheetBody`, `SheetFooter`, `SheetClose`, `sheetContentVariants`. See
+  [the guide](#side-panel-sheet).
+- **Sidebar** — `SidebarProvider`, `Sidebar` (`variant`, `collapsible`, `side`), `SidebarTrigger`, `SidebarRail`,
+  `SidebarInset`, `SidebarInsetHeader` (`variant`), `SidebarHeader`, `SidebarContent`, `SidebarFooter`,
+  `SidebarSeparator`, `SidebarGroup`, `SidebarGroupLabel`, `SidebarGroupAction`, `SidebarGroupContent`,
+  `SidebarMenu`, `SidebarMenuItem`, `SidebarMenuButton` (`isActive`, `tooltip`, `size`), `SidebarMenuAction`,
+  `SidebarMenuBadge`, `SidebarMenuSkeleton`, `SidebarMenuSub`, `SidebarMenuSubItem`, `SidebarMenuSubButton`,
+  `SidebarMenuCollapsible`, `SidebarMenuCollapsibleTrigger`, `SidebarMenuCollapsibleContent`, `useSidebar`,
+  `sidebarMenuButtonVariants`. See [the guide](#sidebar).
+- **Skeleton** — `Skeleton`. Animated loading placeholder.
+- **Slider** — `Slider` (`label`, `showValue`, `format`, `locale`, `min`, `max`, `step`, `orientation`). An array
+  value gives a two-thumb range, named by `thumbLabels`.
+- **Spinner** — `Spinner` (`size`: `xs`, `sm`, `md`, `lg`; `tone`: `current`, `muted`, `accent`; `label` for
+  screen readers when it stands alone), `spinnerVariants`. Keeps spinning, more slowly, when the user reduces
+  motion.
+- **Switch** — `Switch`.
+- **Table** — `Table` (`density`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow` (`selected`),
+  `TableHead` (`align`, `sortDirection`, `onSort`), `TableCell` (`align`), `TableCaption`, `TableEmpty`. Place it
+  in a `Panel`; built-in horizontal scrolling for wide tables.
+- **Tabs** — `Tabs`, `TabsList`, `TabsTab`, `TabsPanel`.
+- **Textarea** — `Textarea`. Same states as `Input`, vertically resizable.
+- **Toast** — `ToastProvider`, `useToast`, `createToastManager`. See [the guide](#notifications-toast).
+- **Toggle** — `Toggle` (`variant`: `default`, `outline`; `size`: `sm`, `md`, `lg`), `ToggleGroup` (single
+  choice, or `multiple`), `toggleVariants`. Two-state button, pressed with the same glass as the sidebar's active
+  item.
+- **Tooltip** — `TooltipProvider`, `Tooltip`, `TooltipTrigger`, `TooltipContent`.
+- **Hooks and utilities** — `useTheme`, `themeScript`, `useMediaQuery(query)`, `useDebouncedValue(value, delay)`
+  (300 ms by default), `cn(...classes)`.
+
+## Browser support
+
+HexUI targets current versions of Chrome, Edge, Firefox and Safari. Glass surfaces become opaque automatically
+when the browser does not support `backdrop-filter`, when the user turns on "Reduce transparency", and in
+forced-colors (high contrast) mode. Animations are reduced when the user asks for reduced motion.
+
+## Contributing
+
+Bug reports and pull requests are welcome on [GitHub](https://github.com/noah-bar/HexUI/issues).
 
 ```bash
+git clone https://github.com/noah-bar/HexUI.git
+cd HexUI
+npm install
 npm run dev              # Storybook at http://localhost:6006
 npm run build            # Library build in dist/ (ESM + .d.ts + hexui.css)
 npm run typecheck
@@ -552,8 +739,6 @@ npm run lint             # ESLint (typescript-eslint, React hooks, Storybook)
 npm run format           # Prettier: format every file (format:check only checks)
 npm run build-storybook  # Static Storybook in storybook-static/
 ```
-
-### Structure
 
 ```
 src/
@@ -564,7 +749,7 @@ src/
 .storybook/                # Storybook config (its own vite.config, separate from the library build)
 ```
 
-### Adding a component
+To add a component:
 
 1. Create `src/components/<name>/<Name>.tsx` by wrapping the matching Base UI primitive.
 2. Prefix every Tailwind class with `hx:` and use `mergeClassName` for the `className` prop.
@@ -572,4 +757,4 @@ src/
 
 ## License
 
-[MIT](./LICENSE)
+[MIT](https://github.com/noah-bar/HexUI/blob/main/LICENSE) © Hex-Tech
