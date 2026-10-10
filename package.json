@@ -2,8 +2,30 @@
   "name": "@hxtc/hexui",
   "version": "0.4.1",
   "description": "Hex-Tech React component library — Base UI + Tailwind CSS, professional glassmorphism.",
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "component-library",
+    "design-system",
+    "glassmorphism",
+    "glass",
+    "base-ui",
+    "tailwindcss",
+    "typescript",
+    "dark-mode",
+    "accessible"
+  ],
   "type": "module",
   "license": "MIT",
+  "homepage": "https://github.com/noah-bar/HexUI#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noah-bar/HexUI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/noah-bar/HexUI/issues"
+  },
   "sideEffects": [
     "**/*.css"
   ],
