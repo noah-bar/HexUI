@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Pagination` with previous and next buttons and ellipses.
 - `DataTable` with a sticky header, Django-style ordering, loading skeletons, an empty state and pagination.
 - `Skeleton`, a loading placeholder with a shimmer.
+- `PageHeader` with a title, a description and a command bar that can stick to the top.
 - `AppHeader`, a dark bar across the top of the page, and the `header` button variant.
 - `Sidebar` with collapsing to icons, a mobile drawer, groups, badges, actions and collapsible sections.
 - `Menubar`, a row of menus with keyboard navigation between them.
