@@ -108,6 +108,7 @@ export function SidebarProvider({
               'hx:flex hx:min-h-[calc(100svh-var(--hx-header-offset,0px))] hx:w-full hx:overflow-x-clip hx:text-fg',
               // An AppHeader as first child takes the whole first row; the sidebar and the page wrap below it.
               'hx:has-[>[data-hx-app-header]]:min-h-svh hx:has-[>[data-hx-app-header]]:flex-wrap hx:has-[>[data-hx-app-header]]:content-start',
+              'hx:has-[>[data-variant=inset]]:bg-bg',
               className,
             )}
             style={
@@ -130,7 +131,11 @@ export function SidebarProvider({
 
 export type SidebarProps = ComponentProps<'div'> & {
   side?: 'left' | 'right';
-  variant?: 'floating' | 'sidebar';
+  /**
+   * `sidebar`: a white column against the edge. `floating`: a card beside the page. `inset`: a gray column with no
+   * edge, and `SidebarInset` becomes a white card on the same gray.
+   */
+  variant?: 'floating' | 'sidebar' | 'inset';
   collapsible?: 'offcanvas' | 'icon' | 'none';
   mobileTitle?: string;
 };
@@ -149,13 +154,12 @@ export function Sidebar({
   const floating = variant === 'floating';
 
   // Floating: a card beside the page. Sidebar: a flat column against the edge, set apart by a border.
+  // Inset: a flat gray column; the page card beside it sets it apart.
   const panelClassName = cn(
-    'hx:flex hx:size-full hx:flex-col hx:bg-surface',
-    floating
-      ? 'hx:rounded-xs hx:shadow-card'
-      : side === 'left'
-        ? 'hx:border-r hx:border-border'
-        : 'hx:border-l hx:border-border',
+    'hx:flex hx:size-full hx:flex-col',
+    variant === 'inset' ? 'hx:bg-bg' : 'hx:bg-surface',
+    floating && 'hx:rounded-xs hx:shadow-card',
+    variant === 'sidebar' && (side === 'left' ? 'hx:border-r hx:border-border' : 'hx:border-l hx:border-border'),
     className,
   );
 
@@ -164,8 +168,9 @@ export function Sidebar({
       <div
         data-sidebar="sidebar"
         data-variant={variant}
+        data-side={side}
         className={cn(
-          'hx:group/sidebar hx:w-(--hx-sidebar-width) hx:shrink-0',
+          'hx:group/sidebar hx:peer hx:w-(--hx-sidebar-width) hx:shrink-0',
           floating && (side === 'left' ? 'hx:py-2 hx:pr-1 hx:pl-2' : 'hx:py-2 hx:pr-2 hx:pl-1'),
         )}
         {...props}
@@ -177,24 +182,28 @@ export function Sidebar({
 
   if (isMobile) {
     return (
-      <Sheet open={openMobile} onOpenChange={setOpenMobile}>
-        <SheetContent
-          side={side}
-          size="full"
-          portalProps={{ container: portalContainer }}
-          className="hx:w-(--hx-sidebar-width-mobile)"
-        >
-          <SheetTitle className="hx:sr-only">{mobileTitle}</SheetTitle>
-          <div
-            data-sidebar="sidebar"
-            data-mobile="true"
-            className="hx:group/sidebar hx:flex hx:h-full hx:flex-col"
-            {...props}
+      <>
+        {/* The drawer is portaled: this marker keeps the variant in the flow for SidebarInset (peer-data-*). */}
+        <span aria-hidden="true" data-variant={variant} data-side={side} className="hx:peer hx:hidden" />
+        <Sheet open={openMobile} onOpenChange={setOpenMobile}>
+          <SheetContent
+            side={side}
+            size="full"
+            portalProps={{ container: portalContainer }}
+            className="hx:w-(--hx-sidebar-width-mobile)"
           >
-            {children}
-          </div>
-        </SheetContent>
-      </Sheet>
+            <SheetTitle className="hx:sr-only">{mobileTitle}</SheetTitle>
+            <div
+              data-sidebar="sidebar"
+              data-mobile="true"
+              className="hx:group/sidebar hx:flex hx:h-full hx:flex-col"
+              {...props}
+            >
+              {children}
+            </div>
+          </SheetContent>
+        </Sheet>
+      </>
     );
   }
 
@@ -211,7 +220,7 @@ export function Sidebar({
       className={cn(
         // Sticky, not fixed: stays in the page flow, so it also works inside a container.
         // Below the AppHeader when there is one (see --hx-header-offset).
-        'hx:group/sidebar hx:sticky hx:top-(--hx-header-offset,0px) hx:hidden hx:h-[calc(100svh-var(--hx-header-offset,0px))] hx:shrink-0 hx:self-start hx:md:block',
+        'hx:group/sidebar hx:peer hx:sticky hx:top-(--hx-header-offset,0px) hx:hidden hx:h-[calc(100svh-var(--hx-header-offset,0px))] hx:shrink-0 hx:self-start hx:md:block',
         'hx:transition-[width] hx:duration-200 hx:ease-linear hx:motion-reduce:transition-none',
         hidden
           ? 'hx:w-0'
@@ -292,11 +301,25 @@ export function SidebarRail({
   );
 }
 
+/**
+ * The page beside the sidebar. `--hx-inset-height` is the height it fills in the window (below the AppHeader, inside
+ * the margins of the `inset` variant): give it to a page that scrolls inside, such as a full-height table.
+ */
 export function SidebarInset({ className, ...props }: ComponentProps<'main'>) {
   return (
     <main
       className={cn(
-        'hx:relative hx:flex hx:min-h-[calc(100svh-var(--hx-header-offset,0px))] hx:min-w-0 hx:flex-1 hx:flex-col',
+        'hx:relative hx:flex hx:min-h-(--hx-inset-height) hx:min-w-0 hx:flex-1 hx:flex-col',
+        'hx:[--hx-inset-height:calc(100svh-var(--hx-header-offset,0px))]',
+        // Inset variant: a white card. Full width on mobile; on larger screens, 0.5rem from the edges of the window
+        // and flush with the gray sidebar (or 0.5rem from the edge when the sidebar slides out).
+        'hx:peer-data-[variant=inset]:bg-surface hx:peer-data-[variant=inset]:[--hx-page-bg:var(--hx-surface)]',
+        'hx:md:peer-data-[variant=inset]:m-2 hx:md:peer-data-[variant=inset]:rounded-xs hx:md:peer-data-[variant=inset]:shadow-card',
+        'hx:md:peer-data-[variant=inset]:[--hx-inset-height:calc(100svh-var(--hx-header-offset,0px)-1rem)]',
+        'hx:md:peer-data-[variant=inset]:peer-data-[side=left]:ms-0 hx:md:peer-data-[variant=inset]:peer-data-[side=right]:me-0',
+        // One more condition than the rules above, so it wins over them.
+        'hx:md:peer-data-[variant=inset]:peer-data-[side=left]:peer-data-[collapsible=offcanvas]:ms-2',
+        'hx:md:peer-data-[variant=inset]:peer-data-[side=right]:peer-data-[collapsible=offcanvas]:me-2',
         className,
       )}
       {...props}

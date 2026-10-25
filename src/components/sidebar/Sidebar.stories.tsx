@@ -350,6 +350,84 @@ export const WithAppHeader: Story = {
   ),
 };
 
+/**
+ * `variant="inset"`: the sidebar is gray with no edge, and the page is a white card on the same gray, as in MBG.
+ * A full-height page inside can use `--hx-inset-height`.
+ */
+export const Inset: Story = {
+  render: () => (
+    <SidebarProvider>
+      <AppHeader>
+        <SidebarTrigger variant="header">
+          <MenuIcon />
+        </SidebarTrigger>
+        <AppHeaderBrand href="#" className="hx:ps-1">
+          Hex-Tech Billing
+        </AppHeaderBrand>
+        <AppHeaderActions>
+          <Button variant="header" size="icon" aria-label="Settings">
+            <Settings />
+          </Button>
+          <Button variant="header" aria-label="Account">
+            <Avatar size="xs">
+              <AvatarFallback>CM</AvatarFallback>
+            </Avatar>
+          </Button>
+        </AppHeaderActions>
+      </AppHeader>
+      <Sidebar variant="inset" collapsible="icon">
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupLabel>Billing</SidebarGroupLabel>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton render={<a href="#" />} tooltip="Dashboard">
+                  <LayoutDashboard />
+                  <span>Dashboard</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton render={<a href="#" />} isActive tooltip="Invoices">
+                  <ReceiptText />
+                  <span>Invoices</span>
+                </SidebarMenuButton>
+                <SidebarMenuBadge>4</SidebarMenuBadge>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton render={<a href="#" />} tooltip="Clients">
+                  <Users />
+                  <span>Clients</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton render={<a href="#" />} tooltip="Products">
+                  <Package />
+                  <span>Products</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroup>
+        </SidebarContent>
+        <SidebarRail />
+      </Sidebar>
+      <SidebarInset>
+        <div className="hx:flex hx:flex-col hx:gap-4 hx:p-6">
+          <h1 className="hx:m-0 hx:text-2xl hx:font-semibold">Invoices</h1>
+          {invoices.map((invoice) => (
+            <div
+              key={invoice.id}
+              className="hx:flex hx:justify-between hx:border-b hx:border-border hx:py-3 hx:text-sm"
+            >
+              <span className="hx:font-semibold">{invoice.id}</span>
+              <span className="hx:text-fg-muted">{invoice.client}</span>
+            </div>
+          ))}
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
+  ),
+};
+
 /** `variant="floating"` sets it apart as a card beside the page; `collapsible="offcanvas"` slides it out completely. */
 export const FloatingOffcanvas: Story = {
   render: () => (

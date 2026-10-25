@@ -160,8 +160,9 @@ body {
   `SheetContent` (`side`: `top`, `right`, `bottom`, `left`; `size`: `sm`, `md`, `lg`, `full`), `SheetHeader`,
   `SheetTitle`, `SheetDescription`, `SheetBody` (scrolls), `SheetFooter`, `SheetClose`, `SheetCloseButton`.
 - **Sidebar** — the navigation column of an application: `SidebarProvider` around the page, `Sidebar` (`variant`:
-  `sidebar`, a column against the edge, or `floating`, a card beside the page; `collapsible`: `offcanvas`, `icon`,
-  `none`; `side`), `SidebarInset` for the page, `SidebarTrigger` and `SidebarRail` to toggle it. Inside:
+  `sidebar`, a column against the edge, `floating`, a card beside the page, or `inset`, a gray column with the page as
+  a white card beside it; `collapsible`: `offcanvas`, `icon`, `none`; `side`), `SidebarInset` for the page (its
+  `--hx-inset-height` is the height a full-height page can fill), `SidebarTrigger` and `SidebarRail` to toggle it. Inside:
   `SidebarHeader`, `SidebarContent`, `SidebarFooter`, groups with `SidebarGroupLabel`, and menus with
   `SidebarMenuButton` (`isActive`: gray fill, semibold text and a blue bar; `tooltip` when collapsed to icons), badges, actions,
   sub-menus and collapsible sections. Below 768px it opens as a `Sheet`. Under an `AppHeader`, it sticks below the bar. `useSidebar` reads and changes its state.

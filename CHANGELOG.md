@@ -43,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `PageHeader` with a title, a description and a command bar that can stick to the top.
 - `AppHeader`, a dark bar across the top of the page, and the `header` button variant.
 - `Sidebar` with collapsing to icons, a mobile drawer, groups, badges, actions and collapsible sections.
+- `Sidebar` `inset` variant: a gray sidebar with the page as a white card beside it, and `--hx-inset-height` on `SidebarInset`.
 - `Menubar`, a row of menus with keyboard navigation between them.
 - `Sheet`, a panel that slides in from an edge of the screen.
 - `Avatar` and `Separator`.
