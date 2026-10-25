@@ -1,0 +1,175 @@
+/*
+ * HexUI — design tokens & utilities.
+ *
+ * Every Tailwind utility is prefixed with `hx:` and every theme variable with `--hx-`,
+ * so the compiled stylesheet can live next to a consumer's own Tailwind setup without
+ * collisions. Preflight is intentionally not shipped: the library never resets the
+ * host application's global styles (see the scoped reset in @layer base below).
+ */
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme) prefix(hx);
+@import 'tailwindcss/utilities.css' layer(utilities) prefix(hx) source(none);
+
+@source '../components';
+@source not '../**/*.stories.tsx';
+
+@custom-variant dark (&:where(.dark, .dark *, [data-theme='dark'], [data-theme='dark'] *));
+
+/* ---------------------------------------------------------------------------
+ * Semantic tokens — light. Fluent palette: warm grays, Azure blue.
+ * ------------------------------------------------------------------------- */
+:root,
+[data-theme='light'] {
+  --hx-font-sans: 'Segoe UI Variable Text', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  --hx-fg: #323130;
+  --hx-fg-muted: #605e5c;
+  --hx-fg-subtle: #a19f9d;
+  --hx-fg-disabled: #a19f9d;
+
+  /* Page, and the surfaces that sit on it (cards, panels, secondary buttons). */
+  --hx-bg: #faf9f8;
+  --hx-surface: #ffffff;
+  --hx-surface-hover: #f3f2f1;
+  --hx-surface-pressed: #edebe9;
+  --hx-surface-disabled: #f3f2f1;
+
+  --hx-border: #e1dfdd;
+  /* Controls: secondary buttons, fields. */
+  --hx-border-strong: #8a8886;
+
+  /* Filled brand controls: primary button. */
+  --hx-primary: #0078d4;
+  --hx-primary-hover: #106ebe;
+  --hx-primary-pressed: #005a9e;
+  --hx-primary-fg: #ffffff;
+  /* Light brand wash: hover of outline buttons, selected rows. */
+  --hx-primary-subtle: #eff6fc;
+  --hx-primary-subtle-pressed: #deecf9;
+  /* Brand color as foreground on surfaces: text, borders, icons (≥ 5:1 on the page). */
+  --hx-accent: #0f6cbd;
+
+  --hx-danger: #c50f1f;
+  --hx-danger-hover: #b10e1c;
+  --hx-danger-pressed: #960b18;
+  --hx-danger-fg: #ffffff;
+
+  --hx-ring: #0f6cbd;
+
+  --hx-shadow-card: 0 1.6px 3.6px 0 rgb(0 0 0 / 0.13), 0 0.3px 0.9px 0 rgb(0 0 0 / 0.11);
+  --hx-shadow-popup: 0 6.4px 14.4px 0 rgb(0 0 0 / 0.13), 0 1.2px 3.6px 0 rgb(0 0 0 / 0.11);
+  --hx-shadow-panel: 0 25.6px 57.6px 0 rgb(0 0 0 / 0.22), 0 4.8px 14.4px 0 rgb(0 0 0 / 0.18);
+
+  color-scheme: light;
+}
+
+/* ---------------------------------------------------------------------------
+ * Semantic tokens — dark.
+ * ------------------------------------------------------------------------- */
+.dark,
+[data-theme='dark'] {
+  --hx-fg: #f3f2f1;
+  --hx-fg-muted: #c8c6c4;
+  --hx-fg-subtle: #8a8886;
+  --hx-fg-disabled: #797775;
+
+  --hx-bg: #1b1a19;
+  --hx-surface: #252423;
+  --hx-surface-hover: #323130;
+  --hx-surface-pressed: #3b3a39;
+  --hx-surface-disabled: #292827;
+
+  --hx-border: #3b3a39;
+  --hx-border-strong: #8a8886;
+
+  /* Hover lightens in the dark theme; white text stays ≥ 5:1 on every state. */
+  --hx-primary: #115ea3;
+  --hx-primary-hover: #0f6cbd;
+  --hx-primary-pressed: #0c3b5e;
+  --hx-primary-fg: #ffffff;
+  --hx-primary-subtle: #082338;
+  --hx-primary-subtle-pressed: #0c3b5e;
+  --hx-accent: #479ef5;
+
+  --hx-danger: #c50f1f;
+  --hx-danger-hover: #d13438;
+  --hx-danger-pressed: #960b18;
+  --hx-danger-fg: #ffffff;
+
+  --hx-ring: #479ef5;
+
+  --hx-shadow-card: 0 1.6px 3.6px 0 rgb(0 0 0 / 0.4), 0 0.3px 0.9px 0 rgb(0 0 0 / 0.3);
+  --hx-shadow-popup: 0 6.4px 14.4px 0 rgb(0 0 0 / 0.5), 0 1.2px 3.6px 0 rgb(0 0 0 / 0.4);
+  --hx-shadow-panel: 0 25.6px 57.6px 0 rgb(0 0 0 / 0.6), 0 4.8px 14.4px 0 rgb(0 0 0 / 0.5);
+
+  color-scheme: dark;
+}
+
+/* Expose the semantic tokens to Tailwind: hx:bg-primary, hx:text-fg-muted, hx:shadow-card… */
+@theme inline {
+  --font-sans: var(--hx-font-sans);
+
+  --color-fg: var(--hx-fg);
+  --color-fg-muted: var(--hx-fg-muted);
+  --color-fg-subtle: var(--hx-fg-subtle);
+  --color-fg-disabled: var(--hx-fg-disabled);
+  --color-bg: var(--hx-bg);
+  --color-surface: var(--hx-surface);
+  --color-surface-hover: var(--hx-surface-hover);
+  --color-surface-pressed: var(--hx-surface-pressed);
+  --color-surface-disabled: var(--hx-surface-disabled);
+  --color-border: var(--hx-border);
+  --color-border-strong: var(--hx-border-strong);
+  --color-primary: var(--hx-primary);
+  --color-primary-hover: var(--hx-primary-hover);
+  --color-primary-pressed: var(--hx-primary-pressed);
+  --color-primary-fg: var(--hx-primary-fg);
+  --color-primary-subtle: var(--hx-primary-subtle);
+  --color-primary-subtle-pressed: var(--hx-primary-subtle-pressed);
+  --color-accent: var(--hx-accent);
+  --color-danger: var(--hx-danger);
+  --color-danger-hover: var(--hx-danger-hover);
+  --color-danger-pressed: var(--hx-danger-pressed);
+  --color-danger-fg: var(--hx-danger-fg);
+  --color-ring: var(--hx-ring);
+
+  --shadow-card: var(--hx-shadow-card);
+  --shadow-popup: var(--hx-shadow-popup);
+  --shadow-panel: var(--hx-shadow-panel);
+}
+
+/* ---------------------------------------------------------------------------
+ * Scoped reset — only touches elements rendered by HexUI (they all carry hx: classes).
+ * :where() keeps specificity at zero so every utility still wins.
+ * ------------------------------------------------------------------------- */
+@layer base {
+  :where([class*='hx:']),
+  :where([class*='hx:'])::before,
+  :where([class*='hx:'])::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+  }
+
+  :where(button, input, select, textarea)[class*='hx:'] {
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    letter-spacing: inherit;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Utilities
+ * ------------------------------------------------------------------------- */
+
+/* Keyboard focus: a solid 2px outline clear of the element, never shown on click. */
+@utility focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+
+  &:focus-visible {
+    outline-color: var(--hx-ring);
+  }
+}
