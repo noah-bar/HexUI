@@ -149,6 +149,26 @@ export {
   type DataTableSortableHeadProps,
 } from './components/data-table/DataTable';
 export {
+  DetailItem,
+  DetailList,
+  DetailSection,
+  DetailView,
+  DetailViewActions,
+  DetailViewContent,
+  DetailViewDescription,
+  DetailViewHeader,
+  DetailViewHeading,
+  DetailViewImage,
+  DetailViewMeta,
+  DetailViewTabs,
+  DetailViewTabsList,
+  DetailViewTabsPanel,
+  DetailViewTitle,
+  type DetailItemProps,
+  type DetailListProps,
+  type DetailViewImageProps,
+} from './components/detail-view/DetailView';
+export {
   Dialog,
   DialogClose,
   DialogContent,

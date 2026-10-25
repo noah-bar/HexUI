@@ -119,6 +119,14 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
   from `{ total, skip, limit }` (`pagination`, `onSkipChange`). `showCurrent` marks the row opened last with a blue
   bar, so it stands out when the user comes back from its details: give each `DataTableRow` a `value`; a row counts
   as opened when it is clicked (with an `onClick`) or when a link inside it is followed.
+- **DetailView** — the details of one record on a white card. `DetailViewHeader` holds `DetailViewImage` (a 64px
+  thumbnail: `src`, `alt`; `onClick` makes it a button, such as to open it full size; without `src`, its children,
+  such as an icon), `DetailViewHeading` with `DetailViewTitle`, `DetailViewDescription` and `DetailViewMeta`, and
+  `DetailViewActions`. The fields go in `DetailViewContent`, under a line: `DetailList` (`columns`: 1 to 4, from the
+  list's own width) of `DetailItem`s (`label`, `value`, `unit`; an empty value shows a dash; `span="full"` for long
+  text), grouped by `DetailSection` (`title`) if needed. Optional tabs: `DetailViewTabs` with `DetailViewTabsList`
+  (holding `TabsTab`s) and `DetailViewTabsPanel`s in place of `DetailViewContent`. Give the card a height and the
+  fields scroll under the header.
 - **Dialog** — a modal window over a dark veil: `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`,
   `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose`.
 - **DropdownMenu** — the shadcn/ui names for `Menu`: `DropdownMenu`, `DropdownMenuTrigger`, `DropdownMenuContent`,

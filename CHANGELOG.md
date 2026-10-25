@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `DetailView`: the details of one record, with a header (image, title, description, actions), its fields in a responsive grid, and optional sections or tabs.
+
 ## [0.1.0] - 2026-10-25
 
 ### Added

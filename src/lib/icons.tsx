@@ -62,6 +62,14 @@ export function XIcon(props: IconProps) {
   );
 }
 
+export function ExpandIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M160 48h48v48M96 208H48v-48M208 48l-56 56M48 208l56-56" />
+    </Icon>
+  );
+}
+
 export function PlusIcon(props: IconProps) {
   return (
     <Icon {...props}>
