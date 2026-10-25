@@ -146,6 +146,9 @@ body {
 - **Progress** — a progress bar: `value` (0–100, `null` for an unknown duration), `label`, `showValue`; `size`: `md`
   (2px), `lg` (4px); `intent`: `brand`, `success`, `warning`, `danger`.
 - **Radio** — `RadioGroup` (`value`, `defaultValue`) with `Radio` items; a blue ring and dot once checked.
+- **SafeArea** — keeps content clear of the notch, the status bar and the home indicator on phones: wrap the app root;
+  `topClassName` and `bottomClassName` style the two bands (e.g. `hx:bg-header` under an `AppHeader`). The page needs
+  `viewport-fit=cover` in its viewport meta tag, otherwise the insets are 0.
 - **Select** — a button that opens a list: `Select` (`items`), `SelectTrigger`, `SelectValue` (`placeholder`),
   `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator`.
 - **Separator** — a 1px line between groups of content; `orientation`: `horizontal`, `vertical`.

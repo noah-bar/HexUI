@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Pagination` with previous and next buttons and ellipses.
 - `DataTable` with a sticky header, Django-style ordering, loading skeletons, an empty state and pagination.
 - `Skeleton`, a loading placeholder with a shimmer.
+- `SafeArea` for the notch and home indicator of phones.
 - `AlertDialog`, a confirmation that only closes on a choice.
 - `MessageBar` for information, success, warning and error messages.
 - `Card` with a header action, `Accordion` and `Collapsible`.
