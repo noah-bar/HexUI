@@ -1,0 +1,48 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Panel } from '../panel/Panel';
+import { Separator } from './Separator';
+
+const meta = {
+  title: 'Components/Separator',
+  component: Separator,
+  tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <Panel className="hx:max-w-md hx:p-6">
+        <Story />
+      </Panel>
+    ),
+  ],
+} satisfies Meta<typeof Separator>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Horizontal: Story = {
+  render: () => (
+    <div className="hx:flex hx:flex-col hx:gap-4 hx:text-sm">
+      <div>
+        <p className="hx:font-semibold">Léman Immobilier SA</p>
+        <p className="hx:text-fg-muted">Route de Genève 8, 1260 Nyon</p>
+      </div>
+      <Separator />
+      <div className="hx:flex hx:justify-between">
+        <span className="hx:text-fg-muted">Total incl. VAT</span>
+        <span className="hx:font-semibold hx:tabular-nums">CHF 5,619.40</span>
+      </div>
+    </div>
+  ),
+};
+
+/** In a flex row, the vertical separator takes the row's height. */
+export const Vertical: Story = {
+  render: () => (
+    <div className="hx:flex hx:h-5 hx:items-center hx:gap-3 hx:text-sm">
+      <span>Invoices</span>
+      <Separator orientation="vertical" />
+      <span>Quotes</span>
+      <Separator orientation="vertical" />
+      <span>Clients</span>
+    </div>
+  ),
+};
