@@ -54,12 +54,18 @@
   --hx-primary-hover: #106ebe;
   --hx-primary-pressed: #005a9e;
   --hx-primary-fg: #ffffff;
-  /* Light brand wash: secondary buttons, hover of outline buttons, selected rows. */
+  /* Light brand wash: hover of outline buttons, pressed toggles, selected rows. */
   --hx-primary-subtle: #eff6fc;
   --hx-primary-subtle-hover: #e1eefa;
   --hx-primary-subtle-pressed: #c7e0f4;
   /* Brand text on the wash (≥ 4.5:1 on every state). */
   --hx-primary-subtle-fg: #115ea3;
+  /* Secondary button: a neutral gray block with brand text, so it does not read as a second primary. One step darker
+     than the field fill, so it is not taken for a field; brand text ≥ 4.5:1 on every state. */
+  --hx-secondary: #edebe9;
+  --hx-secondary-hover: #e1dfdd;
+  --hx-secondary-pressed: #d8d6d4;
+  --hx-secondary-fg: #115ea3;
   /* Brand color as foreground on surfaces: text, borders, icons (≥ 5:1 on the page). */
   --hx-accent: #0f6cbd;
 
@@ -128,6 +134,11 @@
   --hx-primary-subtle-hover: #0a2e4a;
   --hx-primary-subtle-pressed: #0c3b5e;
   --hx-primary-subtle-fg: #62abf5;
+  /* ≥ 1.35:1 against cards and the page, brand text ≥ 4.5:1 on every state. */
+  --hx-secondary: #3b3a39;
+  --hx-secondary-hover: #484644;
+  --hx-secondary-pressed: #4f4d4b;
+  --hx-secondary-fg: #96c6fa;
   --hx-accent: #479ef5;
 
   --hx-danger: #c50f1f;
@@ -182,6 +193,10 @@
   --color-primary-subtle-hover: var(--hx-primary-subtle-hover);
   --color-primary-subtle-pressed: var(--hx-primary-subtle-pressed);
   --color-primary-subtle-fg: var(--hx-primary-subtle-fg);
+  --color-secondary: var(--hx-secondary);
+  --color-secondary-hover: var(--hx-secondary-hover);
+  --color-secondary-pressed: var(--hx-secondary-pressed);
+  --color-secondary-fg: var(--hx-secondary-fg);
   --color-accent: var(--hx-accent);
   --color-danger: var(--hx-danger);
   --color-danger-hover: var(--hx-danger-hover);

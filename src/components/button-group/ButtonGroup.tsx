@@ -10,7 +10,7 @@ export const buttonGroupVariants = cva(
     // Filled buttons side by side: a thin line keeps them apart.
     'hx:[&>[data-variant=primary]+[data-variant=primary]]:border-s-primary-fg/30',
     'hx:[&>[data-variant=danger]+[data-variant=danger]]:border-s-danger-fg/30',
-    'hx:[&>[data-variant=secondary]+[data-variant=secondary]]:border-s-primary-subtle-pressed',
+    'hx:[&>[data-variant=secondary]+[data-variant=secondary]]:border-s-secondary-pressed',
   ],
   {
     variants: {

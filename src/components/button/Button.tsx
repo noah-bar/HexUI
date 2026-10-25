@@ -24,8 +24,8 @@ export const buttonVariants = cva(
           'hx:data-disabled:bg-surface-disabled',
         ],
         secondary: [
-          'hx:bg-primary-subtle hx:text-primary-subtle-fg',
-          'hx:hover:bg-primary-subtle-hover hx:active:bg-primary-subtle-pressed hx:data-popup-open:bg-primary-subtle-pressed',
+          'hx:bg-secondary hx:text-secondary-fg',
+          'hx:hover:bg-secondary-hover hx:active:bg-secondary-pressed hx:data-popup-open:bg-secondary-pressed',
           'hx:data-disabled:bg-surface-disabled',
         ],
         outline: [
@@ -77,7 +77,7 @@ export const buttonVariants = cva(
     compoundVariants: [
       { ring: true, variant: ['primary', 'secondary', 'outline'], className: 'hx:before:border-accent' },
       // The pale fill of a secondary button blends with the page: an edge keeps the gap to the ring visible.
-      { ring: true, variant: 'secondary', className: 'hx:border-primary-subtle-pressed' },
+      { ring: true, variant: 'secondary', className: 'hx:border-secondary-pressed' },
       { ring: true, variant: 'ghost', className: 'hx:before:border-border' },
       { ring: true, variant: 'danger', className: 'hx:before:border-danger' },
       { ring: true, variant: 'outline-danger', className: 'hx:before:border-danger-text' },
