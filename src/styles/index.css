@@ -73,7 +73,7 @@
 
   /* Status colors as foreground on surfaces: toast icons, messages (≥ 4.5:1). */
   --hx-success-text: #0e700e;
-  --hx-warning-text: #bc4b09;
+  --hx-warning-text: #a74109;
   --hx-info-text: #0f6cbd;
 
   /* Veil behind dialogs. */
