@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ArrowRight, ChevronDown, Download, Plus, RefreshCw, Settings, Trash2 } from 'lucide-react';
+import { ArrowRight, ChevronDown, Download, Plus, RefreshCw, Save, Settings, Trash2 } from 'lucide-react';
+import { useState } from 'react';
 import { Button } from './Button';
 
 const meta = {
@@ -10,13 +11,14 @@ const meta = {
   argTypes: {
     variant: {
       control: 'inline-radio',
-      options: ['primary', 'secondary', 'outline', 'ghost', 'danger', 'outline-danger'],
+      options: ['primary', 'secondary', 'outline', 'ghost', 'danger', 'outline-danger', 'header'],
     },
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg', 'icon'] },
     ring: { control: 'boolean' },
     startIcon: { control: false },
     endIcon: { control: false },
     disabled: { control: 'boolean' },
+    loading: { control: 'boolean' },
   },
 } satisfies Meta<typeof Button>;
 
@@ -141,6 +143,30 @@ export const Disabled: Story = {
       </Button>
     </div>
   ),
+};
+
+/** `loading`: a spinner replaces the start icon and the button is disabled, but keeps the focus. Click to try. */
+export const Loading: Story = {
+  render: function Render(args) {
+    const [saving, setSaving] = useState(false);
+    const save = () => {
+      setSaving(true);
+      setTimeout(() => setSaving(false), 2000);
+    };
+    return (
+      <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-3">
+        <Button {...args} loading={saving} onClick={save}>
+          {saving ? 'Saving…' : 'Save'}
+        </Button>
+        <Button {...args} variant="secondary" loading={saving} onClick={save}>
+          Save draft
+        </Button>
+        <Button {...args} variant="ghost" startIcon={<Save />} loading={saving} onClick={save}>
+          Save
+        </Button>
+      </div>
+    );
+  },
 };
 
 /** A command bar above a list, as in the Azure portal: ghost buttons with icons, a divider, a menu button. */

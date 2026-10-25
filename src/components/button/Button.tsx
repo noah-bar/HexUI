@@ -2,6 +2,7 @@ import { Button as BaseButton } from '@base-ui/react/button';
 import { cva, type VariantProps } from 'class-variance-authority';
 import type { ComponentProps, ReactNode } from 'react';
 import { mergeClassName } from '../../lib/cn';
+import { SpinnerIcon } from '../../lib/icons';
 
 export const buttonVariants = cva(
   [
@@ -95,12 +96,32 @@ export type ButtonProps = ComponentProps<typeof BaseButton> &
     startIcon?: ReactNode;
     /** Icon after the label, such as the chevron of a menu button. */
     endIcon?: ReactNode;
+    /** A spinner in place of the start icon; the button is disabled until it is done (e.g. while saving). */
+    loading?: boolean;
   };
 
-export function Button({ variant, size, ring, startIcon, endIcon, className, children, ...props }: ButtonProps) {
+export function Button({
+  variant,
+  size,
+  ring,
+  startIcon,
+  endIcon,
+  loading = false,
+  disabled,
+  className,
+  children,
+  ...props
+}: ButtonProps) {
   return (
-    <BaseButton className={mergeClassName(buttonVariants({ variant, size, ring }), className)} {...props}>
-      {startIcon}
+    <BaseButton
+      className={mergeClassName(buttonVariants({ variant, size, ring }), className)}
+      disabled={disabled || loading}
+      // Keeps focus on the button while it is busy, so keyboard users don't lose their place.
+      focusableWhenDisabled={loading || undefined}
+      aria-busy={loading || undefined}
+      {...props}
+    >
+      {loading ? <SpinnerIcon className="hx:text-current" /> : startIcon}
       {children}
       {endIcon}
     </BaseButton>
