@@ -12,7 +12,7 @@ export function AppHeader({ className, ...props }: ComponentProps<'header'>) {
     <header
       data-hx-app-header=""
       className={cn(
-        'hx:sticky hx:top-0 hx:z-20 hx:flex hx:h-(--hx-header-height) hx:shrink-0 hx:basis-full hx:items-stretch',
+        'hx:sticky hx:top-0 hx:z-20 hx:flex hx:h-(--hx-header-height) hx:w-full hx:shrink-0 hx:items-stretch',
         'hx:bg-header hx:text-sm hx:text-header-fg',
         // Buttons fill the bar's height with square corners, like the bar itself.
         'hx:[&_button]:h-auto hx:[&_button]:rounded-none hx:[&_button]:min-w-12',
