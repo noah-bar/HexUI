@@ -52,6 +52,10 @@ export function Actions() {
 The light theme applies by default. Add the `dark` class or `data-theme="dark"` to an ancestor (usually `<html>`)
 for the dark theme.
 
+`useTheme()` does it for you: it returns `theme` (`light`, `dark` or `system`), `resolvedTheme`, `setTheme` and
+`toggleTheme`, saves the choice in the browser and follows the system while the theme is `system`. To avoid a flash
+of the light theme on load, run `themeScript` in the `<head>` before the page renders.
+
 The components inherit the font of the page. The library ships the Fluent font stack as `--hx-font-sans` (Segoe UI
 on Windows, the system font elsewhere); apply it to your page if you want it:
 

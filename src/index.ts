@@ -3,6 +3,7 @@ import './styles/index.css';
 export { cn } from './lib/cn';
 export { useDebouncedValue } from './hooks/useDebouncedValue';
 export { useMediaQuery } from './hooks/useMediaQuery';
+export { themeScript, useTheme, type ResolvedTheme, type Theme, type UseThemeResult } from './hooks/useTheme';
 
 export { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './components/accordion/Accordion';
 export {

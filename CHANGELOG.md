@@ -47,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Sheet`, a panel that slides in from an edge of the screen.
 - `Avatar` and `Separator`.
 - `useMediaQuery` hook.
+- `useTheme` hook: light, dark or system theme, saved in the browser, and `themeScript` to apply it before the first paint.
 - `Popover`, a floating panel with title and description.
 - `Tooltip`, a short label on hover or focus.
 - `Toast`, stacked notifications with status icons, actions and promise support.
