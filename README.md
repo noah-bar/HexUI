@@ -188,6 +188,10 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
 - **Spinner** — a turning arc for a wait of unknown length: `size` (`xs` 12px to `xl` 40px), `tone`: `accent` (blue,
   the default), `muted`, `current` (the text color); `label`: announced by screen readers when no visible text says
   what is loading.
+- **Stepper** — the steps of a process with the current one: `Stepper` (`value`, `orientation`: `horizontal` or
+  `vertical`, `complete`) with `StepperItem`s (`value`, `title`, `description`, `icon`). Steps before the current one
+  are complete; `status="error"` marks a failed step. `onValueChange` makes the steps buttons. When the horizontal
+  stepper gets narrow, only the current step keeps its title.
 - **Switch** — an on/off toggle; a blue track with a white thumb once on.
 - **Table** — `Table` (`density`: `comfortable`, `compact`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow`
   (`selected`; `current`: a blue bar on the left of the row opened last), `TableHead` (`align`, `sortDirection` and `onSort` for a sortable column), `TableCell` (`align`),

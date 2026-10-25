@@ -343,6 +343,13 @@ export {
 export { Skeleton } from './components/skeleton/Skeleton';
 export { Slider, type SliderProps } from './components/slider/Slider';
 export { Spinner, spinnerVariants, type SpinnerProps } from './components/spinner/Spinner';
+export {
+  Stepper,
+  StepperItem,
+  type StepperItemProps,
+  type StepperProps,
+  type StepStatus,
+} from './components/stepper/Stepper';
 export { Switch, type SwitchProps } from './components/switch/Switch';
 export {
   Table,
