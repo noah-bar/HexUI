@@ -63,6 +63,11 @@ body {
 
 ## Components
 
+- **AppHeader** — the dark bar across the top of an application, as in the Azure portal: `AppHeader`,
+  `AppHeaderBrand` (the product name, a link: `href` or `render`), `AppHeaderActions` (buttons on the right). Use
+  `Button variant="header"` inside. With a sidebar, make it the first child of `SidebarProvider` so a
+  `SidebarTrigger variant="header"` can go in it; the sidebar and page headers then stick below the bar. Colors and
+  height: `--hx-header`, `--hx-header-fg`, `--hx-header-height` (40px).
 - **Autocomplete** — a text input with suggestions; free text is accepted. `AutocompleteInput` (`clearable`),
   `AutocompleteContent`, `AutocompleteList`, `AutocompleteItem`, `AutocompleteEmpty`, `AutocompleteStatus` (`loading`),
   groups and separators; `useAutocompleteFilter`.
@@ -72,7 +77,7 @@ body {
   before the text.
 - **Breadcrumb** — the path to the current page: `Breadcrumb`, `BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbLink`
   (`render` for a router link), `BreadcrumbPage`, `BreadcrumbSeparator`, `BreadcrumbEllipsis`.
-- **Button** — `variant`: `primary`, `secondary`, `outline`, `ghost`, `danger`, `outline-danger`; `size`: `sm`
+- **Button** — `variant`: `primary`, `secondary`, `outline`, `ghost`, `danger`, `outline-danger`, `header` (for the `AppHeader`); `size`: `sm`
   (24px), `md` (32px), `lg` (40px), `icon`; `ring`: a second border 2px around the button, to set an action apart;
   `startIcon`, `endIcon`: an icon before or after the label. `buttonVariants` gives the same classes to another
   element, such as a link.
@@ -121,7 +126,7 @@ body {
   `none`; `side`), `SidebarInset` for the page, `SidebarTrigger` and `SidebarRail` to toggle it. Inside:
   `SidebarHeader`, `SidebarContent`, `SidebarFooter`, groups with `SidebarGroupLabel`, and menus with
   `SidebarMenuButton` (`isActive`: gray fill, semibold text and a blue bar; `tooltip` when collapsed to icons), badges, actions,
-  sub-menus and collapsible sections. Below 768px it opens as a `Sheet`. `useSidebar` reads and changes its state.
+  sub-menus and collapsible sections. Below 768px it opens as a `Sheet`. Under an `AppHeader`, it sticks below the bar. `useSidebar` reads and changes its state.
 - **Skeleton** — a gray block with a shimmer, in place of content that is loading; size it with classes.
 - **Switch** — an on/off toggle; a blue track with a white thumb once on.
 - **Table** — `Table` (`density`: `comfortable`, `compact`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow`
