@@ -79,7 +79,7 @@ body {
   (`render` for a router link), `BreadcrumbPage`, `BreadcrumbSeparator`, `BreadcrumbEllipsis`.
 - **Button** — `variant`: `primary`, `secondary`, `outline`, `ghost`, `danger`, `outline-danger`, `header` (for the `AppHeader`); `size`: `sm`
   (24px), `md` (32px), `lg` (40px), `icon`; `ring`: a second border 2px around the button, to set an action apart;
-  `startIcon`, `endIcon`: an icon before or after the label. `buttonVariants` gives the same classes to another
+  `startIcon`, `endIcon`: an icon before or after the label; `loading`: a spinner, and the button is disabled. `buttonVariants` gives the same classes to another
   element, such as a link.
 - **Checkbox** — `checked`, `defaultChecked`, `indeterminate`; blue once checked.
 - **Combobox** — pick one or several values from a list by typing. `ComboboxInput` (`clearable`), `ComboboxChips`
@@ -97,6 +97,10 @@ body {
 - **Field** — label, description and error around a control: `Field` (`invalid`, `disabled`, `validationMode`),
   `FieldLabel`, `FieldDescription`, `FieldError` (`match`), `FieldItem`; `FieldRow` lays fields out in columns that
   stack on narrow rows (`columns`, `stackBelow`).
+- **Form** — a `<form>` around `Field`s: `errors` shows server errors under the field with the matching `name`,
+  `onFormSubmit` receives the values by name, `validationMode` sets when fields validate. `FormSection` (`title`,
+  `description`) groups fields under a heading, with a line between sections. Put the submit button in the
+  `PageHeaderActions` of a form that wraps the page, or anywhere with `form="<id>"`.
 - **Input** — a filled text field: gray background, darker bottom edge, and on focus a 2px accent underline that
   grows from the center. Flag an invalid value with `aria-invalid` (red underline). `startIcon`, `endIcon`: an icon
   before or after the text.
