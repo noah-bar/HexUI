@@ -72,6 +72,8 @@ body {
 - **InputNumber** — a number field; arrow keys change the value. `min`, `max`, `step`; `decimalPlaces`: fixed
   digits after the separator; `format` and `locale` (`Intl.NumberFormat` options: currency, percent); `required`:
   restores `0` when cleared; `showSteppers`: − and + buttons on each side; `align`: `left`, `center`, `right`.
+- **Panel** — a white surface with a card shadow and no imposed layout; `render` changes the element, such as an
+  `<aside>`.
 - **Textarea** — a multiline text field with the same look as `Input`; resizable vertically.
 
 ## Contributing
