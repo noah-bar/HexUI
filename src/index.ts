@@ -204,6 +204,16 @@ export {
   FieldRow,
   type FieldRowProps,
 } from './components/field/Field';
+export {
+  FileDropzone,
+  FileList,
+  FileListItem,
+  formatFileSize,
+  matchesAccept,
+  type FileDropzoneProps,
+  type FileListItemProps,
+  type FileRejection,
+} from './components/file-upload/FileUpload';
 export { FormSection, type FormSectionProps } from './components/form-section/FormSection';
 export { Input, type InputProps } from './components/input/Input';
 export { InputNumber, type InputNumberProps } from './components/input-number/InputNumber';

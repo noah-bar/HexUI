@@ -134,6 +134,11 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
 - **Field** — label, description and error around a control: `Field` (`invalid`, `disabled`, `validationMode`),
   `FieldLabel`, `FieldDescription`, `FieldError` (`match`), `FieldItem`; `FieldRow` lays fields out in columns that
   stack on narrow rows (`columns`, `stackBelow`).
+- **FileUpload** — `FileDropzone`: an area to drop files on or click to browse (`compact`: one row, for a form).
+  `accept`, `multiple`, `maxSize`, `maxFiles`; `onFilesSelected(files, rejected)` gives the files that pass and the
+  others with a reason (`type`, `size`, `count`). `FileList` of `FileListItem`s shows them: `name`, `size`, `status`
+  (`uploading` with `progress`, `complete`, `error` with `error`), `preview`, `href`, `onRemove`, `actions`.
+  `formatFileSize` writes a size in the locale's units.
 - **FormSection** — groups fields under a heading (`title`, `description`), with a line between sections. Put the
   sections in a plain `<form>`, or the one of your form library such as react-hook-form; a submit button can sit in the
   `PageHeaderActions` of a form that wraps the page, or anywhere with `form="<id>"`.

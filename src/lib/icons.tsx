@@ -62,6 +62,32 @@ export function XIcon(props: IconProps) {
   );
 }
 
+export function CalendarIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <rect x="40" y="40" width="176" height="176" rx="8" />
+      <path d="M176 24v32M80 24v32M40 88h176" />
+    </Icon>
+  );
+}
+
+export function UploadIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M128 144V32M88 72l40-40 40 40M216 144v64a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8v-64" />
+    </Icon>
+  );
+}
+
+export function FileIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M200 224H56a8 8 0 0 1-8-8V40a8 8 0 0 1 8-8h96l56 56v128a8 8 0 0 1-8 8Z" />
+      <path d="M152 32v56h56" />
+    </Icon>
+  );
+}
+
 export function ExpandIcon(props: IconProps) {
   return (
     <Icon {...props}>
