@@ -67,6 +67,10 @@ body {
 
 ## Components
 
+On phones (below 768px), the popups of `Select`, `Combobox` and `Menu` can open as a sheet that slides up from the
+bottom of the screen, full width, with rows tall enough for a finger: pass `mobile="sheet"` to their content, and
+`sheetTitle` for a heading at its top. Above 768px, and without the prop, they float next to their trigger.
+
 - **Accordion** — sections that open one at a time (`multiple` for several): `Accordion` (`defaultValue`, `value`),
   `AccordionItem` (`value`), `AccordionTrigger`, `AccordionContent`. The chevron sits before the heading, as in Fluent.
 - **AlertDialog** — a confirmation before an action, such as a deletion: same parts as `Dialog` (`AlertDialogContent`,
@@ -100,7 +104,7 @@ body {
   `CollapsibleChevron` (turns when open).
 - **Combobox** — pick one or several values from a list by typing. `ComboboxInput` (`clearable`), `ComboboxChips`
   for multiple values, or `ComboboxTrigger` with `ComboboxSearch` inside the popup for a select with a search;
-  `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), groups and
+  `ComboboxContent` (`mobile`, `sheetTitle`), `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), groups and
   separators; `useComboboxFilter`, `createComboboxItems`.
 - **Command** — a command palette with a search: `Command` (inline) or `CommandDialog` (over the page, for ⌘K),
   `CommandInput`, `CommandList`, `CommandItem` (`onClick`, also fired by Enter), `CommandEmpty`, groups, separators and
@@ -135,7 +139,7 @@ body {
 - **Menubar** — a row of menus, as in a desktop app: `Menubar` (`variant`: `default`, a white strip; `ghost`, for a
   bar inside a header), `MenubarMenu`, `MenubarTrigger`, `MenubarContent`, and the same items as `Menu`. Arrow keys
   move between the menus.
-- **Menu** — a list of actions opened by a button: `Menu`, `MenuTrigger`, `MenuContent`, `MenuItem` (`variant`:
+- **Menu** — a list of actions opened by a button: `Menu`, `MenuTrigger`, `MenuContent` (`mobile`, `sheetTitle`), `MenuItem` (`variant`:
   `danger`), `MenuCheckboxItem`, `MenuRadioGroup` and `MenuRadioItem`, `MenuGroup` and `MenuGroupLabel`,
   `MenuSeparator`, `MenuShortcut`, and submenus with `MenuSub`, `MenuSubTrigger`, `MenuSubContent`.
 - **PageHeader** — the top of a page, as in the Azure portal: a `Breadcrumb`, `PageHeaderHeading` with
@@ -154,7 +158,7 @@ body {
   `topClassName` and `bottomClassName` style the two bands (e.g. `hx:bg-header` under an `AppHeader`). The page needs
   `viewport-fit=cover` in its viewport meta tag, otherwise the insets are 0.
 - **Select** — a button that opens a list: `Select` (`items`), `SelectTrigger`, `SelectValue` (`placeholder`),
-  `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator`.
+  `SelectContent` (`mobile`, `sheetTitle`), `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator`.
 - **Separator** — a 1px line between groups of content; `orientation`: `horizontal`, `vertical`.
 - **Sheet** — a panel that slides in from an edge of the screen, over a dark veil: `Sheet`, `SheetTrigger`,
   `SheetContent` (`side`: `top`, `right`, `bottom`, `left`; `size`: `sm`, `md`, `lg`, `full`), `SheetHeader`,

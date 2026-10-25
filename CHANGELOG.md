@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Field`, `FieldLabel`, `FieldDescription`, `FieldError`, `FieldItem` and `FieldRow` for form layout and validation.
 - `Select`, a list behind a button.
 - `Combobox`, a searchable list with single or multiple values, as an input, chips, or a button with a search inside.
+- `mobile="sheet"` and `sheetTitle` on `SelectContent`, `ComboboxContent` and `MenuContent`: below 768px, the popup opens as a bottom sheet.
 - `Autocomplete`, a text input with suggestions.
 - `Dialog`, a modal window with header, title, description and footer.
 - `Checkbox`, `Radio` and `RadioGroup`, and `Switch`.

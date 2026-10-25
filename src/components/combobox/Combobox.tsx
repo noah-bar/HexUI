@@ -3,6 +3,14 @@ import type { ComponentProps } from 'react';
 import { cn, mergeClassName } from '../../lib/cn';
 import { CheckIcon, ChevronDownIcon, SearchIcon, SpinnerIcon, XIcon } from '../../lib/icons';
 import {
+  SheetPopupTitle,
+  sheetBackdropClassName,
+  sheetPopupClassName,
+  sheetPositionerClassName,
+  useSheetPopup,
+  type SheetPopupProps,
+} from '../../lib/sheetPopup';
+import {
   groupLabelClassName,
   inputGroupButtonClassName,
   inputGroupClassName,
@@ -151,8 +159,13 @@ export function ComboboxSearch({
 
 type PositionerProps = ComponentProps<typeof BaseCombobox.Positioner>;
 
+/**
+ * `mobile="sheet"` suits a combobox opened by a `ComboboxTrigger`, with its `ComboboxSearch` inside the sheet; with a
+ * `ComboboxInput` in the page, the sheet would open under the keyboard.
+ */
 export type ComboboxContentProps = ComponentProps<typeof BaseCombobox.Popup> &
-  Pick<PositionerProps, 'side' | 'sideOffset' | 'align' | 'alignOffset'>;
+  Pick<PositionerProps, 'side' | 'sideOffset' | 'align' | 'alignOffset'> &
+  SheetPopupProps;
 
 export function ComboboxContent({
   className,
@@ -160,8 +173,28 @@ export function ComboboxContent({
   sideOffset = 4,
   align = 'start',
   alignOffset,
+  mobile,
+  sheetTitle,
+  children,
   ...props
 }: ComboboxContentProps) {
+  const sheet = useSheetPopup(mobile);
+
+  if (sheet) {
+    return (
+      <BaseCombobox.Portal>
+        <BaseCombobox.Backdrop className={sheetBackdropClassName} />
+        <BaseCombobox.Positioner className={sheetPositionerClassName}>
+          {/* A fixed height: the sheet does not jump while the list filters. */}
+          <BaseCombobox.Popup className={mergeClassName(`${sheetPopupClassName} hx:h-[85dvh]`, className)} {...props}>
+            {sheetTitle && <SheetPopupTitle>{sheetTitle}</SheetPopupTitle>}
+            {children}
+          </BaseCombobox.Popup>
+        </BaseCombobox.Positioner>
+      </BaseCombobox.Portal>
+    );
+  }
+
   return (
     <BaseCombobox.Portal>
       <BaseCombobox.Positioner
@@ -171,7 +204,9 @@ export function ComboboxContent({
         align={align}
         alignOffset={alignOffset}
       >
-        <BaseCombobox.Popup className={mergeClassName(popupClassName, className)} {...props} />
+        <BaseCombobox.Popup className={mergeClassName(popupClassName, className)} {...props}>
+          {children}
+        </BaseCombobox.Popup>
       </BaseCombobox.Positioner>
     </BaseCombobox.Portal>
   );

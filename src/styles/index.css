@@ -11,6 +11,7 @@
 @import 'tailwindcss/utilities.css' layer(utilities) prefix(hx) source(none);
 
 @source '../components';
+@source '../lib';
 @source not '../**/*.stories.tsx';
 
 @custom-variant dark (&:where(.dark, .dark *, [data-theme='dark'], [data-theme='dark'] *));

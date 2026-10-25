@@ -3,6 +3,14 @@ import type { ComponentProps } from 'react';
 import { mergeClassName } from '../../lib/cn';
 import { CheckIcon, ChevronDownIcon } from '../../lib/icons';
 import {
+  SheetPopupTitle,
+  sheetBackdropClassName,
+  sheetPopupClassName,
+  sheetPositionerClassName,
+  useSheetPopup,
+  type SheetPopupProps,
+} from '../../lib/sheetPopup';
+import {
   groupLabelClassName,
   itemClassName,
   popupSurfaceClassName,
@@ -36,7 +44,8 @@ export function SelectValue({ className, ...props }: ComponentProps<typeof BaseS
 type PositionerProps = ComponentProps<typeof BaseSelect.Positioner>;
 
 export type SelectContentProps = ComponentProps<typeof BaseSelect.Popup> &
-  Pick<PositionerProps, 'side' | 'sideOffset' | 'align' | 'alignOffset' | 'alignItemWithTrigger'>;
+  Pick<PositionerProps, 'side' | 'sideOffset' | 'align' | 'alignOffset' | 'alignItemWithTrigger'> &
+  SheetPopupProps;
 
 export function SelectContent({
   className,
@@ -46,8 +55,28 @@ export function SelectContent({
   align,
   alignOffset,
   alignItemWithTrigger = false,
+  mobile,
+  sheetTitle,
   ...props
 }: SelectContentProps) {
+  const sheet = useSheetPopup(mobile);
+
+  if (sheet) {
+    return (
+      <BaseSelect.Portal>
+        <BaseSelect.Backdrop className={sheetBackdropClassName} />
+        <BaseSelect.Positioner className={sheetPositionerClassName} alignItemWithTrigger={false}>
+          <BaseSelect.Popup className={mergeClassName(sheetPopupClassName, className)} {...props}>
+            {sheetTitle && <SheetPopupTitle>{sheetTitle}</SheetPopupTitle>}
+            <BaseSelect.List className="hx:min-h-0 hx:flex-1 hx:overflow-y-auto hx:overscroll-contain hx:p-1 hx:scroll-py-1">
+              {children}
+            </BaseSelect.List>
+          </BaseSelect.Popup>
+        </BaseSelect.Positioner>
+      </BaseSelect.Portal>
+    );
+  }
+
   return (
     <BaseSelect.Portal>
       <BaseSelect.Positioner

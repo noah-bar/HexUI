@@ -3,6 +3,14 @@ import type { ComponentProps } from 'react';
 import { cn, mergeClassName } from '../../lib/cn';
 import { CheckIcon, ChevronRightIcon } from '../../lib/icons';
 import {
+  SheetPopupTitle,
+  sheetBackdropClassName,
+  sheetPopupClassName,
+  sheetPositionerClassName,
+  useSheetPopup,
+  type SheetPopupProps,
+} from '../../lib/sheetPopup';
+import {
   groupLabelClassName,
   itemClassName as listItemClassName,
   popupSurfaceClassName,
@@ -18,7 +26,8 @@ export const MenuSub = BaseMenu.SubmenuRoot;
 type PositionerProps = ComponentProps<typeof BaseMenu.Positioner>;
 
 export type MenuContentProps = ComponentProps<typeof BaseMenu.Popup> &
-  Pick<PositionerProps, 'side' | 'sideOffset' | 'align' | 'alignOffset'>;
+  Pick<PositionerProps, 'side' | 'sideOffset' | 'align' | 'alignOffset'> &
+  SheetPopupProps;
 
 // The popup does not scroll; an inner wrapper does, so the rounded edge and border stay put.
 /** Shared with ContextMenu. */
@@ -31,8 +40,26 @@ export function MenuContent({
   sideOffset = 4,
   align = 'start',
   alignOffset,
+  mobile,
+  sheetTitle,
   ...props
 }: MenuContentProps) {
+  const sheet = useSheetPopup(mobile);
+
+  if (sheet) {
+    return (
+      <BaseMenu.Portal>
+        <BaseMenu.Backdrop className={sheetBackdropClassName} />
+        <BaseMenu.Positioner className={sheetPositionerClassName}>
+          <BaseMenu.Popup className={mergeClassName(sheetPopupClassName, className)} {...props}>
+            {sheetTitle && <SheetPopupTitle>{sheetTitle}</SheetPopupTitle>}
+            <div className="hx:min-h-0 hx:overflow-y-auto hx:overscroll-contain hx:p-1">{children}</div>
+          </BaseMenu.Popup>
+        </BaseMenu.Positioner>
+      </BaseMenu.Portal>
+    );
+  }
+
   return (
     <BaseMenu.Portal>
       <BaseMenu.Positioner
@@ -50,7 +77,13 @@ export function MenuContent({
   );
 }
 
-export function MenuSubContent({ side = 'inline-end', sideOffset = 2, alignOffset = -5, ...props }: MenuContentProps) {
+/** A submenu always floats beside its parent item, even when the menu opens as a sheet. */
+export function MenuSubContent({
+  side = 'inline-end',
+  sideOffset = 2,
+  alignOffset = -5,
+  ...props
+}: Omit<MenuContentProps, keyof SheetPopupProps>) {
   return <MenuContent side={side} sideOffset={sideOffset} alignOffset={alignOffset} {...props} />;
 }
 

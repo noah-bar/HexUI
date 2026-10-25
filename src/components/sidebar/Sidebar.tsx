@@ -13,14 +13,13 @@ import {
   type ReactNode,
 } from 'react';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
+import { MOBILE_QUERY } from '../../lib/sheetPopup';
 import { cn, mergeClassName } from '../../lib/cn';
 import { ChevronRightIcon } from '../../lib/icons';
 import { Button } from '../button/Button';
 import { Sheet, SheetContent, SheetTitle } from '../sheet/Sheet';
 import { Skeleton } from '../skeleton/Skeleton';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../tooltip/Tooltip';
-
-const MOBILE_QUERY = '(max-width: 767px)';
 
 type SidebarContextValue = {
   state: 'expanded' | 'collapsed';

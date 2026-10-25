@@ -51,6 +51,24 @@ export const Default: Story = {
   ),
 };
 
+/** `mobile="sheet"`: below 768px the list slides up from the bottom of the screen. Narrow the window to see it. */
+export const MobileSheet: Story = {
+  render: () => (
+    <Select items={roles}>
+      <SelectTrigger aria-label="Role">
+        <SelectValue placeholder="Choose a role" />
+      </SelectTrigger>
+      <SelectContent mobile="sheet" sheetTitle="Role">
+        {roles.map((role) => (
+          <SelectItem key={role.value} value={role.value}>
+            {role.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  ),
+};
+
 export const Grouped: Story = {
   render: () => (
     <Select defaultValue="paris">
