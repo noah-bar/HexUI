@@ -53,6 +53,10 @@
   --hx-danger-hover: #b10e1c;
   --hx-danger-pressed: #960b18;
   --hx-danger-fg: #ffffff;
+  --hx-danger-subtle: #fdf3f4;
+  --hx-danger-subtle-pressed: #fde7e9;
+  /* Danger as foreground on surfaces: outline-danger buttons, error text (≥ 5:1). */
+  --hx-danger-text: #c50f1f;
 
   --hx-ring: #0f6cbd;
 
@@ -95,6 +99,9 @@
   --hx-danger-hover: #d13438;
   --hx-danger-pressed: #960b18;
   --hx-danger-fg: #ffffff;
+  --hx-danger-subtle: #3b1c1e;
+  --hx-danger-subtle-pressed: #442726;
+  --hx-danger-text: #e37d80;
 
   --hx-ring: #479ef5;
 
@@ -131,6 +138,9 @@
   --color-danger-hover: var(--hx-danger-hover);
   --color-danger-pressed: var(--hx-danger-pressed);
   --color-danger-fg: var(--hx-danger-fg);
+  --color-danger-subtle: var(--hx-danger-subtle);
+  --color-danger-subtle-pressed: var(--hx-danger-subtle-pressed);
+  --color-danger-text: var(--hx-danger-text);
   --color-ring: var(--hx-ring);
 
   --shadow-card: var(--hx-shadow-card);
