@@ -104,7 +104,12 @@ export function SidebarProvider({
         <TooltipProvider delay={0}>
           <div
             ref={providerRef}
-            className={cn('hx:flex hx:min-h-svh hx:w-full hx:overflow-x-clip hx:text-fg', className)}
+            className={cn(
+              'hx:flex hx:min-h-[calc(100svh-var(--hx-header-offset,0px))] hx:w-full hx:overflow-x-clip hx:text-fg',
+              // An AppHeader as first child takes the whole first row; the sidebar and the page wrap below it.
+              'hx:has-[>[data-hx-app-header]]:min-h-svh hx:has-[>[data-hx-app-header]]:flex-wrap hx:has-[>[data-hx-app-header]]:content-start',
+              className,
+            )}
             style={
               {
                 '--hx-sidebar-width': '14rem',
@@ -205,7 +210,8 @@ export function Sidebar({
       data-side={side}
       className={cn(
         // Sticky, not fixed: stays in the page flow, so it also works inside a container.
-        'hx:group/sidebar hx:sticky hx:top-0 hx:hidden hx:h-svh hx:shrink-0 hx:self-start hx:md:block',
+        // Below the AppHeader when there is one (see --hx-header-offset).
+        'hx:group/sidebar hx:sticky hx:top-(--hx-header-offset,0px) hx:hidden hx:h-[calc(100svh-var(--hx-header-offset,0px))] hx:shrink-0 hx:self-start hx:md:block',
         'hx:transition-[width] hx:duration-200 hx:ease-linear hx:motion-reduce:transition-none',
         hidden
           ? 'hx:w-0'
@@ -287,7 +293,15 @@ export function SidebarRail({
 }
 
 export function SidebarInset({ className, ...props }: ComponentProps<'main'>) {
-  return <main className={cn('hx:relative hx:flex hx:min-w-0 hx:flex-1 hx:flex-col', className)} {...props} />;
+  return (
+    <main
+      className={cn(
+        'hx:relative hx:flex hx:min-h-[calc(100svh-var(--hx-header-offset,0px))] hx:min-w-0 hx:flex-1 hx:flex-col',
+        className,
+      )}
+      {...props}
+    />
+  );
 }
 
 export type SidebarInsetHeaderProps = ComponentProps<'header'> & {
@@ -299,7 +313,7 @@ export function SidebarInsetHeader({ variant = 'attached', className, children, 
   return (
     <header
       className={cn(
-        'hx:sticky hx:top-0 hx:z-10 hx:shrink-0',
+        'hx:sticky hx:top-(--hx-header-offset,0px) hx:z-10 hx:shrink-0',
         // Floating: the page color fills the gap above the card, so content does not show through while scrolling.
         floating && 'hx:bg-bg hx:p-2 hx:pb-0',
       )}

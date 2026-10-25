@@ -5,6 +5,7 @@ import {
   FileText,
   Folder,
   LayoutDashboard,
+  Menu as MenuIcon,
   Package,
   PanelLeft,
   Plus,
@@ -12,6 +13,7 @@ import {
   Settings,
   Users,
 } from 'lucide-react';
+import { AppHeader, AppHeaderActions, AppHeaderBrand } from '../app-header/AppHeader';
 import { Avatar, AvatarFallback } from '../avatar/Avatar';
 import { Badge } from '../badge/Badge';
 import { Button } from '../button/Button';
@@ -262,6 +264,86 @@ export const Default: Story = {
               </TableBody>
             </DataTable>
           </Panel>
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
+  ),
+};
+
+/**
+ * Under an `AppHeader` (the layout of the Azure portal): the header is the first child of `SidebarProvider`
+ * and holds the `SidebarTrigger`. The sidebar and the page header stick below the dark bar while the page scrolls.
+ */
+export const WithAppHeader: Story = {
+  render: () => (
+    <SidebarProvider>
+      <AppHeader>
+        <SidebarTrigger variant="header">
+          <MenuIcon />
+        </SidebarTrigger>
+        <AppHeaderBrand href="#" className="hx:ps-1">
+          Hex-Tech Billing
+        </AppHeaderBrand>
+        <AppHeaderActions>
+          <Button variant="header" size="icon" aria-label="Settings">
+            <Settings />
+          </Button>
+          <Button variant="header" aria-label="Account">
+            <Avatar size="xs">
+              <AvatarFallback>CM</AvatarFallback>
+            </Avatar>
+          </Button>
+        </AppHeaderActions>
+      </AppHeader>
+      <Sidebar collapsible="icon">
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupLabel>Billing</SidebarGroupLabel>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton render={<a href="#" />} tooltip="Dashboard">
+                  <LayoutDashboard />
+                  <span>Dashboard</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton render={<a href="#" />} isActive tooltip="Invoices">
+                  <ReceiptText />
+                  <span>Invoices</span>
+                </SidebarMenuButton>
+                <SidebarMenuBadge>4</SidebarMenuBadge>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton render={<a href="#" />} tooltip="Clients">
+                  <Users />
+                  <span>Clients</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton render={<a href="#" />} tooltip="Products">
+                  <Package />
+                  <span>Products</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroup>
+        </SidebarContent>
+        <SidebarRail />
+      </Sidebar>
+      <SidebarInset>
+        <SidebarInsetHeader>
+          <h1 className="hx:px-2 hx:text-sm hx:font-semibold">Invoices</h1>
+          <Button className="hx:ml-auto" size="sm" startIcon={<Plus />}>
+            New invoice
+          </Button>
+        </SidebarInsetHeader>
+        <div className="hx:flex hx:flex-col hx:gap-3 hx:p-4">
+          {invoices.map((invoice) => (
+            <Panel key={invoice.id} className="hx:flex hx:justify-between hx:p-4 hx:text-sm">
+              <span className="hx:font-semibold">{invoice.id}</span>
+              <span className="hx:text-fg-muted">{invoice.client}</span>
+            </Panel>
+          ))}
         </div>
       </SidebarInset>
     </SidebarProvider>
