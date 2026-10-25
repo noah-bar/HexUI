@@ -43,6 +43,7 @@ export {
   type BreadcrumbProps,
 } from './components/breadcrumb/Breadcrumb';
 export { Button, buttonVariants, type ButtonProps } from './components/button/Button';
+export { ButtonGroup, buttonGroupVariants, type ButtonGroupProps } from './components/button-group/ButtonGroup';
 export { Checkbox, type CheckboxProps } from './components/checkbox/Checkbox';
 export {
   Combobox,
@@ -127,6 +128,7 @@ export {
 export { Form, FormSection, type FormProps, type FormSectionProps } from './components/form/Form';
 export { Input, type InputProps } from './components/input/Input';
 export { InputNumber, type InputNumberProps } from './components/input-number/InputNumber';
+export { Label, type LabelProps } from './components/label/Label';
 export {
   Menubar,
   MenubarCheckboxItem,
