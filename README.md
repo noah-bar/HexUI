@@ -63,6 +63,11 @@ body {
 
 ## Components
 
+- **Accordion** — sections that open one at a time (`multiple` for several): `Accordion` (`defaultValue`, `value`),
+  `AccordionItem` (`value`), `AccordionTrigger`, `AccordionContent`. The chevron sits before the heading, as in Fluent.
+- **AlertDialog** — a confirmation before an action, such as a deletion: same parts as `Dialog` (`AlertDialogContent`,
+  `AlertDialogTitle`, `AlertDialogDescription`, `AlertDialogFooter`, `AlertDialogClose`…), but a click on the veil
+  does not close it.
 - **AppHeader** — the dark bar across the top of an application, as in the Azure portal: `AppHeader`,
   `AppHeaderBrand` (the product name, a link: `href` or `render`), `AppHeaderActions` (buttons on the right). Use
   `Button variant="header"` inside. With a sidebar, make it the first child of `SidebarProvider` so a
@@ -84,11 +89,20 @@ body {
 - **ButtonGroup** — buttons attached in a row: only the outer corners stay rounded, outline borders merge, and
   filled buttons get a thin line between them. For a split button (an action and a menu of others) or related
   actions; `orientation`: `horizontal`, `vertical`. Give it an `aria-label`.
+- **Card** — a `Panel` laid out as a card: `CardHeader` with `CardTitle`, `CardDescription` and `CardAction` (a button
+  or a menu in the top right corner), `CardContent`, `CardFooter`.
 - **Checkbox** — `checked`, `defaultChecked`, `indeterminate`; blue once checked.
+- **Collapsible** — a block that opens and closes: `Collapsible`, `CollapsibleTrigger`, `CollapsibleContent`,
+  `CollapsibleChevron` (turns when open).
 - **Combobox** — pick one or several values from a list by typing. `ComboboxInput` (`clearable`), `ComboboxChips`
   for multiple values, or `ComboboxTrigger` with `ComboboxSearch` inside the popup for a select with a search;
   `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), groups and
   separators; `useComboboxFilter`, `createComboboxItems`.
+- **Command** — a command palette with a search: `Command` (inline) or `CommandDialog` (over the page, for ⌘K),
+  `CommandInput`, `CommandList`, `CommandItem` (`onClick`, also fired by Enter), `CommandEmpty`, groups, separators and
+  `CommandShortcut`.
+- **ContextMenu** — the menu of a right click on `ContextMenuTrigger` (`render` to make a table row the trigger):
+  `ContextMenuContent` and the same items as `Menu` (`ContextMenuItem`, `ContextMenuSub`…).
 - **DataTable** — a table for server data: a sticky header, scrolling inside its parent (give the parent a height),
   sortable columns with a Django-style `ordering` (`"field"`, `"-field"`, `""`) through `DataTableSortableHead`,
   skeleton rows while loading (`DataTableBody` `isPending`), an empty state (`isEmpty`, `emptyText`) and pagination
@@ -112,6 +126,8 @@ body {
   restores `0` when cleared; `showSteppers`: − and + buttons on each side; `align`: `left`, `center`, `right`.
 - **Label** — a label outside a `Field`: wrapping a checkbox or a switch, or linked with `htmlFor`; `required` adds a
   red asterisk. Inside a `Field`, use `FieldLabel`.
+- **MessageBar** — a message across a page or a form, as in the Azure portal: `intent`: `info`, `success`, `warning`,
+  `danger`; `MessageBarBody` with `MessageBarTitle`, `MessageBarActions`; `onDismiss` adds a close button.
 - **Menubar** — a row of menus, as in a desktop app: `Menubar` (`variant`: `default`, a white strip; `ghost`, for a
   bar inside a header), `MenubarMenu`, `MenubarTrigger`, `MenubarContent`, and the same items as `Menu`. Arrow keys
   move between the menus.
@@ -127,6 +143,8 @@ body {
   `<aside>`.
 - **Popover** — a floating panel opened by a button, for filters or details: `Popover`, `PopoverTrigger`,
   `PopoverContent` (`side`, `align`), `PopoverTitle`, `PopoverDescription`, `PopoverClose`.
+- **Progress** — a progress bar: `value` (0–100, `null` for an unknown duration), `label`, `showValue`; `size`: `md`
+  (2px), `lg` (4px); `intent`: `brand`, `success`, `warning`, `danger`.
 - **Radio** — `RadioGroup` (`value`, `defaultValue`) with `Radio` items; a blue ring and dot once checked.
 - **Select** — a button that opens a list: `Select` (`items`), `SelectTrigger`, `SelectValue` (`placeholder`),
   `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator`.
@@ -141,6 +159,8 @@ body {
   `SidebarMenuButton` (`isActive`: gray fill, semibold text and a blue bar; `tooltip` when collapsed to icons), badges, actions,
   sub-menus and collapsible sections. Below 768px it opens as a `Sheet`. Under an `AppHeader`, it sticks below the bar. `useSidebar` reads and changes its state.
 - **Skeleton** — a gray block with a shimmer, in place of content that is loading; size it with classes.
+- **Slider** — one value or a range (an array): `label`, `showValue`, `min`, `max`, `step`, `format`; `thumbLabels`
+  names the thumbs of a range for screen readers.
 - **Spinner** — a turning arc for a wait of unknown length: `size` (`xs` 12px to `xl` 40px), `tone`: `accent` (blue,
   the default), `muted`, `current` (the text color); `label`: announced by screen readers when no visible text says
   what is loading.
@@ -153,6 +173,8 @@ body {
 - **Toast** — short notifications stacked at the bottom right. Wrap the app in `ToastProvider`, then call
   `useToast().add({ title, description, type })` with `type`: `success`, `error`, `warning`, `info`, `loading`;
   `createToastManager` sends toasts from outside React.
+- **Toggle** — a button that stays pressed (`pressed`, `onPressedChange`); `variant`: `outline`, `subtle`.
+  `ToggleGroup` attaches toggles for a choice among several (`multiple` for several at once).
 - **Tooltip** — a short label on hover or focus: `Tooltip`, `TooltipTrigger`, `TooltipContent` (`side`, default
   `top`). `TooltipProvider` shares the open delay, so moving between triggers shows the next tooltip at once.
 
