@@ -10,7 +10,7 @@ export function Tabs({ className, ...props }: ComponentProps<typeof BaseTabs.Roo
 export function TabsList({ className, children, ...props }: ComponentProps<typeof BaseTabs.List>) {
   return (
     <BaseTabs.List
-      className={mergeClassName('hx:relative hx:inline-flex hx:w-fit hx:items-center', className)}
+      className={mergeClassName('hx:group/tabs hx:relative hx:inline-flex hx:w-fit hx:items-center', className)}
       {...props}
     >
       {children}
@@ -19,7 +19,10 @@ export function TabsList({ className, children, ...props }: ComponentProps<typeo
           // Inset by the tab padding (12px each side), like the hover bar of the other tabs.
           'hx:absolute hx:bottom-0 hx:left-0 hx:h-[3px] hx:rounded-full hx:bg-accent',
           'hx:w-[calc(var(--active-tab-width)-1.5rem)] hx:translate-x-[calc(var(--active-tab-left)+0.75rem)]',
-          'hx:transition-[translate,width] hx:duration-200 hx:ease-[cubic-bezier(0.1,0.9,0.2,1)] hx:motion-reduce:transition-none',
+          // Slides only while the user acts on the list (pointer over it, or keyboard focus in it): on first render,
+          // a resize or a change from outside, it jumps into place instead of sliding in from the left.
+          'hx:group-hover/tabs:transition-[translate,width] hx:group-focus-within/tabs:transition-[translate,width]',
+          'hx:duration-200 hx:ease-[cubic-bezier(0.1,0.9,0.2,1)] hx:motion-reduce:transition-none',
         ].join(' ')}
       />
     </BaseTabs.List>
@@ -35,7 +38,9 @@ export function TabsTab({ className, children, ...props }: ComponentProps<typeof
           'hx:text-sm hx:whitespace-nowrap hx:text-fg-muted hx:select-none',
           'hx:transition-colors hx:duration-100 hx:hover:text-fg hx:data-active:text-fg hx:focus-ring',
           // Hover bar under inactive tabs, where the active bar would sit.
+          // It fades, so it does not blink out when the tab is clicked and the active bar slides in.
           'hx:after:absolute hx:after:inset-x-3 hx:after:bottom-0 hx:after:h-[3px] hx:after:rounded-full',
+          'hx:after:transition-colors hx:after:duration-100',
           'hx:not-data-active:hover:after:bg-border-strong',
           'hx:data-disabled:pointer-events-none hx:data-disabled:text-fg-disabled',
           'hx:[&_svg]:size-4 hx:[&_svg]:shrink-0',
