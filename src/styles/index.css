@@ -44,11 +44,9 @@
   --hx-border-medium: #c8c6c4;
   /* Controls: secondary buttons, fields. */
   --hx-border-strong: #8a8886;
-  /* Form fields: a gray fill, and a darker bottom edge that carries the 3:1 contrast. */
+  /* Form fields: a soft gray box with no frame, made for white surfaces (cards, dialogs). */
   --hx-field-bg: #f3f2f1;
   --hx-field-bg-hover: #edebe9;
-  --hx-field-border-bottom: #605e5c;
-  --hx-field-border-bottom-hover: #323130;
 
   /* Filled brand controls: primary button. */
   --hx-primary: #0078d4;
@@ -119,8 +117,6 @@
   --hx-border-strong: #8a8886;
   --hx-field-bg: #323130;
   --hx-field-bg-hover: #3b3a39;
-  --hx-field-border-bottom: #a19f9d;
-  --hx-field-border-bottom-hover: #c8c6c4;
 
   /* Hover lightens in the dark theme; white text stays ≥ 5:1 on every state. */
   --hx-primary: #115ea3;
@@ -177,8 +173,6 @@
   --color-border-strong: var(--hx-border-strong);
   --color-field-bg: var(--hx-field-bg);
   --color-field-bg-hover: var(--hx-field-bg-hover);
-  --color-field-border-bottom: var(--hx-field-border-bottom);
-  --color-field-border-bottom-hover: var(--hx-field-border-bottom-hover);
   --color-primary: var(--hx-primary);
   --color-primary-hover: var(--hx-primary-hover);
   --color-primary-pressed: var(--hx-primary-pressed);
@@ -252,29 +246,23 @@
 }
 
 /*
- * Text field frame (input, textarea, select, combobox): a gray fill, a darker bottom edge, and on focus a 2px accent
- * underline that grows from the center, as in Fluent 2. Both lines are background layers, not borders or ::after,
- * so they also work on <input> and <textarea>. On a wrapper (an input with icons, a combobox input group), the
- * states follow the control inside; an open popup counts as focus. States are ordered here, later ones winning:
- * hover < focus < invalid < disabled.
+ * Text field frame (input, textarea, select, combobox): a soft gray box with no frame, and on focus a 2px accent
+ * underline that grows from the center, as in Fluent 2. The underline is a background layer, not a border or ::after,
+ * so it also works on <input> and <textarea>. The transparent border shows in Windows high contrast mode, where
+ * backgrounds are dropped. On a wrapper (an input with icons, a combobox input group), the states follow the control
+ * inside; an open popup counts as focus. States are ordered here, later ones winning: hover < focus < invalid <
+ * disabled.
  */
 @utility field {
-  --hx-field-edge: var(--hx-field-border-bottom);
   --hx-field-line: var(--hx-accent);
   --hx-field-line-size: 0%;
 
   border: 1px solid transparent;
   border-radius: var(--hx-radius-xs);
   background-color: var(--hx-field-bg);
-  background-image:
-    linear-gradient(var(--hx-field-line), var(--hx-field-line)),
-    linear-gradient(var(--hx-field-edge), var(--hx-field-edge));
-  background-size:
-    var(--hx-field-line-size) 2px,
-    100% 1px;
-  background-position:
-    center bottom,
-    center bottom;
+  background-image: linear-gradient(var(--hx-field-line), var(--hx-field-line));
+  background-size: var(--hx-field-line-size) 2px;
+  background-position: center bottom;
   background-repeat: no-repeat;
   background-origin: border-box;
   color: var(--hx-fg);
@@ -289,7 +277,6 @@
   }
 
   &:hover {
-    --hx-field-edge: var(--hx-field-border-bottom-hover);
     background-color: var(--hx-field-bg-hover);
   }
 
@@ -312,12 +299,13 @@
     --hx-field-line-size: 100%;
   }
 
+  /* Disabled: no fill and a light frame, so it stands apart from the gray fields beside it. */
   &:is(:disabled, [data-disabled]),
   &:has(:disabled) {
-    --hx-field-edge: transparent;
     --hx-field-line-size: 0%;
     cursor: not-allowed;
-    background-color: var(--hx-surface-disabled);
+    border-color: var(--hx-border);
+    background-color: transparent;
     color: var(--hx-fg-disabled);
   }
 

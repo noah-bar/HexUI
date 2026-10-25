@@ -122,8 +122,8 @@ body {
   `onFormSubmit` receives the values by name, `validationMode` sets when fields validate. `FormSection` (`title`,
   `description`) groups fields under a heading, with a line between sections. Put the submit button in the
   `PageHeaderActions` of a form that wraps the page, or anywhere with `form="<id>"`.
-- **Input** — a filled text field: gray background, darker bottom edge, and on focus a 2px accent underline that
-  grows from the center. Flag an invalid value with `aria-invalid` (red underline). `startIcon`, `endIcon`: an icon
+- **Input** — a text field: a soft gray box with no frame, and on focus a 2px accent underline that grows from the
+  center. Flag an invalid value with `aria-invalid` (red underline). `startIcon`, `endIcon`: an icon
   before or after the text.
 - **InputNumber** — a number field; arrow keys change the value. `min`, `max`, `step`; `decimalPlaces`: fixed
   digits after the separator; `format` and `locale` (`Intl.NumberFormat` options: currency, percent); `required`:
