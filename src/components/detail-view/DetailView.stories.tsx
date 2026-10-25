@@ -30,7 +30,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// A drawn picture, so the stories work offline.
 const picture =
   'data:image/svg+xml,' +
   encodeURIComponent(
@@ -97,7 +96,6 @@ function TechnicalItems() {
   );
 }
 
-/** One list of fields under the header: the most compact way to show a record. */
 export const Default: Story = {
   render: () => (
     <DetailView className="hx:max-w-4xl">
@@ -118,7 +116,6 @@ export const Default: Story = {
   ),
 };
 
-/** `DetailSection` titles groups of fields and draws a line between them. */
 export const Sections: Story = {
   render: () => (
     <DetailView className="hx:max-w-4xl">
@@ -144,7 +141,6 @@ export const Sections: Story = {
   ),
 };
 
-/** Optional tabs between the header and the fields. With a height, the fields scroll and the header stays. */
 export const Tabs: Story = {
   render: () => (
     <DetailView className="hx:h-96 hx:max-w-4xl">
@@ -175,7 +171,6 @@ export const Tabs: Story = {
   ),
 };
 
-/** Without a picture, the image shows its children, such as an icon; or leave the image out. */
 export const IconInsteadOfImage: Story = {
   render: () => (
     <DetailView className="hx:max-w-xl">
