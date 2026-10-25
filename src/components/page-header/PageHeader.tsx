@@ -3,9 +3,26 @@ import type { ComponentProps } from 'react';
 import { cn } from '../../lib/cn';
 import { Separator } from '../separator/Separator';
 
+export type PageHeaderProps = ComponentProps<'div'> & {
+  /**
+   * Keep the whole header (breadcrumb, title, command bar) at the top of the window while the page scrolls, below the
+   * `AppHeader` if any. To cover the page's padding as well, pull it out with negative margins and pad it back.
+   */
+  sticky?: boolean;
+};
+
 /** The top of a page: a `Breadcrumb`, then `PageHeaderHeading`, then `PageHeaderActions`. */
-export function PageHeader({ className, ...props }: ComponentProps<'div'>) {
-  return <div className={cn('hx:flex hx:flex-col hx:gap-3', className)} {...props} />;
+export function PageHeader({ sticky = false, className, ...props }: PageHeaderProps) {
+  return (
+    <div
+      className={cn(
+        'hx:flex hx:flex-col hx:gap-3',
+        sticky && 'hx:sticky hx:top-(--hx-header-offset,0px) hx:z-10 hx:bg-[var(--hx-page-bg,var(--hx-bg))]',
+        className,
+      )}
+      {...props}
+    />
+  );
 }
 
 /** Groups the title and the description. */

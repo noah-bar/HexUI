@@ -142,7 +142,8 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
 - **Menu** — a list of actions opened by a button: `Menu`, `MenuTrigger`, `MenuContent` (`mobile`, `sheetTitle`), `MenuItem` (`variant`:
   `danger`), `MenuCheckboxItem`, `MenuRadioGroup` and `MenuRadioItem`, `MenuGroup` and `MenuGroupLabel`,
   `MenuSeparator`, `MenuShortcut`, and submenus with `MenuSub`, `MenuSubTrigger`, `MenuSubContent`.
-- **PageHeader** — the top of a page, as in the Azure portal: a `Breadcrumb`, `PageHeaderHeading` with
+- **PageHeader** — the top of a page, as in the Azure portal (`sticky`: the whole header stays at the top while the
+  page scrolls): a `Breadcrumb`, `PageHeaderHeading` with
   `PageHeaderTitle` and `PageHeaderDescription`, then `PageHeaderActions`, a command bar of `ghost` buttons above a light
   line (`sticky`: stays at the top while the page scrolls). `PageHeaderActionSeparator` splits it into groups;
   `PageHeaderActionLabel` hides a button's text on narrow screens.

@@ -242,6 +242,7 @@ export {
   PageHeaderHeading,
   PageHeaderTitle,
   type PageHeaderActionsProps,
+  type PageHeaderProps,
 } from './components/page-header/PageHeader';
 export { Pagination, getVisiblePages, type PaginationProps } from './components/pagination/Pagination';
 export { Panel, type PanelProps } from './components/panel/Panel';

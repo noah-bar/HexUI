@@ -41,7 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Spinner`, a loading indicator in five sizes; `Button` `loading` uses it.
 - `Form` with server errors by field name, and `FormSection` to group fields under a heading.
 - `loading` prop on `Button`.
-- `PageHeader` with a title, a description and a command bar that can stick to the top.
+- `PageHeader` with a title, a description and a command bar; the whole header or only the command bar can stick to the top.
 - `AppHeader`, a dark bar across the top of the page, and the `header` button variant.
 - `Sidebar` with collapsing to icons, a mobile drawer, groups, badges, actions and collapsible sections.
 - `Sidebar` `inset` variant: a gray sidebar with the page as a white card beside it, and `--hx-inset-height` on `SidebarInset`.
