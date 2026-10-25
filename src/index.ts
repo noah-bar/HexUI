@@ -250,6 +250,7 @@ export {
   type SidebarTriggerProps,
 } from './components/sidebar/Sidebar';
 export { Skeleton } from './components/skeleton/Skeleton';
+export { Spinner, spinnerVariants, type SpinnerProps } from './components/spinner/Spinner';
 export { Switch, type SwitchProps } from './components/switch/Switch';
 export {
   Table,
