@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `storageKey` on `SidebarProvider`: the sidebar stays collapsed or expanded after a reload.
 - `iconOnly` on `Button`: only the icon, in a square button, always or (`mobile`) on phones only; the label is still read aloud.
 
+### Changed
+
+- Table headers stand apart from the rows: gray labels (black on the sorted column) above a darker line.
+
 ### Fixed
 
 - `AppHeader` keeps its height in a column layout, such as a page without a sidebar.

@@ -19,7 +19,8 @@ export const tableClassName =
   'hx:group/table hx:w-full hx:caption-bottom hx:border-collapse hx:text-left hx:text-sm hx:text-fg hx:tabular-nums';
 
 export function TableHeader({ className, ...props }: ComponentProps<'thead'>) {
-  return <thead className={cn('hx:text-fg', className)} {...props} />;
+  // Gray labels, unlike the rows' black text.
+  return <thead className={cn('hx:text-fg-muted', className)} {...props} />;
 }
 
 export function TableBody({ className, ...props }: ComponentProps<'tbody'>) {
@@ -49,7 +50,8 @@ export function TableRow({ selected, current, className, ...props }: TableRowPro
         'hx:border-t hx:border-border hx:transition-colors hx:duration-100',
         props.onClick && 'hx:cursor-pointer',
         'hx:[tbody>&]:hover:bg-surface-hover hx:data-selected:bg-primary-subtle hx:[tbody>&]:data-selected:hover:bg-primary-subtle-hover',
-        'hx:[thead>&]:border-t-0',
+        // A darker line under the header than between rows; collapsed borders give the header's line precedence.
+        'hx:[thead>&]:border-t-0 hx:[thead>&]:border-b hx:[thead>&]:border-border-medium',
         // A row can't draw a border on one side in a collapsed table: the first cell draws the bar, inside.
         'hx:data-current:[&>td:first-child]:shadow-[inset_3px_0_0_var(--hx-accent)]',
         className,
@@ -87,6 +89,8 @@ export function TableHead({ align = 'left', sortDirection, onSort, className, ch
       className={cn(
         cellPadding,
         'hx:h-10 hx:font-semibold hx:whitespace-nowrap hx:group-data-[density=compact]/table:h-8',
+        // The sorted column's label in black.
+        'hx:aria-[sort=ascending]:text-fg hx:aria-[sort=descending]:text-fg',
         alignClassNames[align],
         className,
       )}

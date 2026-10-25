@@ -108,7 +108,7 @@ export function DataTableHeader({ className, ...props }: ComponentProps<'thead'>
         // Sticky on the whole thead, not each th, so the header is one surface without seams.
         'hx:sticky hx:top-0 hx:z-10 hx:rounded-t-[inherit] hx:bg-surface',
         // Collapsed table borders don't stick: draw the separator as an inset shadow instead.
-        'hx:shadow-[inset_0_-1px_0_var(--hx-border)]',
+        'hx:shadow-[inset_0_-1px_0_var(--hx-border-medium)]',
         className,
       )}
       {...props}
