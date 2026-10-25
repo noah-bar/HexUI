@@ -124,6 +124,7 @@ export {
   FieldRow,
   type FieldRowProps,
 } from './components/field/Field';
+export { Form, FormSection, type FormProps, type FormSectionProps } from './components/form/Form';
 export { Input, type InputProps } from './components/input/Input';
 export { InputNumber, type InputNumberProps } from './components/input-number/InputNumber';
 export {
