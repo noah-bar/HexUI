@@ -11,7 +11,7 @@ import {
 } from '../breadcrumb/Breadcrumb';
 import { Button } from '../button/Button';
 import { Checkbox } from '../checkbox/Checkbox';
-import { Field, FieldDescription, FieldError, FieldItem, FieldLabel, FieldRow } from '../field/Field';
+import { Field, FieldError, FieldItem, FieldLabel, FieldRow } from '../field/Field';
 import { Input } from '../input/Input';
 import { InputNumber } from '../input-number/InputNumber';
 import {
@@ -22,13 +22,13 @@ import {
   PageHeaderTitle,
 } from '../page-header/PageHeader';
 import { Textarea } from '../textarea/Textarea';
-import { Form, FormSection } from './Form';
+import { FormSection } from './FormSection';
 
 const meta = {
-  title: 'Components/Form',
-  component: Form,
+  title: 'Components/FormSection',
+  component: FormSection,
   tags: ['autodocs'],
-} satisfies Meta<typeof Form>;
+} satisfies Meta<typeof FormSection>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -48,7 +48,6 @@ function ClientFields() {
           <Field name="email">
             <FieldLabel>Billing email</FieldLabel>
             <Input type="email" required defaultValue="factures@romandie-sante.ch" />
-            <FieldDescription>Type “taken@example.com” to see an error returned by the server.</FieldDescription>
             <FieldError />
           </Field>
           <Field name="vat">
@@ -95,32 +94,27 @@ function ClientFields() {
 }
 
 /**
- * An edit page: the form wraps the whole page, so the Save button of the sticky command bar submits it.
- * Errors from the server go to `errors`, keyed by the `name` of each `Field`.
+ * An edit page: a plain `<form>` wraps the whole page, so the Save button of the sticky header submits it. With a form
+ * library such as react-hook-form, its `handleSubmit` goes in `onSubmit` and its errors in each `Field`'s `invalid`.
  */
 export const EditPage: Story = {
+  args: { children: null },
   render: function Render() {
-    const [errors, setErrors] = useState<Record<string, string>>({});
     const [saving, setSaving] = useState(false);
     const [savedAt, setSavedAt] = useState<string>();
 
     return (
-      <Form
-        className="hx:max-w-3xl"
-        errors={errors}
-        onFormSubmit={async (values) => {
+      <form
+        className="hx:flex hx:max-w-3xl hx:flex-col hx:gap-6"
+        onSubmit={async (event) => {
+          event.preventDefault();
           setSaving(true);
           await wait(1000);
           setSaving(false);
-          if (values.email === 'taken@example.com') {
-            setErrors({ email: 'Another client already uses this email.' });
-            return;
-          }
-          setErrors({});
           setSavedAt(new Date().toLocaleTimeString());
         }}
       >
-        <PageHeader>
+        <PageHeader sticky>
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -133,12 +127,12 @@ export const EditPage: Story = {
             </BreadcrumbList>
           </Breadcrumb>
           <PageHeaderTitle>Edit client</PageHeaderTitle>
-          <PageHeaderActions sticky>
+          <PageHeaderActions>
             <Button type="submit" variant="ghost" startIcon={<Save />} loading={saving}>
               <PageHeaderActionLabel>Save</PageHeaderActionLabel>
             </Button>
             <PageHeaderActionSeparator />
-            <Button type="reset" variant="ghost" startIcon={<Undo2 />} onClick={() => setErrors({})}>
+            <Button type="reset" variant="ghost" startIcon={<Undo2 />}>
               <PageHeaderActionLabel>Discard changes</PageHeaderActionLabel>
             </Button>
             {savedAt && (
@@ -149,36 +143,7 @@ export const EditPage: Story = {
           </PageHeaderActions>
         </PageHeader>
         <ClientFields />
-      </Form>
-    );
-  },
-};
-
-/** The submit button outside the form, linked by `form="<id>"`: for a form that covers only part of the page. */
-export const SubmitOutside: Story = {
-  render: function Render() {
-    const [values, setValues] = useState<string>();
-    return (
-      <div className="hx:flex hx:max-w-3xl hx:flex-col hx:gap-6">
-        <PageHeader>
-          <PageHeaderTitle>New client</PageHeaderTitle>
-          <PageHeaderActions>
-            <Button type="submit" form="new-client" variant="ghost" startIcon={<Save />}>
-              <PageHeaderActionLabel>Create</PageHeaderActionLabel>
-            </Button>
-          </PageHeaderActions>
-        </PageHeader>
-        <Form id="new-client" onFormSubmit={(formValues) => setValues(JSON.stringify(formValues))}>
-          <FormSection title="Company">
-            <Field name="name">
-              <FieldLabel>Company name</FieldLabel>
-              <Input required />
-              <FieldError />
-            </Field>
-          </FormSection>
-        </Form>
-        {values && <pre className="hx:m-0 hx:text-xs hx:text-fg-muted">{values}</pre>}
-      </div>
+      </form>
     );
   },
 };

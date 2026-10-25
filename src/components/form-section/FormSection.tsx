@@ -1,20 +1,5 @@
-import { Form as BaseForm } from '@base-ui/react/form';
 import { useId, type ComponentProps, type ReactNode } from 'react';
-import { cn, mergeClassName } from '../../lib/cn';
-
-export type FormProps<Values extends Record<string, unknown> = Record<string, unknown>> = BaseForm.Props<Values>;
-
-/**
- * A `<form>` that spaces its sections. `errors` shows server errors under the `Field` with the matching `name`;
- * `onFormSubmit` receives the values by name. The submit button can sit in a `PageHeaderActions` inside the form,
- * or anywhere on the page with `form="<id>"`.
- */
-export function Form<Values extends Record<string, unknown> = Record<string, unknown>>({
-  className,
-  ...props
-}: FormProps<Values>) {
-  return <BaseForm<Values> className={mergeClassName('hx:flex hx:flex-col hx:gap-6', className)} {...props} />;
-}
+import { cn } from '../../lib/cn';
 
 export type FormSectionProps = Omit<ComponentProps<'section'>, 'title'> & {
   /** Heading of the group of fields; it also names the section for screen readers. */
@@ -22,7 +7,10 @@ export type FormSectionProps = Omit<ComponentProps<'section'>, 'title'> & {
   description?: ReactNode;
 };
 
-/** A group of fields under a heading. A line separates it from the section before. */
+/**
+ * A group of fields under a heading. A line separates it from the section before. Put the sections in a plain `<form>`
+ * (or the one of your form library, such as react-hook-form) spaced with `flex flex-col gap-6`.
+ */
 export function FormSection({ title, description, className, children, ...props }: FormSectionProps) {
   const titleId = useId();
   return (

@@ -39,7 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `ButtonGroup`, buttons attached in a row or a column, for split buttons and related actions.
 - `Label` with a `required` marker.
 - `Spinner`, a loading indicator in five sizes; `Button` `loading` uses it.
-- `Form` with server errors by field name, and `FormSection` to group fields under a heading.
+- `FormSection` to group fields under a heading.
 - `loading` prop on `Button`.
 - `PageHeader` with a title, a description and a command bar; the whole header or only the command bar can stick to the top.
 - `AppHeader`, a dark bar across the top of the page, and the `header` button variant.

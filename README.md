@@ -123,9 +123,8 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
 - **Field** — label, description and error around a control: `Field` (`invalid`, `disabled`, `validationMode`),
   `FieldLabel`, `FieldDescription`, `FieldError` (`match`), `FieldItem`; `FieldRow` lays fields out in columns that
   stack on narrow rows (`columns`, `stackBelow`).
-- **Form** — a `<form>` around `Field`s: `errors` shows server errors under the field with the matching `name`,
-  `onFormSubmit` receives the values by name, `validationMode` sets when fields validate. `FormSection` (`title`,
-  `description`) groups fields under a heading, with a line between sections. Put the submit button in the
+- **FormSection** — groups fields under a heading (`title`, `description`), with a line between sections. Put the
+  sections in a plain `<form>`, or the one of your form library such as react-hook-form; a submit button can sit in the
   `PageHeaderActions` of a form that wraps the page, or anywhere with `form="<id>"`.
 - **Input** — a text field: a soft gray box with no frame, and on focus a 2px accent underline that grows from the
   center. Flag an invalid value with `aria-invalid` (red underline). `startIcon`, `endIcon`: an icon
