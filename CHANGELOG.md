@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.1] - 2026-10-25
+
 ### Added
 
 - Design tokens for the light and dark themes: warm neutral grays, a blue accent, depth shadows.
@@ -56,3 +58,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Status text tokens (`success`, `warning`, `info`) and the dialog `overlay` token.
 - `useDebouncedValue` hook.
 - `cn` to merge class names.
+
+[Unreleased]: https://github.com/noah-bar/HexUI/compare/v0.0.1...HEAD
+[0.0.1]: https://github.com/noah-bar/HexUI/releases/tag/v0.0.1
