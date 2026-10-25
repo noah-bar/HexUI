@@ -69,6 +69,10 @@ body {
   element, such as a link.
 - **Input** — a filled text field: gray background, darker bottom edge, 2px accent underline on focus. Flag an
   invalid value with `aria-invalid` (red underline). `startIcon`, `endIcon`: an icon before or after the text.
+- **InputNumber** — a number field; arrow keys change the value. `min`, `max`, `step`; `decimalPlaces`: fixed
+  digits after the separator; `format` and `locale` (`Intl.NumberFormat` options: currency, percent); `required`:
+  restores `0` when cleared; `showSteppers`: − and + buttons on each side; `align`: `left`, `center`, `right`.
+- **Textarea** — a multiline text field with the same look as `Input`; resizable vertically.
 
 ## Contributing
 
