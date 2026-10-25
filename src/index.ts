@@ -58,6 +58,27 @@ export {
   type ComboboxStatusProps,
 } from './components/combobox/Combobox';
 export {
+  DataTable,
+  DataTableBody,
+  DataTableCaption,
+  DataTableCell,
+  DataTableEmpty,
+  DataTableFooter,
+  DataTableHead,
+  DataTableHeader,
+  DataTableRow,
+  DataTableSortableHead,
+  nextOrdering,
+  type DataTableBodyProps,
+  type DataTableCellProps,
+  type DataTableEmptyProps,
+  type DataTableHeadProps,
+  type DataTablePage,
+  type DataTableProps,
+  type DataTableRowProps,
+  type DataTableSortableHeadProps,
+} from './components/data-table/DataTable';
+export {
   Dialog,
   DialogClose,
   DialogContent,
@@ -113,6 +134,7 @@ export {
   type MenuContentProps,
   type MenuItemProps,
 } from './components/menu/Menu';
+export { Pagination, getVisiblePages, type PaginationProps } from './components/pagination/Pagination';
 export { Panel, type PanelProps } from './components/panel/Panel';
 export {
   Popover,
@@ -135,6 +157,7 @@ export {
   SelectValue,
   type SelectContentProps,
 } from './components/select/Select';
+export { Skeleton } from './components/skeleton/Skeleton';
 export { Switch, type SwitchProps } from './components/switch/Switch';
 export {
   Table,
