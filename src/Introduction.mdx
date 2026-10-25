@@ -1,0 +1,20 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction" />
+
+# HexUI
+
+Hex-Tech's React component library for business applications, built on **Base UI** (behavior & accessibility)
+and **Tailwind CSS v4** (styling), with a sober look in the spirit of Microsoft Fluent and the Azure portal.
+
+## Principles
+
+- **Dense and calm**: 32px controls, 2px corners, warm neutral grays, one brand blue. Color is reserved for the
+  main action and for states.
+- **Depth through shadows**, not borders or effects: `shadow-card` for cards, `shadow-popup` for menus and popovers,
+  `shadow-panel` for dialogs and side panels.
+- **Readable in both themes**: text and filled buttons stay at WCAG AA contrast or better, in light and dark.
+- **Accessible behavior** from Base UI: keyboard navigation, focus management, ARIA. Keyboard focus shows a 2px
+  outline; mouse clicks do not.
+- **Plays well with your app**: every class is prefixed with `hx:` and every variable with `--hx-*`, and no global
+  reset is shipped.
