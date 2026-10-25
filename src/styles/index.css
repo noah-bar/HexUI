@@ -71,6 +71,14 @@
   /* Danger as foreground on surfaces: outline-danger buttons, error text (≥ 5:1). */
   --hx-danger-text: #c50f1f;
 
+  /* Status colors as foreground on surfaces: toast icons, messages (≥ 4.5:1). */
+  --hx-success-text: #0e700e;
+  --hx-warning-text: #bc4b09;
+  --hx-info-text: #0f6cbd;
+
+  /* Veil behind dialogs. */
+  --hx-overlay: rgb(0 0 0 / 0.4);
+
   --hx-ring: #0f6cbd;
 
   --hx-shadow-card: 0 1.6px 3.6px 0 rgb(0 0 0 / 0.13), 0 0.3px 0.9px 0 rgb(0 0 0 / 0.11);
@@ -123,6 +131,12 @@
   --hx-danger-subtle-pressed: #442726;
   --hx-danger-text: #e37d80;
 
+  --hx-success-text: #54b054;
+  --hx-warning-text: #faa06b;
+  --hx-info-text: #479ef5;
+
+  --hx-overlay: rgb(0 0 0 / 0.6);
+
   --hx-ring: #479ef5;
 
   --hx-shadow-card: 0 1.6px 3.6px 0 rgb(0 0 0 / 0.4), 0 0.3px 0.9px 0 rgb(0 0 0 / 0.3);
@@ -168,6 +182,10 @@
   --color-danger-subtle: var(--hx-danger-subtle);
   --color-danger-subtle-pressed: var(--hx-danger-subtle-pressed);
   --color-danger-text: var(--hx-danger-text);
+  --color-success-text: var(--hx-success-text);
+  --color-warning-text: var(--hx-warning-text);
+  --color-info-text: var(--hx-info-text);
+  --color-overlay: var(--hx-overlay);
   --color-ring: var(--hx-ring);
 
   --shadow-card: var(--hx-shadow-card);
@@ -293,6 +311,119 @@
     &:focus-within,
     &[data-popup-open] {
       transition: none;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Toasts — stacked at the bottom-right, fanned out on hover, swipe to dismiss.
+ * Driven by the CSS variables Base UI sets on each toast (--toast-index, --toast-height…).
+ * ------------------------------------------------------------------------- */
+@layer components {
+  .hx-toast-viewport {
+    position: fixed;
+    z-index: 60;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    margin-inline: auto;
+  }
+
+  @media (width >= 40rem) {
+    .hx-toast-viewport {
+      right: 2rem;
+      bottom: 2rem;
+      left: auto;
+      width: 22.5rem;
+    }
+  }
+
+  .hx-toast {
+    --gap: 0.75rem;
+    --peek: 0.75rem;
+    --scale: calc(max(0, 1 - (var(--toast-index) * 0.1)));
+    --shrink: calc(1 - var(--scale));
+    --height: var(--toast-frontmost-height, var(--toast-height));
+    --offset-y: calc(
+      var(--toast-offset-y) * -1 + (var(--toast-index) * var(--gap) * -1) + var(--toast-swipe-movement-y)
+    );
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: calc(1000 - var(--toast-index));
+    width: 100%;
+    height: var(--height);
+    transform-origin: bottom center;
+    transform: translateX(var(--toast-swipe-movement-x))
+      translateY(
+        calc(var(--toast-swipe-movement-y) - (var(--toast-index) * var(--peek)) - (var(--shrink) * var(--height)))
+      )
+      scale(var(--scale));
+    user-select: none;
+    transition:
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.5s,
+      height 0.15s;
+  }
+
+  /* Bridges the gap between expanded toasts so hovering between them keeps the stack open. */
+  .hx-toast::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: calc(var(--gap) + 1px);
+  }
+
+  .hx-toast[data-expanded] {
+    height: var(--toast-height);
+    transform: translateX(var(--toast-swipe-movement-x)) translateY(var(--offset-y));
+  }
+
+  .hx-toast[data-starting-style],
+  .hx-toast[data-ending-style]:not([data-limited]):not([data-swipe-direction]) {
+    transform: translateY(150%);
+  }
+
+  .hx-toast[data-ending-style],
+  .hx-toast[data-limited] {
+    opacity: 0;
+  }
+
+  .hx-toast[data-ending-style][data-swipe-direction='down'] {
+    transform: translateY(calc(var(--toast-swipe-movement-y) + 150%));
+  }
+
+  .hx-toast[data-ending-style][data-swipe-direction='up'] {
+    transform: translateY(calc(var(--toast-swipe-movement-y) - 150%));
+  }
+
+  .hx-toast[data-ending-style][data-swipe-direction='left'] {
+    transform: translateX(calc(var(--toast-swipe-movement-x) - 150%)) translateY(var(--offset-y));
+  }
+
+  .hx-toast[data-ending-style][data-swipe-direction='right'] {
+    transform: translateX(calc(var(--toast-swipe-movement-x) + 150%)) translateY(var(--offset-y));
+  }
+
+  /* Toasts behind the front one only show their edge until the stack is expanded. */
+  .hx-toast-content {
+    transition: opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hx-toast-content[data-behind] {
+    opacity: 0;
+  }
+
+  .hx-toast-content[data-expanded] {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hx-toast {
+      transition: opacity 0.2s;
     }
   }
 }
