@@ -67,6 +67,8 @@ body {
   (24px), `md` (32px), `lg` (40px), `icon`; `ring`: a second border 2px around the button, to set an action apart;
   `startIcon`, `endIcon`: an icon before or after the label. `buttonVariants` gives the same classes to another
   element, such as a link.
+- **Input** — a filled text field: gray background, darker bottom edge, 2px accent underline on focus. Flag an
+  invalid value with `aria-invalid` (red underline). `startIcon`, `endIcon`: an icon before or after the text.
 
 ## Contributing
 
