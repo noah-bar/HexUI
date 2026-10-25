@@ -310,6 +310,9 @@ export function SidebarInset({ className, ...props }: ComponentProps<'main'>) {
     <main
       className={cn(
         'hx:relative hx:flex hx:min-h-(--hx-inset-height) hx:min-w-0 hx:flex-1 hx:flex-col',
+        // Below 768px the sidebar is a drawer, out of the flow: a zero basis would let the page fit beside an AppHeader,
+        // on its row, with no width. A full basis sends it to the next row.
+        'hx:max-md:basis-full',
         'hx:[--hx-inset-height:calc(100svh-var(--hx-header-offset,0px))]',
         // Inset variant: a white card. Full width on mobile; on larger screens, 0.5rem from the edges of the window
         // and flush with the gray sidebar (or 0.5rem from the edge when the sidebar slides out).
