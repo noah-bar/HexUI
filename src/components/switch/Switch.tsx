@@ -4,7 +4,7 @@ import { mergeClassName } from '../../lib/cn';
 
 export type SwitchProps = ComponentProps<typeof BaseSwitch.Root>;
 
-/** Fluent: an outlined track with a gray thumb when off, a blue track with a white thumb when on. */
+/** An outlined track with a gray thumb when off, a blue track with a white thumb when on. */
 export function Switch({ className, ...props }: SwitchProps) {
   return (
     <BaseSwitch.Root

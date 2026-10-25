@@ -6,7 +6,7 @@ export function Tabs({ className, ...props }: ComponentProps<typeof BaseTabs.Roo
   return <BaseTabs.Root className={mergeClassName('hx:flex hx:flex-col hx:gap-3', className)} {...props} />;
 }
 
-/** Fluent: plain tabs on the page, the active one marked by a blue bar that slides underneath. */
+/** Plain tabs on the page, the active one marked by a blue bar that slides underneath. */
 export function TabsList({ className, children, ...props }: ComponentProps<typeof BaseTabs.List>) {
   return (
     <BaseTabs.List

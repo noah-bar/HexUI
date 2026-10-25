@@ -271,7 +271,7 @@ export const Default: Story = {
 };
 
 /**
- * Under an `AppHeader` (the layout of the Azure portal): the header is the first child of `SidebarProvider`
+ * Under an `AppHeader`: the header is the first child of `SidebarProvider`
  * and holds the `SidebarTrigger`. The sidebar and the page header stick below the dark bar while the page scrolls.
  */
 export const WithAppHeader: Story = {

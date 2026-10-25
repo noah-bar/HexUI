@@ -1,7 +1,7 @@
 # HexUI
 
 **Hex-Tech's React component library for business applications** — built on [Base UI](https://base-ui.com) and
-Tailwind CSS v4, shipped as precompiled CSS, with a sober look in the spirit of Microsoft Fluent and the Azure portal.
+Tailwind CSS v4, shipped as precompiled CSS, with a sober, professional look.
 
 - **Accessible behavior** from Base UI: keyboard navigation, focus management, ARIA.
 - **No Tailwind required**: the stylesheet is precompiled. If you do use Tailwind, nothing collides: every class is
@@ -56,7 +56,7 @@ for the dark theme.
 `toggleTheme`, saves the choice in the browser and follows the system while the theme is `system`. To avoid a flash
 of the light theme on load, run `themeScript` in the `<head>` before the page renders.
 
-The components inherit the font of the page. The library ships the Fluent font stack as `--hx-font-sans` (Segoe UI
+The components inherit the font of the page. The library ships a system font stack as `--hx-font-sans` (Segoe UI
 on Windows, the system font elsewhere); apply it to your page if you want it:
 
 ```css
@@ -72,11 +72,11 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
 `sheetTitle` for a heading at its top. Above 768px, and without the prop, they float next to their trigger.
 
 - **Accordion** — sections that open one at a time (`multiple` for several): `Accordion` (`defaultValue`, `value`),
-  `AccordionItem` (`value`), `AccordionTrigger`, `AccordionContent`. The chevron sits before the heading, as in Fluent.
+  `AccordionItem` (`value`), `AccordionTrigger`, `AccordionContent`. The chevron sits before the heading.
 - **AlertDialog** — a confirmation before an action, such as a deletion: same parts as `Dialog` (`AlertDialogContent`,
   `AlertDialogTitle`, `AlertDialogDescription`, `AlertDialogFooter`, `AlertDialogClose`…), but a click on the veil
   does not close it.
-- **AppHeader** — the dark bar across the top of an application, as in the Azure portal: `AppHeader`,
+- **AppHeader** — the dark bar across the top of an application: `AppHeader`,
   `AppHeaderBrand` (the product name, a link: `href` or `render`), `AppHeaderActions` (buttons on the right). Use
   `Button variant="header"` inside. With a sidebar, make it the first child of `SidebarProvider` so a
   `SidebarTrigger variant="header"` can go in it; the sidebar and page headers then stick below the bar. Colors and
@@ -134,7 +134,7 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
   restores `0` when cleared; `showSteppers`: − and + buttons on each side; `align`: `left`, `center`, `right`.
 - **Label** — a label outside a `Field`: wrapping a checkbox or a switch, or linked with `htmlFor`; `required` adds a
   red asterisk. Inside a `Field`, use `FieldLabel`.
-- **MessageBar** — a message across a page or a form, as in the Azure portal: `intent`: `info`, `success`, `warning`,
+- **MessageBar** — a message across a page or a form: `intent`: `info`, `success`, `warning`,
   `danger`; `MessageBarBody` with `MessageBarTitle`, `MessageBarActions`; `onDismiss` adds a close button.
 - **Menubar** — a row of menus, as in a desktop app: `Menubar` (`variant`: `default`, a white strip; `ghost`, for a
   bar inside a header), `MenubarMenu`, `MenubarTrigger`, `MenubarContent`, and the same items as `Menu`. Arrow keys
@@ -142,7 +142,7 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
 - **Menu** — a list of actions opened by a button: `Menu`, `MenuTrigger`, `MenuContent` (`mobile`, `sheetTitle`), `MenuItem` (`variant`:
   `danger`), `MenuCheckboxItem`, `MenuRadioGroup` and `MenuRadioItem`, `MenuGroup` and `MenuGroupLabel`,
   `MenuSeparator`, `MenuShortcut`, and submenus with `MenuSub`, `MenuSubTrigger`, `MenuSubContent`.
-- **PageHeader** — the top of a page, as in the Azure portal (`sticky`: the whole header stays at the top while the
+- **PageHeader** — the top of a page (`sticky`: the whole header stays at the top while the
   page scrolls): a `Breadcrumb`, `PageHeaderHeading` with
   `PageHeaderTitle` and `PageHeaderDescription`, then `PageHeaderActions`, a command bar of `ghost` buttons above a light
   line (`sticky`: stays at the top while the page scrolls). `PageHeaderActionSeparator` splits it into groups;

@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Design tokens for the light and dark themes: Fluent neutral grays, Azure blue, depth shadows.
+- Design tokens for the light and dark themes: warm neutral grays, a blue accent, depth shadows.
 - `Button` with `primary`, `secondary`, `outline`, `ghost`, `danger` and `outline-danger` variants and `sm`, `md`, `lg` and `icon` sizes, an optional `ring` around the button, and `startIcon` and `endIcon` props.
 - `InputNumber`, a number field with bounds, fixed decimals, number formatting, optional steppers and alignment.
 - `Panel`, a surface with a card shadow.

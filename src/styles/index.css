@@ -20,7 +20,7 @@
 @custom-variant error (&:is([aria-invalid='true'], [data-invalid]));
 
 /* ---------------------------------------------------------------------------
- * Semantic tokens — light. Fluent palette: warm grays, Azure blue.
+ * Semantic tokens — light: warm grays, a blue accent.
  * ------------------------------------------------------------------------- */
 :root,
 [data-theme='light'] {
@@ -84,7 +84,7 @@
   --hx-info-text: #0f6cbd;
 
   /* Veil behind dialogs. */
-  /* Badges (Fluent "tint"): a pale fill, a soft edge and strong text, set per status so every color weighs the same
+  /* Badges (tinted): a pale fill, a soft edge and strong text, set per status so every color weighs the same
      and does not depend on what is under it. Text ≥ 5.5:1 on its fill. */
   --hx-badge-neutral-bg: #f3f2f1;
   --hx-badge-neutral-border: #d2d0ce;
@@ -309,7 +309,7 @@
 
 /*
  * Text field frame (input, textarea, select, combobox): a soft gray box with no frame, and on focus a 2px accent
- * underline that grows from the center, as in Fluent 2. The underline is a background layer, not a border or ::after,
+ * underline that grows from the center. The underline is a background layer, not a border or ::after,
  * so it also works on <input> and <textarea>. The transparent border shows in Windows high contrast mode, where
  * backgrounds are dropped. On a wrapper (an input with icons, a combobox input group), the states follow the control
  * inside; an open popup counts as focus. States are ordered here, later ones winning: hover < focus < invalid <
@@ -329,7 +329,7 @@
   background-origin: border-box;
   color: var(--hx-fg);
   outline: none;
-  /* Leaving focus: the line shrinks back fast (Fluent: ultra fast, accelerate). */
+  /* Leaving focus: the line shrinks back fast (ultra fast, accelerate). */
   transition:
     background-color 100ms,
     background-size 50ms cubic-bezier(0.9, 0.1, 1, 0.2);
@@ -346,7 +346,7 @@
   &:focus-within,
   &[data-popup-open] {
     --hx-field-line-size: 100%;
-    /* Entering focus: the line grows from the center (Fluent: normal, decelerate). */
+    /* Entering focus: the line grows from the center (normal, decelerate). */
     transition:
       background-color 100ms,
       background-size 200ms cubic-bezier(0.1, 0.9, 0.2, 1);
@@ -387,7 +387,7 @@
   }
 }
 
-/* Loading placeholder (Fluent shimmer): a lighter band sweeps across a gray block. */
+/* Loading placeholder (shimmer): a lighter band sweeps across a gray block. */
 @utility skeleton {
   background-color: var(--hx-surface-pressed);
   background-image: linear-gradient(90deg, transparent 0%, var(--hx-surface-hover) 50%, transparent 100%);

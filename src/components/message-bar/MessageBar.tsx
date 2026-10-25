@@ -7,7 +7,7 @@ export const messageBarVariants = cva(
   'hx:flex hx:min-h-10 hx:w-full hx:items-start hx:gap-2 hx:rounded-xs hx:border hx:px-3 hx:py-2.5 hx:text-sm hx:text-fg',
   {
     variants: {
-      // Fluent: a pale fill and a soft edge in the status color; the icon in the strong color, the text stays dark.
+      // A pale fill and a soft edge in the status color; the icon in the strong color, the text stays dark.
       intent: {
         info: 'hx:border-info-text/30 hx:bg-info-text/8',
         success: 'hx:border-success-text/30 hx:bg-success-text/8',
@@ -36,7 +36,7 @@ export type MessageBarProps = ComponentProps<'div'> &
   };
 
 /**
- * A message across a page, a form or a panel, as in the Azure portal: information, success, warning or error.
+ * A message across a page, a form or a panel: information, success, warning or error.
  * For a message that appears after an action, add `role="status"` (or `role="alert"` for an error) so screen
  * readers announce it.
  */

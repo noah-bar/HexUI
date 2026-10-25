@@ -25,7 +25,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** Blue by default, as in Fluent. Alone on screen, give it a `label` so screen readers announce the loading. */
+/** Blue by default. Alone on screen, give it a `label` so screen readers announce the loading. */
 export const Default: Story = {};
 
 export const SizesAndTones: Story = {

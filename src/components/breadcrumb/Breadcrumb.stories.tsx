@@ -67,7 +67,7 @@ export const WithIconAndEllipsis: Story = {
   ),
 };
 
-/** At the top of a page, above the title, as in the Azure portal. */
+/** At the top of a page, above the title. */
 export const PageHeader: Story = {
   render: () => (
     <Panel className="hx:max-w-2xl hx:p-6">

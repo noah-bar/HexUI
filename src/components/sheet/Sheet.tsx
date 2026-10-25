@@ -18,7 +18,7 @@ export function SheetClose(props: ComponentProps<typeof BaseDialog.Close>) {
 
 export const sheetContentVariants = cva(
   [
-    // Fluent drawer: a white panel with square edges and the deepest shadow; a border draws the edge in dark.
+    // A white panel with square edges and the deepest shadow; a border draws the edge in dark.
     'hx:fixed hx:z-50 hx:flex hx:max-h-dvh hx:max-w-dvw hx:flex-col hx:overflow-hidden hx:text-fg hx:outline-none',
     'hx:bg-surface hx:shadow-panel hx:dark:border-border',
     'hx:transition-transform hx:duration-300 hx:ease-[cubic-bezier(0.1,0.9,0.2,1)] hx:motion-reduce:transition-none',

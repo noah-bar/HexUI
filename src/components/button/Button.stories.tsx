@@ -169,7 +169,7 @@ export const Loading: Story = {
   },
 };
 
-/** A command bar above a list, as in the Azure portal: ghost buttons with icons, a divider, a menu button. */
+/** A command bar above a list: ghost buttons with icons, a divider, a menu button. */
 export const CommandBar: Story = {
   render: (args) => (
     <div className="hx:flex hx:items-center hx:gap-1 hx:border-b hx:border-border hx:pb-2">

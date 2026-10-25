@@ -33,7 +33,7 @@ export const sheetPositionerClassName =
   'hx:z-50 hx:outline-none hx:fixed! hx:inset-x-0! hx:top-auto! hx:bottom-0! hx:w-full! hx:transform-none!';
 
 export const sheetPopupClassName = [
-  // Fluent drawer: a white panel with the deepest shadow; a border draws the edge in dark.
+  // A white panel with the deepest shadow; a border draws the edge in dark.
   'hx:flex hx:max-h-[85dvh] hx:w-full hx:flex-col hx:overflow-hidden hx:rounded-t-xs hx:bg-surface hx:text-sm hx:text-fg',
   'hx:shadow-panel hx:outline-none hx:dark:border-t hx:dark:border-border hx:pb-[env(safe-area-inset-bottom)]',
   'hx:transition-transform hx:duration-300 hx:ease-[cubic-bezier(0.1,0.9,0.2,1)] hx:motion-reduce:transition-none',

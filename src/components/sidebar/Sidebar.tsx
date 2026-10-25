@@ -401,7 +401,7 @@ export function SidebarGroupLabel({ className, render, ...props }: useRender.Com
       'data-sidebar': 'group-label',
       ...props,
       className: cn(
-        // Azure-style section heading: small uppercase text above the items.
+        // Section heading: small uppercase text above the items.
         'hx:flex hx:h-7 hx:shrink-0 hx:items-center hx:rounded-xs hx:px-3 hx:text-xs hx:font-semibold hx:tracking-wide hx:text-fg-muted hx:uppercase hx:outline-none',
         'hx:transition-[margin,opacity] hx:duration-200 hx:ease-linear hx:focus-ring',
         'hx:[&>svg]:size-4 hx:[&>svg]:shrink-0',

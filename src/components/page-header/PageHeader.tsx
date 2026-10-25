@@ -51,7 +51,7 @@ export type PageHeaderActionsProps = ComponentProps<'div'> & {
 };
 
 /**
- * The command bar of the page, as in the Azure portal: a row of `ghost` buttons above a light line.
+ * The command bar of the page: a row of `ghost` buttons above a light line.
  * It can also be used on its own, outside a `PageHeader`.
  */
 export function PageHeaderActions({ sticky = false, className, ...props }: PageHeaderActionsProps) {

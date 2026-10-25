@@ -10,7 +10,7 @@ export function RadioGroup({ className, ...props }: ComponentProps<typeof BaseRa
 
 export type RadioProps = ComponentProps<typeof BaseRadio.Root>;
 
-/** Fluent: once checked, the ring and a dot inside turn blue; the inside stays white. */
+/** Once checked, the ring and a dot inside turn blue; the inside stays white. */
 export function Radio({ className, ...props }: RadioProps) {
   return (
     <BaseRadio.Root

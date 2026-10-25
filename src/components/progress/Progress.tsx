@@ -5,7 +5,7 @@ import { cn, mergeClassName } from '../../lib/cn';
 
 const trackVariants = cva('hx:col-span-2 hx:overflow-hidden hx:rounded-full hx:bg-surface-pressed', {
   variants: {
-    // Fluent: a 2px bar by default, 4px when it is the main content.
+    // A 2px bar by default, 4px when it is the main content.
     size: {
       md: 'hx:h-0.5',
       lg: 'hx:h-1',

@@ -12,7 +12,7 @@ export function AccordionItem({ className, ...props }: ComponentProps<typeof Bas
   return <BaseAccordion.Item className={mergeClassName('hx:border-b hx:border-border', className)} {...props} />;
 }
 
-/** The heading of a section. Fluent: the chevron sits before the text and points down once open. */
+/** The heading of a section: the chevron sits before the text and points down once open. */
 export function AccordionTrigger({ className, children, ...props }: ComponentProps<typeof BaseAccordion.Trigger>) {
   return (
     <BaseAccordion.Header className="hx:m-0">

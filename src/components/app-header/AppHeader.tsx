@@ -3,7 +3,7 @@ import type { ComponentProps } from 'react';
 import { cn } from '../../lib/cn';
 
 /**
- * The dark bar across the top of an application, as in the Azure portal. With a sidebar, make it the first
+ * The dark bar across the top of an application. With a sidebar, make it the first
  * child of `SidebarProvider` (so a `SidebarTrigger` can go in it): the sidebar and page headers then stick
  * below it. Use `Button variant="header"` for its buttons.
  */

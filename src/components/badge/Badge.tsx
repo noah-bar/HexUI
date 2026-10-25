@@ -10,7 +10,7 @@ export const badgeVariants = cva(
   ],
   {
     variants: {
-      // Fluent "tint" badges: a pale fill, a soft edge and strong text, all from the --hx-badge-* tokens.
+      // Tinted badges: a pale fill, a soft edge and strong text, all from the --hx-badge-* tokens.
       variant: {
         neutral: 'hx:border-(--hx-badge-neutral-border) hx:bg-(--hx-badge-neutral-bg) hx:text-(--hx-badge-neutral-fg)',
         brand: 'hx:border-(--hx-badge-brand-border) hx:bg-(--hx-badge-brand-bg) hx:text-(--hx-badge-brand-fg)',

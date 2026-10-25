@@ -15,7 +15,7 @@ export const spinnerVariants = cva(
         xl: 'hx:size-10',
       },
       tone: {
-        // Fluent: a blue arc on a pale ring.
+        // A blue arc on a pale ring.
         accent: 'hx:text-accent',
         muted: 'hx:text-fg-muted',
         // The text color, for a spinner inside a button or a badge.

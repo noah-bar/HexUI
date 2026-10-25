@@ -59,7 +59,7 @@ export function Slider({
           vertical ? 'hx:min-h-0 hx:w-5 hx:flex-1 hx:flex-col hx:justify-center' : 'hx:h-5 hx:w-full',
         )}
       >
-        {/* Fluent: a gray rail, the filled part in blue. */}
+        {/* A gray rail, the filled part in blue. */}
         <BaseSlider.Track
           className={cn(
             'hx:relative hx:rounded-full hx:bg-fg-subtle hx:group-data-disabled:bg-surface-pressed',
@@ -73,7 +73,7 @@ export function Slider({
               index={count > 1 ? index : undefined}
               aria-label={thumbLabels?.[index]}
               className={[
-                // Fluent thumb: a blue dot in a white ring, outlined in gray.
+                // Thumb: a blue dot in a white ring, outlined in gray.
                 'hx:size-5 hx:rounded-full hx:bg-accent hx:outline-hidden',
                 'hx:shadow-[inset_0_0_0_4px_var(--hx-surface),0_0_0_1px_var(--hx-border-strong)]',
                 'hx:transition-[box-shadow] hx:duration-100 hx:motion-reduce:transition-none',
