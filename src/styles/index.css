@@ -43,9 +43,12 @@
   --hx-primary-hover: #106ebe;
   --hx-primary-pressed: #005a9e;
   --hx-primary-fg: #ffffff;
-  /* Light brand wash: hover of outline buttons, selected rows. */
+  /* Light brand wash: secondary buttons, hover of outline buttons, selected rows. */
   --hx-primary-subtle: #eff6fc;
-  --hx-primary-subtle-pressed: #deecf9;
+  --hx-primary-subtle-hover: #e1eefa;
+  --hx-primary-subtle-pressed: #c7e0f4;
+  /* Brand text on the wash (≥ 4.5:1 on every state). */
+  --hx-primary-subtle-fg: #115ea3;
   /* Brand color as foreground on surfaces: text, borders, icons (≥ 5:1 on the page). */
   --hx-accent: #0f6cbd;
 
@@ -92,7 +95,9 @@
   --hx-primary-pressed: #0c3b5e;
   --hx-primary-fg: #ffffff;
   --hx-primary-subtle: #082338;
+  --hx-primary-subtle-hover: #0a2e4a;
   --hx-primary-subtle-pressed: #0c3b5e;
+  --hx-primary-subtle-fg: #62abf5;
   --hx-accent: #479ef5;
 
   --hx-danger: #c50f1f;
@@ -132,7 +137,9 @@
   --color-primary-pressed: var(--hx-primary-pressed);
   --color-primary-fg: var(--hx-primary-fg);
   --color-primary-subtle: var(--hx-primary-subtle);
+  --color-primary-subtle-hover: var(--hx-primary-subtle-hover);
   --color-primary-subtle-pressed: var(--hx-primary-subtle-pressed);
+  --color-primary-subtle-fg: var(--hx-primary-subtle-fg);
   --color-accent: var(--hx-accent);
   --color-danger: var(--hx-danger);
   --color-danger-hover: var(--hx-danger-hover);
