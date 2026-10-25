@@ -119,6 +119,8 @@ export function Button({
       // Keeps focus on the button while it is busy, so keyboard users don't lose their place.
       focusableWhenDisabled={loading || undefined}
       aria-busy={loading || undefined}
+      // Lets a ButtonGroup draw a divider between two filled buttons.
+      data-variant={variant ?? 'primary'}
       {...props}
     >
       {loading ? <Spinner size="sm" tone="current" /> : startIcon}
