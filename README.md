@@ -115,7 +115,9 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
 - **DataTable** — a table for server data: a sticky header, scrolling inside its parent (give the parent a height),
   sortable columns with a Django-style `ordering` (`"field"`, `"-field"`, `""`) through `DataTableSortableHead`,
   skeleton rows while loading (`DataTableBody` `isPending`), an empty state (`isEmpty`, `emptyText`) and pagination
-  from `{ total, skip, limit }` (`pagination`, `onSkipChange`).
+  from `{ total, skip, limit }` (`pagination`, `onSkipChange`). `showCurrent` marks the row opened last with a blue
+  bar, so it stands out when the user comes back from its details: give each `DataTableRow` a `value`; a row counts
+  as opened when it is clicked (with an `onClick`) or when a link inside it is followed.
 - **Dialog** — a modal window over a dark veil: `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`,
   `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose`.
 - **DropdownMenu** — the shadcn/ui names for `Menu`: `DropdownMenu`, `DropdownMenuTrigger`, `DropdownMenuContent`,
@@ -179,7 +181,7 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
   what is loading.
 - **Switch** — an on/off toggle; a blue track with a white thumb once on.
 - **Table** — `Table` (`density`: `comfortable`, `compact`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow`
-  (`selected`), `TableHead` (`align`, `sortDirection` and `onSort` for a sortable column), `TableCell` (`align`),
+  (`selected`; `current`: a blue bar on the left of the row opened last), `TableHead` (`align`, `sortDirection` and `onSort` for a sortable column), `TableCell` (`align`),
   `TableCaption`, `TableEmpty`. Put it in a `Panel`.
 - **Tabs** — `Tabs`, `TabsList`, `TabsTab`, `TabsPanel`; the active tab is marked by a blue bar that slides under it.
 - **Textarea** — a multiline text field with the same look as `Input`; resizable vertically.

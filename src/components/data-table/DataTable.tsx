@@ -1,4 +1,4 @@
-import { createContext, use, type ComponentProps, type ReactNode } from 'react';
+import { createContext, use, useState, type ComponentProps, type MouseEvent, type ReactNode } from 'react';
 import { cn } from '../../lib/cn';
 import { Pagination } from '../pagination/Pagination';
 import { Skeleton } from '../skeleton/Skeleton';
@@ -10,6 +10,7 @@ import {
   tableClassName,
   type SortDirection,
   type TableHeadProps,
+  type TableRowProps,
 } from '../table/Table';
 
 export {
@@ -18,21 +19,41 @@ export {
   TableEmpty as DataTableEmpty,
   TableFooter as DataTableFooter,
   TableHead as DataTableHead,
-  TableRow as DataTableRow,
   type TableCellProps as DataTableCellProps,
   type TableEmptyProps as DataTableEmptyProps,
   type TableHeadProps as DataTableHeadProps,
-  type TableRowProps as DataTableRowProps,
 } from '../table/Table';
 
 export type DataTablePage = { total: number; skip: number; limit: number };
 
+type RowValue = string | number;
+
 type DataTableContextValue = {
   ordering: string;
   onOrderingChange?: (ordering: string) => void;
+  /** Set with `showCurrent`: the row opened last, and how to change it. */
+  current?: { value: RowValue | undefined; open: (value: RowValue) => void };
 };
 
 const DataTableContext = createContext<DataTableContextValue>({ ordering: '' });
+
+// The row opened last, per table. In memory: it outlives the table while the row's details are shown (the table is
+// unmounted, then mounted again on the way back), and is forgotten on reload.
+const openedRows = new Map<string, RowValue>();
+
+function useCurrentRow(showCurrent: boolean | string | undefined) {
+  const key =
+    typeof showCurrent === 'string' ? showCurrent : typeof window === 'undefined' ? '' : window.location.pathname;
+  const [value, setValue] = useState(() => openedRows.get(key));
+  if (!showCurrent) return undefined;
+  return {
+    value,
+    open: (next: RowValue) => {
+      openedRows.set(key, next);
+      setValue(next);
+    },
+  };
+}
 
 export type DataTableProps = {
   children: ReactNode;
@@ -42,6 +63,12 @@ export type DataTableProps = {
   pagination?: DataTablePage;
   onSkipChange?: (skip: number) => void;
   density?: 'comfortable' | 'compact';
+  /**
+   * Mark the row opened last (a blue bar on its left), so it stands out when the user comes back from its details.
+   * Rows need a `value`. A row counts as opened when it is clicked (if it has an `onClick`) or when a link inside it
+   * is followed, including one in its menu. Remembered per page (URL path), or per key when a string is given.
+   */
+  showCurrent?: boolean | string;
   className?: string;
 };
 
@@ -53,10 +80,12 @@ export function DataTable({
   pagination,
   onSkipChange,
   density = 'comfortable',
+  showCurrent,
   className,
 }: DataTableProps) {
+  const current = useCurrentRow(showCurrent);
   return (
-    <DataTableContext value={{ ordering, onOrderingChange }}>
+    <DataTableContext value={{ ordering, onOrderingChange, current }}>
       {/* Clips the sticky header inside the rounded corners. */}
       <div
         className={cn('hx:flex hx:size-full hx:min-h-0 hx:flex-col hx:overflow-hidden hx:rounded-[inherit]', className)}
@@ -84,6 +113,32 @@ export function DataTableHeader({ className, ...props }: ComponentProps<'thead'>
       )}
       {...props}
     />
+  );
+}
+
+export type DataTableRowProps = TableRowProps & {
+  /** Identifies the row for `showCurrent` on the table, such as the record's id. */
+  value?: RowValue;
+};
+
+export function DataTableRow({ value, current, onClickCapture, ...props }: DataTableRowProps) {
+  const table = use(DataTableContext).current;
+  const tracked = table !== undefined && value !== undefined;
+
+  function handleClickCapture(event: MouseEvent<HTMLTableRowElement>) {
+    onClickCapture?.(event);
+    if (!tracked) return;
+    // Capture, so a cell that stops the click (a menu) still lets the row see a link being followed. React events
+    // also arrive from popups portaled out of the row, such as its menu.
+    const target = event.target as Element;
+    const followsLink = target.closest('a[href]') !== null;
+    const opensRow =
+      props.onClick !== undefined && !target.closest('button, a, input, select, textarea, label, [role=menuitem]');
+    if (followsLink || opensRow) table.open(value);
+  }
+
+  return (
+    <TableRow current={current ?? (tracked && table.value === value)} onClickCapture={handleClickCapture} {...props} />
   );
 }
 

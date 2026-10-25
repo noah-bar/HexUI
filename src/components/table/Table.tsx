@@ -34,18 +34,24 @@ export function TableFooter({ className, ...props }: ComponentProps<'tfoot'>) {
 
 export type TableRowProps = ComponentProps<'tr'> & {
   selected?: boolean;
+  /** The row the user opened last, such as the one whose details were just shown: a blue bar on its left edge. */
+  current?: boolean;
 };
 
-export function TableRow({ selected, className, ...props }: TableRowProps) {
+export function TableRow({ selected, current, className, ...props }: TableRowProps) {
   return (
     <tr
       aria-selected={selected || undefined}
       data-selected={selected || undefined}
+      aria-current={current || undefined}
+      data-current={current || undefined}
       className={cn(
         'hx:border-t hx:border-border hx:transition-colors hx:duration-100',
         props.onClick && 'hx:cursor-pointer',
         'hx:[tbody>&]:hover:bg-surface-hover hx:data-selected:bg-primary-subtle hx:[tbody>&]:data-selected:hover:bg-primary-subtle-hover',
         'hx:[thead>&]:border-t-0',
+        // A row can't draw a border on one side in a collapsed table: the first cell draws the bar, inside.
+        'hx:data-current:[&>td:first-child]:shadow-[inset_3px_0_0_var(--hx-accent)]',
         className,
       )}
       {...props}

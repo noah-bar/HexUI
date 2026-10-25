@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `current` on `TableRow`: a blue bar on the left of the row opened last.
+- `showCurrent` on `DataTable` and `value` on `DataTableRow`: the table marks the row opened last by itself, and still does when the user comes back.
+
 ## [0.0.1] - 2026-10-25
 
 ### Added
