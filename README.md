@@ -81,6 +81,9 @@ body {
   (24px), `md` (32px), `lg` (40px), `icon`; `ring`: a second border 2px around the button, to set an action apart;
   `startIcon`, `endIcon`: an icon before or after the label; `loading`: a spinner, and the button is disabled. `buttonVariants` gives the same classes to another
   element, such as a link.
+- **ButtonGroup** — buttons attached in a row: only the outer corners stay rounded, outline borders merge, and
+  filled buttons get a thin line between them. For a split button (an action and a menu of others) or related
+  actions; `orientation`: `horizontal`, `vertical`. Give it an `aria-label`.
 - **Checkbox** — `checked`, `defaultChecked`, `indeterminate`; blue once checked.
 - **Combobox** — pick one or several values from a list by typing. `ComboboxInput` (`clearable`), `ComboboxChips`
   for multiple values, or `ComboboxTrigger` with `ComboboxSearch` inside the popup for a select with a search;
@@ -107,6 +110,8 @@ body {
 - **InputNumber** — a number field; arrow keys change the value. `min`, `max`, `step`; `decimalPlaces`: fixed
   digits after the separator; `format` and `locale` (`Intl.NumberFormat` options: currency, percent); `required`:
   restores `0` when cleared; `showSteppers`: − and + buttons on each side; `align`: `left`, `center`, `right`.
+- **Label** — a label outside a `Field`: wrapping a checkbox or a switch, or linked with `htmlFor`; `required` adds a
+  red asterisk. Inside a `Field`, use `FieldLabel`.
 - **Menubar** — a row of menus, as in a desktop app: `Menubar` (`variant`: `default`, a white strip; `ghost`, for a
   bar inside a header), `MenubarMenu`, `MenubarTrigger`, `MenubarContent`, and the same items as `Menu`. Arrow keys
   move between the menus.

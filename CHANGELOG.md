@@ -29,6 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Pagination` with previous and next buttons and ellipses.
 - `DataTable` with a sticky header, Django-style ordering, loading skeletons, an empty state and pagination.
 - `Skeleton`, a loading placeholder with a shimmer.
+- `ButtonGroup`, buttons attached in a row or a column, for split buttons and related actions.
+- `Label` with a `required` marker.
 - `Spinner`, a loading indicator in five sizes; `Button` `loading` uses it.
 - `Form` with server errors by field name, and `FormSection` to group fields under a heading.
 - `loading` prop on `Button`.
