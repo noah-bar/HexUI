@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from '../button/Button';
+import { Checkbox } from '../checkbox/Checkbox';
 import { Input } from '../input/Input';
 import { Panel } from '../panel/Panel';
+import { Radio, RadioGroup } from '../radio/Radio';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../select/Select';
 import { Textarea } from '../textarea/Textarea';
-import { Field, FieldDescription, FieldError, FieldLabel } from './Field';
+import { Field, FieldDescription, FieldError, FieldItem, FieldLabel } from './Field';
 
 const meta = {
   title: 'Components/Field',
@@ -88,6 +90,27 @@ export const Form: Story = {
         <Textarea placeholder="Welcome to the team!" />
         <FieldDescription>Optional. Added to the invitation email.</FieldDescription>
       </Field>
+      <Field>
+        <FieldLabel render={<div />}>Access</FieldLabel>
+        <RadioGroup defaultValue="all" className="hx:mt-1">
+          <FieldItem>
+            <Radio value="all" id="access-all" />
+            <label htmlFor="access-all" className="hx:text-sm hx:text-fg">
+              All projects
+            </label>
+          </FieldItem>
+          <FieldItem>
+            <Radio value="selected" id="access-selected" />
+            <label htmlFor="access-selected" className="hx:text-sm hx:text-fg">
+              Selected projects only
+            </label>
+          </FieldItem>
+        </RadioGroup>
+      </Field>
+      <label className="hx:flex hx:items-center hx:gap-2 hx:text-sm hx:text-fg">
+        <Checkbox defaultChecked />
+        Send the invitation by email
+      </label>
       <div className="hx:flex hx:justify-end hx:gap-2">
         <Button variant="secondary" type="button">
           Cancel

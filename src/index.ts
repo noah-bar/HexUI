@@ -20,7 +20,20 @@ export {
   type AutocompleteInputProps,
   type AutocompleteStatusProps,
 } from './components/autocomplete/Autocomplete';
+export { Badge, badgeVariants, type BadgeProps } from './components/badge/Badge';
+export {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  type BreadcrumbLinkProps,
+  type BreadcrumbProps,
+} from './components/breadcrumb/Breadcrumb';
 export { Button, buttonVariants, type ButtonProps } from './components/button/Button';
+export { Checkbox, type CheckboxProps } from './components/checkbox/Checkbox';
 export {
   Combobox,
   ComboboxChips,
@@ -68,6 +81,16 @@ export { Input, type InputProps } from './components/input/Input';
 export { InputNumber, type InputNumberProps } from './components/input-number/InputNumber';
 export { Panel, type PanelProps } from './components/panel/Panel';
 export {
+  Popover,
+  PopoverClose,
+  PopoverContent,
+  PopoverDescription,
+  PopoverTitle,
+  PopoverTrigger,
+  type PopoverContentProps,
+} from './components/popover/Popover';
+export { Radio, RadioGroup, type RadioProps } from './components/radio/Radio';
+export {
   Select,
   SelectContent,
   SelectGroup,
@@ -78,6 +101,7 @@ export {
   SelectValue,
   type SelectContentProps,
 } from './components/select/Select';
+export { Switch, type SwitchProps } from './components/switch/Switch';
 export { Textarea, type TextareaProps } from './components/textarea/Textarea';
 export {
   ToastProvider,
@@ -86,3 +110,10 @@ export {
   type ToastProviderProps,
   type ToastType,
 } from './components/toast/Toast';
+export {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+  type TooltipContentProps,
+} from './components/tooltip/Tooltip';
