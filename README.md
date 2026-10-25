@@ -99,6 +99,10 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
 - **ButtonGroup** — buttons attached in a row: only the outer corners stay rounded, outline borders merge, and
   filled buttons get a thin line between them. For a split button (an action and a menu of others) or related
   actions; `orientation`: `horizontal`, `vertical`. Give it an `aria-label`.
+- **Calendar** — a month grid to pick a day (`value`, `onValueChange`), or a range with `mode="range"` (`{ start, end }`);
+  `numberOfMonths` (1 or 2), `min`, `max`, `isDateDisabled`, `locale` (month and day names), `weekStartsOn` (Monday by
+  default). Dates are ISO strings, `"2026-10-25"`, with no time zone. Arrow keys move by day and week, Page Up and Page
+  Down by month (with Shift, by year).
 - **Card** — a `Panel` laid out as a card: `CardHeader` with `CardTitle`, `CardDescription` and `CardAction` (a button
   or a menu in the top right corner), `CardContent`, `CardFooter`.
 - **Checkbox** — `checked`, `defaultChecked`, `indeterminate`; blue once checked.
@@ -119,6 +123,13 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
   from `{ total, skip, limit }` (`pagination`, `onSkipChange`). `showCurrent` marks the row opened last with a blue
   bar, so it stands out when the user comes back from its details: give each `DataTableRow` a `value`; a row counts
   as opened when it is clicked (with an `onClick`) or when a link inside it is followed.
+- **DatePicker** — a date field: type the date in the locale's order (`25.10.2026`, `25.10`, `2510`…) or pick it in a
+  `Calendar` (also Alt + Arrow Down). `value` and `onValueChange` with an ISO string or `null`; `locale`, `min`, `max`,
+  `isDateDisabled`, `clearable`; `name` adds a hidden input with the ISO value for a form. A date that can't be read
+  gives way to the last value.
+- **DateRangePicker** — the same for a range, "from … to …": two inputs in one field and two months side by side (one
+  on phones). `value` is `{ start, end }`, set once both ends are picked; `presets` lists ranges one click away (such
+  as "Last 7 days"); `startName` and `endName` for a form.
 - **DetailView** — the details of one record on a white card. `DetailViewHeader` holds `DetailViewImage` (a 64px
   thumbnail: `src`, `alt`; `onClick` makes it a button, such as to open it full size; without `src`, its children,
   such as an icon), `DetailViewHeading` with `DetailViewTitle`, `DetailViewDescription` and `DetailViewMeta`, and

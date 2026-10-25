@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `DetailView`: the details of one record, with a header (image, title, description, actions), its fields in a responsive grid, and optional sections or tabs.
+- `Stepper`: the steps of a process with the current one, horizontal or vertical, with clickable steps and a failed status.
+- `FileDropzone`, `FileList` and `FileListItem`: drop or browse files, checked against types, sizes and count, then listed with their progress or error.
+- `DatePicker` and `DateRangePicker`: date fields with typed input in the locale's order and a calendar; the range picker shows two months and optional presets.
+- `Calendar`: a month grid to pick a day or a range, with keyboard navigation.
 
 ## [0.1.0] - 2026-10-25
 
