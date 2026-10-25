@@ -12,7 +12,6 @@ import { Button } from '../button/Button';
 import { Panel } from '../panel/Panel';
 import {
   PageHeader,
-  PageHeaderActionLabel,
   PageHeaderActionSeparator,
   PageHeaderActions,
   PageHeaderDescription,
@@ -59,19 +58,19 @@ export const Default: Story = {
         <PageHeaderDescription>Romandie Santé · due 18.10.2026</PageHeaderDescription>
       </PageHeaderHeading>
       <PageHeaderActions>
-        <Button variant="ghost" startIcon={<Pencil />}>
-          <PageHeaderActionLabel>Edit</PageHeaderActionLabel>
+        <Button variant="ghost" startIcon={<Pencil />} iconOnly="mobile">
+          Edit
         </Button>
-        <Button variant="ghost" startIcon={<Download />}>
-          <PageHeaderActionLabel>Download PDF</PageHeaderActionLabel>
-        </Button>
-        <PageHeaderActionSeparator />
-        <Button variant="ghost" startIcon={<RefreshCw />}>
-          <PageHeaderActionLabel>Refresh</PageHeaderActionLabel>
+        <Button variant="ghost" startIcon={<Download />} iconOnly="mobile">
+          Download PDF
         </Button>
         <PageHeaderActionSeparator />
-        <Button variant="ghost" startIcon={<Trash2 />}>
-          <PageHeaderActionLabel>Delete</PageHeaderActionLabel>
+        <Button variant="ghost" startIcon={<RefreshCw />} iconOnly="mobile">
+          Refresh
+        </Button>
+        <PageHeaderActionSeparator />
+        <Button variant="ghost" startIcon={<Trash2 />} iconOnly="mobile">
+          Delete
         </Button>
       </PageHeaderActions>
     </PageHeader>
@@ -115,12 +114,12 @@ export const StickyActions: Story = {
         <PageHeaderTitle>Edit F-2026-1045</PageHeaderTitle>
       </PageHeader>
       <PageHeaderActions sticky>
-        <Button variant="ghost" startIcon={<Save />}>
-          <PageHeaderActionLabel>Save</PageHeaderActionLabel>
+        <Button variant="ghost" startIcon={<Save />} iconOnly="mobile">
+          Save
         </Button>
         <PageHeaderActionSeparator />
-        <Button variant="ghost" startIcon={<Trash2 />}>
-          <PageHeaderActionLabel>Discard changes</PageHeaderActionLabel>
+        <Button variant="ghost" startIcon={<Trash2 />} iconOnly="mobile">
+          Discard changes
         </Button>
       </PageHeaderActions>
       {Array.from({ length: 10 }, (_, i) => (

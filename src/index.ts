@@ -235,7 +235,6 @@ export {
 } from './components/menu/Menu';
 export {
   PageHeader,
-  PageHeaderActionLabel,
   PageHeaderActionSeparator,
   PageHeaderActions,
   PageHeaderDescription,

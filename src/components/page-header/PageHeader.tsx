@@ -82,8 +82,3 @@ export function PageHeaderActionSeparator({ className, ...props }: ComponentProp
     />
   );
 }
-
-/** The text of a command bar button: hidden on narrow screens, where only the icon stays (still read aloud). */
-export function PageHeaderActionLabel({ className, ...props }: ComponentProps<'span'>) {
-  return <span className={cn('hx:sr-only hx:sm:not-sr-only', className)} {...props} />;
-}

@@ -12,10 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `current` on `TableRow`: a blue bar on the left of the row opened last.
 - `showCurrent` on `DataTable` and `value` on `DataTableRow`: the table marks the row opened last by itself, and still does when the user comes back.
 - `storageKey` on `SidebarProvider`: the sidebar stays collapsed or expanded after a reload.
+- `iconOnly` on `Button`: only the icon, in a square button, always or (`mobile`) on phones only; the label is still read aloud.
 
 ### Fixed
 
 - `AppHeader` keeps its height in a column layout, such as a page without a sidebar.
+
+### Removed
+
+- `PageHeaderActionLabel`: use `iconOnly="mobile"` on the button instead.
 
 ## [0.0.1] - 2026-10-25
 

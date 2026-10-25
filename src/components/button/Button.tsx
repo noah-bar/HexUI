@@ -1,7 +1,7 @@
 import { Button as BaseButton } from '@base-ui/react/button';
 import { cva, type VariantProps } from 'class-variance-authority';
 import type { ComponentProps, ReactNode } from 'react';
-import { mergeClassName } from '../../lib/cn';
+import { cn, mergeClassName } from '../../lib/cn';
 import { Spinner } from '../spinner/Spinner';
 
 export const buttonVariants = cva(
@@ -98,7 +98,17 @@ export type ButtonProps = ComponentProps<typeof BaseButton> &
     endIcon?: ReactNode;
     /** A spinner in place of the start icon; the button is disabled until it is done (e.g. while saving). */
     loading?: boolean;
+    /**
+     * Shows only the icon, in a square button; the label is still read aloud. `mobile`: only on phones (below
+     * 640px), such as in a command bar.
+     */
+    iconOnly?: boolean | 'mobile';
   };
+
+const iconOnlyClassName = {
+  always: 'hx:aspect-square hx:min-w-0 hx:px-0',
+  mobile: 'hx:max-sm:aspect-square hx:max-sm:min-w-0 hx:max-sm:px-0',
+};
 
 export function Button({
   variant,
@@ -107,14 +117,19 @@ export function Button({
   startIcon,
   endIcon,
   loading = false,
+  iconOnly = false,
   disabled,
   className,
   children,
   ...props
 }: ButtonProps) {
+  const iconOnlyMode = iconOnly === 'mobile' ? 'mobile' : iconOnly ? 'always' : undefined;
   return (
     <BaseButton
-      className={mergeClassName(buttonVariants({ variant, size, ring }), className)}
+      className={mergeClassName(
+        cn(buttonVariants({ variant, size, ring }), iconOnlyMode && iconOnlyClassName[iconOnlyMode]),
+        className,
+      )}
       disabled={disabled || loading}
       // Keeps focus on the button while it is busy, so keyboard users don't lose their place.
       focusableWhenDisabled={loading || undefined}
@@ -124,7 +139,11 @@ export function Button({
       {...props}
     >
       {loading ? <Spinner size="sm" tone="current" /> : startIcon}
-      {children}
+      {iconOnlyMode ? (
+        <span className={iconOnlyMode === 'always' ? 'hx:sr-only' : 'hx:max-sm:sr-only'}>{children}</span>
+      ) : (
+        children
+      )}
       {endIcon}
     </BaseButton>
   );

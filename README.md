@@ -93,7 +93,8 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
   (`render` for a router link), `BreadcrumbPage`, `BreadcrumbSeparator`, `BreadcrumbEllipsis`.
 - **Button** — `variant`: `primary`, `secondary`, `outline`, `ghost`, `danger`, `outline-danger`, `header` (for the `AppHeader`); `size`: `sm`
   (24px), `md` (32px), `lg` (40px), `icon`; `ring`: a second border 2px around the button, to set an action apart;
-  `startIcon`, `endIcon`: an icon before or after the label; `loading`: a spinner, and the button is disabled. `buttonVariants` gives the same classes to another
+  `startIcon`, `endIcon`: an icon before or after the label; `loading`: a spinner, and the button is disabled; `iconOnly`: only the icon, in a square button
+  (`mobile`: on phones only), the label still read aloud. `buttonVariants` gives the same classes to another
   element, such as a link.
 - **ButtonGroup** — buttons attached in a row: only the outer corners stay rounded, outline borders merge, and
   filled buttons get a thin line between them. For a split button (an action and a menu of others) or related
@@ -148,7 +149,7 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
   page scrolls): a `Breadcrumb`, `PageHeaderHeading` with
   `PageHeaderTitle` and `PageHeaderDescription`, then `PageHeaderActions`, a command bar of `ghost` buttons above a light
   line (`sticky`: stays at the top while the page scrolls). `PageHeaderActionSeparator` splits it into groups;
-  `PageHeaderActionLabel` hides a button's text on narrow screens.
+  `iconOnly="mobile"` on a button keeps only its icon on phones.
 - **Pagination** — `page` (1-based), `totalPages`, `onPageChange`; `maxVisible` page buttons, ellipses included.
 - **Panel** — a white surface with a card shadow and no imposed layout; `render` changes the element, such as an
   `<aside>`.

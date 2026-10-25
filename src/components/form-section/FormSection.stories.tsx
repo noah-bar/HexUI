@@ -14,13 +14,7 @@ import { Checkbox } from '../checkbox/Checkbox';
 import { Field, FieldError, FieldItem, FieldLabel, FieldRow } from '../field/Field';
 import { Input } from '../input/Input';
 import { InputNumber } from '../input-number/InputNumber';
-import {
-  PageHeader,
-  PageHeaderActionLabel,
-  PageHeaderActions,
-  PageHeaderActionSeparator,
-  PageHeaderTitle,
-} from '../page-header/PageHeader';
+import { PageHeader, PageHeaderActions, PageHeaderActionSeparator, PageHeaderTitle } from '../page-header/PageHeader';
 import { Textarea } from '../textarea/Textarea';
 import { FormSection } from './FormSection';
 
@@ -128,12 +122,12 @@ export const EditPage: Story = {
           </Breadcrumb>
           <PageHeaderTitle>Edit client</PageHeaderTitle>
           <PageHeaderActions>
-            <Button type="submit" variant="ghost" startIcon={<Save />} loading={saving}>
-              <PageHeaderActionLabel>Save</PageHeaderActionLabel>
+            <Button type="submit" variant="ghost" startIcon={<Save />} loading={saving} iconOnly="mobile">
+              Save
             </Button>
             <PageHeaderActionSeparator />
-            <Button type="reset" variant="ghost" startIcon={<Undo2 />}>
-              <PageHeaderActionLabel>Discard changes</PageHeaderActionLabel>
+            <Button type="reset" variant="ghost" startIcon={<Undo2 />} iconOnly="mobile">
+              Discard changes
             </Button>
             {savedAt && (
               <span role="status" className="hx:ms-auto hx:px-2 hx:text-xs hx:text-fg-muted">
