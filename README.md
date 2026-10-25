@@ -66,6 +66,8 @@ body {
 - **Autocomplete** — a text input with suggestions; free text is accepted. `AutocompleteInput` (`clearable`),
   `AutocompleteContent`, `AutocompleteList`, `AutocompleteItem`, `AutocompleteEmpty`, `AutocompleteStatus` (`loading`),
   groups and separators; `useAutocompleteFilter`.
+- **Avatar** — initials or a picture: `Avatar` (`size`: `xs`, `sm`, `md`, `lg`; `shape`: `circle`, `square`),
+  `AvatarImage`, `AvatarFallback` (shown while the picture loads or if it fails); `AvatarGroup` overlaps them.
 - **Badge** — a small status label; `variant`: `neutral`, `info`, `success`, `warning`, `danger`; `dot`: a colored dot
   before the text.
 - **Breadcrumb** — the path to the current page: `Breadcrumb`, `BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbLink`
@@ -96,6 +98,9 @@ body {
 - **InputNumber** — a number field; arrow keys change the value. `min`, `max`, `step`; `decimalPlaces`: fixed
   digits after the separator; `format` and `locale` (`Intl.NumberFormat` options: currency, percent); `required`:
   restores `0` when cleared; `showSteppers`: − and + buttons on each side; `align`: `left`, `center`, `right`.
+- **Menubar** — a row of menus, as in a desktop app: `Menubar` (`variant`: `default`, a white strip; `ghost`, for a
+  bar inside a header), `MenubarMenu`, `MenubarTrigger`, `MenubarContent`, and the same items as `Menu`. Arrow keys
+  move between the menus.
 - **Menu** — a list of actions opened by a button: `Menu`, `MenuTrigger`, `MenuContent`, `MenuItem` (`variant`:
   `danger`), `MenuCheckboxItem`, `MenuRadioGroup` and `MenuRadioItem`, `MenuGroup` and `MenuGroupLabel`,
   `MenuSeparator`, `MenuShortcut`, and submenus with `MenuSub`, `MenuSubTrigger`, `MenuSubContent`.
@@ -107,6 +112,16 @@ body {
 - **Radio** — `RadioGroup` (`value`, `defaultValue`) with `Radio` items; a blue ring and dot once checked.
 - **Select** — a button that opens a list: `Select` (`items`), `SelectTrigger`, `SelectValue` (`placeholder`),
   `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator`.
+- **Separator** — a 1px line between groups of content; `orientation`: `horizontal`, `vertical`.
+- **Sheet** — a panel that slides in from an edge of the screen, over a dark veil: `Sheet`, `SheetTrigger`,
+  `SheetContent` (`side`: `top`, `right`, `bottom`, `left`; `size`: `sm`, `md`, `lg`, `full`), `SheetHeader`,
+  `SheetTitle`, `SheetDescription`, `SheetBody` (scrolls), `SheetFooter`, `SheetClose`, `SheetCloseButton`.
+- **Sidebar** — the navigation column of an application: `SidebarProvider` around the page, `Sidebar` (`variant`:
+  `sidebar`, a column against the edge, or `floating`, a card beside the page; `collapsible`: `offcanvas`, `icon`,
+  `none`; `side`), `SidebarInset` for the page, `SidebarTrigger` and `SidebarRail` to toggle it. Inside:
+  `SidebarHeader`, `SidebarContent`, `SidebarFooter`, groups with `SidebarGroupLabel`, and menus with
+  `SidebarMenuButton` (`isActive`: gray fill, semibold text and a blue bar; `tooltip` when collapsed to icons), badges, actions,
+  sub-menus and collapsible sections. Below 768px it opens as a `Sheet`. `useSidebar` reads and changes its state.
 - **Skeleton** — a gray block with a shimmer, in place of content that is loading; size it with classes.
 - **Switch** — an on/off toggle; a blue track with a white thumb once on.
 - **Table** — `Table` (`density`: `comfortable`, `compact`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow`

@@ -29,6 +29,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Pagination` with previous and next buttons and ellipses.
 - `DataTable` with a sticky header, Django-style ordering, loading skeletons, an empty state and pagination.
 - `Skeleton`, a loading placeholder with a shimmer.
+- `Sidebar` with collapsing to icons, a mobile drawer, groups, badges, actions and collapsible sections.
+- `Menubar`, a row of menus with keyboard navigation between them.
+- `Sheet`, a panel that slides in from an edge of the screen.
+- `Avatar` and `Separator`.
+- `useMediaQuery` hook.
 - `Popover`, a floating panel with title and description.
 - `Tooltip`, a short label on hover or focus.
 - `Toast`, stacked notifications with status icons, actions and promise support.
