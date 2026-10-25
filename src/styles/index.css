@@ -84,6 +84,30 @@
   --hx-info-text: #0f6cbd;
 
   /* Veil behind dialogs. */
+  /* Badges (Fluent "tint"): a pale fill, a soft edge and strong text, set per status so every color weighs the same
+     and does not depend on what is under it. Text ≥ 5.5:1 on its fill. */
+  --hx-badge-neutral-bg: #f3f2f1;
+  --hx-badge-neutral-border: #d2d0ce;
+  --hx-badge-neutral-fg: #605e5c;
+  --hx-badge-brand-bg: #ebf3fc;
+  --hx-badge-brand-border: #b4d6fa;
+  --hx-badge-brand-fg: #115ea3;
+  --hx-badge-info-bg: #e6f7f9;
+  --hx-badge-info-border: #a6dbe4;
+  --hx-badge-info-fg: #00576b;
+  --hx-badge-success-bg: #f1faf1;
+  --hx-badge-success-border: #9fd89f;
+  --hx-badge-success-fg: #0e700e;
+  --hx-badge-warning-bg: #fff4ec;
+  --hx-badge-warning-border: #fdcfb4;
+  --hx-badge-warning-fg: #a74109;
+  --hx-badge-danger-bg: #fdf3f4;
+  --hx-badge-danger-border: #eeacb2;
+  --hx-badge-danger-fg: #b10e1c;
+  --hx-badge-purple-bg: #f7f4fb;
+  --hx-badge-purple-border: #d8cce7;
+  --hx-badge-purple-fg: #6b3fa0;
+
   --hx-overlay: rgb(0 0 0 / 0.4);
 
   /* Application header: a dark bar across the top of the page, in both themes. */
@@ -152,6 +176,28 @@
   --hx-success-text: #54b054;
   --hx-warning-text: #faa06b;
   --hx-info-text: #479ef5;
+
+  --hx-badge-neutral-bg: #2d2c2b;
+  --hx-badge-neutral-border: #53504e;
+  --hx-badge-neutral-fg: #c8c6c4;
+  --hx-badge-brand-bg: #0a2e4a;
+  --hx-badge-brand-border: #0f548c;
+  --hx-badge-brand-fg: #77b7f7;
+  --hx-badge-info-bg: #02323b;
+  --hx-badge-info-border: #00697f;
+  --hx-badge-info-fg: #4cc3d6;
+  --hx-badge-success-bg: #0a2e0a;
+  --hx-badge-success-border: #107c10;
+  --hx-badge-success-fg: #6ccb5f;
+  --hx-badge-warning-bg: #4a1e04;
+  --hx-badge-warning-border: #8a3707;
+  --hx-badge-warning-fg: #faa06b;
+  --hx-badge-danger-bg: #3f1011;
+  --hx-badge-danger-border: #8f0e1a;
+  --hx-badge-danger-fg: #ee8a8d;
+  --hx-badge-purple-bg: #2c1a40;
+  --hx-badge-purple-border: #6b3fa0;
+  --hx-badge-purple-fg: #b99ee0;
 
   --hx-overlay: rgb(0 0 0 / 0.6);
 

@@ -86,8 +86,9 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
   groups and separators; `useAutocompleteFilter`.
 - **Avatar** — initials or a picture: `Avatar` (`size`: `xs`, `sm`, `md`, `lg`; `shape`: `circle`, `square`),
   `AvatarImage`, `AvatarFallback` (shown while the picture loads or if it fails); `AvatarGroup` overlaps them.
-- **Badge** — a small status label; `variant`: `neutral`, `info`, `success`, `warning`, `danger`; `dot`: a colored dot
-  before the text.
+- **Badge** — a small status label; `variant`: `neutral`, `brand` (blue), `info` (cyan), `success`, `warning`,
+  `danger`, `purple`, each a pale fill, a soft edge and strong text from the `--hx-badge-*` tokens; `dot`: a colored dot before
+  the text.
 - **Breadcrumb** — the path to the current page: `Breadcrumb`, `BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbLink`
   (`render` for a router link), `BreadcrumbPage`, `BreadcrumbSeparator`, `BreadcrumbEllipsis`.
 - **Button** — `variant`: `primary`, `secondary`, `outline`, `ghost`, `danger`, `outline-danger`, `header` (for the `AppHeader`); `size`: `sm`

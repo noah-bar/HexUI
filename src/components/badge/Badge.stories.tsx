@@ -9,7 +9,10 @@ const meta = {
   tags: ['autodocs'],
   args: { children: 'Draft', variant: 'neutral' },
   argTypes: {
-    variant: { control: 'inline-radio', options: ['neutral', 'info', 'success', 'warning', 'danger'] },
+    variant: {
+      control: 'inline-radio',
+      options: ['neutral', 'brand', 'info', 'success', 'warning', 'danger', 'purple'],
+    },
     dot: { control: 'boolean' },
   },
   decorators: [
@@ -31,9 +34,11 @@ export const Variants: Story = {
     <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-2">
       <Badge variant="neutral">Draft</Badge>
       <Badge variant="info">Sent</Badge>
+      <Badge variant="brand">Accepted</Badge>
       <Badge variant="success">Paid</Badge>
       <Badge variant="warning">Pending</Badge>
       <Badge variant="danger">Overdue</Badge>
+      <Badge variant="purple">In review</Badge>
     </div>
   ),
 };

@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Autocomplete`, a text input with suggestions.
 - `Dialog`, a modal window with header, title, description and footer.
 - `Checkbox`, `Radio` and `RadioGroup`, and `Switch`.
-- `Badge` with `neutral`, `info`, `success`, `warning` and `danger` variants.
+- `Badge` with `neutral`, `brand`, `info`, `success`, `warning`, `danger` and `purple` variants, each from its own `--hx-badge-*` tokens.
 - `Breadcrumb` with links, separators and an ellipsis.
 - `Tabs` with a sliding active bar.
 - `Table` with sortable columns, selected rows, compact density and an empty state.

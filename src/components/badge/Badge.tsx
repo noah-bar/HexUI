@@ -10,13 +10,16 @@ export const badgeVariants = cva(
   ],
   {
     variants: {
-      // Fluent "tint" badges: a pale fill and a soft edge in the status color, the text in the strong one.
+      // Fluent "tint" badges: a pale fill, a soft edge and strong text, all from the --hx-badge-* tokens.
       variant: {
-        neutral: 'hx:border-border hx:bg-surface-hover hx:text-fg-muted',
-        info: 'hx:border-info-text/30 hx:bg-info-text/10 hx:text-info-text',
-        success: 'hx:border-success-text/30 hx:bg-success-text/10 hx:text-success-text',
-        warning: 'hx:border-warning-text/30 hx:bg-warning-text/10 hx:text-warning-text',
-        danger: 'hx:border-danger-text/30 hx:bg-danger-text/10 hx:text-danger-text',
+        neutral: 'hx:border-(--hx-badge-neutral-border) hx:bg-(--hx-badge-neutral-bg) hx:text-(--hx-badge-neutral-fg)',
+        brand: 'hx:border-(--hx-badge-brand-border) hx:bg-(--hx-badge-brand-bg) hx:text-(--hx-badge-brand-fg)',
+        info: 'hx:border-(--hx-badge-info-border) hx:bg-(--hx-badge-info-bg) hx:text-(--hx-badge-info-fg)',
+        success: 'hx:border-(--hx-badge-success-border) hx:bg-(--hx-badge-success-bg) hx:text-(--hx-badge-success-fg)',
+        warning: 'hx:border-(--hx-badge-warning-border) hx:bg-(--hx-badge-warning-bg) hx:text-(--hx-badge-warning-fg)',
+        danger: 'hx:border-(--hx-badge-danger-border) hx:bg-(--hx-badge-danger-bg) hx:text-(--hx-badge-danger-fg)',
+        // A sixth color, for a state that is none of the above (such as a stage of a workflow).
+        purple: 'hx:border-(--hx-badge-purple-border) hx:bg-(--hx-badge-purple-bg) hx:text-(--hx-badge-purple-fg)',
       },
     },
     defaultVariants: {
