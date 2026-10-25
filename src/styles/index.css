@@ -315,6 +315,29 @@
   }
 }
 
+/* Loading placeholder (Fluent shimmer): a lighter band sweeps across a gray block. */
+@utility skeleton {
+  background-color: var(--hx-surface-pressed);
+  background-image: linear-gradient(90deg, transparent 0%, var(--hx-surface-hover) 50%, transparent 100%);
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: hx-skeleton-shimmer 1.5s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    background-image: none;
+  }
+}
+
+@keyframes hx-skeleton-shimmer {
+  from {
+    background-position: 150% 0;
+  }
+  to {
+    background-position: -50% 0;
+  }
+}
+
 /* ---------------------------------------------------------------------------
  * Toasts — stacked at the bottom-right, fanned out on hover, swipe to dismiss.
  * Driven by the CSS variables Base UI sets on each toast (--toast-index, --toast-height…).
