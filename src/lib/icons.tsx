@@ -78,3 +78,39 @@ export function SpinnerIcon({ className, ...props }: IconProps) {
     </Icon>
   );
 }
+
+export function SuccessIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="8" cy="8" r="6.25" />
+      <path d="m5.5 8.25 1.75 1.75 3.25-3.75" />
+    </Icon>
+  );
+}
+
+export function ErrorIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="8" cy="8" r="6.25" />
+      <path d="m6 6 4 4m0-4-4 4" />
+    </Icon>
+  );
+}
+
+export function WarningIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M7.13 2.5a1 1 0 0 1 1.74 0l5.2 9a1 1 0 0 1-.87 1.5H2.8a1 1 0 0 1-.87-1.5z" />
+      <path d="M8 6.5v2.75M8 11.25v.01" />
+    </Icon>
+  );
+}
+
+export function InfoIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="8" cy="8" r="6.25" />
+      <path d="M8 7.25v3.5M8 5.25v.01" />
+    </Icon>
+  );
+}

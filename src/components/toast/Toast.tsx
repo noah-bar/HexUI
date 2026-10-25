@@ -1,6 +1,6 @@
 import { Toast as BaseToast } from '@base-ui/react/toast';
 import type { ComponentProps, ReactNode } from 'react';
-import { SpinnerIcon, XIcon } from '../../lib/icons';
+import { ErrorIcon, InfoIcon, SpinnerIcon, SuccessIcon, WarningIcon, XIcon } from '../../lib/icons';
 import { buttonVariants } from '../button/Button';
 
 export const useToast = BaseToast.useToastManager;
@@ -54,49 +54,12 @@ function ToastList({ closeLabel }: { closeLabel: string }) {
   ));
 }
 
-function Icon({ className, children }: { className: string; children: ReactNode }) {
-  return (
-    <svg
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.25"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      className={className}
-    >
-      {children}
-    </svg>
-  );
-}
-
-const statusIconClassName = 'hx:mt-0.5 hx:size-4 hx:shrink-0';
+const statusIconClassName = 'hx:mt-0.5';
 
 const toastIcons: Record<ToastType, ReactNode> = {
-  success: (
-    <Icon className={`${statusIconClassName} hx:text-success-text`}>
-      <circle cx="8" cy="8" r="6.25" />
-      <path d="m5.5 8.25 1.75 1.75 3.25-3.75" />
-    </Icon>
-  ),
-  error: (
-    <Icon className={`${statusIconClassName} hx:text-danger-text`}>
-      <circle cx="8" cy="8" r="6.25" />
-      <path d="m6 6 4 4m0-4-4 4" />
-    </Icon>
-  ),
-  warning: (
-    <Icon className={`${statusIconClassName} hx:text-warning-text`}>
-      <path d="M7.13 2.5a1 1 0 0 1 1.74 0l5.2 9a1 1 0 0 1-.87 1.5H2.8a1 1 0 0 1-.87-1.5z" />
-      <path d="M8 6.5v2.75M8 11.25v.01" />
-    </Icon>
-  ),
-  info: (
-    <Icon className={`${statusIconClassName} hx:text-info-text`}>
-      <circle cx="8" cy="8" r="6.25" />
-      <path d="M8 7.25v3.5M8 5.25v.01" />
-    </Icon>
-  ),
+  success: <SuccessIcon className={`${statusIconClassName} hx:text-success-text`} />,
+  error: <ErrorIcon className={`${statusIconClassName} hx:text-danger-text`} />,
+  warning: <WarningIcon className={`${statusIconClassName} hx:text-warning-text`} />,
+  info: <InfoIcon className={`${statusIconClassName} hx:text-info-text`} />,
   loading: <SpinnerIcon className={statusIconClassName} />,
 };
