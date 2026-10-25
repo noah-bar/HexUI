@@ -26,6 +26,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Tabs` with a sliding active bar.
 - `Table` with sortable columns, selected rows, compact density and an empty state.
 - `Menu` and its `DropdownMenu` aliases, with checkbox and radio items, groups, shortcuts and submenus.
+- `Pagination` with previous and next buttons and ellipses.
+- `DataTable` with a sticky header, Django-style ordering, loading skeletons, an empty state and pagination.
+- `Skeleton`, a loading placeholder with a shimmer.
 - `Popover`, a floating panel with title and description.
 - `Tooltip`, a short label on hover or focus.
 - `Toast`, stacked notifications with status icons, actions and promise support.

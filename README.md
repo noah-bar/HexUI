@@ -79,6 +79,10 @@ body {
   for multiple values, or `ComboboxTrigger` with `ComboboxSearch` inside the popup for a select with a search;
   `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), groups and
   separators; `useComboboxFilter`, `createComboboxItems`.
+- **DataTable** — a table for server data: a sticky header, scrolling inside its parent (give the parent a height),
+  sortable columns with a Django-style `ordering` (`"field"`, `"-field"`, `""`) through `DataTableSortableHead`,
+  skeleton rows while loading (`DataTableBody` `isPending`), an empty state (`isEmpty`, `emptyText`) and pagination
+  from `{ total, skip, limit }` (`pagination`, `onSkipChange`).
 - **Dialog** — a modal window over a dark veil: `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`,
   `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose`.
 - **DropdownMenu** — the shadcn/ui names for `Menu`: `DropdownMenu`, `DropdownMenuTrigger`, `DropdownMenuContent`,
@@ -95,6 +99,7 @@ body {
 - **Menu** — a list of actions opened by a button: `Menu`, `MenuTrigger`, `MenuContent`, `MenuItem` (`variant`:
   `danger`), `MenuCheckboxItem`, `MenuRadioGroup` and `MenuRadioItem`, `MenuGroup` and `MenuGroupLabel`,
   `MenuSeparator`, `MenuShortcut`, and submenus with `MenuSub`, `MenuSubTrigger`, `MenuSubContent`.
+- **Pagination** — `page` (1-based), `totalPages`, `onPageChange`; `maxVisible` page buttons, ellipses included.
 - **Panel** — a white surface with a card shadow and no imposed layout; `render` changes the element, such as an
   `<aside>`.
 - **Popover** — a floating panel opened by a button, for filters or details: `Popover`, `PopoverTrigger`,
@@ -102,6 +107,7 @@ body {
 - **Radio** — `RadioGroup` (`value`, `defaultValue`) with `Radio` items; a blue ring and dot once checked.
 - **Select** — a button that opens a list: `Select` (`items`), `SelectTrigger`, `SelectValue` (`placeholder`),
   `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator`.
+- **Skeleton** — a gray block with a shimmer, in place of content that is loading; size it with classes.
 - **Switch** — an on/off toggle; a blue track with a white thumb once on.
 - **Table** — `Table` (`density`: `comfortable`, `compact`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow`
   (`selected`), `TableHead` (`align`, `sortDirection` and `onSort` for a sortable column), `TableCell` (`align`),
