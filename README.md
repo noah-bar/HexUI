@@ -63,8 +63,10 @@ body {
 
 ## Components
 
-- **Button** — `variant`: `primary`, `secondary`, `outline`, `ghost`, `danger`; `size`: `sm` (24px), `md` (32px),
-  `lg` (40px), `icon`. `buttonVariants` gives the same classes to another element, such as a link.
+- **Button** — `variant`: `primary`, `secondary`, `outline`, `ghost`, `danger`, `outline-danger`; `size`: `sm`
+  (24px), `md` (32px), `lg` (40px), `icon`; `ring`: a second border 2px around the button, to set an action apart;
+  `startIcon`, `endIcon`: an icon before or after the label. `buttonVariants` gives the same classes to another
+  element, such as a link.
 
 ## Contributing
 
