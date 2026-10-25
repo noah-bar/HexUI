@@ -74,6 +74,8 @@ body {
   for multiple values, or `ComboboxTrigger` with `ComboboxSearch` inside the popup for a select with a search;
   `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), groups and
   separators; `useComboboxFilter`, `createComboboxItems`.
+- **Dialog** — a modal window over a dark veil: `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`,
+  `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose`.
 - **Field** — label, description and error around a control: `Field` (`invalid`, `disabled`, `validationMode`),
   `FieldLabel`, `FieldDescription`, `FieldError` (`match`), `FieldItem`; `FieldRow` lays fields out in columns that
   stack on narrow rows (`columns`, `stackBelow`).
@@ -88,6 +90,9 @@ body {
 - **Select** — a button that opens a list: `Select` (`items`), `SelectTrigger`, `SelectValue` (`placeholder`),
   `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator`.
 - **Textarea** — a multiline text field with the same look as `Input`; resizable vertically.
+- **Toast** — short notifications stacked at the bottom right. Wrap the app in `ToastProvider`, then call
+  `useToast().add({ title, description, type })` with `type`: `success`, `error`, `warning`, `info`, `loading`;
+  `createToastManager` sends toasts from outside React.
 
 ## Contributing
 

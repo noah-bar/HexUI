@@ -19,5 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Select`, a list behind a button.
 - `Combobox`, a searchable list with single or multiple values, as an input, chips, or a button with a search inside.
 - `Autocomplete`, a text input with suggestions.
+- `Dialog`, a modal window with header, title, description and footer.
+- `Toast`, stacked notifications with status icons, actions and promise support.
+- Status text tokens (`success`, `warning`, `info`) and the dialog `overlay` token.
 - `useDebouncedValue` hook.
 - `cn` to merge class names.
