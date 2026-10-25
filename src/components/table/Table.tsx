@@ -136,17 +136,18 @@ export function TableEmpty({ colSpan, children }: TableEmptyProps) {
 function SortIcon({ direction }: { direction: SortDirection }) {
   return (
     <svg
-      viewBox="0 0 16 16"
+      viewBox="0 0 256 256"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.25"
+      strokeWidth="16"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
       className="hx:size-3.5 hx:shrink-0"
     >
-      <path d="m5 6 3-3 3 3" className={direction === 'descending' ? 'hx:opacity-30' : undefined} />
-      <path d="m5 10 3 3 3-3" className={direction === 'ascending' ? 'hx:opacity-30' : undefined} />
+      {/* Phosphor's CaretUpDown; the half that does not apply fades. */}
+      <path d="M80 80l48-48 48 48" className={direction === 'descending' ? 'hx:opacity-30' : undefined} />
+      <path d="M80 176l48 48 48-48" className={direction === 'ascending' ? 'hx:opacity-30' : undefined} />
     </svg>
   );
 }

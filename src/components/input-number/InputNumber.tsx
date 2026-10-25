@@ -1,6 +1,7 @@
 import { NumberField as BaseNumberField } from '@base-ui/react/number-field';
 import { useState, type ComponentProps } from 'react';
 import { cn } from '../../lib/cn';
+import { MinusIcon, PlusIcon } from '../../lib/icons';
 import { fieldControlClassName } from '../field/fieldStyles';
 
 type BaseNumberFieldProps = ComponentProps<typeof BaseNumberField.Root>;
@@ -85,16 +86,7 @@ export function InputNumber({
             aria-label={decrementLabel}
             className={cn(stepperClassName, 'hx:border-r hx:border-fg/10')}
           >
-            <svg
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              aria-hidden="true"
-            >
-              <path d="M3.5 8h9" />
-            </svg>
+            <MinusIcon />
           </BaseNumberField.Decrement>
         )}
         <BaseNumberField.Input
@@ -111,16 +103,7 @@ export function InputNumber({
             aria-label={incrementLabel}
             className={cn(stepperClassName, 'hx:border-l hx:border-fg/10')}
           >
-            <svg
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              aria-hidden="true"
-            >
-              <path d="M3.5 8h9M8 3.5v9" />
-            </svg>
+            <PlusIcon />
           </BaseNumberField.Increment>
         )}
       </BaseNumberField.Group>
