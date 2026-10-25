@@ -15,6 +15,9 @@
 
 @custom-variant dark (&:where(.dark, .dark *, [data-theme='dark'], [data-theme='dark'] *));
 
+/* Invalid form control, whether flagged by the app (aria-invalid) or by a Base UI Field (data-invalid). */
+@custom-variant error (&:is([aria-invalid='true'], [data-invalid]));
+
 /* ---------------------------------------------------------------------------
  * Semantic tokens — light. Fluent palette: warm grays, Azure blue.
  * ------------------------------------------------------------------------- */
@@ -26,6 +29,8 @@
   --hx-fg-muted: #605e5c;
   --hx-fg-subtle: #a19f9d;
   --hx-fg-disabled: #a19f9d;
+  /* Placeholders: ≥ 4.5:1 on fields. */
+  --hx-fg-placeholder: #6b6967;
 
   /* Page, and the surfaces that sit on it (cards, panels, secondary buttons). */
   --hx-bg: #faf9f8;
@@ -37,6 +42,11 @@
   --hx-border: #e1dfdd;
   /* Controls: secondary buttons, fields. */
   --hx-border-strong: #8a8886;
+  /* Form fields: a gray fill, and a darker bottom edge that carries the 3:1 contrast. */
+  --hx-field-bg: #f3f2f1;
+  --hx-field-bg-hover: #edebe9;
+  --hx-field-border-bottom: #605e5c;
+  --hx-field-border-bottom-hover: #323130;
 
   /* Filled brand controls: primary button. */
   --hx-primary: #0078d4;
@@ -79,6 +89,7 @@
   --hx-fg-muted: #c8c6c4;
   --hx-fg-subtle: #8a8886;
   --hx-fg-disabled: #797775;
+  --hx-fg-placeholder: #b3b0ad;
 
   --hx-bg: #1b1a19;
   --hx-surface: #252423;
@@ -88,6 +99,10 @@
 
   --hx-border: #3b3a39;
   --hx-border-strong: #8a8886;
+  --hx-field-bg: #323130;
+  --hx-field-bg-hover: #3b3a39;
+  --hx-field-border-bottom: #a19f9d;
+  --hx-field-border-bottom-hover: #c8c6c4;
 
   /* Hover lightens in the dark theme; white text stays ≥ 5:1 on every state. */
   --hx-primary: #115ea3;
@@ -125,6 +140,7 @@
   --color-fg-muted: var(--hx-fg-muted);
   --color-fg-subtle: var(--hx-fg-subtle);
   --color-fg-disabled: var(--hx-fg-disabled);
+  --color-fg-placeholder: var(--hx-fg-placeholder);
   --color-bg: var(--hx-bg);
   --color-surface: var(--hx-surface);
   --color-surface-hover: var(--hx-surface-hover);
@@ -132,6 +148,10 @@
   --color-surface-disabled: var(--hx-surface-disabled);
   --color-border: var(--hx-border);
   --color-border-strong: var(--hx-border-strong);
+  --color-field-bg: var(--hx-field-bg);
+  --color-field-bg-hover: var(--hx-field-bg-hover);
+  --color-field-border-bottom: var(--hx-field-border-bottom);
+  --color-field-border-bottom-hover: var(--hx-field-border-bottom-hover);
   --color-primary: var(--hx-primary);
   --color-primary-hover: var(--hx-primary-hover);
   --color-primary-pressed: var(--hx-primary-pressed);
@@ -188,5 +208,59 @@
 
   &:focus-visible {
     outline-color: var(--hx-ring);
+  }
+}
+
+/*
+ * Text field frame (input, textarea, select): a gray fill without side borders, a darker bottom edge, and on
+ * focus a 2px accent underline (the bottom border plus an inset line, so the text does not move). On a wrapper
+ * (an input with icons), the states follow the control inside. States are ordered here,
+ * later ones winning: hover < focus < invalid < disabled.
+ */
+@utility field {
+  border: 1px solid transparent;
+  border-bottom-color: var(--hx-field-border-bottom);
+  border-radius: var(--hx-radius-xs);
+  background-color: var(--hx-field-bg);
+  color: var(--hx-fg);
+  outline: none;
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 100ms;
+
+  &::placeholder {
+    color: var(--hx-fg-placeholder);
+  }
+
+  &:hover {
+    background-color: var(--hx-field-bg-hover);
+    border-bottom-color: var(--hx-field-border-bottom-hover);
+  }
+
+  &:focus,
+  &:focus-within {
+    border-bottom-color: var(--hx-accent);
+    box-shadow: inset 0 -1px 0 0 var(--hx-accent);
+    /* Invisible, except in Windows high contrast mode where shadows are dropped. */
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+
+  &:is([aria-invalid='true'], [data-invalid]),
+  &:has(> :is([aria-invalid='true'], [data-invalid])) {
+    border-bottom-color: var(--hx-danger-text);
+    box-shadow: inset 0 -1px 0 0 var(--hx-danger-text);
+  }
+
+  &:is(:disabled, [data-disabled]),
+  &:has(> :disabled) {
+    cursor: not-allowed;
+    border-color: transparent;
+    background-color: var(--hx-surface-disabled);
+    color: var(--hx-fg-disabled);
+    box-shadow: none;
+
+    &::placeholder {
+      color: var(--hx-fg-disabled);
+    }
   }
 }
