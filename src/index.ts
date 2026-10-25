@@ -45,6 +45,17 @@ export {
   type ComboboxStatusProps,
 } from './components/combobox/Combobox';
 export {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  type DialogContentProps,
+} from './components/dialog/Dialog';
+export {
   Field,
   FieldDescription,
   FieldError,
@@ -68,3 +79,10 @@ export {
   type SelectContentProps,
 } from './components/select/Select';
 export { Textarea, type TextareaProps } from './components/textarea/Textarea';
+export {
+  ToastProvider,
+  createToastManager,
+  useToast,
+  type ToastProviderProps,
+  type ToastType,
+} from './components/toast/Toast';
