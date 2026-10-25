@@ -212,56 +212,87 @@
 }
 
 /*
- * Text field frame (input, textarea, select): a gray fill without side borders, a darker bottom edge, and on
- * focus a 2px accent underline (the bottom border plus an inset line, so the text does not move). On a wrapper
- * (an input with icons, a combobox input group), the states follow the control inside; an open popup counts as focus. States are ordered here,
- * later ones winning: hover < focus < invalid < disabled.
+ * Text field frame (input, textarea, select, combobox): a gray fill, a darker bottom edge, and on focus a 2px accent
+ * underline that grows from the center, as in Fluent 2. Both lines are background layers, not borders or ::after,
+ * so they also work on <input> and <textarea>. On a wrapper (an input with icons, a combobox input group), the
+ * states follow the control inside; an open popup counts as focus. States are ordered here, later ones winning:
+ * hover < focus < invalid < disabled.
  */
 @utility field {
+  --hx-field-edge: var(--hx-field-border-bottom);
+  --hx-field-line: var(--hx-accent);
+  --hx-field-line-size: 0%;
+
   border: 1px solid transparent;
-  border-bottom-color: var(--hx-field-border-bottom);
   border-radius: var(--hx-radius-xs);
   background-color: var(--hx-field-bg);
+  background-image:
+    linear-gradient(var(--hx-field-line), var(--hx-field-line)),
+    linear-gradient(var(--hx-field-edge), var(--hx-field-edge));
+  background-size:
+    var(--hx-field-line-size) 2px,
+    100% 1px;
+  background-position:
+    center bottom,
+    center bottom;
+  background-repeat: no-repeat;
+  background-origin: border-box;
   color: var(--hx-fg);
   outline: none;
-  transition-property: background-color, border-color, box-shadow;
-  transition-duration: 100ms;
+  /* Leaving focus: the line shrinks back fast (Fluent: ultra fast, accelerate). */
+  transition:
+    background-color 100ms,
+    background-size 50ms cubic-bezier(0.9, 0.1, 1, 0.2);
 
   &::placeholder {
     color: var(--hx-fg-placeholder);
   }
 
   &:hover {
+    --hx-field-edge: var(--hx-field-border-bottom-hover);
     background-color: var(--hx-field-bg-hover);
-    border-bottom-color: var(--hx-field-border-bottom-hover);
   }
 
   &:focus,
   &:focus-within,
   &[data-popup-open] {
-    border-bottom-color: var(--hx-accent);
-    box-shadow: inset 0 -1px 0 0 var(--hx-accent);
-    /* Invisible, except in Windows high contrast mode where shadows are dropped. */
+    --hx-field-line-size: 100%;
+    /* Entering focus: the line grows from the center (Fluent: normal, decelerate). */
+    transition:
+      background-color 100ms,
+      background-size 200ms cubic-bezier(0.1, 0.9, 0.2, 1);
+    /* Invisible, except in Windows high contrast mode where backgrounds are dropped. */
     outline: 2px solid transparent;
     outline-offset: 2px;
   }
 
   &:is([aria-invalid='true'], [data-invalid]),
   &:has(:is([aria-invalid='true'], [data-invalid])) {
-    border-bottom-color: var(--hx-danger-text);
-    box-shadow: inset 0 -1px 0 0 var(--hx-danger-text);
+    --hx-field-line: var(--hx-danger-text);
+    --hx-field-line-size: 100%;
   }
 
   &:is(:disabled, [data-disabled]),
   &:has(:disabled) {
+    --hx-field-edge: transparent;
+    --hx-field-line-size: 0%;
     cursor: not-allowed;
-    border-color: transparent;
     background-color: var(--hx-surface-disabled);
     color: var(--hx-fg-disabled);
-    box-shadow: none;
+  }
 
-    &::placeholder {
-      color: var(--hx-fg-disabled);
+  /* Kept apart from the rule above: nested under its :has() list, the selector compiles broken. */
+  &:is(:disabled, [data-disabled])::placeholder {
+    color: var(--hx-fg-disabled);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &:focus,
+    &:focus-within,
+    &[data-popup-open] {
+      transition: none;
     }
   }
 }
