@@ -34,7 +34,7 @@ export type PageHeaderActionsProps = ComponentProps<'div'> & {
 };
 
 /**
- * The command bar of the page, as in the Azure portal: a row of `ghost` buttons between two lines.
+ * The command bar of the page, as in the Azure portal: a row of `ghost` buttons above a light line.
  * It can also be used on its own, outside a `PageHeader`.
  */
 export function PageHeaderActions({ sticky = false, className, ...props }: PageHeaderActionsProps) {
@@ -43,10 +43,11 @@ export function PageHeaderActions({ sticky = false, className, ...props }: PageH
       role="toolbar"
       aria-orientation="horizontal"
       className={cn(
-        'hx:flex hx:min-w-0 hx:flex-wrap hx:items-center hx:gap-1 hx:border-y hx:border-border-medium hx:py-1',
+        'hx:flex hx:min-w-0 hx:flex-wrap hx:items-center hx:gap-1 hx:border-b hx:border-border hx:pb-1.5',
         // Buttons size to their content, so an icon-only button stays square on narrow screens.
         'hx:[&_button]:min-w-0',
-        sticky && 'hx:sticky hx:top-(--hx-header-offset,0px) hx:z-10 hx:bg-bg',
+        // Sticky: the background of the page it sits on (white in an `inset` SidebarInset, see --hx-page-bg).
+        sticky && 'hx:sticky hx:top-(--hx-header-offset,0px) hx:z-10 hx:bg-[var(--hx-page-bg,var(--hx-bg))] hx:pt-1.5',
         className,
       )}
       {...props}

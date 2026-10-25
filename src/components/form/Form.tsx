@@ -31,7 +31,7 @@ export function FormSection({ title, description, className, children, ...props 
       aria-labelledby={title ? titleId : undefined}
       className={cn(
         'hx:flex hx:flex-col hx:gap-5',
-        'hx:[[data-hx-form-section]+&]:border-t hx:[[data-hx-form-section]+&]:border-border-medium hx:[[data-hx-form-section]+&]:pt-6',
+        'hx:[[data-hx-form-section]+&]:border-t hx:[[data-hx-form-section]+&]:border-border hx:[[data-hx-form-section]+&]:pt-6',
         className,
       )}
       {...props}

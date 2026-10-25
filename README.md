@@ -139,8 +139,8 @@ body {
   `danger`), `MenuCheckboxItem`, `MenuRadioGroup` and `MenuRadioItem`, `MenuGroup` and `MenuGroupLabel`,
   `MenuSeparator`, `MenuShortcut`, and submenus with `MenuSub`, `MenuSubTrigger`, `MenuSubContent`.
 - **PageHeader** — the top of a page, as in the Azure portal: a `Breadcrumb`, `PageHeaderHeading` with
-  `PageHeaderTitle` and `PageHeaderDescription`, then `PageHeaderActions`, a command bar of `ghost` buttons between
-  two lines (`sticky`: stays at the top while the page scrolls). `PageHeaderActionSeparator` splits it into groups;
+  `PageHeaderTitle` and `PageHeaderDescription`, then `PageHeaderActions`, a command bar of `ghost` buttons above a light
+  line (`sticky`: stays at the top while the page scrolls). `PageHeaderActionSeparator` splits it into groups;
   `PageHeaderActionLabel` hides a button's text on narrow screens.
 - **Pagination** — `page` (1-based), `totalPages`, `onPageChange`; `maxVisible` page buttons, ellipses included.
 - **Panel** — a white surface with a card shadow and no imposed layout; `render` changes the element, such as an
