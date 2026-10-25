@@ -214,7 +214,7 @@
 /*
  * Text field frame (input, textarea, select): a gray fill without side borders, a darker bottom edge, and on
  * focus a 2px accent underline (the bottom border plus an inset line, so the text does not move). On a wrapper
- * (an input with icons), the states follow the control inside. States are ordered here,
+ * (an input with icons, a combobox input group), the states follow the control inside; an open popup counts as focus. States are ordered here,
  * later ones winning: hover < focus < invalid < disabled.
  */
 @utility field {
@@ -237,7 +237,8 @@
   }
 
   &:focus,
-  &:focus-within {
+  &:focus-within,
+  &[data-popup-open] {
     border-bottom-color: var(--hx-accent);
     box-shadow: inset 0 -1px 0 0 var(--hx-accent);
     /* Invisible, except in Windows high contrast mode where shadows are dropped. */
@@ -246,13 +247,13 @@
   }
 
   &:is([aria-invalid='true'], [data-invalid]),
-  &:has(> :is([aria-invalid='true'], [data-invalid])) {
+  &:has(:is([aria-invalid='true'], [data-invalid])) {
     border-bottom-color: var(--hx-danger-text);
     box-shadow: inset 0 -1px 0 0 var(--hx-danger-text);
   }
 
   &:is(:disabled, [data-disabled]),
-  &:has(> :disabled) {
+  &:has(:disabled) {
     cursor: not-allowed;
     border-color: transparent;
     background-color: var(--hx-surface-disabled);
