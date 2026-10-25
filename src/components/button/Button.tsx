@@ -23,13 +23,13 @@ export const buttonVariants = cva(
           'hx:data-disabled:bg-surface-disabled',
         ],
         secondary: [
-          'hx:border-border-strong hx:bg-surface hx:text-fg',
-          'hx:hover:bg-surface-hover hx:active:bg-surface-pressed hx:data-popup-open:bg-surface-pressed',
-          'hx:data-disabled:border-border hx:data-disabled:bg-surface-disabled',
+          'hx:bg-primary-subtle hx:text-primary-subtle-fg',
+          'hx:hover:bg-primary-subtle-hover hx:active:bg-primary-subtle-pressed hx:data-popup-open:bg-primary-subtle-pressed',
+          'hx:data-disabled:bg-surface-disabled',
         ],
         outline: [
           'hx:border-accent hx:text-accent',
-          'hx:hover:bg-primary-subtle hx:active:bg-primary-subtle-pressed hx:data-popup-open:bg-primary-subtle-pressed',
+          'hx:hover:bg-primary-subtle hx:active:bg-primary-subtle-hover hx:data-popup-open:bg-primary-subtle-hover',
           'hx:data-disabled:border-border',
         ],
         ghost: [
@@ -67,8 +67,9 @@ export const buttonVariants = cva(
       },
     },
     compoundVariants: [
-      { ring: true, variant: ['primary', 'outline'], className: 'hx:before:border-accent' },
-      { ring: true, variant: 'secondary', className: 'hx:before:border-border-strong' },
+      { ring: true, variant: ['primary', 'secondary', 'outline'], className: 'hx:before:border-accent' },
+      // The pale fill of a secondary button blends with the page: an edge keeps the gap to the ring visible.
+      { ring: true, variant: 'secondary', className: 'hx:border-primary-subtle-pressed' },
       { ring: true, variant: 'ghost', className: 'hx:before:border-border' },
       { ring: true, variant: 'danger', className: 'hx:before:border-danger' },
       { ring: true, variant: 'outline-danger', className: 'hx:before:border-danger-text' },
