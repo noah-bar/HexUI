@@ -79,6 +79,13 @@
   /* Veil behind dialogs. */
   --hx-overlay: rgb(0 0 0 / 0.4);
 
+  /* Application header: a dark bar across the top of the page, in both themes. */
+  --hx-header: #1b1a19;
+  --hx-header-fg: #ffffff;
+  --hx-header-hover: rgb(255 255 255 / 0.1);
+  --hx-header-pressed: rgb(255 255 255 / 0.16);
+  --hx-header-height: 2.5rem;
+
   --hx-ring: #0f6cbd;
 
   --hx-shadow-card: 0 1.6px 3.6px 0 rgb(0 0 0 / 0.13), 0 0.3px 0.9px 0 rgb(0 0 0 / 0.11);
@@ -137,6 +144,8 @@
 
   --hx-overlay: rgb(0 0 0 / 0.6);
 
+  --hx-header: #0b0a0a;
+
   --hx-ring: #479ef5;
 
   --hx-shadow-card: 0 1.6px 3.6px 0 rgb(0 0 0 / 0.4), 0 0.3px 0.9px 0 rgb(0 0 0 / 0.3);
@@ -186,6 +195,10 @@
   --color-warning-text: var(--hx-warning-text);
   --color-info-text: var(--hx-info-text);
   --color-overlay: var(--hx-overlay);
+  --color-header: var(--hx-header);
+  --color-header-fg: var(--hx-header-fg);
+  --color-header-hover: var(--hx-header-hover);
+  --color-header-pressed: var(--hx-header-pressed);
   --color-ring: var(--hx-ring);
 
   --shadow-card: var(--hx-shadow-card);
@@ -197,6 +210,11 @@
  * Scoped reset — only touches elements rendered by HexUI (they all carry hx: classes).
  * :where() keeps specificity at zero so every utility still wins.
  * ------------------------------------------------------------------------- */
+/* With an AppHeader on the page, the sticky Sidebar and page headers start below it. */
+:root:has([data-hx-app-header]) {
+  --hx-header-offset: var(--hx-header-height);
+}
+
 @layer base {
   :where([class*='hx:']),
   :where([class*='hx:'])::before,

@@ -4,6 +4,7 @@ export { cn } from './lib/cn';
 export { useDebouncedValue } from './hooks/useDebouncedValue';
 export { useMediaQuery } from './hooks/useMediaQuery';
 
+export { AppHeader, AppHeaderActions, AppHeaderBrand } from './components/app-header/AppHeader';
 export {
   Autocomplete,
   AutocompleteCollection,
