@@ -69,6 +69,22 @@ export {
   type DialogContentProps,
 } from './components/dialog/Dialog';
 export {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from './components/dropdown-menu/DropdownMenu';
+export {
   Field,
   FieldDescription,
   FieldError,
@@ -79,6 +95,24 @@ export {
 } from './components/field/Field';
 export { Input, type InputProps } from './components/input/Input';
 export { InputNumber, type InputNumberProps } from './components/input-number/InputNumber';
+export {
+  Menu,
+  MenuCheckboxItem,
+  MenuContent,
+  MenuGroup,
+  MenuGroupLabel,
+  MenuItem,
+  MenuRadioGroup,
+  MenuRadioItem,
+  MenuSeparator,
+  MenuShortcut,
+  MenuSub,
+  MenuSubContent,
+  MenuSubTrigger,
+  MenuTrigger,
+  type MenuContentProps,
+  type MenuItemProps,
+} from './components/menu/Menu';
 export { Panel, type PanelProps } from './components/panel/Panel';
 export {
   Popover,
@@ -102,6 +136,24 @@ export {
   type SelectContentProps,
 } from './components/select/Select';
 export { Switch, type SwitchProps } from './components/switch/Switch';
+export {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableEmpty,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+  type SortDirection,
+  type TableCellProps,
+  type TableEmptyProps,
+  type TableHeadProps,
+  type TableProps,
+  type TableRowProps,
+} from './components/table/Table';
+export { Tabs, TabsList, TabsPanel, TabsTab } from './components/tabs/Tabs';
 export { Textarea, type TextareaProps } from './components/textarea/Textarea';
 export {
   ToastProvider,
