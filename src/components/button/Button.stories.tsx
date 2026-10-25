@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ChevronDown, Download, Plus, RefreshCw, Settings, Trash2 } from 'lucide-react';
+import { ArrowRight, ChevronDown, Download, Plus, RefreshCw, Settings, Trash2 } from 'lucide-react';
 import { Button } from './Button';
 
 const meta = {
@@ -8,8 +8,14 @@ const meta = {
   tags: ['autodocs'],
   args: { children: 'Save' },
   argTypes: {
-    variant: { control: 'inline-radio', options: ['primary', 'secondary', 'outline', 'ghost', 'danger'] },
+    variant: {
+      control: 'inline-radio',
+      options: ['primary', 'secondary', 'outline', 'ghost', 'danger', 'outline-danger'],
+    },
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg', 'icon'] },
+    ring: { control: 'boolean' },
+    startIcon: { control: false },
+    endIcon: { control: false },
     disabled: { control: 'boolean' },
   },
 } satisfies Meta<typeof Button>;
@@ -37,6 +43,9 @@ export const Variants: Story = {
       <Button {...args} variant="danger">
         Delete
       </Button>
+      <Button {...args} variant="outline-danger">
+        Remove
+      </Button>
     </div>
   ),
 };
@@ -63,14 +72,47 @@ export const Sizes: Story = {
 export const WithIcons: Story = {
   render: (args) => (
     <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-3">
-      <Button {...args}>
-        <Plus /> Create
+      <Button {...args} startIcon={<Plus />}>
+        Create
+      </Button>
+      <Button {...args} variant="secondary" startIcon={<Download />}>
+        Export
+      </Button>
+      <Button {...args} variant="secondary" endIcon={<ChevronDown />}>
+        Actions
+      </Button>
+      <Button {...args} variant="outline" endIcon={<ArrowRight />}>
+        Next
+      </Button>
+      <Button {...args} variant="danger" startIcon={<Trash2 />}>
+        Delete
+      </Button>
+    </div>
+  ),
+};
+
+/** `ring` draws a second border around the button, 2px away, to set an action apart. */
+export const Ring: Story = {
+  args: { ring: true },
+  render: (args) => (
+    <div className="hx:flex hx:flex-wrap hx:items-center hx:gap-4">
+      <Button {...args} variant="primary">
+        Primary
       </Button>
       <Button {...args} variant="secondary">
-        <Download /> Export
+        Secondary
+      </Button>
+      <Button {...args} variant="outline">
+        Outline
+      </Button>
+      <Button {...args} variant="ghost">
+        Ghost
       </Button>
       <Button {...args} variant="danger">
-        <Trash2 /> Delete
+        Delete
+      </Button>
+      <Button {...args} variant="outline-danger">
+        Remove
       </Button>
     </div>
   ),
@@ -94,6 +136,9 @@ export const Disabled: Story = {
       <Button {...args} variant="danger" disabled>
         Delete
       </Button>
+      <Button {...args} variant="outline-danger" disabled>
+        Remove
+      </Button>
     </div>
   ),
 };
@@ -102,18 +147,18 @@ export const Disabled: Story = {
 export const CommandBar: Story = {
   render: (args) => (
     <div className="hx:flex hx:items-center hx:gap-1 hx:border-b hx:border-border hx:pb-2">
-      <Button {...args} variant="ghost">
-        <Plus /> Create
+      <Button {...args} variant="ghost" startIcon={<Plus />}>
+        Create
       </Button>
-      <Button {...args} variant="ghost">
-        <RefreshCw /> Refresh
+      <Button {...args} variant="ghost" startIcon={<RefreshCw />}>
+        Refresh
       </Button>
-      <Button {...args} variant="ghost">
-        <Trash2 /> Delete
+      <Button {...args} variant="ghost" startIcon={<Trash2 />}>
+        Delete
       </Button>
       <div className="hx:mx-1 hx:h-5 hx:w-px hx:bg-border" />
-      <Button {...args} variant="ghost">
-        <Settings /> Settings <ChevronDown />
+      <Button {...args} variant="ghost" startIcon={<Settings />} endIcon={<ChevronDown />}>
+        Settings
       </Button>
     </div>
   ),

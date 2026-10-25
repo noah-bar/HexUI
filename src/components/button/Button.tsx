@@ -1,6 +1,6 @@
 import { Button as BaseButton } from '@base-ui/react/button';
 import { cva, type VariantProps } from 'class-variance-authority';
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 import { mergeClassName } from '../../lib/cn';
 
 export const buttonVariants = cva(
@@ -9,7 +9,9 @@ export const buttonVariants = cva(
     // Every variant has a 1px border (transparent when unseen), so all sizes line up and
     // filled buttons keep a visible frame in Windows high contrast mode.
     'hx:rounded-xs hx:border hx:border-transparent hx:font-semibold hx:cursor-pointer',
-    'hx:transition-colors hx:duration-100 hx:focus-ring',
+    // The outline is either the ring (see `ring`) or invisible; on keyboard focus it becomes the 2px focus ring.
+    'hx:outline-1 hx:outline-offset-2 hx:outline-transparent hx:focus-visible:outline-2 hx:focus-visible:outline-ring',
+    'hx:transition-colors hx:duration-100',
     'hx:data-disabled:pointer-events-none hx:data-disabled:text-fg-disabled',
     'hx:[&_svg]:size-4 hx:[&_svg]:shrink-0',
   ],
@@ -38,6 +40,11 @@ export const buttonVariants = cva(
           'hx:bg-danger hx:text-danger-fg hx:hover:bg-danger-hover hx:active:bg-danger-pressed',
           'hx:data-disabled:bg-surface-disabled',
         ],
+        'outline-danger': [
+          'hx:border-danger-text hx:text-danger-text',
+          'hx:hover:bg-danger-subtle hx:active:bg-danger-subtle-pressed hx:data-popup-open:bg-danger-subtle-pressed',
+          'hx:data-disabled:border-border',
+        ],
       },
       size: {
         sm: 'hx:h-6 hx:min-w-16 hx:px-2 hx:text-xs',
@@ -45,16 +52,49 @@ export const buttonVariants = cva(
         lg: 'hx:h-10 hx:min-w-24 hx:px-4 hx:text-base',
         icon: 'hx:size-8 hx:text-sm',
       },
+      /**
+       * A 1px ring 2px outside the button, in the color of the variant; the button itself turns square.
+       * The ring is a ::before layer rather than the outline, so it keeps its rounded corners; on keyboard
+       * focus it becomes the 2px focus ring.
+       */
+      ring: {
+        true: [
+          'hx:relative hx:rounded-none hx:focus-visible:outline-transparent',
+          'hx:before:pointer-events-none hx:before:absolute hx:before:-inset-1 hx:before:rounded-xs hx:before:border',
+          'hx:focus-visible:before:border-2 hx:focus-visible:before:border-ring hx:data-disabled:before:border-border',
+        ],
+        false: '',
+      },
     },
+    compoundVariants: [
+      { ring: true, variant: ['primary', 'outline'], className: 'hx:before:border-accent' },
+      { ring: true, variant: 'secondary', className: 'hx:before:border-border-strong' },
+      { ring: true, variant: 'ghost', className: 'hx:before:border-border' },
+      { ring: true, variant: 'danger', className: 'hx:before:border-danger' },
+      { ring: true, variant: 'outline-danger', className: 'hx:before:border-danger-text' },
+    ],
     defaultVariants: {
       variant: 'primary',
       size: 'md',
+      ring: false,
     },
   },
 );
 
-export type ButtonProps = ComponentProps<typeof BaseButton> & VariantProps<typeof buttonVariants>;
+export type ButtonProps = ComponentProps<typeof BaseButton> &
+  VariantProps<typeof buttonVariants> & {
+    /** Icon before the label (on the left in left-to-right languages). */
+    startIcon?: ReactNode;
+    /** Icon after the label, such as the chevron of a menu button. */
+    endIcon?: ReactNode;
+  };
 
-export function Button({ variant, size, className, ...props }: ButtonProps) {
-  return <BaseButton className={mergeClassName(buttonVariants({ variant, size }), className)} {...props} />;
+export function Button({ variant, size, ring, startIcon, endIcon, className, children, ...props }: ButtonProps) {
+  return (
+    <BaseButton className={mergeClassName(buttonVariants({ variant, size, ring }), className)} {...props}>
+      {startIcon}
+      {children}
+      {endIcon}
+    </BaseButton>
+  );
 }
