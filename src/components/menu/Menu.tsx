@@ -21,7 +21,8 @@ export type MenuContentProps = ComponentProps<typeof BaseMenu.Popup> &
   Pick<PositionerProps, 'side' | 'sideOffset' | 'align' | 'alignOffset'>;
 
 // The popup does not scroll; an inner wrapper does, so the rounded edge and border stay put.
-const popupClassName = `${popupSurfaceClassName} hx:flex hx:min-w-44 hx:max-h-(--available-height) hx:flex-col`;
+/** Shared with ContextMenu. */
+export const menuPopupClassName = `${popupSurfaceClassName} hx:flex hx:min-w-44 hx:max-h-(--available-height) hx:flex-col`;
 
 export function MenuContent({
   className,
@@ -41,7 +42,7 @@ export function MenuContent({
         align={align}
         alignOffset={alignOffset}
       >
-        <BaseMenu.Popup className={mergeClassName(popupClassName, className)} {...props}>
+        <BaseMenu.Popup className={mergeClassName(menuPopupClassName, className)} {...props}>
           <div className="hx:min-h-0 hx:overflow-y-auto hx:overscroll-contain hx:p-1">{children}</div>
         </BaseMenu.Popup>
       </BaseMenu.Positioner>
