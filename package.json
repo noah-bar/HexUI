@@ -1,6 +1,6 @@
 {
   "name": "@hxtc/hexui",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Hex-Tech's React component library for business applications — Base UI + Tailwind CSS.",
   "keywords": [
     "react",
