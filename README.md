@@ -66,10 +66,15 @@ body {
 - **Autocomplete** — a text input with suggestions; free text is accepted. `AutocompleteInput` (`clearable`),
   `AutocompleteContent`, `AutocompleteList`, `AutocompleteItem`, `AutocompleteEmpty`, `AutocompleteStatus` (`loading`),
   groups and separators; `useAutocompleteFilter`.
+- **Badge** — a small status label; `variant`: `neutral`, `info`, `success`, `warning`, `danger`; `dot`: a colored dot
+  before the text.
+- **Breadcrumb** — the path to the current page: `Breadcrumb`, `BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbLink`
+  (`render` for a router link), `BreadcrumbPage`, `BreadcrumbSeparator`, `BreadcrumbEllipsis`.
 - **Button** — `variant`: `primary`, `secondary`, `outline`, `ghost`, `danger`, `outline-danger`; `size`: `sm`
   (24px), `md` (32px), `lg` (40px), `icon`; `ring`: a second border 2px around the button, to set an action apart;
   `startIcon`, `endIcon`: an icon before or after the label. `buttonVariants` gives the same classes to another
   element, such as a link.
+- **Checkbox** — `checked`, `defaultChecked`, `indeterminate`; blue once checked.
 - **Combobox** — pick one or several values from a list by typing. `ComboboxInput` (`clearable`), `ComboboxChips`
   for multiple values, or `ComboboxTrigger` with `ComboboxSearch` inside the popup for a select with a search;
   `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), groups and
@@ -87,12 +92,18 @@ body {
   restores `0` when cleared; `showSteppers`: − and + buttons on each side; `align`: `left`, `center`, `right`.
 - **Panel** — a white surface with a card shadow and no imposed layout; `render` changes the element, such as an
   `<aside>`.
+- **Popover** — a floating panel opened by a button, for filters or details: `Popover`, `PopoverTrigger`,
+  `PopoverContent` (`side`, `align`), `PopoverTitle`, `PopoverDescription`, `PopoverClose`.
+- **Radio** — `RadioGroup` (`value`, `defaultValue`) with `Radio` items; a blue ring and dot once checked.
 - **Select** — a button that opens a list: `Select` (`items`), `SelectTrigger`, `SelectValue` (`placeholder`),
   `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator`.
+- **Switch** — an on/off toggle; a blue track with a white thumb once on.
 - **Textarea** — a multiline text field with the same look as `Input`; resizable vertically.
 - **Toast** — short notifications stacked at the bottom right. Wrap the app in `ToastProvider`, then call
   `useToast().add({ title, description, type })` with `type`: `success`, `error`, `warning`, `info`, `loading`;
   `createToastManager` sends toasts from outside React.
+- **Tooltip** — a short label on hover or focus: `Tooltip`, `TooltipTrigger`, `TooltipContent` (`side`, default
+  `top`). `TooltipProvider` shares the open delay, so moving between triggers shows the next tooltip at once.
 
 ## Contributing
 

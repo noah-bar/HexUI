@@ -20,6 +20,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Combobox`, a searchable list with single or multiple values, as an input, chips, or a button with a search inside.
 - `Autocomplete`, a text input with suggestions.
 - `Dialog`, a modal window with header, title, description and footer.
+- `Checkbox`, `Radio` and `RadioGroup`, and `Switch`.
+- `Badge` with `neutral`, `info`, `success`, `warning` and `danger` variants.
+- `Breadcrumb` with links, separators and an ellipsis.
+- `Popover`, a floating panel with title and description.
+- `Tooltip`, a short label on hover or focus.
 - `Toast`, stacked notifications with status icons, actions and promise support.
 - Status text tokens (`success`, `warning`, `info`) and the dialog `overlay` token.
 - `useDebouncedValue` hook.
