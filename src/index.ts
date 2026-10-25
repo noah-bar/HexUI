@@ -163,6 +163,16 @@ export {
   type MenuContentProps,
   type MenuItemProps,
 } from './components/menu/Menu';
+export {
+  PageHeader,
+  PageHeaderActionLabel,
+  PageHeaderActionSeparator,
+  PageHeaderActions,
+  PageHeaderDescription,
+  PageHeaderHeading,
+  PageHeaderTitle,
+  type PageHeaderActionsProps,
+} from './components/page-header/PageHeader';
 export { Pagination, getVisiblePages, type PaginationProps } from './components/pagination/Pagination';
 export { Panel, type PanelProps } from './components/panel/Panel';
 export {
