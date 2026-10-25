@@ -63,10 +63,20 @@ body {
 
 ## Components
 
+- **Autocomplete** — a text input with suggestions; free text is accepted. `AutocompleteInput` (`clearable`),
+  `AutocompleteContent`, `AutocompleteList`, `AutocompleteItem`, `AutocompleteEmpty`, `AutocompleteStatus` (`loading`),
+  groups and separators; `useAutocompleteFilter`.
 - **Button** — `variant`: `primary`, `secondary`, `outline`, `ghost`, `danger`, `outline-danger`; `size`: `sm`
   (24px), `md` (32px), `lg` (40px), `icon`; `ring`: a second border 2px around the button, to set an action apart;
   `startIcon`, `endIcon`: an icon before or after the label. `buttonVariants` gives the same classes to another
   element, such as a link.
+- **Combobox** — pick one or several values from a list by typing. `ComboboxInput` (`clearable`), `ComboboxChips`
+  for multiple values, or `ComboboxTrigger` with `ComboboxSearch` inside the popup for a select with a search;
+  `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxEmpty`, `ComboboxStatus` (`loading`), groups and
+  separators; `useComboboxFilter`, `createComboboxItems`.
+- **Field** — label, description and error around a control: `Field` (`invalid`, `disabled`, `validationMode`),
+  `FieldLabel`, `FieldDescription`, `FieldError` (`match`), `FieldItem`; `FieldRow` lays fields out in columns that
+  stack on narrow rows (`columns`, `stackBelow`).
 - **Input** — a filled text field: gray background, darker bottom edge, 2px accent underline on focus. Flag an
   invalid value with `aria-invalid` (red underline). `startIcon`, `endIcon`: an icon before or after the text.
 - **InputNumber** — a number field; arrow keys change the value. `min`, `max`, `step`; `decimalPlaces`: fixed
@@ -74,6 +84,8 @@ body {
   restores `0` when cleared; `showSteppers`: − and + buttons on each side; `align`: `left`, `center`, `right`.
 - **Panel** — a white surface with a card shadow and no imposed layout; `render` changes the element, such as an
   `<aside>`.
+- **Select** — a button that opens a list: `Select` (`items`), `SelectTrigger`, `SelectValue` (`placeholder`),
+  `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator`.
 - **Textarea** — a multiline text field with the same look as `Input`; resizable vertically.
 
 ## Contributing
