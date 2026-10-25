@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `current` on `TableRow`: a blue bar on the left of the row opened last.
 - `showCurrent` on `DataTable` and `value` on `DataTableRow`: the table marks the row opened last by itself, and still does when the user comes back.
+- `storageKey` on `SidebarProvider`: the sidebar stays collapsed or expanded after a reload.
 
 ### Fixed
 

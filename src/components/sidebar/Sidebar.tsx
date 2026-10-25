@@ -45,12 +45,25 @@ export type SidebarProviderProps = ComponentProps<'div'> & {
   defaultOpen?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
+  /** Key under which the expanded or collapsed state is saved in localStorage, so it survives a reload. */
+  storageKey?: string;
 };
+
+function readStoredOpen(storageKey: string | undefined, fallback: boolean) {
+  if (!storageKey || typeof window === 'undefined') return fallback;
+  try {
+    const value = window.localStorage.getItem(storageKey);
+    return value === null ? fallback : value === 'true';
+  } catch {
+    return fallback;
+  }
+}
 
 export function SidebarProvider({
   defaultOpen = true,
   open: openProp,
   onOpenChange,
+  storageKey,
   className,
   style,
   ref,
@@ -68,15 +81,22 @@ export function SidebarProvider({
     [ref],
   );
   const [openMobile, setOpenMobile] = useState(false);
-  const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(() => readStoredOpen(storageKey, defaultOpen));
   const open = openProp ?? uncontrolledOpen;
 
   const setOpen = useCallback(
     (value: boolean) => {
       if (openProp === undefined) setUncontrolledOpen(value);
+      if (storageKey) {
+        try {
+          window.localStorage.setItem(storageKey, String(value));
+        } catch {
+          // Storage blocked (private mode, quota): the state just won't survive a reload.
+        }
+      }
       onOpenChange?.(value);
     },
-    [openProp, onOpenChange],
+    [openProp, onOpenChange, storageKey],
   );
 
   const toggleSidebar = useCallback(() => {
