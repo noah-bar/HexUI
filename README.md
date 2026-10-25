@@ -136,6 +136,9 @@ body {
   `SidebarMenuButton` (`isActive`: gray fill, semibold text and a blue bar; `tooltip` when collapsed to icons), badges, actions,
   sub-menus and collapsible sections. Below 768px it opens as a `Sheet`. Under an `AppHeader`, it sticks below the bar. `useSidebar` reads and changes its state.
 - **Skeleton** — a gray block with a shimmer, in place of content that is loading; size it with classes.
+- **Spinner** — a turning arc for a wait of unknown length: `size` (`xs` 12px to `xl` 40px), `tone`: `accent` (blue,
+  the default), `muted`, `current` (the text color); `label`: announced by screen readers when no visible text says
+  what is loading.
 - **Switch** — an on/off toggle; a blue track with a white thumb once on.
 - **Table** — `Table` (`density`: `comfortable`, `compact`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow`
   (`selected`), `TableHead` (`align`, `sortDirection` and `onSort` for a sortable column), `TableCell` (`align`),
