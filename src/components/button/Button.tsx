@@ -2,7 +2,7 @@ import { Button as BaseButton } from '@base-ui/react/button';
 import { cva, type VariantProps } from 'class-variance-authority';
 import type { ComponentProps, ReactNode } from 'react';
 import { mergeClassName } from '../../lib/cn';
-import { SpinnerIcon } from '../../lib/icons';
+import { Spinner } from '../spinner/Spinner';
 
 export const buttonVariants = cva(
   [
@@ -121,7 +121,7 @@ export function Button({
       aria-busy={loading || undefined}
       {...props}
     >
-      {loading ? <SpinnerIcon className="hx:text-current" /> : startIcon}
+      {loading ? <Spinner size="sm" tone="current" /> : startIcon}
       {children}
       {endIcon}
     </BaseButton>
