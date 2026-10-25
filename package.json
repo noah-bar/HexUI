@@ -1,0 +1,92 @@
+{
+  "name": "@hxtc/hexui",
+  "version": "0.0.0",
+  "description": "Hex-Tech's React component library for business applications — Base UI + Tailwind CSS.",
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "component-library",
+    "design-system",
+    "fluent",
+    "base-ui",
+    "tailwindcss",
+    "typescript",
+    "dark-mode",
+    "accessible"
+  ],
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://github.com/noah-bar/HexUI#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noah-bar/HexUI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/noah-bar/HexUI/issues"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "style": "./dist/hexui.css",
+  "exports": {
+    ".": {
+      "style": "./dist/hexui.css",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/hexui.css"
+  },
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "vite build && tsc -p tsconfig.build.json",
+    "build-storybook": "storybook build",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.8.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.7.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@storybook/addon-a11y": "^10.6.1",
+    "@storybook/addon-docs": "^10.6.1",
+    "@storybook/addon-themes": "^10.6.1",
+    "@storybook/react-vite": "^10.6.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "eslint": "^10.12.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-storybook": "^10.6.1",
+    "globals": "^17.13.0",
+    "lucide-react": "^1.52.0",
+    "prettier": "^3.9.9",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "storybook": "^10.6.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.71.1",
+    "vite": "^8.3.3"
+  }
+}

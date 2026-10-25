@@ -1,0 +1,30 @@
+@import '../src/styles/index.css';
+
+/* Stories use hx: utilities for their own layout. */
+@source '../src/**/*.stories.tsx';
+
+body {
+  margin: 0;
+  font-family: var(--hx-font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.sb-stage {
+  padding: 2.5rem;
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  color: var(--hx-fg);
+  background-color: var(--hx-bg);
+}
+
+.sb-stage[data-stage='bare'] {
+  padding: 0;
+}
+
+.sb-stage[data-view='story'] {
+  min-height: 100dvh;
+}
+
+.sb-show-main.sb-main-padded {
+  padding: 0;
+}
