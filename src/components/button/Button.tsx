@@ -40,6 +40,13 @@ export const buttonVariants = cva(
           'hx:bg-danger hx:text-danger-fg hx:hover:bg-danger-hover hx:active:bg-danger-pressed',
           'hx:data-disabled:bg-surface-disabled',
         ],
+        // For the dark AppHeader: white text, a light wash on hover and a white focus ring drawn inside.
+        header: [
+          'hx:font-normal hx:text-header-fg',
+          'hx:hover:bg-header-hover hx:active:bg-header-pressed hx:data-popup-open:bg-header-pressed',
+          'hx:focus-visible:outline-header-fg hx:focus-visible:-outline-offset-2',
+          'hx:data-disabled:text-header-fg/50',
+        ],
         'outline-danger': [
           'hx:border-danger-text hx:text-danger-text',
           'hx:hover:bg-danger-subtle hx:active:bg-danger-subtle-pressed hx:data-popup-open:bg-danger-subtle-pressed',
