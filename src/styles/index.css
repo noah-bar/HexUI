@@ -351,6 +351,15 @@
   }
 }
 
+@keyframes hx-progress-sweep {
+  from {
+    translate: -100% 0;
+  }
+  to {
+    translate: 300% 0;
+  }
+}
+
 @keyframes hx-skeleton-shimmer {
   from {
     background-position: 150% 0;
