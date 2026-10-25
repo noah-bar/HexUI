@@ -2,6 +2,7 @@ import './styles/index.css';
 
 export { cn } from './lib/cn';
 export { useDebouncedValue } from './hooks/useDebouncedValue';
+export { useMediaQuery } from './hooks/useMediaQuery';
 
 export {
   Autocomplete,
@@ -20,6 +21,14 @@ export {
   type AutocompleteInputProps,
   type AutocompleteStatusProps,
 } from './components/autocomplete/Autocomplete';
+export {
+  Avatar,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarImage,
+  avatarVariants,
+  type AvatarProps,
+} from './components/avatar/Avatar';
 export { Badge, badgeVariants, type BadgeProps } from './components/badge/Badge';
 export {
   Breadcrumb,
@@ -117,6 +126,25 @@ export {
 export { Input, type InputProps } from './components/input/Input';
 export { InputNumber, type InputNumberProps } from './components/input-number/InputNumber';
 export {
+  Menubar,
+  MenubarCheckboxItem,
+  MenubarContent,
+  MenubarGroup,
+  MenubarItem,
+  MenubarLabel,
+  MenubarMenu,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarSub,
+  MenubarSubContent,
+  MenubarSubTrigger,
+  MenubarTrigger,
+  menubarVariants,
+  type MenubarProps,
+} from './components/menubar/Menubar';
+export {
   Menu,
   MenuCheckboxItem,
   MenuContent,
@@ -157,6 +185,58 @@ export {
   SelectValue,
   type SelectContentProps,
 } from './components/select/Select';
+export { Separator } from './components/separator/Separator';
+export {
+  Sheet,
+  SheetBody,
+  SheetClose,
+  SheetCloseButton,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  sheetContentVariants,
+  type SheetContentProps,
+} from './components/sheet/Sheet';
+export {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInset,
+  SidebarInsetHeader,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuBadge,
+  SidebarMenuButton,
+  SidebarMenuCollapsible,
+  SidebarMenuCollapsibleContent,
+  SidebarMenuCollapsibleTrigger,
+  SidebarMenuItem,
+  SidebarMenuSkeleton,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarSeparator,
+  SidebarTrigger,
+  sidebarMenuButtonVariants,
+  useSidebar,
+  type SidebarInsetHeaderProps,
+  type SidebarMenuActionProps,
+  type SidebarMenuButtonProps,
+  type SidebarMenuSubButtonProps,
+  type SidebarProps,
+  type SidebarProviderProps,
+  type SidebarTriggerProps,
+} from './components/sidebar/Sidebar';
 export { Skeleton } from './components/skeleton/Skeleton';
 export { Switch, type SwitchProps } from './components/switch/Switch';
 export {
