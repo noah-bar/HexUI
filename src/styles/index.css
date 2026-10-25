@@ -40,6 +40,8 @@
   --hx-surface-disabled: #f3f2f1;
 
   --hx-border: #e1dfdd;
+  /* A divider that must stand out on the page background, such as the lines of a command bar. */
+  --hx-border-medium: #c8c6c4;
   /* Controls: secondary buttons, fields. */
   --hx-border-strong: #8a8886;
   /* Form fields: a gray fill, and a darker bottom edge that carries the 3:1 contrast. */
@@ -113,6 +115,7 @@
   --hx-surface-disabled: #292827;
 
   --hx-border: #3b3a39;
+  --hx-border-medium: #605e5c;
   --hx-border-strong: #8a8886;
   --hx-field-bg: #323130;
   --hx-field-bg-hover: #3b3a39;
@@ -170,6 +173,7 @@
   --color-surface-pressed: var(--hx-surface-pressed);
   --color-surface-disabled: var(--hx-surface-disabled);
   --color-border: var(--hx-border);
+  --color-border-medium: var(--hx-border-medium);
   --color-border-strong: var(--hx-border-strong);
   --color-field-bg: var(--hx-field-bg);
   --color-field-bg-hover: var(--hx-field-bg-hover);
