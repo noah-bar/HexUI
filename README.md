@@ -81,6 +81,8 @@ body {
   separators; `useComboboxFilter`, `createComboboxItems`.
 - **Dialog** — a modal window over a dark veil: `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`,
   `DialogTitle`, `DialogDescription`, `DialogFooter`, `DialogClose`.
+- **DropdownMenu** — the shadcn/ui names for `Menu`: `DropdownMenu`, `DropdownMenuTrigger`, `DropdownMenuContent`,
+  `DropdownMenuItem`… Same parts, same look.
 - **Field** — label, description and error around a control: `Field` (`invalid`, `disabled`, `validationMode`),
   `FieldLabel`, `FieldDescription`, `FieldError` (`match`), `FieldItem`; `FieldRow` lays fields out in columns that
   stack on narrow rows (`columns`, `stackBelow`).
@@ -90,6 +92,9 @@ body {
 - **InputNumber** — a number field; arrow keys change the value. `min`, `max`, `step`; `decimalPlaces`: fixed
   digits after the separator; `format` and `locale` (`Intl.NumberFormat` options: currency, percent); `required`:
   restores `0` when cleared; `showSteppers`: − and + buttons on each side; `align`: `left`, `center`, `right`.
+- **Menu** — a list of actions opened by a button: `Menu`, `MenuTrigger`, `MenuContent`, `MenuItem` (`variant`:
+  `danger`), `MenuCheckboxItem`, `MenuRadioGroup` and `MenuRadioItem`, `MenuGroup` and `MenuGroupLabel`,
+  `MenuSeparator`, `MenuShortcut`, and submenus with `MenuSub`, `MenuSubTrigger`, `MenuSubContent`.
 - **Panel** — a white surface with a card shadow and no imposed layout; `render` changes the element, such as an
   `<aside>`.
 - **Popover** — a floating panel opened by a button, for filters or details: `Popover`, `PopoverTrigger`,
@@ -98,6 +103,10 @@ body {
 - **Select** — a button that opens a list: `Select` (`items`), `SelectTrigger`, `SelectValue` (`placeholder`),
   `SelectContent`, `SelectItem`, `SelectGroup`, `SelectGroupLabel`, `SelectSeparator`.
 - **Switch** — an on/off toggle; a blue track with a white thumb once on.
+- **Table** — `Table` (`density`: `comfortable`, `compact`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow`
+  (`selected`), `TableHead` (`align`, `sortDirection` and `onSort` for a sortable column), `TableCell` (`align`),
+  `TableCaption`, `TableEmpty`. Put it in a `Panel`.
+- **Tabs** — `Tabs`, `TabsList`, `TabsTab`, `TabsPanel`; the active tab is marked by a blue bar that slides under it.
 - **Textarea** — a multiline text field with the same look as `Input`; resizable vertically.
 - **Toast** — short notifications stacked at the bottom right. Wrap the app in `ToastProvider`, then call
   `useToast().add({ title, description, type })` with `type`: `success`, `error`, `warning`, `info`, `loading`;
