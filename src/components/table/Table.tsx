@@ -102,7 +102,7 @@ export function TableHead({ align = 'left', sortDirection, onSort, className, ch
           onClick={onSort}
           className={cn(
             'hx:-mx-1.5 hx:inline-flex hx:items-center hx:gap-1 hx:rounded-xs hx:px-1.5 hx:py-0.5 hx:font-semibold',
-            'hx:cursor-pointer hx:hover:bg-surface-hover hx:focus-ring',
+            'hx:cursor-pointer hx:hover:bg-surface-pressed hx:focus-ring',
             align === 'right' && 'hx:flex-row-reverse',
           )}
         >

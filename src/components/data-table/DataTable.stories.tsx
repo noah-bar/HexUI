@@ -159,7 +159,7 @@ export const ServerSide: Story = {
             >
               {quotes.map((q) => (
                 <DataTableRow key={q.id} onClick={() => console.log('Open quote', q.id)}>
-                  <DataTableCell className="hx:font-semibold">{q.title}</DataTableCell>
+                  <DataTableCell>{q.title}</DataTableCell>
                   <DataTableCell>{q.client}</DataTableCell>
                   <DataTableCell>{new Date(q.date).toLocaleDateString('en-CH')}</DataTableCell>
                   <DataTableCell align="right">{chf(q.total)}</DataTableCell>
