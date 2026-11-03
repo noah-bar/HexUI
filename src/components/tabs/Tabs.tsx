@@ -49,14 +49,14 @@ export function TabsTab({ className, children, ...props }: ComponentProps<typeof
       )}
       {...props}
     >
-      {/* The active tab is semibold; a hidden semibold copy reserves that width, so tabs never shift. */}
+      {/* The active tab is medium; a hidden medium copy reserves that width, so tabs never shift. */}
       <span className="hx:grid">
-        <span className="hx:col-start-1 hx:row-start-1 hx:inline-flex hx:items-center hx:gap-1.5 hx:group-data-active:font-semibold">
+        <span className="hx:col-start-1 hx:row-start-1 hx:inline-flex hx:items-center hx:gap-1.5 hx:group-data-active:font-medium">
           {children}
         </span>
         <span
           aria-hidden="true"
-          className="hx:invisible hx:col-start-1 hx:row-start-1 hx:inline-flex hx:items-center hx:gap-1.5 hx:font-semibold"
+          className="hx:invisible hx:col-start-1 hx:row-start-1 hx:inline-flex hx:items-center hx:gap-1.5 hx:font-medium"
         >
           {children}
         </span>

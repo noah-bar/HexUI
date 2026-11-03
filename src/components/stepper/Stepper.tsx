@@ -74,7 +74,7 @@ export type StepperItemProps = Omit<ComponentProps<'li'>, 'title'> & {
 };
 
 const indicatorClassNames: Record<StepStatus, string> = {
-  complete: 'hx:bg-accent hx:text-white hx:border-accent',
+  complete: 'hx:bg-primary hx:text-primary-fg hx:border-primary',
   current: 'hx:border-2 hx:border-accent hx:bg-surface hx:text-accent',
   upcoming: 'hx:border-border-strong hx:bg-surface hx:text-fg-muted',
   error: 'hx:bg-danger hx:text-danger-fg hx:border-danger',
@@ -101,7 +101,7 @@ export function StepperItem({
     <span
       className={cn(
         'hx:relative hx:z-[1] hx:flex hx:size-6 hx:shrink-0 hx:items-center hx:justify-center hx:rounded-full hx:border',
-        'hx:text-xs hx:font-semibold hx:tabular-nums hx:transition-colors hx:duration-200',
+        'hx:text-xs hx:font-medium hx:tabular-nums hx:transition-colors hx:duration-200',
         'hx:[&_svg]:size-3.5 hx:[&_svg]:[stroke-width:24]',
         indicatorClassNames[status],
       )}
@@ -124,7 +124,7 @@ export function StepperItem({
           'hx:leading-5',
           horizontal && 'hx:truncate',
           status === 'current'
-            ? 'hx:font-semibold hx:text-fg'
+            ? 'hx:font-medium hx:text-fg'
             : status === 'error'
               ? 'hx:text-danger-text'
               : 'hx:text-fg',

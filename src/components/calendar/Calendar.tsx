@@ -181,7 +181,7 @@ export function Calendar(props: CalendarProps) {
               <div
                 id={titleId}
                 aria-live="polite"
-                className="hx:flex-1 hx:text-center hx:font-semibold hx:first-letter:uppercase"
+                className="hx:flex-1 hx:text-center hx:font-medium hx:first-letter:uppercase"
               >
                 {formatDate(monthStart, locale, { month: 'long', year: 'numeric' })}
               </div>
@@ -255,12 +255,12 @@ export function Calendar(props: CalendarProps) {
                               'hx:cursor-pointer hx:outline-none hx:transition-colors hx:duration-100',
                               'hx:focus-visible:outline-2 hx:focus-visible:-outline-offset-2 hx:focus-visible:outline-ring',
                               isSelected
-                                ? 'hx:bg-primary hx:font-semibold hx:text-primary-fg hx:hover:bg-primary-hover'
+                                ? 'hx:bg-primary hx:font-medium hx:text-primary-fg hx:hover:bg-primary-hover'
                                 : 'hx:hover:bg-surface-hover',
                               inRange && 'hx:hover:bg-primary-subtle-hover',
                               date === today &&
                                 !isSelected &&
-                                'hx:font-semibold hx:text-accent hx:after:absolute hx:after:bottom-1 hx:after:h-0.5 hx:after:w-3 hx:after:rounded-full hx:after:bg-current',
+                                'hx:font-medium hx:text-accent hx:after:absolute hx:after:bottom-1 hx:after:h-0.5 hx:after:w-3 hx:after:rounded-full hx:after:bg-current',
                               'hx:disabled:cursor-not-allowed hx:disabled:bg-transparent hx:disabled:text-fg-disabled',
                             )}
                           >

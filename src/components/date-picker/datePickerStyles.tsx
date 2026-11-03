@@ -6,8 +6,8 @@ import { fieldControlClassName } from '../field/fieldStyles';
 
 export const pickerFrameClassName = cn(
   fieldControlClassName,
-  'hx:inline-flex hx:h-8 hx:w-full hx:min-w-0 hx:items-center hx:gap-0.5 hx:ps-2.5 hx:pe-0.5',
-  'hx:has-data-popup-open:[--hx-field-line-size:100%]',
+  'hx:inline-flex hx:h-8 hx:pointer-coarse:h-10 hx:w-full hx:min-w-0 hx:items-center hx:gap-0.5 hx:ps-2.5 hx:pe-0.5',
+  'hx:has-data-popup-open:outline-ring',
 );
 
 export const pickerInputClassName =

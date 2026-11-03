@@ -24,7 +24,7 @@ export const toggleVariants = cva(
       },
       size: {
         sm: 'hx:h-6 hx:min-w-6 hx:px-2 hx:text-xs',
-        md: 'hx:h-8 hx:min-w-8 hx:px-2.5',
+        md: 'hx:h-8 hx:pointer-coarse:h-10 hx:min-w-8 hx:pointer-coarse:min-w-10 hx:px-2.5',
         lg: 'hx:h-10 hx:min-w-10 hx:px-3 hx:text-base',
       },
     },

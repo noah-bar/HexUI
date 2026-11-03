@@ -32,7 +32,7 @@ function ToastList({ closeLabel }: { closeLabel: string }) {
     <BaseToast.Root
       key={toast.id}
       toast={toast}
-      className="hx-toast hx:rounded-xs hx:border hx:border-transparent hx:bg-surface hx:text-fg hx:shadow-popup hx:dark:border-border"
+      className="hx-toast hx:rounded-surface hx:border hx:border-border hx:bg-surface hx:text-fg hx:shadow-popup"
     >
       <BaseToast.Content className="hx-toast-content hx:flex hx:items-start hx:gap-3 hx:overflow-hidden hx:p-3">
         {toast.type && toastIcons[toast.type as ToastType]}

@@ -177,7 +177,7 @@ export function Sidebar({
   const panelClassName = cn(
     'hx:flex hx:size-full hx:flex-col',
     variant === 'inset' ? 'hx:bg-bg' : 'hx:bg-surface',
-    floating && 'hx:rounded-xs hx:shadow-card',
+    floating && 'hx:rounded-surface hx:border hx:border-border hx:shadow-card',
     variant === 'sidebar' && (side === 'left' ? 'hx:border-r hx:border-border' : 'hx:border-l hx:border-border'),
     className,
   );
@@ -336,7 +336,7 @@ export function SidebarInset({ className, ...props }: ComponentProps<'main'>) {
         // Inset variant: a white card. Full width on mobile; on larger screens, 0.5rem from the edges of the window
         // and flush with the gray sidebar (or 0.5rem from the edge when the sidebar slides out).
         'hx:peer-data-[variant=inset]:bg-surface hx:peer-data-[variant=inset]:[--hx-page-bg:var(--hx-surface)]',
-        'hx:md:peer-data-[variant=inset]:m-2 hx:md:peer-data-[variant=inset]:rounded-xs hx:md:peer-data-[variant=inset]:shadow-card',
+        'hx:md:peer-data-[variant=inset]:m-2 hx:md:peer-data-[variant=inset]:rounded-surface hx:md:peer-data-[variant=inset]:border hx:md:peer-data-[variant=inset]:border-border hx:md:peer-data-[variant=inset]:shadow-card',
         'hx:md:peer-data-[variant=inset]:[--hx-inset-height:calc(100svh-var(--hx-header-offset,0px)-1rem)]',
         'hx:md:peer-data-[variant=inset]:peer-data-[side=left]:ms-0 hx:md:peer-data-[variant=inset]:peer-data-[side=right]:me-0',
         // One more condition than the rules above, so it wins over them.
@@ -367,7 +367,7 @@ export function SidebarInsetHeader({ variant = 'attached', className, children, 
       <div
         className={cn(
           'hx:flex hx:h-12 hx:items-center hx:gap-2 hx:bg-surface hx:px-2',
-          floating ? 'hx:rounded-xs hx:shadow-card' : 'hx:border-b hx:border-border',
+          floating ? 'hx:rounded-surface hx:border hx:border-border hx:shadow-card' : 'hx:border-b hx:border-border',
           className,
         )}
       >
@@ -422,7 +422,7 @@ export function SidebarGroupLabel({ className, render, ...props }: useRender.Com
       ...props,
       className: cn(
         // Section heading: small uppercase text above the items.
-        'hx:flex hx:h-7 hx:shrink-0 hx:items-center hx:rounded-xs hx:px-3 hx:text-xs hx:font-semibold hx:tracking-wide hx:text-fg-muted hx:uppercase hx:outline-none',
+        'hx:flex hx:h-7 hx:shrink-0 hx:items-center hx:rounded-xs hx:px-3 hx:text-xs hx:font-medium hx:tracking-wide hx:text-fg-muted hx:uppercase hx:outline-none',
         'hx:transition-[margin,opacity] hx:duration-200 hx:ease-linear hx:focus-ring',
         'hx:[&>svg]:size-4 hx:[&>svg]:shrink-0',
         'hx:group-data-[collapsible=icon]/sidebar:-mt-7 hx:group-data-[collapsible=icon]/sidebar:opacity-0',
@@ -571,7 +571,7 @@ export function SidebarMenuBadge({ className, ...props }: ComponentProps<'span'>
       data-sidebar="menu-badge"
       className={cn(
         'hx:pointer-events-none hx:absolute hx:top-2 hx:right-1.5 hx:flex hx:h-5 hx:min-w-5 hx:items-center hx:justify-center',
-        'hx:rounded-xs hx:px-1.5 hx:text-xs hx:font-semibold hx:tabular-nums hx:text-fg-muted hx:select-none',
+        'hx:rounded-xs hx:px-1.5 hx:text-xs hx:font-medium hx:tabular-nums hx:text-fg-muted hx:select-none',
         'hx:group-data-[collapsible=icon]/sidebar:hidden',
         className,
       )}

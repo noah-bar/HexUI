@@ -6,7 +6,7 @@ import { cn, mergeClassName } from '../../lib/cn';
 export const avatarVariants = cva(
   [
     'hx:relative hx:inline-flex hx:shrink-0 hx:items-center hx:justify-center hx:overflow-hidden hx:align-middle hx:select-none',
-    'hx:bg-primary-subtle hx:font-semibold hx:text-accent',
+    'hx:bg-primary-subtle hx:font-medium hx:text-accent',
   ],
   {
     variants: {

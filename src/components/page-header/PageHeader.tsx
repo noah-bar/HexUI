@@ -36,7 +36,10 @@ export function PageHeaderTitle({ className, render, ...props }: useRender.Compo
     render,
     props: {
       ...props,
-      className: cn('hx:m-0 hx:text-2xl hx:leading-tight hx:font-semibold hx:text-fg hx:break-words', className),
+      className: cn(
+        'hx:m-0 hx:text-2xl hx:leading-tight hx:font-semibold hx:tracking-tight hx:text-fg hx:break-words',
+        className,
+      ),
     },
   });
 }

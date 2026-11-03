@@ -9,7 +9,7 @@ export function Field({ className, ...props }: ComponentProps<typeof BaseField.R
 export function FieldLabel({ className, ...props }: ComponentProps<typeof BaseField.Label>) {
   return (
     <BaseField.Label
-      className={mergeClassName('hx:text-sm hx:font-semibold hx:text-fg hx:data-disabled:text-fg-disabled', className)}
+      className={mergeClassName('hx:text-sm hx:font-medium hx:text-fg hx:data-disabled:text-fg-disabled', className)}
       {...props}
     />
   );

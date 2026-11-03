@@ -16,14 +16,12 @@ export const inputGroupButtonClassName = [
 /** Trigger button of a select, or of a combobox that searches inside its popup. */
 export const triggerClassName = [
   fieldControlClassName,
-  'hx:flex hx:h-8 hx:w-full hx:min-w-40 hx:items-center hx:justify-between hx:gap-2 hx:pr-2 hx:pl-2.5',
+  'hx:flex hx:h-8 hx:pointer-coarse:h-10 hx:w-full hx:min-w-40 hx:items-center hx:justify-between hx:gap-2 hx:pr-2 hx:pl-2.5',
   'hx:cursor-pointer hx:select-none hx:text-left',
 ].join(' ');
 
-// Light: the shadow is the edge. Dark: shadows barely show, so a border draws it.
 export const popupSurfaceClassName = [
-  'hx:rounded-xs hx:border hx:border-transparent hx:bg-surface hx:text-sm hx:text-fg hx:shadow-popup hx:outline-none',
-  'hx:dark:border-border',
+  'hx:rounded-surface hx:border hx:border-border hx:bg-surface hx:text-sm hx:text-fg hx:shadow-popup hx:outline-none',
   'hx:transition-opacity hx:duration-100 hx:data-starting-style:opacity-0 hx:data-ending-style:opacity-0',
 ].join(' ');
 

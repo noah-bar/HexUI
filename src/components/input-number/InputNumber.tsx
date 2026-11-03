@@ -77,7 +77,7 @@ export function InputNumber({
       <BaseNumberField.Group
         className={cn(
           fieldControlClassName,
-          'hx:flex hx:h-8 hx:w-full hx:min-w-0 hx:items-center hx:overflow-hidden',
+          'hx:flex hx:h-8 hx:pointer-coarse:h-10 hx:w-full hx:min-w-0 hx:items-center hx:overflow-hidden',
           className,
         )}
       >

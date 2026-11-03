@@ -32,7 +32,9 @@ export function AutocompleteInput({
   ...props
 }: AutocompleteInputProps) {
   return (
-    <BaseAutocomplete.InputGroup className={cn(inputGroupClassName, 'hx:h-8 hx:pr-1', className)}>
+    <BaseAutocomplete.InputGroup
+      className={cn(inputGroupClassName, 'hx:h-8 hx:pointer-coarse:h-10 hx:pr-1', className)}
+    >
       <BaseAutocomplete.Input className={cn(inputGroupInputClassName, 'hx:pl-2.5')} {...props} />
       {clearable && (
         <BaseAutocomplete.Clear aria-label={clearLabel} className={inputGroupButtonClassName}>

@@ -19,8 +19,7 @@ export const dialogBackdropClassName = [
 
 /** The white panel and its open/close animation, without the position. */
 export const dialogSurfaceClassName = [
-  // Dark: the shadow barely shows on the veil, so a border draws the edge.
-  'hx:rounded-xs hx:border hx:border-transparent hx:bg-surface hx:text-fg hx:shadow-panel hx:dark:border-border',
+  'hx:rounded-surface hx:border hx:border-border hx:bg-surface hx:text-fg hx:shadow-panel',
   'hx:outline-none hx:transition-[scale,opacity] hx:duration-200 hx:ease-[cubic-bezier(0.1,0.9,0.2,1)]',
   'hx:data-starting-style:scale-95 hx:data-starting-style:opacity-0',
   'hx:data-ending-style:scale-95 hx:data-ending-style:opacity-0 hx:data-ending-style:duration-100',
@@ -58,7 +57,7 @@ export function DialogFooter({ className, ...props }: ComponentProps<'div'>) {
 export function DialogTitle({ className, ...props }: ComponentProps<typeof BaseDialog.Title>) {
   return (
     <BaseDialog.Title
-      className={mergeClassName('hx:text-xl hx:leading-tight hx:font-semibold', className)}
+      className={mergeClassName('hx:text-xl hx:leading-tight hx:font-semibold hx:tracking-tight', className)}
       {...props}
     />
   );

@@ -56,8 +56,8 @@ for the dark theme.
 `toggleTheme`, saves the choice in the browser and follows the system while the theme is `system`. To avoid a flash
 of the light theme on load, run `themeScript` in the `<head>` before the page renders.
 
-The components inherit the font of the page. The library ships a system font stack as `--hx-font-sans` (Segoe UI
-on Windows, the system font elsewhere); apply it to your page if you want it:
+The components inherit the font of the page. `--hx-font-sans` prefers Inter and falls back to the system font. The
+library does not ship the font: install it (`@fontsource-variable/inter`, imported once in your app) and apply the stack:
 
 ```css
 body {
@@ -76,7 +76,7 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
 - **AlertDialog** — a confirmation before an action, such as a deletion: same parts as `Dialog` (`AlertDialogContent`,
   `AlertDialogTitle`, `AlertDialogDescription`, `AlertDialogFooter`, `AlertDialogClose`…), but a click on the veil
   does not close it.
-- **AppHeader** — the dark bar across the top of an application: `AppHeader`,
+- **AppHeader** — the bar across the top of an application: `AppHeader`,
   `AppHeaderBrand` (the product name, a link: `href` or `render`), `AppHeaderActions` (buttons on the right). Use
   `Button variant="header"` inside. With a sidebar, make it the first child of `SidebarProvider` so a
   `SidebarTrigger variant="header"` can go in it; the sidebar and page headers then stick below the bar. Colors and
@@ -153,8 +153,8 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
 - **FormSection** — groups fields under a heading (`title`, `description`), with a line between sections. Put the
   sections in a plain `<form>`, or the one of your form library such as react-hook-form; a submit button can sit in the
   `PageHeaderActions` of a form that wraps the page, or anywhere with `form="<id>"`.
-- **Input** — a text field: a soft gray box with no frame, and on focus a 2px accent underline that grows from the
-  center. Flag an invalid value with `aria-invalid` (red underline). `startIcon`, `endIcon`: an icon
+- **Input** — a text field: a 1px border, and a 2px outline on focus. Flag an invalid value with `aria-invalid`
+  (red border). `startIcon`, `endIcon`: an icon
   before or after the text.
 - **InputNumber** — a number field; arrow keys change the value. `min`, `max`, `step`; `decimalPlaces`: fixed
   digits after the separator; `format` and `locale` (`Intl.NumberFormat` options: currency, percent); `required`:

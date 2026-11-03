@@ -4,22 +4,22 @@ import { mergeClassName } from '../../lib/cn';
 
 export const badgeVariants = cva(
   [
-    'hx:inline-flex hx:w-fit hx:shrink-0 hx:items-center hx:gap-1 hx:whitespace-nowrap hx:rounded-xs hx:border',
-    'hx:px-1.5 hx:py-0.5 hx:text-xs hx:font-semibold hx:leading-4',
+    'hx:inline-flex hx:w-fit hx:shrink-0 hx:items-center hx:gap-1 hx:whitespace-nowrap hx:rounded-sm hx:border hx:border-transparent',
+    'hx:px-1.5 hx:py-0.5 hx:text-xs hx:font-medium hx:leading-4',
     'hx:[&_svg]:size-3 hx:[&_svg]:shrink-0',
   ],
   {
     variants: {
-      // Tinted badges: a pale fill, a soft edge and strong text, all from the --hx-badge-* tokens.
+      // Tinted badges: a pale fill and strong text, from the --hx-badge-* tokens. The transparent border shows in forced colors.
       variant: {
-        neutral: 'hx:border-(--hx-badge-neutral-border) hx:bg-(--hx-badge-neutral-bg) hx:text-(--hx-badge-neutral-fg)',
-        brand: 'hx:border-(--hx-badge-brand-border) hx:bg-(--hx-badge-brand-bg) hx:text-(--hx-badge-brand-fg)',
-        info: 'hx:border-(--hx-badge-info-border) hx:bg-(--hx-badge-info-bg) hx:text-(--hx-badge-info-fg)',
-        success: 'hx:border-(--hx-badge-success-border) hx:bg-(--hx-badge-success-bg) hx:text-(--hx-badge-success-fg)',
-        warning: 'hx:border-(--hx-badge-warning-border) hx:bg-(--hx-badge-warning-bg) hx:text-(--hx-badge-warning-fg)',
-        danger: 'hx:border-(--hx-badge-danger-border) hx:bg-(--hx-badge-danger-bg) hx:text-(--hx-badge-danger-fg)',
+        neutral: 'hx:bg-(--hx-badge-neutral-bg) hx:text-(--hx-badge-neutral-fg)',
+        brand: 'hx:bg-(--hx-badge-brand-bg) hx:text-(--hx-badge-brand-fg)',
+        info: 'hx:bg-(--hx-badge-info-bg) hx:text-(--hx-badge-info-fg)',
+        success: 'hx:bg-(--hx-badge-success-bg) hx:text-(--hx-badge-success-fg)',
+        warning: 'hx:bg-(--hx-badge-warning-bg) hx:text-(--hx-badge-warning-fg)',
+        danger: 'hx:bg-(--hx-badge-danger-bg) hx:text-(--hx-badge-danger-fg)',
         // A sixth color, for a state that is none of the above (such as a stage of a workflow).
-        purple: 'hx:border-(--hx-badge-purple-border) hx:bg-(--hx-badge-purple-bg) hx:text-(--hx-badge-purple-fg)',
+        purple: 'hx:bg-(--hx-badge-purple-bg) hx:text-(--hx-badge-purple-fg)',
       },
     },
     defaultVariants: {

@@ -10,7 +10,7 @@ export type InputProps = ComponentProps<typeof BaseInput> & {
   endIcon?: ReactNode;
 };
 
-const sizeClassName = 'hx:h-8 hx:w-full hx:min-w-0 hx:px-2.5';
+const sizeClassName = 'hx:h-8 hx:pointer-coarse:h-10 hx:w-full hx:min-w-0 hx:px-2.5';
 const fileClassName =
   'hx:file:me-3 hx:file:h-full hx:file:border-0 hx:file:p-0 hx:file:bg-transparent hx:file:text-sm hx:file:font-semibold hx:file:text-fg';
 

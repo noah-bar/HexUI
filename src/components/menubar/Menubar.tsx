@@ -24,7 +24,7 @@ import {
 export const menubarVariants = cva('hx:flex hx:w-fit hx:items-center hx:gap-0.5 hx:rounded-xs', {
   variants: {
     variant: {
-      default: 'hx:h-10 hx:bg-surface hx:p-1 hx:shadow-card',
+      default: 'hx:h-10 hx:rounded-surface hx:border hx:border-border hx:bg-surface hx:p-1 hx:shadow-card',
       ghost: 'hx:h-8',
     },
   },

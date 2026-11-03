@@ -42,7 +42,7 @@ export function Slider({
       {(label != null || showValue) && (
         <div className="hx:flex hx:items-baseline hx:justify-between hx:gap-3">
           {label != null && (
-            <BaseSlider.Label className="hx:text-sm hx:font-semibold hx:text-fg hx:group-data-disabled:text-fg-disabled">
+            <BaseSlider.Label className="hx:text-sm hx:font-medium hx:text-fg hx:group-data-disabled:text-fg-disabled">
               {label}
             </BaseSlider.Label>
           )}

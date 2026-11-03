@@ -9,7 +9,7 @@ export const buttonVariants = cva(
     'hx:inline-flex hx:shrink-0 hx:items-center hx:justify-center hx:gap-1.5 hx:whitespace-nowrap hx:select-none',
     // Every variant has a 1px border (transparent when unseen), so all sizes line up and
     // filled buttons keep a visible frame in Windows high contrast mode.
-    'hx:rounded-xs hx:border hx:border-transparent hx:font-semibold hx:cursor-pointer',
+    'hx:rounded-xs hx:border hx:border-transparent hx:font-medium hx:cursor-pointer',
     // The outline is either the ring (see `ring`) or invisible; on keyboard focus it becomes the 2px focus ring.
     'hx:outline-1 hx:outline-offset-2 hx:outline-transparent hx:focus-visible:outline-2 hx:focus-visible:outline-ring',
     'hx:transition-colors hx:duration-100',
@@ -34,18 +34,16 @@ export const buttonVariants = cva(
           'hx:data-disabled:border-border',
         ],
         ghost: [
-          'hx:font-normal hx:text-fg',
+          'hx:text-fg',
           'hx:hover:bg-surface-hover hx:active:bg-surface-pressed hx:data-popup-open:bg-surface-pressed',
         ],
         danger: [
           'hx:bg-danger hx:text-danger-fg hx:hover:bg-danger-hover hx:active:bg-danger-pressed',
           'hx:data-disabled:bg-surface-disabled',
         ],
-        // For the dark AppHeader: white text, a light wash on hover and a white focus ring drawn inside.
         header: [
-          'hx:font-normal hx:text-header-fg',
+          'hx:text-header-fg',
           'hx:hover:bg-header-hover hx:active:bg-header-pressed hx:data-popup-open:bg-header-pressed',
-          'hx:focus-visible:outline-header-fg hx:focus-visible:-outline-offset-2',
           'hx:data-disabled:text-header-fg/50',
         ],
         'outline-danger': [
@@ -56,9 +54,9 @@ export const buttonVariants = cva(
       },
       size: {
         sm: 'hx:h-6 hx:min-w-16 hx:px-2 hx:text-xs',
-        md: 'hx:h-8 hx:min-w-20 hx:px-3 hx:text-sm',
+        md: 'hx:h-8 hx:pointer-coarse:h-10 hx:min-w-20 hx:px-3 hx:text-sm',
         lg: 'hx:h-10 hx:min-w-24 hx:px-4 hx:text-base',
-        icon: 'hx:size-8 hx:text-sm',
+        icon: 'hx:size-8 hx:pointer-coarse:size-10 hx:text-sm',
       },
       /**
        * A 1px ring 2px outside the button, in the color of the variant; the button itself turns square.

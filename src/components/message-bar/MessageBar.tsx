@@ -4,7 +4,7 @@ import { cn } from '../../lib/cn';
 import { ErrorIcon, InfoIcon, SuccessIcon, WarningIcon, XIcon } from '../../lib/icons';
 
 export const messageBarVariants = cva(
-  'hx:flex hx:min-h-10 hx:w-full hx:items-start hx:gap-2 hx:rounded-xs hx:border hx:px-3 hx:py-2.5 hx:text-sm hx:text-fg',
+  'hx:flex hx:min-h-10 hx:w-full hx:items-start hx:gap-2 hx:rounded-surface hx:border hx:px-3 hx:py-2.5 hx:text-sm hx:text-fg',
   {
     variants: {
       // A pale fill and a soft edge in the status color; the icon in the strong color, the text stays dark.
@@ -81,7 +81,7 @@ export function MessageBarBody({ className, ...props }: ComponentProps<'div'>) {
 }
 
 export function MessageBarTitle({ className, ...props }: ComponentProps<'span'>) {
-  return <span className={cn('hx:me-1 hx:font-semibold', className)} {...props} />;
+  return <span className={cn('hx:me-1 hx:font-medium', className)} {...props} />;
 }
 
 /** Buttons or links after the text, such as “Retry” or “View details”. */

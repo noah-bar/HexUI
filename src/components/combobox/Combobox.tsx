@@ -49,7 +49,7 @@ export function ComboboxInput({
   ...props
 }: ComboboxInputProps) {
   return (
-    <BaseCombobox.InputGroup className={cn(inputGroupClassName, 'hx:h-8 hx:pr-1', className)}>
+    <BaseCombobox.InputGroup className={cn(inputGroupClassName, 'hx:h-8 hx:pointer-coarse:h-10 hx:pr-1', className)}>
       <BaseCombobox.Input className={cn(inputGroupInputClassName, 'hx:pl-2.5')} {...props} />
       <InputGroupButtons clearable={clearable} clearLabel={clearLabel} triggerLabel={triggerLabel} />
     </BaseCombobox.InputGroup>

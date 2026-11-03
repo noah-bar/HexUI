@@ -20,7 +20,7 @@ export function AccordionTrigger({ className, children, ...props }: ComponentPro
         className={mergeClassName(
           cn(
             'hx:group hx:flex hx:min-h-11 hx:w-full hx:items-center hx:gap-2 hx:px-2 hx:py-2 hx:text-start',
-            'hx:text-sm hx:font-semibold hx:text-fg hx:cursor-pointer hx:select-none hx:rounded-xs',
+            'hx:text-sm hx:font-medium hx:text-fg hx:cursor-pointer hx:select-none hx:rounded-xs',
             'hx:transition-colors hx:duration-100 hx:hover:bg-surface-hover hx:focus-ring hx:focus-visible:-outline-offset-2',
             'hx:data-disabled:pointer-events-none hx:data-disabled:text-fg-disabled',
           ),

@@ -19,8 +19,7 @@ export const tableClassName =
   'hx:group/table hx:w-full hx:caption-bottom hx:border-collapse hx:text-left hx:text-sm hx:text-fg hx:tabular-nums';
 
 export function TableHeader({ className, ...props }: ComponentProps<'thead'>) {
-  // Gray labels, unlike the rows' black text.
-  return <thead className={cn('hx:text-fg-muted', className)} {...props} />;
+  return <thead className={cn(className)} {...props} />;
 }
 
 export function TableBody({ className, ...props }: ComponentProps<'tbody'>) {
@@ -88,9 +87,7 @@ export function TableHead({ align = 'left', sortDirection, onSort, className, ch
       aria-sort={sortable ? sortDirection : undefined}
       className={cn(
         cellPadding,
-        'hx:h-10 hx:font-semibold hx:whitespace-nowrap hx:group-data-[density=compact]/table:h-8',
-        // The sorted column's label in black.
-        'hx:aria-[sort=ascending]:text-fg hx:aria-[sort=descending]:text-fg',
+        'hx:h-10 hx:font-medium hx:whitespace-nowrap hx:group-data-[density=compact]/table:h-8',
         alignClassNames[align],
         className,
       )}
@@ -101,7 +98,7 @@ export function TableHead({ align = 'left', sortDirection, onSort, className, ch
           type="button"
           onClick={onSort}
           className={cn(
-            'hx:-mx-1.5 hx:inline-flex hx:items-center hx:gap-1 hx:rounded-xs hx:px-1.5 hx:py-0.5 hx:font-semibold',
+            'hx:-mx-1.5 hx:inline-flex hx:items-center hx:gap-1 hx:rounded-xs hx:px-1.5 hx:py-0.5 hx:font-medium',
             'hx:cursor-pointer hx:hover:bg-surface-pressed hx:focus-ring',
             align === 'right' && 'hx:flex-row-reverse',
           )}

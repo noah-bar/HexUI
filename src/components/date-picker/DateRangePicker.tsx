@@ -177,7 +177,7 @@ export function DateRangePicker({
                             'hx:hover:bg-surface-hover hx:focus-ring hx:focus-visible:-outline-offset-2',
                             'hx:max-md:border hx:max-md:border-border',
                             active &&
-                              'hx:bg-primary-subtle hx:font-semibold hx:text-primary-subtle-fg hx:hover:bg-primary-subtle-hover',
+                              'hx:bg-primary-subtle hx:font-medium hx:text-primary-subtle-fg hx:hover:bg-primary-subtle-hover',
                           )}
                         >
                           {preset.label}

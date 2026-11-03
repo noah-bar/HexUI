@@ -11,7 +11,7 @@ export function DetailView({ className, render, ...props }: useRender.ComponentP
     props: {
       ...props,
       className: mergeClassName(
-        'hx:flex hx:min-h-0 hx:flex-col hx:overflow-clip hx:rounded-xs hx:bg-surface hx:text-fg hx:shadow-card',
+        'hx:flex hx:min-h-0 hx:flex-col hx:overflow-clip hx:rounded-surface hx:border hx:border-border hx:bg-surface hx:text-fg hx:shadow-card',
         className,
       ),
     },
@@ -91,7 +91,10 @@ export function DetailViewTitle({ className, render, ...props }: useRender.Compo
     render,
     props: {
       ...props,
-      className: cn('hx:m-0 hx:truncate hx:text-lg hx:leading-snug hx:font-semibold hx:text-fg', className),
+      className: cn(
+        'hx:m-0 hx:truncate hx:text-lg hx:leading-snug hx:font-semibold hx:tracking-tight hx:text-fg',
+        className,
+      ),
     },
   });
 }

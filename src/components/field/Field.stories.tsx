@@ -34,7 +34,7 @@ export const Default: Story = {
   ),
 };
 
-/** `invalid` forces the error state; `FieldError match` shows the message. The red underline is applied automatically. */
+/** `invalid` forces the error state; `FieldError match` shows the message. The red border is applied automatically. */
 export const Invalid: Story = {
   render: () => (
     <Field invalid>

@@ -50,7 +50,7 @@ export function Progress({ className, label, showValue = false, size, intent, ..
       {...props}
     >
       {label != null && (
-        <BaseProgress.Label className="hx:min-w-0 hx:truncate hx:text-sm hx:font-semibold hx:text-fg">
+        <BaseProgress.Label className="hx:min-w-0 hx:truncate hx:text-sm hx:font-medium hx:text-fg">
           {label}
         </BaseProgress.Label>
       )}

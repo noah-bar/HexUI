@@ -272,7 +272,7 @@ export const Default: Story = {
 
 /**
  * Under an `AppHeader`: the header is the first child of `SidebarProvider`
- * and holds the `SidebarTrigger`. The sidebar and the page header stick below the dark bar while the page scrolls.
+ * and holds the `SidebarTrigger`. The sidebar and the page header stick below the bar while the page scrolls.
  */
 export const WithAppHeader: Story = {
   render: () => (

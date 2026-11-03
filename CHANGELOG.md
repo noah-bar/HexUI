@@ -15,6 +15,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `DatePicker` and `DateRangePicker`: date fields with typed input in the locale's order and a calendar; the range picker shows two months and optional presets.
 - `Calendar`: a month grid to pick a day or a range, with keyboard navigation.
 
+### Changed
+
+- New visual identity: cool grays, Inter as the preferred font (not shipped: install `@fontsource-variable/inter`), and medium weight on controls and labels.
+- Panels, dialogs, popups and toasts have a 1px border, a lighter shadow and a 6px radius, set by `--hx-radius-surface`. Controls keep theirs.
+- Fields have a 1px border and a 2px outline on focus instead of a gray fill and an underline.
+- `AppHeader` is a light bar with a bottom border, 3rem high, in both themes; override the `--hx-header*` tokens for a colored one. Its buttons keep their rounded corners.
+- Badges have no border; the `--hx-badge-*-border` tokens are removed.
+- Secondary buttons have neutral text.
+- Buttons, toggles and fields are 40px high on touch screens.
+- `DataTable`'s header has a darker background.
+- Table headers have black labels, whether the column is sorted or not.
+
 ## [0.1.0] - 2026-10-25
 
 ### Added

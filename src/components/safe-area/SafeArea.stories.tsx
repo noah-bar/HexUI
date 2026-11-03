@@ -19,7 +19,7 @@ type Story = StoryObj<typeof meta>;
  * Wrap the application root. Insets are 0 on desktop: open this story on an iPhone (or in the
  * device toolbar of the browser's developer tools) to see the bands. The page needs
  * `<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">`.
- * Here the top band takes the color of the `AppHeader`, so the dark bar runs up under the status bar.
+ * Here the top band takes the color of the `AppHeader`, so the bar runs up under the status bar.
  */
 export const Default: Story = {
   render: (args) => (

@@ -112,7 +112,7 @@ export function FileDropzone({
         select(event.dataTransfer.files);
       }}
       className={cn(
-        'hx:flex hx:w-full hx:cursor-pointer hx:rounded-xs hx:border hx:border-dashed hx:border-border-medium hx:text-sm hx:text-fg',
+        'hx:flex hx:w-full hx:cursor-pointer hx:rounded-surface hx:border hx:border-dashed hx:border-border-medium hx:text-sm hx:text-fg',
         'hx:transition-colors hx:duration-100 hx:hover:border-border-strong hx:hover:bg-surface-hover',
         'hx:outline-2 hx:outline-offset-2 hx:outline-transparent hx:has-focus-visible:outline-ring',
         'hx:data-dragging:border-solid hx:data-dragging:border-accent hx:data-dragging:bg-primary-subtle',
@@ -141,7 +141,7 @@ export function FileDropzone({
       <span
         className={cn(
           'hx:flex hx:shrink-0 hx:items-center hx:justify-center hx:rounded-full hx:bg-surface-pressed hx:text-fg-muted',
-          'hx:in-data-dragging:bg-accent hx:in-data-dragging:text-white hx:in-data-disabled:text-fg-disabled',
+          'hx:in-data-dragging:bg-primary hx:in-data-dragging:text-primary-fg hx:in-data-disabled:text-fg-disabled',
           compact ? 'hx:size-8 hx:[&_svg]:size-4' : 'hx:size-10 hx:[&_svg]:size-5',
         )}
       >
@@ -150,7 +150,7 @@ export function FileDropzone({
       <span className="hx:flex hx:min-w-0 hx:flex-col hx:gap-0.5">
         <span>
           {title}{' '}
-          <span className="hx:font-semibold hx:text-accent hx:in-data-disabled:text-fg-disabled">{browseLabel}</span>
+          <span className="hx:font-medium hx:text-accent hx:in-data-disabled:text-fg-disabled">{browseLabel}</span>
         </span>
         {description && <span className="hx:text-xs hx:text-fg-muted">{description}</span>}
       </span>
@@ -196,7 +196,7 @@ export function FileListItem({
     <li
       data-status={status}
       className={cn(
-        'hx:flex hx:items-center hx:gap-3 hx:rounded-xs hx:border hx:border-border hx:bg-surface hx:px-3 hx:py-2 hx:text-sm',
+        'hx:flex hx:items-center hx:gap-3 hx:rounded-surface hx:border hx:border-border hx:bg-surface hx:px-3 hx:py-2 hx:text-sm',
         failed && 'hx:border-danger-text/40',
         className,
       )}

@@ -1,3 +1,4 @@
+@import '@fontsource-variable/inter';
 @import '../src/styles/index.css';
 
 /* Stories use hx: utilities for their own layout. */

@@ -20,7 +20,7 @@ export const sheetContentVariants = cva(
   [
     // A white panel with square edges and the deepest shadow; a border draws the edge in dark.
     'hx:fixed hx:z-50 hx:flex hx:max-h-dvh hx:max-w-dvw hx:flex-col hx:overflow-hidden hx:text-fg hx:outline-none',
-    'hx:bg-surface hx:shadow-panel hx:dark:border-border',
+    'hx:border-border hx:bg-surface hx:shadow-panel',
     'hx:transition-transform hx:duration-300 hx:ease-[cubic-bezier(0.1,0.9,0.2,1)] hx:motion-reduce:transition-none',
     'hx:data-ending-style:duration-200 hx:data-ending-style:ease-[cubic-bezier(0.9,0.1,1,0.2)]',
   ],
@@ -118,7 +118,7 @@ export function SheetFooter({ className, ...props }: ComponentProps<'div'>) {
 export function SheetTitle({ className, ...props }: ComponentProps<typeof BaseDialog.Title>) {
   return (
     <BaseDialog.Title
-      className={mergeClassName('hx:text-xl hx:leading-tight hx:font-semibold', className)}
+      className={mergeClassName('hx:text-xl hx:leading-tight hx:font-semibold hx:tracking-tight', className)}
       {...props}
     />
   );
