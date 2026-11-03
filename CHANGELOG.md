@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `EmptyState`: an icon, a title, a description and an action for a list with nothing to show.
+- `Stat`: a labelled figure in a panel, with an optional icon and description.
 - `DetailView`: the details of one record, with a header (image, title, description, actions), its fields in a responsive grid, and optional sections or tabs.
 - `Stepper`: the steps of a process with the current one, horizontal or vertical, with clickable steps and a failed status.
 - `FileDropzone`, `FileList` and `FileListItem`: drop or browse files, checked against types, sizes and count, then listed with their progress or error.

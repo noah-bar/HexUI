@@ -212,6 +212,8 @@ bottom of the screen, full width, with rows tall enough for a finger: pass `mobi
 - **Table** — `Table` (`density`: `comfortable`, `compact`), `TableHeader`, `TableBody`, `TableFooter`, `TableRow`
   (`selected`; `current`: a blue bar on the left of the row opened last), `TableHead` (`align`, `sortDirection` and `onSort` for a sortable column), `TableCell` (`align`),
   `TableCaption`, `TableEmpty`. Put it in a `Panel`.
+- **EmptyState** — `EmptyState` (`icon`, `title`, `description`, `action`), for a list with nothing to show.
+- **Stat** — `Stat` (`label`, `value`, `description`, `icon`), a labelled figure in a panel.
 - **Tabs** — `Tabs`, `TabsList`, `TabsTab`, `TabsPanel`; the active tab is marked by a blue bar that slides under it.
 - **Textarea** — a multiline text field with the same look as `Input`; resizable vertically.
 - **Toast** — short notifications stacked at the bottom right. Wrap the app in `ToastProvider`, then call

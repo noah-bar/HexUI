@@ -208,6 +208,7 @@ export {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from './components/dropdown-menu/DropdownMenu';
+export { EmptyState, type EmptyStateProps } from './components/empty-state/EmptyState';
 export {
   Field,
   FieldDescription,
@@ -364,6 +365,7 @@ export {
   type SidebarTriggerProps,
 } from './components/sidebar/Sidebar';
 export { Skeleton } from './components/skeleton/Skeleton';
+export { Stat, type StatProps } from './components/stat/Stat';
 export { Slider, type SliderProps } from './components/slider/Slider';
 export { Spinner, spinnerVariants, type SpinnerProps } from './components/spinner/Spinner';
 export {
